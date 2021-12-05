@@ -3,3 +3,15 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# dev env
+/build
+
+# log
+*.log
+/log
+
+
+
+# code editor
+.vscode

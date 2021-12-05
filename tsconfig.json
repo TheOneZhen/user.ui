@@ -1,15 +1,58 @@
 {
   "compilerOptions": {
+    // 对应ES版本
     "target": "esnext",
-    "useDefineForClassFields": true,
+    // 设置程序的模块系统   ！
     "module": "esnext",
-    "moduleResolution": "node",
     "strict": true,
+    // 控制如何在JS文件中发出JSX构造  ！
     "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
+    // 避免不同模块导入相同的帮助程序导致的代码重复
+    "importHelpers": true,
+    // 指定模块解析策略
+    "moduleResolution": "node",
+    // 跳过声明文件的类型检查
+    "skipLibCheck": true,
+    /** 
+      解决TS编译为ES的俩个问题：1、改变编译器的行为；2、用新的辅助函数修复冲突函数，确保其兼容性
+    */
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"]
+    // 合成默认导入
+    "allowSyntheticDefaultImports": true,
+    // 使用定义类字段
+    "useDefineForClassFields": true,
+    // 打印编译生成的文件名称
+    "listEmittedFiles": false,
+    // 打印编译的文件名称
+    "listFiles": false,
+    // 启用源代码的索引（调试的时候）
+    "sourceMap": true,
+    // 允许解析带有.json扩展名的模块
+    "resolveJsonModule": true,
+    // 这个配置表中的默认类型
+    "lib": ["esnext", "dom", "DOM.Iterable", "ScriptHost"],
+    // 定义TS解析起始目录（一切非绝对路径均从tsconfig.json开始寻找，类似@）
+    "baseUrl": ".",
+    // 仅包中的指定文件可以影响全局
+    "types": [
+      "webpack-env",
+      "mocha",
+      "chai",
+      "element-plus/global"
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": [
+    "src/**/*.ts", 
+    "src/**/*.d.ts", 
+    "src/**/*.tsx", 
+    "src/**/*.vue"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
