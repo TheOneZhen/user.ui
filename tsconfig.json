@@ -35,9 +35,7 @@
     "baseUrl": ".",
     // 仅包中的指定文件可以影响全局
     "types": [
-      "webpack-env",
-      "mocha",
-      "chai",
+      // "webpack-env",
       "element-plus/global"
     ],
     "paths": {
