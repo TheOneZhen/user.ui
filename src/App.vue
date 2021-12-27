@@ -6,6 +6,11 @@
 <script lang="ts">
 export default {
   name: "app",
+  data () {
+    return {
+      OS: 
+    }
+  }
 };
 </script>
 
