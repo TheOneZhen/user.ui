@@ -5,10 +5,10 @@
     :collapse="menuCollapse"
   >
     <el-sub-menu 
-      v-for="(item, index) in navigationList"
+      v-for="(item, index) in navigationMenu"
       :key="index"
       index="index"
-      disabled="false"
+      :disabled="false"
     >
       <template #title>
         <span></span>
@@ -28,13 +28,45 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue-demi'
+import { Header } from '@/DS/menu';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'header',
   components: {},
   props: {
 
+  },
+  data () {
+    return {
+      navigationMenu: [
+        {
+          title: "首页",
+          icon: "",
+          disabled: false,
+          children: []
+        },
+        {
+          title: "资源共享",
+          icon: "",
+          disabled: false,
+          children: []
+        },
+        {
+          title: "问题记录",
+          icon: "",
+          disabled: false,
+          children: []
+        },
+        {
+          title: "留言",
+          icon: "",
+          disabled: false,
+          children: []
+        }
+      ] as Header.Menu
+
+    }
   },
   beforeMount () {
 
@@ -49,19 +81,6 @@ export default defineComponent({
       menuCollapse () {
         return false;
       }
-  },
-  data () {
-    return {
-      navigationList: [
-        {
-          title: "",
-          icon: "",
-          disabled: false,
-          children: []
-        }
-      ]
-
-    }
   }
 })
 </script>
