@@ -14,20 +14,20 @@
         <span></span>
         <el-icon v-html="item.icon"></el-icon>
       </template>
-      <el-menu-item-graoup
+      <el-menu-item-group
         v-for=""
       >
         <template #title></template>
         <el-menu-item 
           index=""
-
         ></el-menu-item>
-      </el-menu-item-graoup>
+      </el-menu-item-group>
     </el-sub-menu>
   </el-menu>
 </template>
 
 <script lang="ts">
+import { elMenu}
 import { defineComponent } from 'vue-demi'
 
 export default defineComponent({
@@ -54,7 +54,25 @@ export default defineComponent({
     return {
       navigationList: [
         {
-          title: "",
+          title: "第一页",
+          icon: "",
+          disabled: false,
+          children: []
+        },
+        {
+          title: "编程记",
+          icon: "",
+          disabled: false,
+          children: []
+        },
+        {
+          title: "藏宝库",
+          icon: "",
+          disabled: false,
+          children: []
+        },
+        {
+          title: "call me",
           icon: "",
           disabled: false,
           children: []
