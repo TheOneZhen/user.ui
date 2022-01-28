@@ -11,18 +11,19 @@
       :disabled="false"
     >
       <template #title>
-        <span></span>
-        <el-icon v-html="item.icon"></el-icon>
+        <el-icon v-html="'<' + item.icon + '/>'"></el-icon>
+        <span>{{ item.title }}</span>
       </template>
-      <el-menu-item-graoup
-        v-for="(child, index) in item.children"
-        :key="index"
-      >
-        <template #title></template>
-        <el-menu-item 
-          index=""
 
-        ></el-menu-item>
+      <el-menu-item-graoup
+        v-for="(child, index2) in item.children"
+        :key="index2"
+      >
+        <template #title>
+          <el-icon v-html="'<' + item.icon + '/>'"></el-icon>
+          <span>{{ item.title }}</span>
+        </template>
+        <el-menu-item :index="index + '-' + index2"></el-menu-item>
       </el-menu-item-graoup>
     </el-sub-menu>
   </el-menu>
@@ -43,15 +44,25 @@ export default defineComponent({
       navigationMenu: [
         {
           title: "首页",
-          icon: "",
-          disabled: false,
-          children: []
+          icon: "house",
+          disabled: false
         },
         {
           title: "资源共享",
-          icon: "",
+          icon: "food",
           disabled: false,
-          children: []
+          children: [
+            {
+              title: "开发工具",
+              icon: "",
+              disabled: false
+            },
+            {
+              title: "源码",
+              icon: "",
+              disabled: false
+            }
+          ]
         },
         {
           title: "问题记录",

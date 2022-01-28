@@ -17,7 +17,7 @@ export namespace Header {
     title: String
     icon: String
     disabled: Boolean
-    children: Menu
+    children?: Menu
   }
 
   export type Menu = Array<SubMenu>
