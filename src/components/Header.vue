@@ -2,7 +2,7 @@
   <el-menu
     default-active="1"
     menu-trigger="click"
-    :collapse="menuCollapse"
+    :collapse="isCollapse"
   >
     <el-sub-menu 
       v-for="(item, index) in navigationMenu"
@@ -26,101 +26,35 @@
   </el-menu>
 </template>
 
-<script lang="ts">
-<<<<<<< HEAD
-import { elMenu}
-import { defineComponent } from 'vue-demi'
-=======
-import { Header } from '@/DS/menu';
-import { defineComponent } from 'vue'
->>>>>>> 1125fff840af8f12006dfc8b5b3295284bff2e09
-
-export default defineComponent({
-  name: 'header',
-  components: {},
-  props: {
-
+<script lang="ts" setup>
+const navigationMenu = [
+  {
+    title: "首页",
+    icon: "",
+    disabled: false,
+    children: []
   },
-  data () {
-    return {
-      navigationMenu: [
-        {
-          title: "首页",
-          icon: "",
-          disabled: false,
-          children: []
-        },
-        {
-          title: "资源共享",
-          icon: "",
-          disabled: false,
-          children: []
-        },
-        {
-          title: "问题记录",
-          icon: "",
-          disabled: false,
-          children: []
-        },
-        {
-          title: "留言",
-          icon: "",
-          disabled: false,
-          children: []
-        }
-      ] as Header.Menu
-
-    }
+  {
+    title: "资源共享",
+    icon: "",
+    disabled: false,
+    children: []
   },
-  beforeMount () {
-
+  {
+    title: "问题记录",
+    icon: "",
+    disabled: false,
+    children: []
   },
-  mounted () {
-
-  },
-  computed: {
-      menuMode (): String {
-        return "horizontal";
-      },
-      menuCollapse () {
-        return false;
-      }
-<<<<<<< HEAD
-  },
-  data () {
-    return {
-      navigationList: [
-        {
-          title: "第一页",
-          icon: "",
-          disabled: false,
-          children: []
-        },
-        {
-          title: "编程记",
-          icon: "",
-          disabled: false,
-          children: []
-        },
-        {
-          title: "藏宝库",
-          icon: "",
-          disabled: false,
-          children: []
-        },
-        {
-          title: "call me",
-          icon: "",
-          disabled: false,
-          children: []
-        }
-      ]
-
-    }
-=======
->>>>>>> 1125fff840af8f12006dfc8b5b3295284bff2e09
+  {
+    title: "留言",
+    icon: "",
+    disabled: false,
+    children: []
   }
-})
+];
+
+const isCollapse = true;
 </script>
 
 <style lang="scss" scoped>

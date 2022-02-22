@@ -5,11 +5,7 @@
 <!-- setup含义 -->
 <script lang="ts">
 export default {
-  name: "app",
-  data () {
-    return {
-    }
-  }
+  name: "app"
 };
 </script>
 
