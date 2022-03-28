@@ -14,11 +14,10 @@ export namespace Header {
    *  3 type类型不能重名，interface可以对系统的变量进行重命名
    */
   export type SubMenu = {
-    title: String
-    icon: String
-    disabled: Boolean
-    children: Menu
+    title: string
+    icon: string
+    disabled?: boolean
+    children?: SubMenu[]
+    isRight?: boolean
   }
-
-  export type Menu = Array<SubMenu>
 }
