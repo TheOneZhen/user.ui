@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import styleImport, { VantResolve } from 'vite-plugin-style-import'
 
 const path = require('path')
 
@@ -16,10 +15,7 @@ export default defineConfig({
           }
         }
       }
-    ),
-    styleImport({
-      resolves: [VantResolve()]
-    })
+    )
   ],
   optimizeDeps: {
     /**
@@ -29,7 +25,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.join(__dirname, './src')
+      '@': path.join(__dirname, './src'),
+      icon: path.join(__dirname, './public/icon')
     }
   }
 })

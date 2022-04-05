@@ -8,7 +8,7 @@
     >
       <template #title>
         <span>{{ item.title }}</span>
-        <img :src="item.icon" alt='item.title' />
+        <img :src="'icon/header/' + item.icon" alt='item.title' />
       </template>
       <el-menu-item-group v-for="child in item.children" :key="child.title">
         <template #title></template>
@@ -24,52 +24,48 @@ import { Header } from '../../DS/menu'
 const navigationMenu: Header.SubMenu[] = [
   {
     title: '首页',
-    icon: 'House'
+    icon: 'House.svg'
   },
   {
-    title: '好东西',
-    icon: '',
+    title: '资源',
+    icon: 'Folder.svg',
     children: [
       {
-        title: '实用插件｜脚本',
-        icon: ''
+        title: '插件｜脚本',
+        icon: 'CPU.svg'
       },
       {
-        title: '素材｜资源',
-        icon: ''
+        title: '素材',
+        icon: 'Cherry.svg'
       },
       {
-        title: '振的藏宝阁',
-        icon: ''
+        title: '文档翻译',
+        icon: 'DocumentCopy.svg'
+      },
+      {
+        title: '我的源码',
+        icon: 'Crop.svg'
       }
     ]
   },
   {
-    title: '不知不觉编程',
-    icon: '',
+    title: '阶段总结',
+    icon: 'Document.svg',
     children: [
       {
         title: '问题记录',
-        icon: ''
+        icon: 'DocumentChecked.svg'
       },
       {
         title: '源码分析',
-        icon: ''
-      },
-      {
-        title: '阶段阅读',
-        icon: ''
+        icon: 'FullScreen.svg'
       }
     ]
   },
   {
     title: '留言',
-    icon: '',
+    icon: 'ChatSquare.svg',
     children: [
-      {
-        title: 'call 我',
-        icon: ''
-      },
       {
         title: '留言区',
         icon: ''
@@ -77,8 +73,9 @@ const navigationMenu: Header.SubMenu[] = [
     ]
   },
   {
-    title: '其他平台',
-    icon: '',
+    title: '发现另外的我',
+    icon: 'Link.svg',
+    showIcon: false,
     isRight: true
   }
 ]
