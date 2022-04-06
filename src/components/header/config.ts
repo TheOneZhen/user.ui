@@ -33,7 +33,7 @@ export const NavigationMenu: Header.SubMenu[] = [
     children: [
       {
         title: '问题记录',
-        icon: 'DocumentChecked.svg'
+        icon: 'DocumentCheck.svg'
       },
       {
         title: '源码分析',
@@ -47,7 +47,7 @@ export const NavigationMenu: Header.SubMenu[] = [
     children: [
       {
         title: '留言区',
-        icon: ''
+        icon: 'ChatDotSquare.svg'
       }
     ]
   },
