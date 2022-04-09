@@ -2,7 +2,9 @@
   <div class="g-layout">
     <el-containter>
       <Header />
-      <el-main class="g-layout-main g-fixtive"></el-main>
+      <el-main class="g-layout-main g-fixtive">
+        <Home/>
+      </el-main>
       <el-footer><Footer /></el-footer>
     </el-containter>
   </div>
@@ -11,7 +13,7 @@
 <script lang="ts" setup>
 import Header from '@/components/header/ZHeader.vue'
 import Footer from '@/components/footer/ZFooter.vue'
-
+import Home from '@/components/home/ZHome.vue'
 </script>
 
 <style lang="scss" scoped>
