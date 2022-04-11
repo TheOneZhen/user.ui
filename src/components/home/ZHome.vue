@@ -1,117 +1,72 @@
 <template>
-  <graph>
-    <css-doodle>
-      :doodle {
-      @grid: 16x10 / 80vmin 80vmin;
-      @max-size: 800px 800px;
-      overflow: hidden;
-      background: linear-gradient(#1B0F0E, #521E18);
-      border-radius: 4px;
-      }
-      background-image: radial-gradient(circle at @r(45, 55)% 100%, #fff 0%, #fff @r(5, 10)%, #F7E076 20%, #ffc88a 30%, #ebd15b 40%, #c57010 80%);
-      border-radius: @r(0, 4)px;
-      --rotate: @r(±15)deg;
-      --translate-x: @r(±20)%;
-      --translate-y: @r(±20)%;
-      --scale: @p(0.1, 0.2, 0.3, 0.5, 0.2, 0.8);
-      --delta: @r(±10)vmin;
-      animation: k 10s linear infinite both;
-      @keyframes k {
-      from { transform: rotate(var(--rotate)) translate(var(--translate-x), var(--translate-y)) scale(var(--scale)); }
-      to { transform: rotate(var(--rotate)) translate(calc(var(--translate-x) + var(--delta)), calc(var(--translate-y) - @r(3, 6)vmin)) scale(var(--scale)); }
-      }
-      filter: @svg-filter(
-      feTurbulence {
-      type: fractalNoise;
-      baseFrequency: @r(0.01, 0.1) @r(0.2, 1);
-      }
-      feDisplacementMap {
-      in: SourceGraphic;
-      scale: @r(3, 4.5);
-      }
-      );
-      @row(1, 2) {
-      opacity: @p(0, 0, 1);
-      transform: rotate(@r(-25, 25)deg) scale(@r(0.1, 0.5));
-      }
-      @row(10) {
-      animation: none;
-      background: radial-gradient(circle at 50% 44%, #000 0%, #000 10%, transparent 10%);
-      transform: rotateY(@p(0, 180)deg) translate(@r(±50)%, @r(0, 10)%) scale(@r(0.5, 1.2));
-      transform-origin: center bottom;
-      filter: drop-shadow(@r(±30)vmin 0 0 @p(transparent, black));
-      opacity: @r(0.6, 0.8);
-      ::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 42%;
-      width: 21%;
-      height: 50%;
-      background: #000;
-      border-radius: 40% 20% 0 0;
-      }
-      ::before {
-      content: "";
-      position: absolute;
-      bottom: 48%;
-      left: 50%;
-      width: @r(42, 50)%;
-      height: 5%;
-      background: #000;
-      border-radius: 1vmin;
-      transform: rotate(-38deg);
-      }
-      }
-      @at(1, 10) {
-      animation: none;
-      opacity: 0;
-      }
-      @at(2, 10) {
-      animation: none;
-      opacity: 0;
-      }
-      @nth(1) {
-      animation: none;
-      opacity: .6;
-      position: absolute;
-      top: 0;
-      left: 0;
-      @size: 100%;
-      transform: initial;
-      filter: @svg-filter(
-      feTurbulence {
-      baseFrequency: 0.7;
-      numOctaves: 2;
-      }
-      )
-      }
-      @nth(2) {
-      animation: none;
-      position: absolute;
-      top: @r(3, 8)%;
-      left: @r(5, 10)%;
-      z-index: 2;
-      width: 3vmin;
-      height: 3vmin;
-      background: #fff;
-      border-radius: 50%;
-      opacity: 0.8;
-      transform: rotate(@r(-20, 20)deg);
-      filter: drop-shadow(0 0 10px #fff);
-      }
-    </css-doodle>
-  </graph>
+  <el-row :gutter="20">
+    <el-col :span="12">一直游到海水变蓝</el-col>
+    <el-col :span="12">
+      <el-row v-for="row in 3" :key="row">
+        <el-col :span="8" v-for="col in 3" :key="col">
+          <css-doodle click-to-update :use="getDoodle(row, col)" />
+        </el-col>
+      </el-row>
+    </el-col>
+  </el-row>
 </template>
 
 <script lang='ts' setup>
+import { random } from 'lodash'
+
+const cssDoodleRule = ['--RandRect', '--AbstractShape', '--AbstractCircle', '--TransformRect']
+
+function getDoodle (row: number, col: number) {
+  if (row === 2 && col === 2) return 'var(--Z)'
+  return `var(${cssDoodleRule[random(0, cssDoodleRule.length - 1)]})`
+}
 </script>
 
 <style lang='scss' scoped>
-graph {
-  position: relative;
-  background: #fff;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 4px;
+css-doodle {
+  --gridSize: 8em;
+  --RandRect: (
+    @grid: 5 / var(--gridSize);
+    background: #e7dec8;
+    transform: scale(@rand(0.2, 0.9));
+  );
+  --TransformRect: (
+    --bk: hsl(@rand(360), 60%, 70%);
+    --turns: 0turn;
+    :hover {
+      --bk: hsl(@rand(360), 60%, 70%);
+      --turns: 1turn;
+    }
+    @grid: 3 / var(--gridSize);
+    background: var(--bk);
+    transform: var(--turns);
+    transition: transform background 1s;
+  );
+  --AbstractShape: (
+    @grid: 5 / var(--grid);
+    background: linear-gradient(
+      @rand(360deg),
+      @stripe(#60569E, #E6437D, #EBBF4D)
+    );
+  );
+  --AbstractCircle: (
+    @grid: 1 / var(--gridSize);
+    background: radial-gradient(
+      circle at @r(100%) @r(100%),
+      @m20(
+        @p(#60569e, #ebbf4d) calc(@n(-1) * 100% / @N),
+        @lp calc(@n * 100% / @N)
+      )
+    );
+  );
+  --Z: (
+    background: @svg(
+      viewBox: 0 0 1 1;
+      path {
+        d: M 0 0 L 1 0 L 1 1;
+        fill: red;
+      }
+    );
+  );
 }
 </style>

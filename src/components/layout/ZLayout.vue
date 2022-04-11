@@ -1,7 +1,7 @@
 <template>
   <div class="g-layout">
     <el-containter>
-      <Header />
+      <Header class="g-layout-header g-h-index" />
       <el-main class="g-layout-main g-fixtive">
         <Home/>
       </el-main>
@@ -18,7 +18,10 @@ import Home from '@/components/home/ZHome.vue'
 
 <style lang="scss" scoped>
 .g-layout {
-  width: 100vw;
-  height: 100vh;
+  .g-layout-main {
+    margin: auto;
+    width: 80vw;
+    height: 100vh;
+  }
 }
 </style>
