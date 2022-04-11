@@ -42,6 +42,7 @@ const isCollapse = true
 <style lang="scss" scoped>
 .g-header {
   position: fixed;
+  top: 30%;
   &:not(.el-menu--collapse) {
     width: 200px;
   }
