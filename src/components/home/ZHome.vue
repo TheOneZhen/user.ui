@@ -25,25 +25,23 @@ function getDoodle (row: number, col: number) {
 <style lang='scss' scoped>
 css-doodle {
   --gridSize: 8em;
+  --bk: #60569E;
   --RandRect: (
     @grid: 5 / var(--gridSize);
-    background: #e7dec8;
+    background: var(--bk);
     transform: scale(@rand(0.2, 0.9));
   );
   --TransformRect: (
-    --bk: hsl(@rand(360), 60%, 70%);
-    --turns: 0turn;
-    :hover {
-      --bk: hsl(@rand(360), 60%, 70%);
-      --turns: 1turn;
-    }
-    @grid: 3 / var(--gridSize);
+    :doodle { --s: 0 }
+    :doodle(:hover) { --s: 1 }
+    @grid: 5 / var(--gridSize);
+    transition: .5s cubic-bezier(.175, .885, .32, 1.275);
+    transition-delay: @rand(500ms);
     background: var(--bk);
-    transform: var(--turns);
-    transition: transform background 1s;
+    transform: translateY(calc(var(--s) * 100%));
   );
   --AbstractShape: (
-    @grid: 5 / var(--grid);
+    @grid: 5 / var(--gridSize);
     background: linear-gradient(
       @rand(360deg),
       @stripe(#60569E, #E6437D, #EBBF4D)
