@@ -45,22 +45,6 @@ css-doodle {
       @rand(100%) 0, 100% @rand(100%), 0 @rand(100%)
     );
   );
-  --AbstractRiver: (
-    background: @shaders(
-      texture_0 {
-        @grid: 1 / 100%;
-        background: linear-gradient(45deg, @stripe.@m20.@p(
-          #FFF4E0, #F8B501, #06ACB5, #17191D, #FC3D3C
-        ));
-      }
-      fragment {
-        void main() {
-          vec2 coords = vec2(r * cos(angle), r * sin(angle)) + c;
-          FragColor = texture(texture_0, coords);
-        }
-      }
-    );
-  );
   --Z: (
     background: @svg(
       viewBox: 0 0 1 1;
