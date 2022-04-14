@@ -4,7 +4,7 @@ css-doodle {
   --RandRect: (
     @grid: 5 / var(--gridSize);
     background: var(--bk);
-    transform: scale(@rand(0.2, 0.9));
+    transform: scale(@r(0.2, 0.9));
   );
   --TransformRect: (
     :doodle {
@@ -22,7 +22,7 @@ css-doodle {
   --AbstractShape: (
     @grid: 5 / var(--gridSize);
     background: linear-gradient(
-      @rand(360deg),
+      @r(360deg),
       @stripe(#60569E, #E6437D, #EBBF4D)
     );
   );
@@ -38,20 +38,24 @@ css-doodle {
   );
   --RandTriangle: (
     @grid: 5 / var(--gridSize);
-    background: rgba(96, 86, 158, @rand(.9));
-    transition: .2s ease @rand(200ms);
-    transform: rotate(@rand(360deg));
+    background: rgba(96, 86, 158, @r(.9));
+    transition: .2s ease @r(200ms);
+    transform: rotate(@r(360deg));
     clip-path: polygon(
-      @rand(100%) 0, 100% @rand(100%), 0 @rand(100%)
+      @r(100%) 0, 100% @r(100%), 0 @r(100%)
     );
   );
   --Z: (
-    background: @svg(
-      viewBox: 0 0 1 1;
-      path {
-        d: M 0 0 L 1 0 L 1 1;
-        fill: red;
-      }
+    @grid: 1 / var(--gridSize);
+    background-size: 100%;
+    background-image: @svg(
+      viewBox: 0 0 100 100;
+      @M50(path {
+        stroke-width: 3;
+        stroke: rgba(@m3(@r255), @r1);
+        fill: transparent;
+        d: M0 0 L100 0 L0 100 L100 100;
+      });
     );
   );
 }
