@@ -62,12 +62,15 @@ css-doodle {
     );
   );
   --Z: (
-    background: @svg(
-      viewBox: 0 0 1 1;
-      path {
-        d: M 0 0 L 1 0 L 1 1;
-        fill: red;
-      }
+    @grid: 1 / var(--gridSize);
+    background-size: 100%;
+    background-image: @svg(
+      viewBox: 0 0 100 175;
+      @M50(path {
+        stroke-width: @r2;
+        stroke: @p(#60569e, #e6437d);
+        d: M0 0 L100 0 L0 100 L100 100;
+      });
     );
   );
 }
