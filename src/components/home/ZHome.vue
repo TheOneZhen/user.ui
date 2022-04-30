@@ -1,31 +1,15 @@
 <template>
-  <el-row :gutter="20">
-    <el-col :span="12">一直游到海水变蓝</el-col>
-    <el-col :span="12">
-      <el-row v-for="row in 3" :key="row">
-        <el-divider v-if="row != 1" />
-        <el-col :span="8" v-for="col in 3" :key="col" class="g-flex">
-          <el-divider v-if="col != 1" direction="vertical" style="height: 100%;" />
-          <div class="g-pd-10">
-            <css-doodle click-to-update :use="getDoodle(row, col)" />
-          </div>
-        </el-col>
-      </el-row>
-    </el-col></el-row>
+  <page-one />
+  <page-two />
+  <page-three />
 </template>
 
 <script lang='ts' setup>
-import { random } from 'lodash'
+import PageOne from './PageOne.vue';
+import PageTwo from './PageTwo.vue';
+import PageThree from './PageThree.vue';
 
-const cssDoodleRule = ['--RandRect', '--AbstractShape', '--AbstractCircle', '--TransformRect', '--RandTriangle']
-
-function getDoodle (row: number, col: number) {
-  if (row === 2 && col === 2) return 'var(--Z)'
-  return `var(${cssDoodleRule[random(0, cssDoodleRule.length - 1)]})`
-}
 </script>
 
 <style lang='scss' scoped>
-@import "./css/nineGrid.scss"
-
 </style>
