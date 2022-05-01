@@ -1,0 +1,19 @@
+{
+	"Print ti console": {
+		"prefix": "<template>",
+		"body": [
+			"<template>",
+			" ",
+			"</template>",
+			"",
+			"<script lang='ts' setup>",
+			"",
+			"</script>",
+			"",
+			"<style lang='scss' scoped>",
+			"</style>",
+			""
+		],
+		"description": "A template of vue that format for VUE + TS + SETUP + SCSS + SCOPED"
+	}
+}

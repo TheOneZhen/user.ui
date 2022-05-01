@@ -3,9 +3,11 @@
     <el-containter>
       <Header class="g-layout-header g-h-index" />
       <el-main class="g-layout-main g-fixtive">
-        <Home/>
+        <Home />
       </el-main>
-      <el-footer><Footer /></el-footer>
+      <el-footer>
+        <Footer />
+      </el-footer>
     </el-containter>
   </div>
 </template>
