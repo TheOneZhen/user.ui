@@ -17,6 +17,7 @@
     "fancy-components": "^0.0.22",
     "jszip": "^3.7.1",
     "lodash": "^4.17.21",
+    "qiankun": "^2.7.0",
     "ts-loader": "^9.2.6",
     "vue": "^3.2.16",
     "vue-router": "4",

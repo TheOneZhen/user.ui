@@ -43,17 +43,15 @@
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
   "explorer.confirmDragAndDrop": false,
-  // "[json]": {
-  //   "editor.defaultFormatter": "vscode.json-language-features"
-  // },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
   "[vue]": {
     "editor.defaultFormatter": "johnsoncodehk.volar"
-    // "editor.defaultFormatter": "octref.vetur"
   },
-  // "[javascript]": {
-  //   "editor.defaultFormatter": "vscode."
-  // "editor.defaultFormatter": "esbenp.prettier-vscode"
-  // },
+  "[javascript]": {
+    "editor.defaultFormatter": "johnsoncodehk.volar"
+  },
   // "[html]": {
   //   "editor.defaultFormatter": "johnsoncodehk.volar"
   // },
