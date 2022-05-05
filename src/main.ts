@@ -5,7 +5,6 @@ import 'element-plus/dist/index.css'
 import router from './router'
 import '@/global/scss/index.scss'
 import 'css-doodle'
-import '@/microApp/'
 
 const app = createApp(App)
 app.use(ElementPlus)

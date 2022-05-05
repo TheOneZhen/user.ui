@@ -5,7 +5,7 @@
     ```
   2. 运行项目
     ```
-    yarn run dev
+    yarn run dev | yarn vite
     ```
   3. 安装依赖
     1. npm install || yarn
@@ -14,7 +14,7 @@
       将指定依赖保存到dependencies，以便生产环境部署
     3. 3.2 + <--save-dev || -D>
       将指定依赖保存到devDependencies，代表仅部署开发环境
-    4. 如遇到依赖包错误的情况，可以删除node_modules，再install
+      
 # 模块化
   1. 新功能的添加以及解耦合
     1. 因为个性化功能常常伴随不同体量的框架，所以在开发的时候注意，非必要程度尽量避免全局的引入，要求按需导入

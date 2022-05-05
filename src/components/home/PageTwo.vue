@@ -1,5 +1,5 @@
 <template>
-  
+  <div id="#childHomeGEarth"></div>
 </template>
 
 <script lang='ts' setup>

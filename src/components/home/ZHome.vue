@@ -5,9 +5,9 @@
 </template>
 
 <script lang='ts' setup>
-import PageOne from './PageOne.vue';
-import PageTwo from './PageTwo.vue';
-import PageThree from './PageThree.vue';
+import PageOne from './PageOne.vue'
+import PageTwo from './PageTwo.vue'
+import PageThree from './PageThree.vue'
 
 /**
  * 觉得有无聊钻进他们的毛孔，觉得有无聊从他们自己的心中由毛孔钻出，爬满狂野，又钻进别人的毛孔中——复仇
