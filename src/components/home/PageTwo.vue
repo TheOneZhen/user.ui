@@ -1,5 +1,5 @@
 <template>
-  <div id="#childHomeGEarth"></div>
+  <micro-app name="userEarthMap" url="http://localhost:3000/" baseroute="/micro/userEarthMap"></micro-app>
 </template>
 
 <script lang='ts' setup>
