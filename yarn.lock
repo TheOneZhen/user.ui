@@ -101,6 +101,11 @@
   resolved "https://registry.npmmirror.com/@humanwhocodes/object-schema/download/@humanwhocodes/object-schema-1.2.1.tgz"
   integrity sha1-tSBSnsIdjllFoYUd/Rwy6U45/0U=
 
+"@micro-zoe/micro-app@^0.8.5":
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/@micro-zoe/micro-app/-/micro-app-0.8.5.tgz#44883941fbc46cd68d5ece261dc353c9525efb4e"
+  integrity sha512-PFnoAxepT/njBEP1fkavvxVoyWsEexcq/BGq7rcW+3kavOHwrm3yNpDlsLEkVT3FVGA11tCWe0TmbJMsFYTTSg==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmmirror.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"

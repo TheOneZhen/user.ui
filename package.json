@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@micro-zoe/micro-app": "^0.8.5",
     "axios": "^0.24.0",
     "css-doodle": "^0.25.1",
     "element-plus": "^1.2.0-beta.5",
