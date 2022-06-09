@@ -426,10 +426,15 @@
     "@vue/compiler-dom" "3.2.23"
     "@vue/shared" "3.2.23"
 
-"@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.0.0-beta.18":
+"@vue/devtools-api@^6.0.0-beta.18":
   version "6.0.0-beta.20.1"
   resolved "https://registry.npmmirror.com/@vue/devtools-api/download/@vue/devtools-api-6.0.0-beta.20.1.tgz"
   integrity sha512-R2rfiRY+kZugzWh9ZyITaovx+jpU4vgivAEAiz80kvh3yviiTU3CBuGuyWpSwGz9/C7TkSWVM/FtQRGlZ16n8Q==
+
+"@vue/devtools-api@^6.1.4":
+  version "6.1.4"
+  resolved "https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.1.4.tgz#b4aec2f4b4599e11ba774a50c67fa378c9824e53"
+  integrity sha512-IiA0SvDrJEgXvVxjNkHPFfDx6SXw0b/TUkqMcDZWNg9fnCAHbTpoo59YfJ9QLFkwa3raau5vSlRVzMSLDnfdtQ==
 
 "@vue/eslint-config-prettier@^6.0.0":
   version "6.0.0"
@@ -3337,6 +3342,14 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.2.3:
   resolved "https://registry.npmmirror.com/picomatch/-/picomatch-2.3.1.tgz"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
+pinia@^2.0.14:
+  version "2.0.14"
+  resolved "https://registry.npmmirror.com/pinia/-/pinia-2.0.14.tgz#0837898c20291ebac982bbfca95c8d3c6099925f"
+  integrity sha512-0nPuZR4TetT/WcLN+feMSjWJku3SQU7dBbXC6uw+R6FLQJCsg+/0pzXyD82T1FmAYe0lsx+jnEDQ1BLgkRKlxA==
+  dependencies:
+    "@vue/devtools-api" "^6.1.4"
+    vue-demi "*"
+
 postcss@^8.1.10, postcss@^8.3.8:
   version "8.4.7"
   resolved "https://registry.npmmirror.com/postcss/-/postcss-8.4.7.tgz"
@@ -4501,13 +4514,6 @@ vue@^3.2.16:
     "@vue/runtime-dom" "3.2.23"
     "@vue/server-renderer" "3.2.23"
     "@vue/shared" "3.2.23"
-
-vuex@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.nlark.com/vuex/download/vuex-4.0.2.tgz"
-  integrity sha1-+Jbb1b8qDpY/AMZ+m2EN50nMrMk=
-  dependencies:
-    "@vue/devtools-api" "^6.0.0-beta.11"
 
 watchpack@^2.3.1:
   version "2.3.1"
