@@ -42,5 +42,10 @@
     "vite": "^2.6.4",
     "vite-plugin-style-import": "^1.4.1",
     "vue-tsc": "^0.3.0"
-  }
+  },
+  "browserslist": [
+    ">1%",
+    "last 2 version",
+    "not dead"
+  ]
 }
