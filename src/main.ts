@@ -28,7 +28,7 @@ microApp.start({
 })
 
 createApp(App)
-  .use(createPinia)
+  .use(createPinia())
   .use(ElementPlus)
   .use(router)
   .mount('#app')
