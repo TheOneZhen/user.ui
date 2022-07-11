@@ -52,9 +52,12 @@
   "[javascript]": {
     "editor.defaultFormatter": "johnsoncodehk.volar"
   },
-  // "[html]": {
-  //   "editor.defaultFormatter": "johnsoncodehk.volar"
-  // },
+  "[html]": {
+    "editor.defaultFormatter": "johnsoncodehk.volar"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "johnsoncodehk.volar"
+  },
   "breadcrumbs.enabled": false,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
