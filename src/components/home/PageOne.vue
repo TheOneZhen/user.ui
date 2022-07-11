@@ -30,7 +30,7 @@ import { random } from 'lodash'
 
 const cssDoodleRule = ['--RandRect', '--AbstractShape', '--AbstractCircle', '--TransformRect', '--RandTriangle']
 
-function getDoodle(row: number, col: number) {
+function getDoodle (row: number, col: number) {
   if (row === 2 && col === 2) return 'var(--Z)'
   return `var(${cssDoodleRule[random(0, cssDoodleRule.length - 1)]})`
 }

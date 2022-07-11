@@ -6,6 +6,7 @@ import router from './router'
 import '@/global/scss/index.scss'
 import 'css-doodle'
 import microApp from '@micro-zoe/micro-app'
+import { createPinia } from 'pinia'
 
 microApp.start({
   plugins: {
@@ -26,4 +27,8 @@ microApp.start({
   }
 })
 
-createApp(App).use(ElementPlus).use(router).mount('#app')
+createApp(App)
+  .use(createPinia)
+  .use(ElementPlus)
+  .use(router)
+  .mount('#app')
