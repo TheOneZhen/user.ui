@@ -50,11 +50,14 @@
     "editor.defaultFormatter": "johnsoncodehk.volar"
   },
   "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[html]": {
     "editor.defaultFormatter": "johnsoncodehk.volar"
   },
-  // "[html]": {
-  //   "editor.defaultFormatter": "johnsoncodehk.volar"
-  // },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
   "breadcrumbs.enabled": false,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
