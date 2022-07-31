@@ -1,36 +1,34 @@
 # 基本命令
-  1. 项目构建命令
-    ```
-    yarn create vite user.ui --template vue-ts
-    ```
-  2. 运行项目
-    ```
-    yarn run dev | yarn vite
-    ```
+  1. 项目构建命令：yarn create vite user.ui --template vue-ts
+  2. 运行项目：yarn run dev | yarn vite
   3. 安装依赖
-    1. npm install || yarn
-      根据package.json安装依赖
-    2. npm install \<module_name> \<--save || ''>
-      将指定依赖保存到dependencies，以便生产环境部署
-    3. 3.2 + \<--save-dev || -D>
-      将指定依赖保存到devDependencies，代表仅部署开发环境
+    1. 根据package.json安装依赖：npm install || yarn
+    2. 安装指定依赖的指定版本：npm install module_name@version
+    3. 将指定依赖保存到devDependencies（代表仅部署开发环境）：3.2 + \<--save-dev || -D>
 
 # 项目结构说明
   1. @/DS是主项目的全部数据结构配置目录，所有的结构都要继承或引用至这里
 
-# 关于项目README
+# 关于README
   1. 属于相应项目的功能的todo都记录在根md下
   2. 除根md，其余目录下的md主要作用是记录功能的实现或者说明
   3. 问题及知识点记录放在根md下
   4. 为了方便GitHub上的预览，所有md均命名为README.md
 
-# 构建规则
-   1. 能不原生就不原生，尽可能找造好的组件
-   2. 整个系统的结构一定要清晰
-
-# 时间安排
-   1. 工作日早上抽出1小时
-   2. 双休日动态安排
+# 开发时间线（周）
+  1. 前后端完成test联调，结构优化
+     1. 前端完成axios封装，以及相应结构的完善
+     2. 后端开始调整项目FS以及DS
+  2. 前端pinia摄入，后端pgsql摄入
+     1. FS及DS
+     2. 明确前后端存储类型，是否需要摄入redis
+  3. 后端docker环境部署
+  4. 前端开始功能建设
+     1. md render engine
+  5. 前端开始功能建设
+     1. 页面交互
+  6. 自动化部署 + 结构优化
+  7. 自动化部署 + 结构优化
 
 # 预览
   1. 布局
