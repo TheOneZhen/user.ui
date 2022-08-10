@@ -12,7 +12,7 @@ class Request {
   protected pending: {url: string, cancel: Function}[] = []
   protected cancelToken: CancelTokenStatic = axios.CancelToken
   protected axiosRequestConfig: AxiosRequestConfig = {}
-  public static _instance: Request
+  public static _instance: any
 
   constructor () {
     this.initConfig()
@@ -56,10 +56,13 @@ class Request {
       }
     )
   }
+
   /**
    * 响应拦截
    */
-  // protected interceptorsResponse () {}
+  protected interceptorsResponse () {
+
+  }
 
   // 取消重复请求
   protected removePending (key: string, cancel: boolean = false): void {
@@ -132,7 +135,7 @@ class Request {
   // 创建单一实例
   public static getInstance (): Request {
     this._instance || (this._instance = new Request())
-    return this._instance
+    return this._instance as Request
   }
 }
 
