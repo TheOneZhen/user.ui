@@ -1,31 +1,34 @@
 <template>
-  <el-row :gutter="20">
-    <el-col :span="12">一直游到海水变蓝</el-col>
-    <el-col :span="12">
-      <el-row v-for="row in 3" :key="row">
-        <el-divider v-if="row != 1" />
-        <el-col :span="8" v-for="col in 3" :key="col" class="g-flex">
-          <el-divider v-if="col != 1" direction="vertical" style="height: 100%;" />
-          <div class="g-pd-10">
-            <css-doodle click-to-update :use="getDoodle(row, col)" />
-          </div>
-        </el-col>
-      </el-row>
-    </el-col></el-row>
+  <page-one />
+  <page-two />
+  <page-three />
 </template>
 
 <script lang='ts' setup>
-import { random } from 'lodash'
+import PageOne from './PageOne.vue'
+import PageTwo from './PageTwo.vue'
+import PageThree from './PageThree.vue'
 
-const cssDoodleRule = ['--RandRect', '--AbstractShape', '--AbstractCircle', '--TransformRect', '--RandTriangle']
+/**
+ * 觉得有无聊钻进他们的毛孔，觉得有无聊从他们自己的心中由毛孔钻出，爬满狂野，又钻进别人的毛孔中——复仇
+ * 无聊是一种沉沦的生命状态
+ * 无非做了一些无聊的事情，等于什么也没做
+ * 模模糊糊，随随便便的不是过程，而是结果
+ * 无聊的可怖在于意义的丧失，是付出结果的徒劳而返，是飞来飞去仍停在原点的无力
+ * 
+ * 我在少年时，看见蜂子或蝇子停在一个地方，给什么来一吓，即刻飞去了，但是飞了一个小圈子，便又回来停在原地点，便以为这实在很可笑，也可怜。可不料现在我自己也飞回来了，不过绕了一点小圈子。又不料你也回来了。你不能飞得更远些么?
+ * 
+ * 看不到个体存在迹象的苍白与失望
+ */
 
-function getDoodle (row: number, col: number) {
-  if (row === 2 && col === 2) return 'var(--Z)'
-  return `var(${cssDoodleRule[random(0, cssDoodleRule.length - 1)]})`
-}
+/**
+ * 愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话，能做事的做事，能发声的发声，有一份热，发一份光，就令萤火一般，不必等候炬火，此后如竟没有炬火，我便是唯一的光 --- 热风
+ */
+
+/**
+ * 
+ */
 </script>
 
 <style lang='scss' scoped>
-@import "./css/nineGrid.scss"
-
 </style>

@@ -13,9 +13,10 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'vue',
-    '@typescript-eslint'
+    // 'vue',
+    // '@typescript-eslint'
   ],
   rules: {
+    'no-unused-vars': 'off'
   }
 }

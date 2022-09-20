@@ -1,0 +1,76 @@
+{
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.snippetSuggestions": "top",
+  "editor.formatOnSave": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact",
+    "postcss": "css"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.showSuggestionsAsSnippets": true,
+  //  自动修复
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "workbench.editor.enablePreview": false,
+  //  配置  ESLint  检查的文件类型
+  "eslint.validate": [
+    "javascript",
+    "vue",
+    "html",
+    "typescript"
+  ],
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  // "prettier.disableLanguages": ["markdown"],
+  "extensions.autoUpdate": false,
+  // "vetur.format.defaultFormatter.html": "none",
+  // "vetur.format.defaultFormatter.scss": "prettier",
+  "diffEditor.ignoreTrimWhitespace": false,
+  //  配React的配置
+  //  emmet关于react的配置
+  "emmet.syntaxProfiles": {
+    //   "JavaScript  React": "jsx"
+  },
+  // "terminal.integrated.rendererType": "dom",
+  // "vetur.format.options.useTabs": true,
+  "explorer.confirmDelete": false,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "explorer.confirmDragAndDrop": false,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "johnsoncodehk.volar"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "johnsoncodehk.volar"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "breadcrumbs.enabled": false,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "all",
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "workbench.sideBar.location": "left",
+  "gitlens.views.branches.branches.layout": "list",
+  // "code-runner.runInTerminal": true,
+  // "vetur.validation.script": false,
+  // "vetur.validation.template": false,
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "vscode.typescript-language-features"
+  // },
+  // "[xml]": {
+  //   "editor.defaultFormatter": "vscode.html-language-features"
+  // }
+}

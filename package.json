@@ -1,12 +1,14 @@
 {
   "name": "user.ui",
   "version": "1.0.0",
+  "license": "ISC",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
+    "@micro-zoe/micro-app": "^0.8.5",
     "axios": "^0.24.0",
     "css-doodle": "^0.25.1",
     "element-plus": "^1.2.0-beta.5",
@@ -17,10 +19,10 @@
     "fancy-components": "^0.0.22",
     "jszip": "^3.7.1",
     "lodash": "^4.17.21",
+    "pinia": "^2.0.14",
     "ts-loader": "^9.2.6",
     "vue": "^3.2.16",
-    "vue-router": "4",
-    "vuex": "^4.0.2"
+    "vue-router": "4"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.181",
@@ -31,7 +33,7 @@
     "@vue/cli-plugin-eslint": "^5.0.1",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
-    "eslint": "^7.32.0",
+    "eslint": "8.6.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.5.0",
     "node-sass": "^6.0.1",
@@ -41,5 +43,10 @@
     "vite": "^2.6.4",
     "vite-plugin-style-import": "^1.4.1",
     "vue-tsc": "^0.3.0"
-  }
+  },
+  "browserslist": [
+    ">1%",
+    "last 2 version",
+    "not dead"
+  ]
 }
