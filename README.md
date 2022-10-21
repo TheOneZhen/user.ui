@@ -30,11 +30,14 @@
      2. 最好不要在生成的代码上进行二次开发，如果需求那就不用（代码样式混乱）
   2. siyuan
      1. 可以把这个开源代码的RE引入进来
-  4. vite2升级到vite3
+     2. 或者引用其它markdown模板
+     3. 或者其它博客模板
+  3. vite2升级到vite3
      1. vite打包cjs依赖交由esBuild处理
-  5. vue3单一代码库思想引入
+  4. vue3单一代码库思想引入（monorepo）
      1. 根据不同功能划分代码目录
      2. 完全解耦，耦合地带尽量用index文件概括
+  5. 更新vue3小版本以加入响应性sugar
 
 # 开发时间线（周）
   1. 前后端完成test联调，结构优化
@@ -103,3 +106,30 @@
      1. 把siyuan的引擎迁移过来
         1. siyuan采用的是模板内渲染的方式，迁移与后续使用感觉都是问题
      2. 文档支持md的导入导出，或者直接仅支持md
+
+# 知识点留白
+  1. 性能优化相关
+     1. props更新时会导致组件的刷新，对于容器来说，单个容器元素的更新会导致容器内全部组件重新渲染
+        1. 可以加入状态转换props，使组件在必要的时候更新或者卸载
+        2. 或者使用v-once或v-memo指令
+     2. 虚拟列表
+     3. shallowRef与shallowReactive斩断深层响应式
+     4. 避免组件树超功能多次调用（VNode是性能优化关键）
+  2. IDE插件检查
+     1. Volar
+     2. TypeScript Vue Plugin（Volar）：支持在ts文件中引入vue文件
+  3. ts类型检查理解
+     1. 开发过程中的类型检查
+        1. vscode内置ts语言服务实例
+        2. volar（外部插件）ts语言服务实例
+     2. 编译过程中的类型检查
+        1. webpack：只是单文件的检查，不能介入全局
+        2. vite
+  4. vue类型检查
+     1. vue编译器不会抓取导入的文件进行分析源类型，所以导入的module不能做为props泛型（defineProps<{}>()）
+     2. props使用基于类型的声明时，不能赋默认值，需要调用额外的方法widthDefault
+     3. provide/inject类型标注需要借助InjectionKey（继承自Symbol的泛型类型）
+     4. 如何获取组件返回值类型（defineExpose1）：<InstanceType<typeof Component>>
+     5. 扩展全局属性
+  5. ts类型体操
+     1. 调用签名
