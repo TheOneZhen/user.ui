@@ -1,8 +1,8 @@
 import { defineStore, DefineSetupStoreOptions, StoreDefinition } from 'pinia'
 import { STATE } from '../global/state/stateCode'
-import { Store, StoreKey } from './Store'
-import { UseEnterTimeStore } from './UseEnterTimeStore'
-import { UseStayingLocalStore } from './UseStayingLocalStore'
+import { Store, StoreKey } from './store'
+import { UseEnterTimeStore } from './useEnterTimeStore'
+import { UseStayingLocalStore } from './useStayingLocalStore'
 
 const AllStore: Array<typeof Store> = [
   UseEnterTimeStore,
