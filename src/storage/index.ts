@@ -1,5 +1,3 @@
-import { defineStore, StoreDefinition, DefineStoreOptions } from 'pinia'
+import { LSStorage } from './storage'
 
-class Store {
-
-}
+export const storage = new LSStorage()
