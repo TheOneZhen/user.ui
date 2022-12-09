@@ -67,15 +67,15 @@
      2. webpack、rollup、parcel的发展极大改善了前端开发
      3. 
   3. CSS Modules：导入这样的文件会返回一个模块对象
-    ```js
-      /** example.module.css */
-      .red {
-        color: red;
-      }
-      /** .js */
-      import styleObj from './example.module.css'
-      dom.className = styleObj.red
-    ```
+```js
+  /** example.module.css */
+  .red {
+    color: red;
+  }
+  /** .js */
+  import styleObj from './example.module.css'
+  dom.className = styleObj.red
+```
   4. Web Worker
   5. ESM具名导入优点
      1. 有效支持TreeShaking
