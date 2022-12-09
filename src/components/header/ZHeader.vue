@@ -1,9 +1,10 @@
 <template>
   <el-menu class="g-header" default-active="1" :collapse="isCollapse">
-    <template v-for="(item, index) in NavigationMenu" :key="index">
+    <template v-for="(item, index) in NavigationMenu">
       <el-sub-menu
         v-if="item.children && item.children.length"
         :index="`${index}`"
+        :key="index"
         :disabled="item.disabled"
       >
         <template #title>
@@ -22,7 +23,7 @@
         </el-menu-item>
       </el-sub-menu>
 
-      <el-menu-item v-else :index="`${index}`">
+      <el-menu-item v-else :index="`${index}`" :key="index">
         <el-icon>
           <img :src="'icon/header/' + item.icon" />
         </el-icon>

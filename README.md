@@ -1,31 +1,42 @@
 # 基本命令
-  1. 项目构建命令：yarn create vite user.ui --template vue-ts
-  2. 运行项目：yarn run dev | yarn vite
+  1. vite项目构建命令：```yarn create vite user.ui --template vue-ts```
+  2. 运行项目：```yarn vite```
   3. 安装依赖
-    1. 根据package.json安装依赖：npm install || yarn
-    2. 安装指定依赖的指定版本：npm install module_name@version
-    3. 将指定依赖保存到devDependencies（代表仅部署开发环境）：3.2 + \<--save-dev || -D>
+     1. 根据\<root\>路径下package.json安装依赖：```yarn```
+     2. 安装指定依赖的指定版本：```yarn add module_name@version```
+     3. 将指定依赖保存到devDependencies（代表仅部署开发环境）：```yarn add modeule_name -D```
 
-# 架构设计
+# 项目架构
   1. 模块化设计以及FS耦合的规避
      1. 类型体操不属于项目模块化内容（独立于FS）
-        1. @/DS是主项目的全部数据结构配置目录，所有的结构都要继承或引用至这里
+        1. @/DS是主项目的全部数据结构配置目录，所有的结构抽象基类都要继承或引用至这里
      2. utils不属于项目模块化内容（设立为冲突地带，模块间的耦合在此解决）（×）
         1. 耦合地带尽量聚合到一个文件下，如果不行再划分耦合模块（目录）
      3. 外部模块不属于项目模块化内容
         1. 对于外部项目、组件，都必须实现按需打包
      4. 单一功能内模块，不可以直接引入其它模块
-        1. 比如request模块，不可以直接引入API，API应该做为request类初始参数传入
-        2. request实例化应该在冲突地带实现
-  2. 注意项
+        1. 比如request模块，不可以直接引入API，API应该做为request类初始参数传入，request实例化应该在冲突地带实现
+  2. 开发注意项
      1. 个人架构初期不适合考虑具体实现细节，不然会疲于后续功能设计以及开发
+     2. 关于README
+        1. 除\<root\>下md，其余目录下的md主要作用是面向模块以及模块todo
+        2. 文档行数不应该过多，最好一页能展示出来，多了影响视觉；为了方便GitHub上的预览，所有md均命名为README.md
+        3. 问题及知识点记录放在根md下，最后都要转化到思维导图中
 
-# 关于README
-  1. 属于相应项目的功能的todo都记录在根md下
-  2. 除根md，其余目录下的md主要作用是记录功能说明以及todo
-  3. 文档行数不应该过多，最好一页能展示出来，多了影响视觉
-  4. 问题及知识点记录放在根md下
-  5. 为了方便GitHub上的预览，所有md均命名为README.md
+# 新技术考虑
+  1. vite2升级到vite3
+  2. pnpm摄入
+  3. 多页面应用考虑
+  4. 标签语义化具体，规范代码语义，代码风格强定义
+  5. 为什么使用多页面
+     1. 可以加快网站响应速度
+     2. 技术整活
+     3. 页面内容及其交互具体化
+  6. 博客文档存储方式
+     1. 以xxx.md的方式直接保存到前端public目录或者后端资源下
+     2. 后端实现md转html的脚本，并配置动态路由
+        1. 更方便SEO
+     3. md保存到redis中，前端通过文档标识获取文档并渲染
 
 # 知识点留白
   1. 性能优化相关
@@ -35,9 +46,6 @@
      2. 虚拟列表
      3. shallowRef与shallowReactive斩断深层响应式
      4. 避免组件树超功能多次调用（VNode是性能优化关键）
-  2. IDE插件检查
-     1. Volar
-     2. TypeScript Vue Plugin（Volar）：支持在ts文件中引入vue文件
   3. ts类型检查理解
      1. 开发过程中的类型检查
         1. vscode内置ts语言服务实例
@@ -51,18 +59,14 @@
      3. provide/inject类型标注需要借助InjectionKey（继承自Symbol的泛型类型）
      4. 如何获取组件返回值类型（defineExpose1）：<InstanceType<typeof Component>>
      5. 扩展全局属性
-  5. ts类型体操
-     1. 调用签名
 
-# vite5学习记录
-  1. 对打包工具的认知
+# 学习疑问点
+  1. postCss
+  2. 对打包工具的认知
      1. 前端经过多年迭代产生了版本断层与技术变更，于是有了各类兼容插件来处理这些问题，随着插件越来越多越不适合手动调用，便有了工程化工具来自动处理这些问题
      2. webpack、rollup、parcel的发展极大改善了前端开发
      3. 
-
-# 疑问点
-  1. postCss
-  2. CSS Modules：导入这样的文件会返回一个模块对象
+  3. CSS Modules：导入这样的文件会返回一个模块对象
     ```js
       /** example.module.css */
       .red {
@@ -72,15 +76,18 @@
       import styleObj from './example.module.css'
       dom.className = styleObj.red
     ```
-  3. Web Worker
-  4. ESM具名导入有点
+  4. Web Worker
+  5. ESM具名导入优点
      1. 有效支持TreeShaking
-  5. ESM文件动态导入（懒加载）
+  6. ESM文件动态导入（懒加载）
      1. import写在顶部与动态导入的区别
-  6. WebAssembly
-  7. 打包过程中chunk的作用
-  8. AMD、CommonJS、UMD、ESM
-  9. 对vite构建的理解
+  7. WebAssembly
+  8. 打包过程中chunk的作用
+  9. AMD、CommonJS、UMD、ESM
+  10. 对vite构建的理解
      1. vite使用EsBuild预构建源码
         1. 索引Module依赖
         2. 将CommonJS 或 UMD 转换为ESM
+  11. url变基
+  12. ESM
+  13. URL构造器
