@@ -1,9 +1,10 @@
 <template>
   <el-menu class="g-header" default-active="1" :collapse="isCollapse">
-    <div class="g-header-row" v-for="(item, index) in NavigationMenu" :key="index">
+    <template v-for="(item, index) in NavigationMenu">
       <el-sub-menu
         v-if="item.children && item.children.length"
         :index="`${index}`"
+        :key="index"
         :disabled="item.disabled"
       >
         <template #title>
@@ -21,7 +22,8 @@
           <span>{{ child.title }}</span>
         </el-menu-item>
       </el-sub-menu>
-      <el-menu-item v-else :index="`${index}`">
+
+      <el-menu-item v-else :index="`${index}`" :key="index + 1">
         <el-icon>
           <img :src="'icon/header/' + item.icon" />
         </el-icon>
@@ -29,7 +31,8 @@
           <span>{{ item.title }}</span>
         </template>
       </el-menu-item>
-    </div>
+
+    </template>
   </el-menu>
 </template>
 
@@ -45,8 +48,6 @@ const isCollapse = true
   top: 30%;
   &:not(.el-menu--collapse) {
     width: 200px;
-  }
-  .g-header-row {
   }
   img {
     height: 24px;

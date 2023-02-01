@@ -1,7 +1,7 @@
 <template>
-  <page-one />
-  <page-two />
-  <page-three />
+  <page-one></page-one>
+  <page-two></page-two>
+  <page-three></page-three>
 </template>
 
 <script lang='ts' setup>
@@ -9,26 +9,19 @@ import PageOne from './PageOne.vue'
 import PageTwo from './PageTwo.vue'
 import PageThree from './PageThree.vue'
 
-/**
- * 觉得有无聊钻进他们的毛孔，觉得有无聊从他们自己的心中由毛孔钻出，爬满狂野，又钻进别人的毛孔中——复仇
- * 无聊是一种沉沦的生命状态
- * 无非做了一些无聊的事情，等于什么也没做
- * 模模糊糊，随随便便的不是过程，而是结果
- * 无聊的可怖在于意义的丧失，是付出结果的徒劳而返，是飞来飞去仍停在原点的无力
- * 
- * 我在少年时，看见蜂子或蝇子停在一个地方，给什么来一吓，即刻飞去了，但是飞了一个小圈子，便又回来停在原地点，便以为这实在很可笑，也可怜。可不料现在我自己也飞回来了，不过绕了一点小圈子。又不料你也回来了。你不能飞得更远些么?
- * 
- * 看不到个体存在迹象的苍白与失望
- */
-
-/**
- * 愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话，能做事的做事，能发声的发声，有一份热，发一份光，就令萤火一般，不必等候炬火，此后如竟没有炬火，我便是唯一的光 --- 热风
- */
-
-/**
- * 
- */
 </script>
 
 <style lang='scss' scoped>
+  .page {
+    width: 100%;
+    height: 100%;
+    // #9D2121, #00879A, #E05320
+    // #671812, #CAC0C1, #513C21
+    // #E4D0C9, #B7B2CF, #2B515F
+    // #E2E0EE, #092106, #000000
+    // #235D6B, #B52807, #7B723C
+    // #B63F31, #D6CADD, #2C47A6
+    // #D4AC51, #D8D1DD, #1B3E36
+    background: linear-gradient(to right, #235D6B, #B52807, #7B723C);
+  }
 </style>

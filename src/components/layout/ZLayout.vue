@@ -1,21 +1,21 @@
 <template>
   <div class="g-layout">
     <el-containter>
-      <Header class="g-layout-header g-h-index" />
+      <z-header class="g-layout-header g-h-index" />
       <el-main class="g-layout-main g-fixtive">
-        <Home />
+        <router-view />
       </el-main>
       <el-footer>
-        <Footer />
+        <z-footer />
       </el-footer>
     </el-containter>
   </div>
 </template>
 
 <script lang="ts" setup>
-import Header from '@/components/header/ZHeader.vue'
-import Footer from '@/components/footer/ZFooter.vue'
-import Home from '@/components/home/ZHome.vue'
+import ZHeader from '@/components/header/ZHeader.vue'
+import ZFooter from '@/components/footer/ZFooter.vue'
+import ZHome from '@/components/home/ZHome.vue'
 </script>
 
 <style lang="scss" scoped>
