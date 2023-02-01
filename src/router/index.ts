@@ -7,7 +7,19 @@ const router = createRouter({
     {
       path: '/',
       name: '',
-      component: () => import('@/components/layout/ZLayout.vue')
+      component: () => import('@/components/layout/ZLayout.vue'),
+      children: [
+        {
+          path: '/home',
+          name: 'home',
+          component: () => import('@/components/home/ZHome.vue')
+        },
+        {
+          path: '/lefting',
+          name: 'lefting',
+          component: () => import('@/components/lefting/ZLefting.vue')
+        }
+      ]
     },
     {
       path: '/userEarthMap*',

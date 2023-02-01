@@ -12,7 +12,7 @@
     "@micro-zoe/micro-app": "^0.8.5",
     "axios": "^0.24.0",
     "css-doodle": "^0.25.1",
-    "element-plus": "^1.2.0-beta.5",
+    "element-plus": "^2.2.28",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",

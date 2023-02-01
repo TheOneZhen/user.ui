@@ -23,7 +23,7 @@
         </el-menu-item>
       </el-sub-menu>
 
-      <el-menu-item v-else :index="`${index}`" :key="index">
+      <el-menu-item v-else :index="`${index}`" :key="index + 1">
         <el-icon>
           <img :src="'icon/header/' + item.icon" />
         </el-icon>
