@@ -31,11 +31,10 @@
           <span>{{ item.title }}</span>
         </template>
       </el-menu-item>
-
     </template>
   </el-menu>
 </template>
-
+yarn
 <script lang="ts" setup>
 import { NavigationMenu } from './config'
 

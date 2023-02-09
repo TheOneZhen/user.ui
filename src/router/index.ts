@@ -8,6 +8,7 @@ const router = createRouter({
       path: '/',
       name: '',
       component: () => import('@/components/layout/ZLayout.vue'),
+      redirect: '/home',
       children: [
         {
           path: '/home',
