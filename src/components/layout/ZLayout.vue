@@ -3,7 +3,9 @@
     <el-containter>
       <z-header class="g-layout-header g-h-index" />
       <el-main class="g-layout-main g-fixtive">
-        <router-view />
+        <el-scrollbar>
+          <router-view />
+        </el-scrollbar>
       </el-main>
       <el-footer>
         <z-footer />

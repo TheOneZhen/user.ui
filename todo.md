@@ -44,6 +44,7 @@
   2. 留言
      1. 基本样子参考B站或者微博等社交网站
      2. 配色符合[主题](#主题)
+     3. 要求支持markdown
 
 # 主题
 
@@ -53,6 +54,61 @@
      2. 
 
 # 文档模板
-  1. 显示目录，回到顶部
+  1. 模板附加组件
+     1. 回到顶部(可以直接使用element组件)(√)
+     2. 显示目录按钮
+        1. 点击后显示文章目录列表
+        2. 单机列表项，可跳转到指定目录下
+     3. 标签索引
+        1. 入口：文章标题下方
+        2. 交互
+           1. 鼠标悬浮到标签上，显示相同标签文章列表
+           2. 单击列表项，可跳转到目标文章
+           3. 列表右上侧
+              1. 检索按钮
+                 1. 用户输入文字后过滤相关文章
+              2. 排序按钮
+                 1. 支持按时间排序，默认按日期降序
+     4. 辅助阅读工具（参考知乎）
+  2. 模板内容
+     1. 界面顶部显示文章标题
+     2. 文章标题下显示文章标签
+     3. 文章标签下显示文本内容
+     4. 最下面显示推荐文章
+  3. 文章DS设计
+     1. table article[main]
+        1. id primary key auto_increment
+        2. title string !null
+        3. icon string default('')
+        4. content string default('')
+           1. add trigger to delete the null content of article
+           2. another use some utils transfrom article to html document resolve to SEO
+        5. created date !null default(now())
+        6. likes number !null default(0)
+        7. dsilikes number !null default(0)
+        8. views number !null default(0)
+     2. table lefting
+        1. id primary key auto_increment
+        2. pageId foreign key(page.id) 
+           1. laking some scenarios
+        3. articleId foreign key(article.id)
+           1. set a dead article that the id equal to -1
+        4. userId foreign key(user.id)
+        5. content string !null
+           1. add trigger to delete the null content of lefting
+        6. quote 
+           1. explain: null represent comment to the target article, else commment other lefting
+        7. likes number !null default(0)
+        8. dsilikes number !null default(0)
+     3. table tags
+        1. id primary key auto_increment
+        2. title string !null
+        3. articleId foreign key(article.id)
+     4. table sponsor
+     5. table page
 
 # 资源
+
+# 前端多页面
+  1. 首页
+  2. 其他功能界面（用户星球，小游戏等）

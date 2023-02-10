@@ -19,6 +19,11 @@ const router = createRouter({
           path: '/lefting',
           name: 'lefting',
           component: () => import('@/components/lefting/ZLefting.vue')
+        },
+        {
+          path: '/template',
+          name: 'template',
+          component: () => import('@/components/template/BlogTemplate.vue')
         }
       ]
     },
