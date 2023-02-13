@@ -55,10 +55,10 @@
 
 # 文档模板
   1. 模板附加组件
-     1. 回到顶部(可以直接使用element组件)(√)
+     1. back top(use ele component directly)(f)
      2. 显示目录按钮
-        1. 点击后显示文章目录列表
-        2. 单机列表项，可跳转到指定目录下
+        1. when mouse hover on the button, show the content of list
+        2. click content item and scroll to its title
      3. 标签索引
         1. 入口：文章标题下方
         2. 交互

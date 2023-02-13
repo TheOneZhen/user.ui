@@ -1,6 +1,6 @@
 <template>
   <div class="g-layout">
-    <el-containter>
+    <el-container>
       <z-header class="g-layout-header g-h-index" />
       <el-main class="g-layout-main g-fixtive">
         <el-scrollbar>
@@ -10,7 +10,7 @@
       <el-footer>
         <z-footer />
       </el-footer>
-    </el-containter>
+    </el-container>
   </div>
 </template>
 
