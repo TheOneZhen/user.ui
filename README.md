@@ -23,6 +23,9 @@
         2. 文档行数不应该过多，最好一页能展示出来，多了影响视觉；为了方便GitHub上的预览，所有md均命名为README.md
         3. 问题及知识点记录放在根md下，最后都要转化到思维导图中
 
+# format and layout structure
+  1. limitless hight for container-main, but width will be limited pre 80
+
 # 新技术考虑
   1. vite2升级到vite3
   2. pnpm摄入

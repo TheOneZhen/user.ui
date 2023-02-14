@@ -1,31 +1,25 @@
 <template>
-  <div class="g-layout">
-    <el-container>
-      <z-header class="g-layout-header g-h-index" />
-      <el-main class="g-layout-main g-fixtive">
-        <el-scrollbar>
-          <router-view />
-        </el-scrollbar>
-      </el-main>
-      <el-footer>
-        <z-footer />
-      </el-footer>
-    </el-container>
-  </div>
+  <el-container class="z-container">
+    <el-scrollbar>
+      <el-header><z-header /></el-header>
+      <el-container>
+        <el-aside width="200px"></el-aside>
+        <el-main><router-view /></el-main>
+      </el-container>
+      <el-footer><z-footer /></el-footer>
+    </el-scrollbar>
+  </el-container>
 </template>
 
 <script lang="ts" setup>
 import ZHeader from '@/components/header/ZHeader.vue'
 import ZFooter from '@/components/footer/ZFooter.vue'
-import ZHome from '@/components/home/ZHome.vue'
+// 全局状态变量：布局方式
 </script>
 
 <style lang="scss" scoped>
-.g-layout {
-  .g-layout-main {
-    margin: auto;
-    width: 80vw;
-    height: 100vh;
-  }
+.z-container {
+  width: 100vw;
+  height: 100vh;
 }
 </style>

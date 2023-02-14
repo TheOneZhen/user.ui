@@ -1,4 +1,4 @@
-import { Store, StoreKey } from './store'
+import { Store, StoreKey } from './Store'
 
 export class UseStayingLocalStore extends Store {
   isLocal: boolean = true

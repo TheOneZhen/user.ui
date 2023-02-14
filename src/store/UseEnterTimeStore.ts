@@ -1,4 +1,4 @@
-import { Store, StoreKey } from './store'
+import { Store, StoreKey } from './Store'
 import { ref } from 'vue'
 
 export class UseEnterTimeStore extends Store {
