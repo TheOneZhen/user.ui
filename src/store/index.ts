@@ -1,28 +1,26 @@
-import { defineStore, DefineSetupStoreOptions, StoreDefinition } from 'pinia'
+import { defineStore, StoreDefinition } from 'pinia'
 import { STATE } from '../global/state/stateCode'
-import { Store, StoreKey } from './Store'
 import { UseEnterTimeStore } from './UseEnterTimeStore'
-import { UseStayingLocalStore } from './UseStayingLocalStore'
 
-const AllStore: Array<typeof Store> = [
-  UseEnterTimeStore,
-  UseStayingLocalStore
-]
+/**
+ * enumerate the store key
+ */
+export enum StoreKey {
+  UseEnterTimeStore = 'useEnterTimeStore',
+  IsHorizontal = 'isHorizontal'
+}
 
+const relationMap = new Map<StoreKey, Object>([
+  [StoreKey.UseEnterTimeStore, UseEnterTimeStore]
+])
 class StoreManage {
   storeMap: Map<StoreKey, StoreDefinition> = new Map()
-  // 问题：如果使用function.name的方式进行ESM状态转换，其性能、安全如何
-  init () {
-    AllStore.forEach(UseStoreItem => {
-      const instance = new UseStoreItem()
-      if (instance.isLocal) {
-        // 进入storage模块
-      }
-      this.add(instance.key, instance.option)
-    })
+  
+  constructor (relationMap: Map<StoreKey, Object>) {
+    relationMap.forEach((option, key) => this.add(key, option))
   }
 
-  add (key: Store['key'], option: Store['option']): boolean {
+  add (key: StoreKey, option: Object): boolean {
     if (!key || !option) return false
     const useStore = defineStore(key, option)
     if (!useStore) throw new Error(STATE.STATE_LACKED)
@@ -30,7 +28,7 @@ class StoreManage {
     return true
   }
 
-  get (key: StoreKey): StoreDefinition | undefined {
+  get: typeof GetStore = (key: StoreKey) => {
     return this.storeMap.get(key)
   }
 
@@ -44,4 +42,4 @@ class StoreManage {
   }
 }
 
-export const storeManage = new StoreManage()
+export const storeManage = new StoreManage(relationMap)

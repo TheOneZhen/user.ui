@@ -14,8 +14,11 @@
 <script lang="ts" setup>
 import ZHeader from '@/components/header/ZHeader.vue'
 import ZFooter from '@/components/footer/ZFooter.vue'
+import { StoreKey, storeManage } from '../../store';
 // abstract into a state via named isHorizontalLayout
 const isHorizontal = window.innerHeight < window.innerWidth
+
+const mid = storeManage.get(StoreKey.IsHorizontal)
 
 </script>
 
