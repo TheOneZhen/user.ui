@@ -116,3 +116,4 @@
      1. using element+ component
         1. aside
   
+# define type by .d.ts file type

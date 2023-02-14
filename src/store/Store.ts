@@ -1,3 +1,6 @@
+/**
+ * enumerate the store key
+ */
 export enum StoreKey {
   UseStore = 'useStore',
   UseEnterTimeStore = 'useEnterTimeStore',

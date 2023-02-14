@@ -18,6 +18,9 @@ module.exports = {
   ],
   rules: {
     'no-unused-vars': 'off',
-    'vue/no-multiple-template-root': 'off'
+    'vue/no-multiple-template-root': 'off',
+    'no-redeclare': {
+      ignores: ['*.d.ts']
+    }
   }
 }

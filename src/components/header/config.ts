@@ -1,5 +1,3 @@
-import { Header } from '../../DS/menu'
-
 export const NavigationMenu: Header.SubMenu[] = [
   {
     title: '首页',
