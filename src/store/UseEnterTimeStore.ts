@@ -1,6 +1,12 @@
 import { ref } from 'vue'
+import { defineStore } from 'pinia'
 
-export function UseEnterTimeStore () {
+export const UseEnterTimeStore = defineStore(StoreKey.UseEnterTimeStore, () => {
   const time = ref(Date.now())
-  return { time }
-}
+
+  function update () {
+    time.value = Date.now()
+  }
+
+  return { time, update }
+})

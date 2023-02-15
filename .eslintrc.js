@@ -19,8 +19,6 @@ module.exports = {
   rules: {
     'no-unused-vars': 'off',
     'vue/no-multiple-template-root': 'off',
-    'no-redeclare': {
-      ignores: ['*.d.ts']
-    }
+    'no-undef': 'off' // turn of this rule in ts projects and let ts handle typing
   }
 }

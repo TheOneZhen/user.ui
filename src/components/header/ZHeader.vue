@@ -29,10 +29,12 @@
 
 <script lang="ts" setup>
 import { debounce } from 'lodash'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { NavigationMenu } from './config'
+import { UseLayoutStore } from '@/store/UseLayoutStore'
 
-const mode = window.innerHeight > window.innerWidth ? 'vertical' : 'horizontal'
+const store = UseLayoutStore()
+const mode = computed(() => store.isHorizontal ? 'horizontal' : 'vertical')
 const isCollapse = true
 const isShow = ref(true)
 window.addEventListener('scroll', (event) => {

@@ -1,9 +1,9 @@
 <template>
   <el-container class="z-container">
     <el-scrollbar>
-      <el-header v-if="isHorizontal"><z-header /></el-header>
+      <el-header v-if="store.isHorizontal"><z-header /></el-header>
       <el-container>
-        <el-aside width="200px"><z-header v-if="!isHorizontal" /></el-aside>
+        <el-aside width="200px"><z-header v-if="!store.isHorizontal" /></el-aside>
         <el-main><router-view /></el-main>
       </el-container>
       <el-footer><z-footer /></el-footer>
@@ -14,11 +14,9 @@
 <script lang="ts" setup>
 import ZHeader from '@/components/header/ZHeader.vue'
 import ZFooter from '@/components/footer/ZFooter.vue'
-import { StoreKey, storeManage } from '../../store';
-// abstract into a state via named isHorizontalLayout
-const isHorizontal = window.innerHeight < window.innerWidth
+import { UseLayoutStore } from '@/store/UseLayoutStore'
 
-const mid = storeManage.get(StoreKey.IsHorizontal)
+const store = UseLayoutStore()
 
 </script>
 
