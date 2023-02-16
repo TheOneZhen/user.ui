@@ -60,8 +60,7 @@
      5. filter
         1. protogenetic page tag
         2. keyword(split by server)
-  4. design DBT
-     1. 
+
 # 主题
 
 # 首页
@@ -133,3 +132,11 @@
   1. el-scroll lay in app child node
   2. 
   
+# design db table structure
+  1. article
+  2. lefting
+  3. tags
+  4. sponsor
+  5. user
+  6. page
+  7. 

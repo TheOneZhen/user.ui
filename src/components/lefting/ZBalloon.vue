@@ -1,5 +1,5 @@
 <template>
-
+  <div class="bulletcomment"></div>
 </template>
 
 <script lang="ts" setup>
