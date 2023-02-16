@@ -53,11 +53,11 @@
 
 # 文档模板
   1. 模板附加组件
-     1. back top(use ele component directly)(f)
-     2. 显示目录按钮
+     1. back top(use ele component directly)(t)(become a common tool and lay in el-aside)
+     2. dialog button(t)(reference function is wrong)
         1. when mouse hover on the button, show the content of list
         2. click content item and scroll to its title
-     3. 标签索引
+     3. tag for other article
         1. 入口：文章标题下方
         2. 交互
            1. 鼠标悬浮到标签上，显示相同标签文章列表
@@ -71,7 +71,7 @@
   2. 模板内容
      1. 界面顶部显示文章标题
      2. 文章标题下显示文章标签
-     3. 文章标签下显示文本内容
+     3. 文章标签下显示文本内容(t)
      4. 最下面显示推荐文章
   3. 文章DS设计
      1. table article[main]
@@ -107,13 +107,11 @@
 
 # 资源
 
-# 前端多页面
-  1. 首页
+# MPA 
+  1. home as the one main in prod env
   2. 其他功能界面（用户星球，小游戏等）
 
-# layout
-  1. import container
-     1. using element+ component
-        1. aside
+# layout page layout
+  1. el-scroll lay in app child node
+  2. 
   
-# define type by .d.ts file type

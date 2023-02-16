@@ -6,10 +6,10 @@ import { defineStore, StoreDefinition } from 'pinia'
 // /**
 //  * enumerate the store key
 //  */
-// export enum StoreKey {
-//   UseEnterTimeStore = 'useEnterTimeStore',
-//   UseLayoutStore = 'useLayoutStore'
-// }
+export enum StoreKey {
+  UseEnterTimeStore = 'useEnterTimeStore',
+  UseLayoutStore = 'useLayoutStore'
+}
 
 // const relationMap = new Map<StoreKey, Object>([
 //   [StoreKey.UseEnterTimeStore, UseEnterTimeStore],

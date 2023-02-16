@@ -1,6 +1,5 @@
 <template>
   <v-md-preview :text="text" ref="preview" />
-  <el-backtop :right="100" :bottom="100" />
   <el-affix position="bottom" :offset="120">
     <el-button class="g-pointer" @click="isShowContent = true">目录</el-button>
   </el-affix>
@@ -164,6 +163,7 @@ function handleAnchor (content: typeof contents.value[number]) {
   const head = preview.value?.$el.querySelector(`[data-v-md-line="${content.lineIndex}"]`)
   isShowContent.value = false
   if (head) {
+    // article reference coming true by el-scrollBar exposed function
     preview.value?.scrollToTarget({
       target: head,
       scrollContainer: window,

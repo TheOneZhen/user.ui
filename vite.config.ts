@@ -13,8 +13,8 @@ export default defineConfig(({ command, mode }) => {
         {
           template: {
             compilerOptions: {
-              // 配置fancy-component
-              isCustomElement: tag => tag.startsWith('fc-') || /^micro-app/.test(tag)
+              // 屏蔽自定义组件并入vue编译
+              isCustomElement: tag => tag.startsWith('fc-') || /^micro-app/.test(tag) || tag.startsWith('css-doodle')
             }
           }
         }

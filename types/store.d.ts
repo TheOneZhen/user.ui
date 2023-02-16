@@ -19,8 +19,3 @@
 //   >
 
 // 因为现阶段注解有些耗时，故计划延后注解，在项目大致成形之后再进行
-
-declare enum StoreKey {
-  UseEnterTimeStore = 'useEnterTimeStore',
-  UseLayoutStore = 'useLayoutStore'
-}

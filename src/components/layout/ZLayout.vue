@@ -1,14 +1,17 @@
 <template>
-  <el-container class="z-container">
-    <el-scrollbar>
+  <el-scrollbar id="main-scroll">
+    <el-container class="z-container">
       <el-header v-if="store.isHorizontal"><z-header /></el-header>
       <el-container>
-        <el-aside width="200px"><z-header v-if="!store.isHorizontal" /></el-aside>
+        <el-aside width="200px">
+          <z-header v-if="!store.isHorizontal" />
+        </el-aside>
         <el-main><router-view /></el-main>
       </el-container>
       <el-footer><z-footer /></el-footer>
-    </el-scrollbar>
-  </el-container>
+    </el-container>
+  </el-scrollbar>
+  <el-backtop target="#main-scroll .el-scrollbar__wrap" :bottom="100" />
 </template>
 
 <script lang="ts" setup>
@@ -22,7 +25,5 @@ const store = UseLayoutStore()
 
 <style lang="scss" scoped>
 .z-container {
-  width: 100vw;
-  height: 100vh;
 }
 </style>

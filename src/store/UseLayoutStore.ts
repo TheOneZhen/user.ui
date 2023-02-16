@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { StoreKey } from '.'
 
 export const UseLayoutStore = defineStore(StoreKey.UseLayoutStore, () => {
   const isHorizontal = ref(window.innerHeight < window.innerWidth)
