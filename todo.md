@@ -17,7 +17,7 @@
         1. 问题记录
         2. 源码分析
         3. 原理及业务实现
-     4. [留言](#留言)
+     4. [留言](#leftinginclude-balloon)
      5. 发现另外的我
         1. 一个静态网页，可以跳转到我的其他社交平台
   3. 交互
@@ -35,15 +35,33 @@
 # 文档或资源界面模板
   1. 对于资源和阶段总结界面，使用相同的模板，通过标签来分类
 
-# 留言
-  1. 入口
-     1. 导航栏 -> 留言
-     2. 所有界面右下角 -> 弹幕
-  2. 留言
+# lefting(include balloon)
+  1. enter
+     1. nav -> lefting
+     2. bottom left corner of all page and as a button -> balloon
+  2. lefting
      1. 基本样子参考B站或者微博等社交网站
      2. 配色符合[主题](#主题)
      3. 要求支持markdown
-
+  3. balloon
+     1. interaction
+        1. when turn on this function, the BC comes from left screen to right
+        2. supporting change BC direction, style, coverage ratio, flow velocity and filter
+        3. the cursor hovering the single BC, it will be stopped while propmpt the info of user likes lefting that supporting markdown also
+     2. style
+        1. its skin vary automatically according to the festival, moods, emergency, time and so on
+        2. style satisfied theme(as the default styles)
+        3. the style that can be modified include font size, font family, opacity, font color
+     3. direction
+        1. from around direction
+        2. bubble, ballon, around to center, scattering ...
+     4. coverage ratio
+        1. reference to bilibili
+     5. filter
+        1. protogenetic page tag
+        2. keyword(split by server)
+  4. design DBT
+     1. 
 # 主题
 
 # 首页
