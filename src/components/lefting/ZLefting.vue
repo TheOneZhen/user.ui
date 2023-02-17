@@ -1,5 +1,5 @@
 <template>
-  <div class="lefting">
+  <div class="z-lefting">
     <el-timeline v-if="isTimeline">
       <el-timeline-item
         v-for="(item, index) in content"
@@ -42,7 +42,7 @@ function selectDate (val: string) {
 </script>
 
 <style lang="scss" scoped>
-  .lefting {
+  .z-lefting {
 
   }
 </style>

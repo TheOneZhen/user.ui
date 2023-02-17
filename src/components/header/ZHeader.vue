@@ -1,5 +1,5 @@
 <template>
-  <el-menu v-show="isShow" :class="mode" class="g-header" :mode="(mode as any)" default-active="1" :collapse="isCollapse">
+  <el-menu v-show="isShow" :class="mode" class="z-header" :mode="(mode as any)" default-active="1" :collapse="isCollapse">
     <template v-for="(item, index) in NavigationMenu">
       <el-sub-menu v-if="item.children && item.children.length" :index="`${index}`" :key="index"
         :disabled="item.disabled">
@@ -49,7 +49,7 @@ const setNavDisplay = debounce((val: typeof isShow.value) => {
 </script>
 
 <style lang="scss" scoped>
-.g-header {
+.z-header {
   &:not(.el-menu--collapse) {
     width: 200px;
   }

@@ -49,9 +49,9 @@
         2. supporting change BC direction, style, coverage ratio, flow velocity and filter
         3. the cursor hovering the single BC, it will be stopped while propmpt the info of user likes lefting that supporting markdown also
      2. style
-        1. its skin vary automatically according to the festival, moods, emergency, time and so on
+        1. its *skin* vary automatically according to the festival, moods, emergency, time and so on
         2. style satisfied theme(as the default styles)
-        3. the style that can be modified include font size, font family, opacity, font color
+        3. the style that can be modified include font size, font family, opacity, font color, background, font weight, line height
      3. direction
         1. from around direction
         2. bubble, ballon, around to center, scattering ...
@@ -115,6 +115,7 @@
            1. explain: null represent comment to the target article, else commment other lefting
         7. likes number !null default(0)
         8. dsilikes number !null default(0)
+        9. date date !null default(now())
      3. table tags
         1. id primary key auto_increment
         2. title string !null
