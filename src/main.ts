@@ -34,9 +34,14 @@ microApp.start({
   }
 })
 
-createApp(App)
+const app = createApp(App)
   .use(createPinia())
   .use(ElementPlus)
   .use(router)
   .use(VMdPreview)
-  .mount('#app')
+// register all icon components globally
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) app.component(key, component)
+
+app.mount('#app')
+
+window.app = app

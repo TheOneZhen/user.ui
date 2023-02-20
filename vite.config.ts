@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import AutoImport from 'unplugin-auto-import/vite'
+import ElementComponents from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -18,7 +21,13 @@ export default defineConfig(({ command, mode }) => {
             }
           }
         }
-      )
+      ),
+      AutoImport({
+        resolvers: [ElementPlusResolver()]
+      }),
+      ElementComponents({
+        resolvers: [ElementPlusResolver()]
+      })
     ],
     // 依赖优化选项
     optimizeDeps: {

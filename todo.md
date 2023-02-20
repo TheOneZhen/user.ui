@@ -1,8 +1,10 @@
-# 说明
-  1. 明确个人开发方向，使开发更加清晰
-  2. 使各个功能间形成体系，完善更好的生态
+# description
+  1. like a PRD to making the function explicit
+  2. build a architecture around all function, formate a ecology
   3. 一些静态资源的选择可以在非开发阶段进行，方便最后统一[主题](#主题)
      1. 开发阶段可以临时使用文字代替
+  4. static resource seletion
+     1. use ele+ for all icons
 
 # 导航栏设计
   1. 入口：通过任意方式进入网站时，都可以看到导航栏
@@ -140,4 +142,5 @@
   4. sponsor
   5. user
   6. page
-  7. 
+
+# all icon replace to element-icons

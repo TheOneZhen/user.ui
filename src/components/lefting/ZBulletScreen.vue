@@ -1,8 +1,13 @@
 <template>
-  <div class="z-bullet-screen"></div>
+  <Teleport to="#z-bullet-screen-container">
+    <div class="z-bullet-screen">
+      <z-bullet-comment :bullet-comment="item"></z-bullet-comment>
+    </div>
+  </Teleport>
 </template>
 
 <script lang="ts" setup>
+import ZBulletComment from './ZBulletComment.vue'
 /**
  * - design interation
  *   - get the BCs and key in hash
@@ -13,6 +18,13 @@
  * - performance
  *   - the number of BCs' component only supporting cover the coverageRation number
  */
+
+const item: ZComment = {
+  content: '这是一段测试文字',
+  likes: 1,
+  dislikes: 10,
+  date: Date()
+}
 </script>
 
 <style lang="scss" scoped>

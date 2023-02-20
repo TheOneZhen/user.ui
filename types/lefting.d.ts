@@ -14,14 +14,14 @@ declare type ZComment = {
   content: string
   likes: number
   dislikes: number
-  date: Date
+  date: string
 }
 /** 弹幕组件props */
 declare interface BulletCommentProps {
   commentStyle: CommentStyle
   direction: string
-  coverageRatio: number
   skin: string
+  /** the time it takes to reach the destination(s) */
   flowVelocity: number
-  bulletcomment: ZComment
+  bulletComment: ZComment
 }

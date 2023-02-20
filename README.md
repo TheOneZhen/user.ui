@@ -4,7 +4,8 @@
   3. 安装依赖
      1. 根据\<root\>路径下package.json安装依赖：```yarn```
      2. 安装指定依赖的指定版本：```yarn add module_name@version```
-     3. 将指定依赖保存到devDependencies（代表仅部署开发环境）：```yarn add modeule_name -D```
+     3. 将指定依赖保存到devDependencies（代表仅部署开发环境）：```yarn add module_name -D```
+     4. ignoring the same module with different version: ```yarn add [moduleName] --legacy-peer-deps```
 
 # 项目架构
   1. 模块化设计以及FS耦合的规避
