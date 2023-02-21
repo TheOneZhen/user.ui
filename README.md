@@ -27,6 +27,12 @@
 # format and layout structure
   1. limitless hight for container-main, but width will be limited pre 80
 
+# about the record of technology doc
+  1. it is enhance your knowledge arch mainly
+  2. sharing secondly but it must be filted
+  3. why en: haha
+  4. to speed up the efficiency of doc, you can key in link site or other resource
+
 # 新技术考虑
   1. vite2升级到vite3
   2. pnpm摄入
