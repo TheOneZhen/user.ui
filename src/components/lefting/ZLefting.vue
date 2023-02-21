@@ -28,7 +28,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { content } from './content'
 const isTimeline = ref(false)
 const calendar = ref()

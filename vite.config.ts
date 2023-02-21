@@ -1,9 +1,11 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
+import path, { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import ElementComponents from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import IconResolver from 'unplugin-icons/resolver'
+import CustomIcons from 'unplugin-icons/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -22,12 +24,26 @@ export default defineConfig(({ command, mode }) => {
           }
         }
       ),
+      /**
+       * 自动导入组件（element组件导入需要导入样式，这里配置后，不需要导入即可使用组件）
+       */
       AutoImport({
-        resolvers: [ElementPlusResolver()]
+        // vue相关自动导入
+        imports: ['vue'],
+        resolvers: [
+          ElementPlusResolver(),
+          IconResolver({ prefix: 'Icon' })
+        ],
+        dts: path.resolve(__dirname, 'src', 'auto-imports.d.ts')
       }),
       ElementComponents({
-        resolvers: [ElementPlusResolver()]
-      })
+        resolvers: [
+          ElementPlusResolver(),
+          IconResolver({ enabledCollections: ['ep'] })
+        ],
+        dts: path.resolve(__dirname, 'src', 'component.d.ts')
+      }),
+      CustomIcons({ autoInstall: true })
     ],
     // 依赖优化选项
     optimizeDeps: {

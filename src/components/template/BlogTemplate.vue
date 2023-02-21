@@ -19,7 +19,6 @@
 
 <script lang="ts" setup>
 import { VueInstance } from '@vueuse/core'
-import { onMounted, ref } from 'vue'
 type PreviewVueInstance = VueInstance & { scrollToTarget: (p: any) => void }
 const text = `
 # 学习疑问点

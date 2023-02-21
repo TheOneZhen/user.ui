@@ -1,4 +1,3 @@
-import { createApp } from 'vue'
 import App from './App.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
@@ -26,7 +25,6 @@ microApp.start({
               return all.replace('/userEarthMap/', 'http://localhost:3050/userEarthMap/')
             })
           }
-
           return code
         }
       }]
@@ -40,7 +38,7 @@ const app = createApp(App)
   .use(router)
   .use(VMdPreview)
 // register all icon components globally
-for (const [key, component] of Object.entries(ElementPlusIconsVue)) app.component(key, component)
+// for (const [key, component] of Object.entries(ElementPlusIconsVue)) app.component(key, component)
 
 app.mount('#app')
 
