@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<{
   }),
   direction: 'rightToLeft',
   skin: 'default',
-  flowVelocity: 5
+  flowVelocity: 40
 })
 
 </script>
