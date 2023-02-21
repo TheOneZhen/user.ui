@@ -18,10 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import ZHeader from '@/components/header/ZHeader.vue'
-import ZFooter from '@/components/footer/ZFooter.vue'
 import { UseLayoutStore } from '@/store/UseLayoutStore'
-import ZBulletScreen from '../lefting/ZBulletScreen.vue'
 const store = UseLayoutStore()
 
 </script>

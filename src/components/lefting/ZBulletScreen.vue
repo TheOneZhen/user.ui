@@ -7,7 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-import ZBulletComment from './ZBulletComment.vue'
 /**
  * - design interation
  *   - get the BCs and key in hash
