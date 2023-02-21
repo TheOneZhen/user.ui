@@ -1,6 +1,4 @@
 import App from './App.vue'
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
 import router from './router'
 import '@/global/scss/index.scss'
 import 'css-doodle'
@@ -34,11 +32,8 @@ microApp.start({
 
 const app = createApp(App)
   .use(createPinia())
-  .use(ElementPlus)
   .use(router)
   .use(VMdPreview)
-// register all icon components globally
-// for (const [key, component] of Object.entries(ElementPlusIconsVue)) app.component(key, component)
 
 app.mount('#app')
 

@@ -32,6 +32,7 @@ export default defineConfig(({ command, mode }) => {
         imports: ['vue'],
         resolvers: [
           ElementPlusResolver(),
+          // set prefix for all custom icon in element(implement double hump)
           IconResolver({ prefix: 'Icon' })
         ],
         dts: path.resolve(__dirname, 'src', 'auto-imports.d.ts')
@@ -39,6 +40,7 @@ export default defineConfig(({ command, mode }) => {
       ElementComponents({
         resolvers: [
           ElementPlusResolver(),
+          // set signal in component name like prefix-signal-componentNane: { enabledCollections: ['z'] }
           IconResolver({ enabledCollections: ['ep'] })
         ],
         dts: path.resolve(__dirname, 'src', 'component.d.ts')

@@ -1,9 +1,9 @@
 <template>
   <div class="z-bullet-comment">
-    <el-icon color="red">
-      <CaretTop />
-    </el-icon>
     <span>{{ bulletComment.content }}</span>
+    <el-icon color="red">
+      <i-ep-caret-top />
+    </el-icon>
   </div>
 </template>
 
@@ -43,7 +43,7 @@ const props = withDefaults(defineProps<{
     position: fixed;
     right: 0;
     top: 40%;
-    animation-duration: v-bind('flowVelocity');
+    animation-duration: v-bind('flowVelocity + "s"');
     animation-timing-function: linear;
     animation-delay: 0s;
     animation-iteration-count: 1;
