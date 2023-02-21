@@ -35,7 +35,7 @@ export default defineConfig(({ command, mode }) => {
           // set prefix for all custom icon in element(implement double hump)
           IconResolver({ prefix: 'Icon' })
         ],
-        dts: path.resolve(__dirname, 'src', 'auto-imports.d.ts')
+        dts: path.resolve(__dirname, 'types', 'auto-imports.d.ts')
       }),
       ElementComponents({
         resolvers: [
@@ -43,7 +43,7 @@ export default defineConfig(({ command, mode }) => {
           // set signal in component name like prefix-signal-componentNane: { enabledCollections: ['z'] }
           IconResolver({ enabledCollections: ['ep'] })
         ],
-        dts: path.resolve(__dirname, 'src', 'component.d.ts')
+        dts: path.resolve(__dirname, 'types', 'component.d.ts')
       }),
       CustomIcons({ autoInstall: true })
     ],
