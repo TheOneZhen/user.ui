@@ -20,7 +20,7 @@
         2. 源码分析
         3. 原理及业务实现
      4. [留言](#leftinginclude-balloon)
-     5. 发现另外的我
+     5. [find me](#find-me)
         1. 一个静态网页，可以跳转到我的其他社交平台
   3. 交互
      1. 通用交互
@@ -128,19 +128,25 @@
 # 资源
 
 # MPA 
-  1. home as the one main in prod env
-  2. 其他功能界面（用户星球，小游戏等）
+  1. why use MPA
+     1. reduce the amount of data requested at a time
+     2. function partition
+  2. seletion
+     1. 
 
 # layout page layout
   1. el-scroll lay in app child node
   2. 
-  
-# design db table structure
-  1. article
-  2. lefting
-  3. tags
-  4. sponsor
-  5. user
-  6. page
 
-# all icon replace to element-icons
+# find me
+  1. a static page
+  2. interation
+     1. after user into this page, 
+  3. other social platform
+     1. tech sharing: leetcode, juejin, CSDN, github
+     2. lefting: qq-eamil
+
+# all icon replace to element-icons(t)
+# component auto-imports(t)
+# backend speed up the CI/CD building necessary
+  1. the frontend request server straightforwardly

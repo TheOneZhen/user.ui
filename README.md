@@ -103,3 +103,6 @@
   11. url变基
   12. ESM
   13. URL构造器
+  14. different page using same components what the packing doing in mpa
+      1. inject 1: both building
+      2. inject 2: building in main?

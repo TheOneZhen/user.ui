@@ -7,7 +7,6 @@
         :icon="item.icon"
         :type="item.type"
         :color="item.color"
-        :size="item.size"
         :timestamp="item.timestamp"
         :hollow="item.hollow"
         class="g-pointer"

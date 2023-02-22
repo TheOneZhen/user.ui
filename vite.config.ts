@@ -67,6 +67,15 @@ export default defineConfig(({ command, mode }) => {
         '@': resolve(__dirname, './src'),
         icon: resolve(__dirname, './public/icon')
       }
+    },
+    build: {
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'index.html'),
+          pageone: resolve(__dirname, 'src/pageone/index.html')
+        }
+        // output: {}
+      }
     }
   }
   let elseConfig = {}
