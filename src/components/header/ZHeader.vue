@@ -17,7 +17,7 @@
         <component :is="menuItem.icon"></component>
       </el-icon>
       <template #title>
-        <span>home</span>
+        <div v-html="menuItem.icon"></div>
       </template>
     </el-menu-item>
   </el-menu>
