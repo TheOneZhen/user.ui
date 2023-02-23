@@ -1,10 +1,8 @@
-import { render } from 'vue'
-
 export const NavigationMenu: Header.SubMenu[] = [
   {
     title: 'home',
-    icon: render()
-    // h('<i-ep-house />')
+    // implement by icon-com-lib
+    icon: h('<i-ep-house />')
   },
   {
     title: 'blog',
