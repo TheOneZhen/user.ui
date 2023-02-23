@@ -89,3 +89,6 @@
   14. different page using same components what the packing doing in mpa
       1. inject 1: both building
       2. inject 2: building in main?
+  15. https://developer.chrome.com/blog/inside-browser-part1/
+      1. a series knowledge of browser internal architecture that is separed four partition and this is first part
+      2. it include many cartoon images funny and detail
