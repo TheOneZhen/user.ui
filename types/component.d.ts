@@ -34,6 +34,7 @@ declare module '@vue/runtime-core' {
     ElTimeline: typeof import('element-plus/es')['ElTimeline']
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     IEpCaretTop: typeof import('~icons/ep/caret-top')['default']
+    IIconCaretTop: typeof import('~icons/icon/caret-top')['default']
     PageOne: typeof import('./../src/components/home/PageOne.vue')['default']
     PageThree: typeof import('./../src/components/home/PageThree.vue')['default']
     PageTwo: typeof import('./../src/components/home/PageTwo.vue')['default']

@@ -9,18 +9,10 @@
 # 导航栏设计
   1. 入口：通过任意方式进入网站时，都可以看到导航栏
   2. 内容及对应界面简介（具体看各个界面（功能）设计）
-     1. [首页](#首页)
-     2. [资源](#资源)
-        1. 插件｜脚本
-        2. 素材
-        3. 资源文档
-        4. 源码
-     3. 学习记录
-        1. 问题记录
-        2. 源码分析
-        3. 原理及业务实现
-     4. [留言](#leftinginclude-balloon)
-     5. [find me](#find-me)
+     1. [home](#home)
+     2. [blog](#home)
+     3. [lefting](#leftinginclude-balloon)
+     4. [find me](#find-me)
         1. 一个静态网页，可以跳转到我的其他社交平台
   3. 交互
      1. 通用交互
@@ -34,8 +26,14 @@
      2. 对移动设备的支持
         1. 暂不支持
 
-# 文档或资源界面模板
-  1. 对于资源和阶段总结界面，使用相同的模板，通过标签来分类
+# blog
+  1. negate the previous proposal what coming true many page than diferentiate from article tags. Inspiration comes from the blog of [antfu](https://antfu.me/) that simple and smart.
+  2. style
+     1. build a timeline scroll on the right side
+     2. set a filter component behead the scroll
+  3. interaction
+     1. user rolls the screen, timepoint will be magnified
+  4. else
 
 # lefting(include balloon)
   1. enter
@@ -65,7 +63,7 @@
 
 # 主题
 
-# 首页
+# home
   1. 交互
      1. 首页共三小页，监听鼠标事件进行小页跳动
      2. 
@@ -150,3 +148,19 @@
 # component auto-imports(t)
 # backend speed up the CI/CD building necessary
   1. the frontend request server straightforwardly
+
+# after the blog page finished, staring associate all pages and defining ds by front-end's perspective
+
+# reference new tech
+  1. vite update v2 to v3
+  2. join pnpm
+  3. mpa(t)(feasible)
+  4. for SEO
+     1. article not compile to html-doc in back-end
+     2. title of article will be keywords in dialog page into SEO
+  5. lottie
+  6. for icon
+     1. current using the ele-icons
+     2. unocss
+
+# optimized code

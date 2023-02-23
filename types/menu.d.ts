@@ -1,7 +1,7 @@
 declare namespace Header {
   declare type SubMenu = {
     title: string
-    icon: string
+    icon: VNode
     showIcon?: boolean
     desc?: string
     disabled?: boolean
