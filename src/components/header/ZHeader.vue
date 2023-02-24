@@ -14,7 +14,7 @@
       :index="menuItem.title"
     >
       <el-icon>
-        <component :is="menuItem.icon"></component>
+        <span icon-carbon:logo-github></span>
       </el-icon>
       <template #title>
         <div v-html="menuItem.icon"></div>

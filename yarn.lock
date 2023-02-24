@@ -230,7 +230,7 @@
   resolved "https://registry.npmjs.org/@ctrl/tinycolor/-/tinycolor-3.5.0.tgz"
   integrity sha512-tlJpwF40DEQcfR/QF+wNMVyGMaO9FQp6Z1Wahj4Gk3CJQYHwA2xVG7iKDFdW6zuxZY9XWOpGcfNCTsX4McOsOg==
 
-"@element-plus/icons-vue@^2.0.10", "@element-plus/icons-vue@^2.0.6":
+"@element-plus/icons-vue@^2.0.6":
   version "2.0.10"
   resolved "https://registry.npmjs.org/@element-plus/icons-vue/-/icons-vue-2.0.10.tgz"
   integrity sha512-ygEZ1mwPjcPo/OulhzLE7mtDrQBWI8vZzEWSNB2W/RNCRjoQGwbaK4N8lV4rid7Ts4qvySU3njMN7YCiSlSaTQ==
@@ -307,19 +307,13 @@
   resolved "https://registry.npmmirror.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@iconify-json/ep@^1.1.9":
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/@iconify-json/ep/-/ep-1.1.9.tgz#9af916c0da2780e77751873ce575361d77190d08"
-  integrity sha512-vhrCvikS/uRsEaM8eMyH7Fj13TSbkOuXqn0W/hqj79C9mtlUZMXPq31f+Mr5Cw4ag6sBPt8uY5WMhbwAR0vOMA==
+"@iconify/json@^2.2.26":
+  version "2.2.26"
+  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-2.2.26.tgz#a24104c08e4c19306fb6e6a83667494d3c222203"
+  integrity sha512-ATRMh64npEpb/ZGDHwNugZfXxy8m7MdH3MZHJPOBO39oEnNZg93jhglqGZnbDjPNffTFET+JUlImF3CXF2QE3w==
   dependencies:
     "@iconify/types" "*"
-
-"@iconify-json/wi@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@iconify-json/wi/-/wi-1.1.4.tgz#41820682bf64a3da9d6523243478474da4781158"
-  integrity sha512-WLuE6rleHk6UdXYgb2c7Hj7CTlRIfjygMjq5G+96XAZMntmqXd5c9fq3bGEByjaFjPMaggYZDdEam8yuEGWdOQ==
-  dependencies:
-    "@iconify/types" "*"
+    pathe "^1.0.0"
 
 "@iconify/types@*", "@iconify/types@^2.0.0":
   version "2.0.0"
@@ -5634,7 +5628,7 @@ path-type@^4.0.0:
   resolved "https://registry.npmmirror.com/path-type/-/path-type-4.0.0.tgz"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-pathe@^1.1.0:
+pathe@^1.0.0, pathe@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/pathe/-/pathe-1.1.0.tgz"
   integrity sha512-ODbEPR0KKHqECXW1GoxdDb+AZvULmXjVPy4rt+pGo2+TnjJTIPJQSVS6N63n8T2Ip+syHhbn52OewKicV0373w==

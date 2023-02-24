@@ -2,7 +2,7 @@ export const NavigationMenu: Header.SubMenu[] = [
   {
     title: 'home',
     // implement by icon-com-lib
-    icon: template
+    icon: ''
   },
   {
     title: 'blog',
