@@ -161,7 +161,7 @@
 
 # optimized code
 
-# make fake data in developing phase
+# make fake data in development
   1. simulated interface request by mockjs
   2. make fake data by fakerjs
   3. packaging module in the same dialog with request
