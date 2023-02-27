@@ -5,6 +5,9 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
-
-declare module '@kangc/v-md-editor/lib/theme/github.js';
-declare module '@kangc/v-md-editor/lib/preview';
+/**
+ * this block defines the types of tools that were developed by js(no types with ts)
+ */
+declare module '@kangc/v-md-editor/lib/theme/github.js'
+declare module '@kangc/v-md-editor/lib/preview'
+declare module 'mockjs'

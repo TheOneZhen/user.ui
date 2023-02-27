@@ -154,13 +154,15 @@
 # reference new tech
   1. vite update v2 to v3
   2. join pnpm
-  3. mpa(t)(feasible)
-  4. for SEO
+  1. for SEO
      1. article not compile to html-doc in back-end
      2. title of article will be keywords in dialog page into SEO
-  5. lottie
-  6. for icon
-     1. current using the ele-icons
-     2. unocss
+  2. lottie
 
 # optimized code
+
+# make fake data in developing phase
+  1. simulated interface request by mockjs
+  2. make fake data by fakerjs
+  3. packaging module in the same dialog with request
+  4. setting status switch in vite.config
