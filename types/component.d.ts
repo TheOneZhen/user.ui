@@ -33,6 +33,7 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTimeline: typeof import('element-plus/es')['ElTimeline']
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     IEpCaretTop: typeof import('~icons/ep/caret-top')['default']
     IIconCaretTop: typeof import('~icons/icon/caret-top')['default']
     PageOne: typeof import('./../src/components/home/PageOne.vue')['default']
