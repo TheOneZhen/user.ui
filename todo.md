@@ -43,23 +43,27 @@
      1. 基本样子参考B站或者微博等社交网站
      2. 配色符合[主题](#主题)
      3. 要求支持markdown
-  3. balloon
-     1. interaction
-        1. when turn on this function, the BC comes from left screen to right
-        2. supporting change BC direction, style, coverage ratio, flow velocity and filter
-        3. the cursor hovering the single BC, it will be stopped while propmpt the info of user likes lefting that supporting markdown also
-     2. style
+  3. 弹幕
+     1. 入口
+        1. 悬浮在主界面左下角，点击触发是否打开弹幕，默认打开
+        2. 点击特效、样式规则符合左下角悬浮工具
+        3. 悬浮入口按钮上时出现弹幕设置按钮，点击弹幕设置按钮显示弹幕设置界面
+     2. 功能简介
+        1. 功能打开时，弹幕按照配置显示、移动
+        2. 鼠标悬浮到弹幕上时，弹幕停止移动，并显示详细信息
+        3. 弹幕内容要求支持markdown，且数据结构同用户留言
+     3. style
         1. its *skin* vary automatically according to the festival, moods, emergency, time and so on
         2. style satisfied theme(as the default styles)
         3. the style that can be modified include font size, font family, opacity, font color, background, font weight, line height
-     3. direction
+     4. direction
         1. from around direction
         2. bubble, ballon, around to center, scattering ...
-     4. coverage ratio
+     5. coverage ratio
         1. 100%, 75%, 50%, 25%, 0%
         2. when set 0%, switch on-off to off
-     5. on-off
-     6. filter
+     6. on-off
+     7. filter
         1. protogenetic page tag
         2. keyword(split by server)
 
