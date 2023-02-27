@@ -56,8 +56,10 @@
         1. from around direction
         2. bubble, ballon, around to center, scattering ...
      4. coverage ratio
-        1. reference to bilibili
-     5. filter
+        1. 100%, 75%, 50%, 25%, 0%
+        2. when set 0%, switch on-off to off
+     5. on-off
+     6. filter
         1. protogenetic page tag
         2. keyword(split by server)
 
@@ -129,8 +131,11 @@
   1. why use MPA
      1. reduce the amount of data requested at a time
      2. function partition
-  2. seletion
-     1. 
+  2. pages
+     1. main: include home, lefting, all blogs(articles), find me
+     2. bullet screen(although opened default)
+     3. user earth: user scroll to its page while starting request(mind the cache)
+     4. other: undefined function but another page necessary
 
 # layout page layout
   1. el-scroll lay in app child node

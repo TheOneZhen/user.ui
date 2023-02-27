@@ -17,7 +17,7 @@ declare type ZComment = {
   date: string
 }
 /** 弹幕组件props */
-declare interface BulletCommentProps {
+declare interface BulletComment {
   commentStyle: CommentStyle
   direction: string
   skin: string
