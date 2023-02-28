@@ -1,0 +1,19 @@
+name: send email
+on:
+  push:
+    branches: main
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+     - name: send email
+       uses: dawidd6/action-send-mail@v3
+       with:
+        server_address: smtp.qq.com
+        server_port: 587
+        username: zhenisbusy
+        password: orfhyexuswnobdef
+        subject: this is a test email, please ignore
+        body: ${{ github.actor }} just pushing some commits for this repo(${{ github.repository }})
+        to: liuzhen@mbse.com.cn
+        from: Z
