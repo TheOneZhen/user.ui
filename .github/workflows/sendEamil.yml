@@ -15,5 +15,5 @@ jobs:
         password: ${{ secrets.PASSWORD_EMAIL }}
         subject: this is a test email, please ignore
         body: ${{ github.actor }} just pushing some commits for this repo(${{ github.repository }})
-        to: liuzhen@mbse.com.cn
+        to: zhenisbusy@qq.com
         from: Z
