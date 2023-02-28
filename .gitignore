@@ -3,15 +3,14 @@ node_modules
 dist
 dist-ssr
 *.local
-
+yarn.lock
+package-lock.json
 # dev env
 /build
 
 # log
 *.log
 /log
-
-
 
 # code editor
 *.code-workspace
