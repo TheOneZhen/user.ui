@@ -1,19 +1,18 @@
 export const NavigationMenu: Header.SubMenu[] = [
   {
     title: 'home',
-    // implement by icon-com-lib
-    icon: ''
+    icon: 'icon-carbon:home'
   },
   {
     title: 'blog',
-    icon: '<i-ep-folder />'
+    icon: 'icon-carbon:blog'
   },
   {
     title: 'lefting',
-    icon: '<i-ep-chat-square />'
+    icon: 'icon-carbon:term'
   },
   {
     title: 'find me',
-    icon: '<i-ep-link />'
+    icon: 'icon-carbon:send-alt'
   }
 ]

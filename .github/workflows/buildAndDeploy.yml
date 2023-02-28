@@ -1,0 +1,31 @@
+name: build and deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - run: echo 'start installing dependencies ....'
+      - run: npm install
+      - run: echo 'start building ...'
+      - run: npm run build
+  deploy:
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: deploy
+        uses: AEnterprise/rsync-deploy@v1.0
+        env:
+          DEPLOY_KEY: ${{ secrets.SSH_PRIVATEKEY }}   # 引用配置，SSH私钥
+          ARGS: -avz --delete --exclude='*.pyc'   # rsync参数，排除.pyc文件
+          SERVER_PORT: '22'  # SSH端口
+          FOLDER: ./dist/*  # 要推送的文件夹，路径相对于代码仓库的根目录
+          SERVER_IP: ${{ secrets.HOST_SERVER }}  # 引用配置，服务器的host名（IP或者域名domain.com）
+          USERNAME: ${{ secrets.USERNAME_SERVER }}  # 引用配置，服务器登录名
+          SERVER_DESTINATION: /var/www/   # 部署到目标文件夹

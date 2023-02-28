@@ -13,12 +13,11 @@
       :key='menuItem.title'
       :index="menuItem.title"
     >
+    <el-tooltip effect="light" placement="bottom" :content="menuItem.title">
       <el-icon>
-        <span icon-carbon:logo-github></span>
+        <span :[menuItem.icon]="''"></span>
       </el-icon>
-      <template #title>
-        <div v-html="menuItem.icon"></div>
-      </template>
+    </el-tooltip>
     </el-menu-item>
   </el-menu>
 </template>
