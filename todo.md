@@ -175,3 +175,5 @@
   2. make fake data by fakerjs
   3. packaging module in the same dialog with request
   4. setting status switch in vite.config
+
+# update nodejs to 16.18.1(t)

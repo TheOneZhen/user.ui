@@ -4,7 +4,7 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'plugin:vue/essential',
+    'plugin:vue/vue3-essential',
     'standard'
   ],
   parserOptions: {
@@ -13,8 +13,8 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    // 'vue',
-    // '@typescript-eslint'
+    'vue',
+    '@typescript-eslint'
   ],
   rules: {
     'no-unused-vars': 'off',

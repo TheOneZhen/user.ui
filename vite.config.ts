@@ -48,7 +48,7 @@ export default defineConfig(({ command, mode }) => {
       })
     ],
     optimizeDeps: {
-      exclude: ['vue-demi']
+      // exclude: ['vue-demi']
     },
     server: {
       host: 'localhost',
