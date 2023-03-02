@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BlogDialog: typeof import('./../src/components/blog/BlogDialog.vue')['default']
     BlogTemplate: typeof import('./../src/components/template/BlogTemplate.vue')['default']
     ElAffix: typeof import('element-plus/es')['ElAffix']
     ElAside: typeof import('element-plus/es')['ElAside']
@@ -25,6 +26,7 @@ declare module '@vue/runtime-core' {
     ElFooter: typeof import('element-plus/es')['ElFooter']
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElLink: typeof import('element-plus/es')['ElLink']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
@@ -39,6 +41,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     YUANXIAO: typeof import('./../src/components/background/YUANXIAO.vue')['default']
+    ZBlog: typeof import('./../src/components/blog/ZBlog.vue')['default']
     ZBulletComment: typeof import('./../src/components/lefting/ZBulletComment.vue')['default']
     ZBulletScreen: typeof import('./../src/components/lefting/ZBulletScreen.vue')['default']
     ZFooter: typeof import('./../src/components/footer/ZFooter.vue')['default']

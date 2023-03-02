@@ -23,7 +23,7 @@ const router = createRouter({
         {
           path: '/blog',
           name: 'blog',
-          component: () => import('@/components/template/BlogTemplate.vue')
+          component: () => import('@/components/blog/ZBlog.vue')
         }
       ]
     },

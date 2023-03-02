@@ -34,7 +34,7 @@
   3. interaction
      1. user rolls the screen, timepoint will be magnified
   4. else
-
+  
 # lefting(include balloon)
   1. enter
      1. nav -> lefting
@@ -177,3 +177,5 @@
   4. setting status switch in vite.config
 
 # update nodejs to 16.18.1(t)
+
+# improve the tag semanticiation
