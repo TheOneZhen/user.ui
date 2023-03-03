@@ -39,3 +39,4 @@ createApp(App)
   .mount('#app')
 
 window.app = app
+app.init()

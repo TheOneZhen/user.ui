@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 defineProps<{
   mode: 'list' | 'hover'
-  data: Map<CatalogType['title'], Array<CatalogType>>
+  data: typeof app.blogModel.tagMap
 }>()
 </script>
 

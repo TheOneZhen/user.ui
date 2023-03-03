@@ -7,11 +7,10 @@ export class App {
 
   constructor () {
     console.log('welcome to zhen space')
-    this.init()
   }
 
-  init () {
-    this.blogModel.init()
+  async init () {
+    await this.blogModel.init()
   }
 }
 

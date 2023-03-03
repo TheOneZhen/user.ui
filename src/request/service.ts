@@ -1,5 +1,6 @@
 import request from './request'
 import { API } from '../api/api'
+import './faker'
 
 class Service {
   async test () {
@@ -9,6 +10,7 @@ class Service {
 
   async getBlogCatalogs () {
     const res = await request.post(API.GET_BLOG_CATALOGS)
+    console.log('run here', res)
     return res.data as Array<CatalogType>
   }
 }

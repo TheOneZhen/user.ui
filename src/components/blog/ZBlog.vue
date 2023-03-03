@@ -1,7 +1,8 @@
 <template>
-  <div class="filter">
+  <div class="z-blog">
+    <z-filter></z-filter>
+    <z-timeline :data="data"></z-timeline>
   </div>
-  <z-timeline :data="data"></z-timeline>
 </template>
 
 <script lang="ts" setup>
