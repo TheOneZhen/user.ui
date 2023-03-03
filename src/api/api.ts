@@ -1,3 +1,4 @@
 export enum API {
-  TEST = '/test'
+  TEST = '/test',
+  GET_BLOG_CATALOGS = '/blog/catalogs'
 }

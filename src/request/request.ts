@@ -106,7 +106,7 @@ class Request {
     }
   }
 
-  public post (url: string, data: any, config: object = {}): Promise<response> {
+  public post (url: string, data: any = '', config: object = {}): Promise<response> {
     return new Promise((resolve, reject) => {
       this.service.post(url, data, config)
         .then(result => {
@@ -119,7 +119,7 @@ class Request {
     })
   }
 
-  public get (url: string, parmas: any, config: object = {}): Promise<response> {
+  public get (url: string, parmas: any = '', config: object = {}): Promise<response> {
     return new Promise((resolve, reject) => {
       this.service.get(`${url}?${JSON.stringify(parmas)}`, config)
         .then(result => {

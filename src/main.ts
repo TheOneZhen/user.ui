@@ -10,6 +10,7 @@ import '@kangc/v-md-editor/lib/style/preview.css'
 import githubTheme from '@kangc/v-md-editor/lib/theme/github.js'
 import '@kangc/v-md-editor/lib/theme/style/github.css'
 import 'uno.css'
+import { app } from './app'
 
 VMdPreview.use(githubTheme, { Hljs })
 
@@ -31,11 +32,10 @@ microApp.start({
   }
 })
 
-const app = createApp(App)
+createApp(App)
   .use(createPinia())
   .use(router)
   .use(VMdPreview)
-
-app.mount('#app')
+  .mount('#app')
 
 window.app = app

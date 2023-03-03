@@ -1,6 +1,3 @@
-declare interface Window {
-  app: App<Element>
-}
 // declaration comes from @element-plus/icons-vue types
 declare const ElementPlusIconsVue: Record<
   string,

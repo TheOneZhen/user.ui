@@ -18,7 +18,7 @@ withDefaults(defineProps<{
   width?: string
   height?: string
   hrefPrefix?: string
-  data: Array<{ year: string, month: string, count: number}>
+  data: typeof app.blogModel.dateCatalogs
 }>(), {
   width: '10vw',
   height: '30vh',
