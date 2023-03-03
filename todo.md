@@ -33,7 +33,23 @@
      2. set a filter component behead the scroll
   3. interaction
      1. user rolls the screen, timepoint will be magnified
-  4. else
+  4. 组件
+     1. tags
+        1. 俩种模式
+           1. 以列表的形式展示：点击tag，执行过滤函数；悬浮title，展示完整描述，点击title，执行跳转函数；
+           2. 悬浮显示列表：交互同上
+     2. 筛选框，会对tag和标题都进行筛选，最后高亮筛选内容
+     3. 目录列表
+        1. 与文章日期同步滚动
+  5. 数据结构设计
+     1. 组件角度依赖：日期，文章数量，文章标题，文章标签，文章描述
+     2. 主要原则：后端负责数据饱和度（尽可能完整），前端实现各类数据拆分
+     3. result
+      ```ts
+        [{ date: 'YYYY-MM-DD HH:mm:ss', title: string, tags: Array<string>, description: string }]
+        // 文章数量通过拆分所有文章date获取
+        // 年份也通过拆分获取
+      ```
   
 # lefting(include balloon)
   1. enter

@@ -44,10 +44,13 @@ declare module '@vue/runtime-core' {
     ZBlog: typeof import('./../src/components/blog/ZBlog.vue')['default']
     ZBulletComment: typeof import('./../src/components/lefting/ZBulletComment.vue')['default']
     ZBulletScreen: typeof import('./../src/components/lefting/ZBulletScreen.vue')['default']
+    ZFilter: typeof import('./../src/components/blog/ZFilter.vue')['default']
     ZFooter: typeof import('./../src/components/footer/ZFooter.vue')['default']
     ZHeader: typeof import('./../src/components/header/ZHeader.vue')['default']
     ZHome: typeof import('./../src/components/home/ZHome.vue')['default']
     ZLayout: typeof import('./../src/components/layout/ZLayout.vue')['default']
     ZLefting: typeof import('./../src/components/lefting/ZLefting.vue')['default']
+    ZTag: typeof import('./../src/components/blog/ZTag.vue')['default']
+    ZTimeline: typeof import('./../src/components/blog/ZTimeline.vue')['default']
   }
 }
