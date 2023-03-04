@@ -8,17 +8,17 @@ Mock.mock(/\/blog\/catalogs/, function () {
     {
       code: 200,
       msg: 'success',
-      'data|10': {
+      'data|10': [{
         date: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
         title: Mock.Random.ctitle(),
-        'tags|10': Mock.Random.ctitle(2),
+        'tags|10': [Mock.Random.ctitle(2)],
         description: `
           - ${Mock.Random.csentence()}
           - ${Mock.Random.csentence()}
           - ${Mock.Random.csentence()}
           - ${Mock.Random.csentence()}
         `
-      }
+      }]
     }
   )
 })

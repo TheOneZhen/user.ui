@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse, CancelTokenStatic } from 'axios'
+import { isString } from 'lodash'
 import { baseURL, contentType, requestTimeout } from './net.config'
 
 interface response {
@@ -17,6 +18,7 @@ class Request {
   constructor () {
     this.initConfig()
     this.service = axios.create(this.axiosRequestConfig)
+    this.interceptorsResponse()
   }
 
   // 初始化配置
@@ -61,7 +63,10 @@ class Request {
    * 响应拦截
    */
   protected interceptorsResponse () {
-
+    this.service.interceptors.response.use((value) => {
+      if (isString(value.data)) value.data = JSON.parse(value.data)
+      return value
+    })
   }
 
   // 取消重复请求

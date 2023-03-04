@@ -10,13 +10,14 @@ class BlogModel {
     const mid = new Map<string, number>()
     data.forEach(catalog => {
       // 国际化的时候注意时间格式
-      const yearMonthFormat = dayjs(catalog.date).format
-      const yearMonth = yearMonthFormat('YYYY-MM')
-      const year = yearMonthFormat('YYYY')
+      const date = dayjs(catalog.date)
+      const yearMonth = date.format('YYYY-MM')
+      const year = date.format('YYYY')
       const countYM = (mid.get(yearMonth) || 0) + 1
       const countY = (mid.get(year) || 0) + 1
       mid.set(yearMonth, countYM)
       mid.set(year, countY)
+
       this.catalogs.push(catalog)
       catalog.tags.forEach(tag => {
         const sameTagCat: typeof this.catalogs = this.tagMap.get(tag) || []
@@ -26,12 +27,12 @@ class BlogModel {
     })
     Array
       .from(mid.keys())
-      .sort()
+      .sort((a, b) => a.localeCompare(b))
       .forEach(date => {
-        const format = dayjs(date).format
+        const parsed = dayjs(date)
         this.dateCatalogs.push({
-          year: format('YYYY'),
-          month: format('MM'),
+          year: parsed.format('YYYY'),
+          month: parsed.format('MM'),
           count: mid.get(date) || 0
         })
       })

@@ -10,7 +10,6 @@ class Service {
 
   async getBlogCatalogs () {
     const res = await request.post(API.GET_BLOG_CATALOGS)
-    console.log('run here', res)
     return res.data as Array<CatalogType>
   }
 }
