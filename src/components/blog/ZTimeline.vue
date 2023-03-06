@@ -15,12 +15,10 @@
 <script lang="ts" setup>
 
 withDefaults(defineProps<{
-  width?: string
   height?: string
   hrefPrefix?: string
   data: typeof app.blogModel.dateCatalogs
 }>(), {
-  width: '10vw',
   height: '30vh',
   hrefPrefix: '#Z-'
 })
@@ -29,7 +27,6 @@ withDefaults(defineProps<{
 <style lang="scss" scoped>
 .z-timeline {
   height: v-bind('height');
-  width: v-bind('width');
   overflow: auto;
 
   .z-timeline-item {

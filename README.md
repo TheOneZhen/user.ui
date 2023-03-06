@@ -24,8 +24,11 @@
         2. 文档行数不应该过多，最好一页能展示出来，多了影响视觉；为了方便GitHub上的预览，所有md均命名为README.md
         3. 问题及知识点记录放在根md下，最后都要转化到思维导图中
 
-# format and layout structure
-  1. limitless hight for container-main, but width will be limited pre 80
+# 布局开发注意
+  1. 组件宽高设定
+     1. 每个通用组件的宽度不可以写死，高度依据具体业务再确定是否写死；宽度必须交由引用此组件的外部组件进行确定
+     2. 组件的尺寸尽量使用自适应单位（em, rem, vh, vw...），以减少对屏幕自适应的适配
+  2. 引用外部组件宽高设定（e.g. element+）
 
 # about the record of technology doc
   1. it is enhance your knowledge arch mainly

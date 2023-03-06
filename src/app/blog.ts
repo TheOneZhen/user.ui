@@ -27,12 +27,12 @@ class BlogModel {
     })
     Array
       .from(mid.keys())
-      .sort((a, b) => a.localeCompare(b))
+      .sort((a, b) => b.localeCompare(a))
       .forEach(date => {
         const parsed = dayjs(date)
         this.dateCatalogs.push({
           year: parsed.format('YYYY'),
-          month: parsed.format('MM'),
+          month: date.length === 4 ? '' : parsed.format('MM'),
           count: mid.get(date) || 0
         })
       })
