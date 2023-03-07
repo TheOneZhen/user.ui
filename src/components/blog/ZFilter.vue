@@ -1,6 +1,6 @@
 <template>
   <div class="z-filter">
-    <el-input>
+    <el-input clearable>
       <template #append>
         <el-button @click="changeTagsMode">
           <template #icon>
@@ -14,7 +14,10 @@
 </template>
 
 <script lang="ts" setup>
-const data = app.blogModel.tagMap
+defineProps<{
+  data: typeof app.blogModel.tagMap
+  filterData: typeof app.blogModel.tagMap
+}>()
 const mode = ref<'list' | 'hover'>('hover')
 
 function changeTagsMode () {

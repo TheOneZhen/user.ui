@@ -1,7 +1,7 @@
 # description
   1. like a PRD to making the function explicit
   2. build a architecture around all function, formate a ecology
-  3. 一些静态资源的选择可以在非开发阶段进行，方便最后统一[主题](#主题)
+  3. 一些静态资源的选择可以在非开发阶段进行，方便最后统一[theme](#theme)
      1. 开发阶段可以临时使用文字代替
   4. static resource seletion
      1. use ele+ for all icons
@@ -42,7 +42,12 @@
      2. 筛选框，会对tag和标题都进行筛选，最后高亮筛选内容
      3. 目录列表
         1. 与文章日期同步滚动
-  5. 数据结构设计
+  5. 样式及交互
+     1. 侧边栏上侧展示筛选框，下侧展示目录
+     2. 鼠标点击筛选框，高亮筛选框，渐进增高筛选框，缩短目录
+     3. 鼠标点击目录，高亮目录，渐进增高目录框，缩短筛选框
+        1. 点击目录项时，清空筛选，显示目标文章
+  6. 数据结构设计
      1. 组件角度依赖：日期，文章数量，文章标题，文章标签，文章描述
      2. 主要原则：后端负责数据饱和度（尽可能完整），前端实现各类数据拆分
      3. result
@@ -58,7 +63,7 @@
      2. bottom left corner of all page and as a button -> balloon
   2. lefting
      1. 基本样子参考B站或者微博等社交网站
-     2. 配色符合[主题](#主题)
+     2. 配色符合[theme](#theme)
      3. 要求支持markdown
   3. 弹幕
      1. 入口
@@ -84,7 +89,9 @@
         1. protogenetic page tag
         2. keyword(split by server)
 
-# 主题
+# theme
+  1. listable +animation
+     1. 
 
 # home
   1. 交互
