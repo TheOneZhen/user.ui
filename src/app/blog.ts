@@ -1,9 +1,10 @@
 import dayjs from 'dayjs'
+import { clone, isArray, isObject, isString } from 'lodash'
 
 class BlogModel {
   catalogs: Array<CatalogType> = []
-  tagMap: Map<string, typeof this.catalogs> = new Map()
   dateCatalogs: Array<DateCatalogType> = []
+  filterTagMap: Map<string, typeof this.catalogs> = new Map()
 
   async init () {
     const data = await app.serviceModel.getBlogCatalogs()
@@ -17,13 +18,7 @@ class BlogModel {
       const countY = (mid.get(year) || 0) + 1
       mid.set(yearMonth, countYM)
       mid.set(year, countY)
-
       this.catalogs.push(catalog)
-      catalog.tags.forEach(tag => {
-        const sameTagCat: typeof this.catalogs = this.tagMap.get(tag) || []
-        sameTagCat.push(catalog)
-        this.tagMap.set(tag, sameTagCat)
-      })
     })
     Array
       .from(mid.keys())
@@ -36,6 +31,39 @@ class BlogModel {
           count: mid.get(date) || 0
         })
       })
+  }
+
+  highlight (content: string) {
+    return `<span style='color: red'>${content}</span>`
+  }
+
+  /**
+   * - 过滤内容并替换内容
+   *   - 顺序匹配
+   */
+  async filter (content: any, keyArr: Array<string>): Promise<any> {
+    if (isString(content)) {
+      let i = 0
+      for (const char of content) if (char === keyArr[i]) ++i
+      const reg = new RegExp(keyArr.join('|'), 'g')
+      if (i === keyArr.length) return content.replaceAll(reg, (sub) => this.highlight(sub))
+    } else if (isArray(content)) {
+      return Promise
+        .all(content.map(value => this.filter(value, keyArr)))
+        .then(res => res.filter(Boolean))
+    } else if (isObject(content)) {
+      const mid: Record<string, any> = clone(content)
+      const keys = Object.keys(mid)
+      return Promise
+        .all(keys.map(key => this.filter(mid[key], keyArr)))
+        .then(res => {
+          for (let i = 0; i < res.length; ++i) {
+            const key = keys[i]
+            mid[key] = res[i]
+          }
+          return mid
+        })
+    } else return undefined
   }
 }
 

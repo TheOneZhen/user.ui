@@ -6,7 +6,7 @@
   4. static resource seletion
      1. use ele+ for all icons
 
-# 导航栏设计
+# nav
   1. 入口：通过任意方式进入网站时，都可以看到导航栏
   2. 内容及对应界面简介（具体看各个界面（功能）设计）
      1. [home](#home)
@@ -27,29 +27,41 @@
         1. 暂不支持
 
 # blog
-  1. negate the previous proposal what coming true many page than diferentiate from article tags. Inspiration comes from the blog of [antfu](https://antfu.me/) that simple and smart.
-  2. style
-     1. build a timeline scroll on the right side
-     2. set a filter component behead the scroll
-  3. interaction
-     1. user rolls the screen, timepoint will be magnified
-  4. 组件
-     1. tags
-        1. 俩种模式
-           1. 以列表的形式展示：点击tag，执行过滤函数；悬浮title，展示完整描述，点击title，执行跳转函数；
-           2. 悬浮显示列表：交互同上
-        2. 文章描述支持markdown
-     2. 筛选框，会对tag和标题都进行筛选，最后高亮筛选内容
-     3. 目录列表
-        1. 与文章日期同步滚动
-  5. 样式及交互
-     1. 侧边栏上侧展示筛选框，下侧展示目录
-     2. 鼠标点击筛选框，高亮筛选框，渐进增高筛选框，缩短目录
-     3. 鼠标点击目录，高亮目录，渐进增高目录框，缩短筛选框
-        1. 点击目录项时，清空筛选，显示目标文章
-  6. 数据结构设计
+  1. negate the previous proposal what coming true many page than differentiate from article tags. Inspiration comes from the blog of [antfu](https://antfu.me/) that simple and smart.
+  2. layout
+      ```
+      | filer  |       |
+      ----------  list |
+      |timeline|       |
+      |        |       |
+      ```
+  3. enter point
+     1. refer [nav](#nav)
+     2. load blogModel: app starting
+  5. 组件间交互
+     1. 高亮timeline时（DOM focus），增加它的高度
+     2. 点击timeline目录项时，执行1， 清除filter组件过滤，文章跳转到指定时间点
+     3. 点击filter时，高亮filter，并增加它的高度
+     4. filter输入过滤时，根据标签过滤list内容
+     5. 点击filter内标签时，过滤list内容
+     6. 点击filter内标题时，跳转到指定文章
+  6. 组件
+     1. filter
+        1. filter input
+           1. 输入关键字后执行[tags过滤]
+           2. 关键字内容需要高亮
+           3. 输入框右侧可以切换tags展示模式
+        2. tags
+           1. 俩种模式
+              1. 以列表的形式展示：点击tag，执行[main过滤]；悬浮title，展示完整描述，点击title，执行[main跳转]
+              2. 悬浮显示列表：交互同上，弹窗使用一个组件并显示在filter右侧
+           2. 文章描述支持markdown
+     2. timeline
+        1. 点击时间点执行[main跳转]
+        2. 同步main滚动
+     3. main
+  7. 数据结构设计
      1. 组件角度依赖：日期，文章数量，文章标题，文章标签，文章描述
-     2. 主要原则：后端负责数据饱和度（尽可能完整），前端实现各类数据拆分
      3. result
       ```ts
         [{ date: 'YYYY-MM-DD HH:mm:ss', title: string, tags: Array<string>, description: string }]

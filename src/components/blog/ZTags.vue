@@ -41,7 +41,7 @@
 defineProps<{
   mode: 'list' | 'hover'
   height?: string
-  data: typeof app.blogModel.tagMap
+  data: typeof app.blogModel.filterTagMap
 }>()
 </script>
 
