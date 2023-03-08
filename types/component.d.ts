@@ -9,9 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    BlogDialog: typeof import('./../src/components/blog/BlogDialog.vue')['default']
     BlogTemplate: typeof import('./../src/components/template/BlogTemplate.vue')['default']
-    ElAffix: typeof import('element-plus/es')['ElAffix']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElBadge: typeof import('element-plus/es')['ElBadge']
@@ -24,7 +22,6 @@ declare module '@vue/runtime-core' {
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
     ElContainer: typeof import('element-plus/es')['ElContainer']
-    ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElFooter: typeof import('element-plus/es')['ElFooter']
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
@@ -55,7 +52,6 @@ declare module '@vue/runtime-core' {
     ZHome: typeof import('./../src/components/home/ZHome.vue')['default']
     ZLayout: typeof import('./../src/components/layout/ZLayout.vue')['default']
     ZLefting: typeof import('./../src/components/lefting/ZLefting.vue')['default']
-    ZTag: typeof import('./../src/components/blog/ZTag.vue')['default']
     ZTags: typeof import('./../src/components/blog/ZTags.vue')['default']
     ZTimeline: typeof import('./../src/components/blog/ZTimeline.vue')['default']
   }
