@@ -5,6 +5,7 @@ class BlogModel {
   catalogs: Array<CatalogType> = []
   dateCatalogs: Array<DateCatalogType> = []
   filterTagMap: Map<string, typeof this.catalogs> = new Map()
+  filterCatalogs: typeof this.catalogs = []
 
   async init () {
     const data = await app.serviceModel.getBlogCatalogs()
@@ -41,29 +42,40 @@ class BlogModel {
    * - 过滤内容并替换内容
    *   - 顺序匹配
    */
-  async filter (content: any, keyArr: Array<string>): Promise<any> {
-    if (isString(content)) {
-      let i = 0
-      for (const char of content) if (char === keyArr[i]) ++i
-      const reg = new RegExp(keyArr.join('|'), 'g')
-      if (i === keyArr.length) return content.replaceAll(reg, (sub) => this.highlight(sub))
-    } else if (isArray(content)) {
+  async filter<T> (data: T, keyArr: Array<string>): Promise<{data: T, matched: boolean}> {
+    if (isString(data)) {
+      const exist = data.match(keyArr.join('.*'))
+      if (!exist) return { data, matched: false }
+      return {
+        data: data.replaceAll(RegExp(keyArr.join('|'), 'g'), (sub) => this.highlight(sub)) as T,
+        matched: true
+      }
+    }
+    if (isArray(data)) {
       return Promise
-        .all(content.map(value => this.filter(value, keyArr)))
-        .then(res => res.filter(Boolean))
-    } else if (isObject(content)) {
-      const mid: Record<string, any> = clone(content)
-      const keys = Object.keys(mid)
-      return Promise
-        .all(keys.map(key => this.filter(mid[key], keyArr)))
+        .all(data.map(item => this.filter(item, keyArr)))
         .then(res => {
-          for (let i = 0; i < res.length; ++i) {
-            const key = keys[i]
-            mid[key] = res[i]
+          const mid = res.filter(item => item.matched).map(item => item.data)
+          return {
+            data: mid as T,
+            matched: mid.length > 0
           }
-          return mid
         })
-    } else return undefined
+    }
+    if (isObject(data)) {
+      const mid = clone(data) as Record<string, T>
+      let matched = false
+      for (const key of Object.keys(mid)) {
+        const res = await this.filter(mid[key], keyArr)
+        mid[key] = res.data
+        matched = res.matched || matched
+      }
+      return {
+        data: mid as T,
+        matched
+      }
+    }
+    return { data, matched: false }
   }
 }
 

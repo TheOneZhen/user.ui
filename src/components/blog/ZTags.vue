@@ -11,7 +11,7 @@
           <div>
             <el-scrollbar :max-height="500">
               <el-card shadow="hover" v-for="catalog in catalogs" :key="catalog.date">
-                <template #header><span>{{ catalog.title }}</span></template>
+                <template #header><span v-html="catalog.title"></span></template>
                 <v-md-preview :text="catalog.description" />
               </el-card>
             </el-scrollbar>

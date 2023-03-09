@@ -102,8 +102,11 @@
         2. keyword(split by server)
 
 # theme
-  1. listable +animation
-     1. 
+  1. includes
+     1. color
+     2. bk
+     3. animation
+        1. animation modules: Hover.css, https://animpen.com/, animation.css
 
 # home
   1. 交互

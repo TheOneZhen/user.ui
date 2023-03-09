@@ -9,7 +9,7 @@
         </el-button>
       </template>
     </el-input>
-    <z-tags :mode="mode" :data="data"></z-tags>
+    <z-tags :mode="mode" :data="filterTagMap"></z-tags>
   </div>
 </template>
 
@@ -19,27 +19,27 @@ import { debounce } from 'lodash'
 const mode = ref<'list' | 'hover'>('hover')
 const filterKey = ref('')
 const loading = ref(false)
-const data = app.blogModel.filterTagMap
+const filterTagMap = ref(app.blogModel.filterTagMap)
+
 const filter = debounce((key: string) => {
   loading.value = true
   // 根据关键字修改filterData
   const keyArr = key.split('')
+  // 设置一个中间数组，提升性能
   const catalogs = app.blogModel.catalogs
-  Promise.all(
-    catalogs.map(catalog => app.blogModel.filter(catalog, keyArr))
-  ).then(res => {
-    const filterTagMap = app.blogModel.filterTagMap
-    filterTagMap.clear()
-    res.forEach((value, index) => {
-      if (value !== undefined) {
+  Promise
+    .all(catalogs.map(catalog => app.blogModel.filter(catalog, keyArr)))
+    .then(res => {
+      filterTagMap.value.clear()
+      res.forEach((item, index) => {
+        if (!item.matched) return false
         catalogs[index].tags.forEach(tag => {
-          const mid = filterTagMap.get(tag) || []
-          mid.push(value)
-          filterTagMap.set(tag, mid)
+          const mid = filterTagMap.value.get(tag) || []
+          mid.push(item.data)
+          filterTagMap.value.set(tag, mid)
         })
-      }
+      })
     })
-  })
     .finally(() => (loading.value = false))
 }, 100)
 
