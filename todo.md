@@ -106,7 +106,6 @@
      1. color
      2. bk
      3. animation
-        1. animation modules: Hover.css, https://animpen.com/, animation.css
 
 # home
   1. 交互
@@ -135,38 +134,6 @@
      2. 文章标题下显示文章标签
      3. 文章标签下显示文本内容(t)
      4. 最下面显示推荐文章
-  3. 文章DS设计
-     1. table article[main]
-        1. id primary key auto_increment
-        2. title string !null
-        3. icon string default('')
-        4. content string default('')
-           1. add trigger to delete the null content of article
-           2. another use some utils transfrom article to html document resolve to SEO
-        5. created date !null default(now())
-        6. likes number !null default(0)
-        7. dsilikes number !null default(0)
-        8. views number !null default(0)
-     2. table lefting
-        1. id primary key auto_increment
-        2. pageId foreign key(page.id) 
-           1. laking some scenarios
-        3. articleId foreign key(article.id)
-           1. set a dead article that the id equal to -1
-        4. userId foreign key(user.id)
-        5. content string !null
-           1. add trigger to delete the null content of lefting
-        6. quote 
-           1. explain: null represent comment to the target article, else commment other lefting
-        7. likes number !null default(0)
-        8. dsilikes number !null default(0)
-        9. date date !null default(now())
-     3. table tags
-        1. id primary key auto_increment
-        2. title string !null
-        3. articleId foreign key(article.id)
-     4. table sponsor
-     5. table page
 
 # 资源
 
@@ -214,7 +181,45 @@
   2. make fake data by fakerjs
   3. packaging module in the same dialog with request
   4. setting status switch in vite.config
+     1. 
 
-# update nodejs to 16.18.1(t)
+# db DS
+  1. user
+     1. id: auto_increment pk
+     2. email: string
+     3. name: string(if no, set email default)
+     4. ip: string
+     5. visits: number default(0)
+     6. male: 0 | 1 | 2 default(0)
+        1. 0代表无性别
+     7. sponsor number
+  2. article
+     1. id: pk auto_increment
+     2. date: date
+     3. title: string
+     4. tgs: json<string>
+        1. 前端加载时会获取所有文章目录信息（date, title, description, tags）
+     5. content: areatext
+     6. description: areatext
+     7. like: number(0)
+     8. dislike: number(0)
+     9. views: number(0)
+  3. lefting
+     1. id primary key auto_increment
+     2. pageId enum[main, blog, lefting, article, find me]
+        1. 通过下articleId字段区分是哪篇文章的留言
+        2. 通过此字段获取为弹幕
+     3. articleId
+        1. origin to article id
+     4. userId foreign key(user.id)
+     5. content string !null
+        1. add trigger to delete the null content of lefting
+     6. quote 
+        1. explain: null represent comment to the target article, else commment other lefting
+     7. likes number !null default(0)
+     8. dsilikes number !null default(0)
+     9. date date !null default(now())
 
-# improve the tag semanticiation
+# 周末规划
+  1. 完成后端
+  2. 完成自动化部署

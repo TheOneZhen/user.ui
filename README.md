@@ -35,12 +35,6 @@
   2. 引用外部组件宽高设定（e.g. element+）
      1. 尽可能使用自适应单位
 
-# about the record of technology doc
-  1. it is enhance your knowledge arch mainly
-  2. sharing secondly but it must be filted
-  3. why en: haha
-  4. to speed up the efficiency of doc, you can key in link site or other resource
-
 # 知识点留白
   1. 性能优化相关
      1. props更新时会导致组件的刷新，对于容器来说，单个容器元素的更新会导致容器内全部组件重新渲染
