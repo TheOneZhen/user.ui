@@ -7,38 +7,32 @@
 - [最大内容绘制（Largest Contentful Paint）](https://web.dev/i18n/zh/lcp/)：度量标准报告视口内可见的最大图像或文本块的呈现时间
 - [累积布局偏移（Cumulative Layout Shift）](https://web.dev/i18n/zh/cls/)：衡量的是页面整个生命周期中每次元素发生的非预期布局偏移得分的总和。每次可视元素在两次渲染帧中的起始位置不同时，就说是发生了LS（Layout Shift）
 
-上述指标多与交互相关（重在用户体验），本文在lighthouse工具性能指标基础上结合个人愚见，归纳出以下几点：
-- [前端性能优化](#前端性能优化)
-  - [资源优化](#资源优化)
-  - [网络请求优化](#网络请求优化)
-  - [交互优化](#交互优化)
-  - [专项优化](#专项优化)
-  - [结构优化](#结构优化)
-  - [首次内容绘制](#首次内容绘制)
-- [diff](#diff)
-- [CSS](#css)
-- [](#)
+上述指标多与交互相关（重在用户体验），本文在lighthouse工具性能指标基础上结合个人愚见归
 
 > **前端项目性能优化没有绝对标准，上述指标以及本文归纳仅为参考**
 
 ## 资源优化
+首先我们分析一下浏览器与服务器建立连接（服务器响应HTML文件）到内容展示做了哪些事情：
+> - 服务器发送一个响应头给浏览器，响应头内包含HTML内容
+> - 浏览器收到响应后将HTML文件交由渲染进程从上到下解析并生成DOM树，当遇到：
+>   - 非阻塞资源（图片、视频等）：请求这些资源并继续解析文档
+>   - css文件：请求这些资源并继续解析文档
+>   - js文件：阻塞渲染并停止HTML解析（尽管[浏览器的预加载扫描器](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#preload_scanner)加速了这个过程）
+> - DOM生成后，处理CSS构建CSSOM
+> - DOM与CSSOM合并为Render Tree
+> - 最后[渲染](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#render)至可视窗口
 
-## 网络请求优化
+  1. 资源压缩传输
+     1. 图片、css文件
+  2. 有效使用CDN
+  3. 资源请求chunk，避免超大js脚本
+     1. 对于单文件组件，首页请求的脚本体积很大，在打包时可以根据路由chunk成不同的包
 ## 交互优化
 ## 专项优化
 此类优化是开放的（综合来说所有的优化都是开放的），决定优化方案的背景可能是接手的项目、个人习惯、社区或设备支持，甚至是心情。以下方案提供来源于写者的项目经历
   1. 基于electron的客户端开发（工业软件）：Chromium一个渲染进程（一个tab页）内存限制在2GB左右（可通过[window.performance.memory](https://developer.mozilla.org/zh-CN/docs/Web/API/Performance/memory)查看）
   2. 因为electron使用Chromium内核，所以我们在
-## 结构优化
-首先我们分析一下浏览器jieHTML文件做了哪些事情
-> 对于HTML文件，浏览器解析器会从上到下解析它并生成DOM树，当遇到：
-> - 非阻塞资源（图片、视频等）：请求这些资源并继续解析文档
-> - css文件：请求这些资源并继续解析文档
-> - js文件：阻塞渲染并停止HTML解析（尽管[浏览器的预加载扫描器](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#preload_scanner)加速了这个过程）
-> 
-> DOM生成后，再处理CSS构建CSSOM，最后[渲染](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#render)
 
-从上面
 ## 首次内容绘制
   1. 将高频内容从父组件中拆分为子组件，避免整个组件渲染（vue是每个组件内进行[diff]）
   2. 相似业务组件抽象为单个组件（加强组件复用）
