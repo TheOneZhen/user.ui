@@ -24,16 +24,15 @@
 
 ### 然后嘛，优化点就有了：
 1. 当资源质大量大时，使服务器带宽受限，则有必要：
-   1. 资源压缩传输
+   1. 加强组件复用、样式复用、静态文件复用
    2. 有效使用CDN
-   3. 加强组件复用、样式复用，静态文件复用
+   3. 资源压缩传输
    4. 资源请求chunk，避免超大js脚本
      1. 对于单文件组件，首页请求的脚本体积很大，在打包时可以根据路由chunk成不同的包
-   5. 
 2. 虽然浏览器可以使用预解析在解析HTML之前加载外部资源，但当资源加载失败时，该做的复杂工作还是要做，所以要[对页面预解析进行优化](https://developer.mozilla.org/zh-CN/docs/Glossary/Speculative_parsing)
 3. 改变外部资源引用顺序
    1. css禁用@import
-      > 浏览器预解析HTML后会并行下载解析到的CSS文件，但是只有当解析CSS文件时，才能知道@import引用了额外资源然后等待下载（阻塞渲染）。综述@import会破坏浏览器并行下载CSS
+      > 浏览器预解析HTML后会并行下载解析到的CSS文件，但是只有当解析CSS文件时，才能知道@import引用了额外资源然后等待下载（阻塞渲染），即@import会破坏浏览器并行下载CSS，
    2. HTML中\<script\>标签尽量靠后
       > 脚本中可能存在修改CSS的操作
 
@@ -41,16 +40,18 @@
 
 ## 交互优化
 <!-- 为什么把重绘放到这里介绍的原因 -->
-在[资源优化](#资源优化)中我们提到了浏览器将Render Tree渲染到可视窗口，假设我们完美地进行了资源优化，使所有资源在RT构建完全前全部加载，我们再来看下浏览器渲染做了哪些事情：
-> - 浏览器首先[结合样式](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#style)，根据RT将样式结合到每一个**可见**节点上，但不标识每个节点的大小和位置
-> - 再进行[布局](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#layout)，从RT根节点开始，确定节点的大小和位置
+在[资源优化](#资源优化)中我们提到了浏览器将Render Tree渲染到可视窗口，假设我们完美地进行了资源优化，使所有资源在Render Tree构建完全前全部加载，我们再来看下浏览器渲染做了哪些事情：
+> - 浏览器首先[结合样式](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#style)，根据Render Tree将样式结合到每一个**可见**节点上，但不标识每个节点的大小和位置
+> - 再进行[布局](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#layout)，从Render Tree根节点开始，确定节点的大小和位置
 > - 然后将节点的可见部分绘制到屏幕上
 > - 如果节点在绘制过程中出现了[分层]()，绘制结束后需要进行合成
 
+再来看下用户交互导致样式修改，浏览器做了哪些事情：
+> - 
 1. 减少分层
    1. 分层是以内存为代价的
 
-但任何过程都不可能存在完美，当资源优化后仍存在资源在RT构建完全后加载，就可能导致[回流]()，回流可以理解为**另一次布局**，它会触发重新绘制和重新组合，这也是$nothing > repaint > reflow$的原因
+但任何过程都不可能存在完美，当资源优化后仍存在资源在Render Tree构建完全后加载，就可能导致[回流]()，回流可以理解为**另一次布局**，它会触发重新绘制和重新组合，这也是$nothing > repaint > reflow$的原因
 
 ## 专项优化
 此类优化是开放的（综合来说所有的优化都是开放的），决定优化方案的背景可能是接手的项目、个人习惯、社区或设备支持，甚至是心情。以下方案提供来源于写者的项目经历
