@@ -1,7 +1,4 @@
-import { createApp } from 'vue'
 import App from './App.vue'
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
 import router from './router'
 import '@/global/scss/index.scss'
 import 'css-doodle'
@@ -12,6 +9,8 @@ import VMdPreview from '@kangc/v-md-editor/lib/preview'
 import '@kangc/v-md-editor/lib/style/preview.css'
 import githubTheme from '@kangc/v-md-editor/lib/theme/github.js'
 import '@kangc/v-md-editor/lib/theme/style/github.css'
+import 'uno.css'
+import { app } from './app'
 
 VMdPreview.use(githubTheme, { Hljs })
 
@@ -26,7 +25,6 @@ microApp.start({
               return all.replace('/userEarthMap/', 'http://localhost:3050/userEarthMap/')
             })
           }
-
           return code
         }
       }]
@@ -36,7 +34,9 @@ microApp.start({
 
 createApp(App)
   .use(createPinia())
-  .use(ElementPlus)
   .use(router)
   .use(VMdPreview)
   .mount('#app')
+
+window.app = app
+app.init()

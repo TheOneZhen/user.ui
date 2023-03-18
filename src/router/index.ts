@@ -8,6 +8,7 @@ const router = createRouter({
       path: '/',
       name: '',
       component: () => import('@/components/layout/ZLayout.vue'),
+      redirect: '/home',
       children: [
         {
           path: '/home',
@@ -18,6 +19,11 @@ const router = createRouter({
           path: '/lefting',
           name: 'lefting',
           component: () => import('@/components/lefting/ZLefting.vue')
+        },
+        {
+          path: '/blog',
+          name: 'blog',
+          component: () => import('@/components/blog/ZBlog.vue')
         }
       ]
     },

@@ -4,7 +4,9 @@
   3. 安装依赖
      1. 根据\<root\>路径下package.json安装依赖：```yarn```
      2. 安装指定依赖的指定版本：```yarn add module_name@version```
-     3. 将指定依赖保存到devDependencies（代表仅部署开发环境）：```yarn add modeule_name -D```
+     3. 将指定依赖保存到devDependencies（代表仅部署开发环境）：```yarn add module_name -D```
+     4. ignoring the same module with different version: ```yarn add [moduleName] --legacy-peer-deps```
+     5. nvm sets default version for node: ```nvm alias default [version]```
 
 # 项目架构
   1. 模块化设计以及FS耦合的规避
@@ -22,21 +24,16 @@
         1. 除\<root\>下md，其余目录下的md主要作用是面向模块以及模块todo
         2. 文档行数不应该过多，最好一页能展示出来，多了影响视觉；为了方便GitHub上的预览，所有md均命名为README.md
         3. 问题及知识点记录放在根md下，最后都要转化到思维导图中
+  3. 前后端分离
+     1. 后端保证有效数据完整性：减少数据拆分处理，全权交由前端，提升服务高效
+     2. 初步解释，前端多页面映射后端多应用
 
-# 新技术考虑
-  1. vite2升级到vite3
-  2. pnpm摄入
-  3. 多页面应用考虑
-  4. 标签语义化具体，规范代码语义，代码风格强定义
-  5. 为什么使用多页面
-     1. 可以加快网站响应速度
-     2. 技术整活
-     3. 页面内容及其交互具体化
-  6. 博客文档存储方式
-     1. 以xxx.md的方式直接保存到前端public目录或者后端资源下
-     2. 后端实现md转html的脚本，并配置动态路由
-        1. 更方便SEO
-     3. md保存到redis中，前端通过文档标识获取文档并渲染
+# 布局开发注意
+  1. 组件宽高设定
+     1. 每个通用组件的宽度不可以写死，高度依据具体业务再确定是否写死；宽度必须交由引用此组件的外部组件进行确定
+     2. 组件的尺寸尽量使用自适应单位（em, rem, vh, vw...），以减少对屏幕自适应的适配
+  2. 引用外部组件宽高设定（e.g. element+）
+     1. 尽可能使用自适应单位
 
 # 知识点留白
   1. 性能优化相关
@@ -91,3 +88,9 @@
   11. url变基
   12. ESM
   13. URL构造器
+  14. different page using same components what the packing doing in mpa
+      1. inject 1: both building
+      2. inject 2: building in main?
+  15. https://developer.chrome.com/blog/inside-browser-part1/
+      1. a series knowledge of browser internal architecture that is separed four partition and this is first part
+      2. it include many cartoon images funny and detail

@@ -4,7 +4,7 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'plugin:vue/essential',
+    'plugin:vue/vue3-essential',
     'standard'
   ],
   parserOptions: {
@@ -13,11 +13,12 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    // 'vue',
-    // '@typescript-eslint'
+    'vue',
+    '@typescript-eslint'
   ],
   rules: {
     'no-unused-vars': 'off',
-    'vue/no-multiple-template-root': 'off'
+    'vue/no-multiple-template-root': 'off',
+    'no-undef': 'off' // turn of this rule in ts projects and let ts handle typing
   }
 }

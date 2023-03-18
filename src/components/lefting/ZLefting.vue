@@ -1,5 +1,5 @@
 <template>
-  <div class="lefting">
+  <div class="z-lefting">
     <el-timeline v-if="isTimeline">
       <el-timeline-item
         v-for="(item, index) in content"
@@ -7,7 +7,6 @@
         :icon="item.icon"
         :type="item.type"
         :color="item.color"
-        :size="item.size"
         :timestamp="item.timestamp"
         :hollow="item.hollow"
         class="g-pointer"
@@ -28,7 +27,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { content } from './content'
 const isTimeline = ref(false)
 const calendar = ref()
@@ -42,7 +40,7 @@ function selectDate (val: string) {
 </script>
 
 <style lang="scss" scoped>
-  .lefting {
+  .z-lefting {
 
   }
 </style>

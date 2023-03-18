@@ -1,0 +1,30 @@
+name: build and deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: echo 'start installing dependencies ....'
+      - run: npm install
+      - run: echo 'start building ...'
+      - run: npm run build
+  deploy:
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: deploy
+        uses: cross-the-world/scp-pipeline@master
+        with:
+          host: ${{ secrets.HOST_SERVER }}
+          user: ${{ secrets.USERNAME_SERVER }}
+          pass: ${{ secrets.PASSWORD_SERVER }}
+          connect_timeout: 10s
+          local: './dist/*'
+          remote: /var/www/

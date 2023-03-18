@@ -1,5 +1,5 @@
 <template>
-  <el-row class="g-footer">
+  <el-row class="z-footer">
     <el-col :span="8">
       <p>©️2022 Design By Zhen Is Busy, last updated was in today!</p>
       <p>邮箱：zhenisbusy@qq.com | Z@stu.zafu.edu.cn</p>
@@ -14,7 +14,7 @@
 </script>
 
 <style lang='scss' scoped>
-.g-footer {
+.z-footer {
   background-color: #222222;
   color: #888888
 }

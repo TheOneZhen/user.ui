@@ -1,11 +1,12 @@
-import { Store, StoreKey } from './store'
-import { ref } from 'vue'
+import { defineStore } from 'pinia'
+import { StoreKey } from '.'
 
-export class UseEnterTimeStore extends Store {
-  key = StoreKey.UseEnterTimeStore
+export const UseEnterTimeStore = defineStore(StoreKey.UseEnterTimeStore, () => {
+  const time = ref(Date.now())
 
-  option (): Object {
-    const time = ref(0)
-    return { time }
+  function update () {
+    time.value = Date.now()
   }
-}
+
+  return { time, update }
+})

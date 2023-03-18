@@ -1,5 +1,5 @@
 // 获取操作系统信息
-function getOsInfo () {
+export function getOsInfo () {
   const userAgent = navigator.userAgent.toLowerCase()
   let name = 'Unknown'
   let version = 'Unknown'

@@ -5,9 +5,6 @@
 </template>
 
 <script lang='ts' setup>
-import PageOne from './PageOne.vue'
-import PageTwo from './PageTwo.vue'
-import PageThree from './PageThree.vue'
 
 </script>
 

@@ -1,29 +1,29 @@
 <template>
-  <div class="g-layout">
-    <el-containter>
-      <z-header class="g-layout-header g-h-index" />
-      <el-main class="g-layout-main g-fixtive">
-        <router-view />
-      </el-main>
-      <el-footer>
-        <z-footer />
-      </el-footer>
-    </el-containter>
-  </div>
+  <el-scrollbar id="main-scroll">
+    <el-container class="z-container">
+      <el-header v-if="store.isHorizontal"><z-header /></el-header>
+      <el-container>
+        <el-aside width="200px">
+          <z-header v-if="!store.isHorizontal" />
+        </el-aside>
+        <el-main>
+          <router-view />
+          <z-bullet-screen></z-bullet-screen>
+        </el-main>
+      </el-container>
+      <el-footer><z-footer /></el-footer>
+    </el-container>
+  </el-scrollbar>
+  <el-backtop target="#main-scroll .el-scrollbar__wrap" :bottom="100" />
 </template>
 
 <script lang="ts" setup>
-import ZHeader from '@/components/header/ZHeader.vue'
-import ZFooter from '@/components/footer/ZFooter.vue'
-import ZHome from '@/components/home/ZHome.vue'
+import { UseLayoutStore } from '@/store/UseLayoutStore'
+const store = UseLayoutStore()
+
 </script>
 
 <style lang="scss" scoped>
-.g-layout {
-  .g-layout-main {
-    margin: auto;
-    width: 80vw;
-    height: 100vh;
-  }
+.z-container {
 }
 </style>
