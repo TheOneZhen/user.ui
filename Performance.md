@@ -1,5 +1,6 @@
 # 前端性能优化
 由于前端面向设备广泛，使得其性能优化不局限于代码层面，参考[lighthouse](https://github.com/GoogleChrome/lighthouse)工具性能指标（摘自[vue项目你一定会用到的性能优化！](https://juejin.cn/post/7089241058508275725)）：
+<!-- 下面的链接可以转至MDN -->
 - [首次内容绘制（First Contentful Paint）](https://web.dev/i18n/zh/fcp/)：浏览器首次将任意内容（如文字、图像、canvas 等）绘制到屏幕上的时间点
 - [交互时间（Time to Interactive）](https://web.dev/i18n/zh/tti/)：指的是所有的页面内容都已经成功加载，且能够快速地对用户的操作做出反应的时间点
 - [速度指标（Speed Index）](https://web.dev/speed-index/)：衡量了首屏可见内容绘制在屏幕上的速度。在首次加载页面的过程中尽量展现更多的内容，往往能给用户带来更好的体验，所以速度指标的值约小越好
@@ -7,51 +8,60 @@
 - [最大内容绘制（Largest Contentful Paint）](https://web.dev/i18n/zh/lcp/)：度量标准报告视口内可见的最大图像或文本块的呈现时间
 - [累积布局偏移（Cumulative Layout Shift）](https://web.dev/i18n/zh/cls/)：衡量的是页面整个生命周期中每次元素发生的非预期布局偏移得分的总和。每次可视元素在两次渲染帧中的起始位置不同时，就说是发生了LS（Layout Shift）
 
-从这些指标可以看出（其实自己想也能想出），前端的性能主要是为了提升交互体验
+好了，指标有了，我们还缺少优化的优先级，毕竟捡芝麻丢西瓜非我们所愿。因为我们最终代码都是依靠浏览器实现，所以我们就从浏览器角度出发，先看看浏览器执行过程中有哪些优化点。
 
 > **前端项目性能优化没有绝对标准，上述指标以及本文归纳仅为参考**
 
 ## 资源优化
 首先我们回顾**浏览器与服务器建立连接（服务器响应HTML文件）**到**内容展示**做了哪些事情：
 > - 服务器发送一个响应头给浏览器，响应头内包含HTML内容
-> - 浏览器收到响应后将HTML文件交由渲染进程从上到下解析并生成DOM树，当遇到：
->   - 非阻塞资源（图片、视频等）：请求这些资源并继续解析文档
+> - 浏览器收到响应后将HTML交由渲染进程从上到下解析并生成DOM，当遇到：
+>   - 非阻塞资源（图片、视频等）：请求资源并继续解析
 >   - 阻塞资源：
->     - css文件：请求资源并继续解析文档
->     - js文件：阻塞渲染并停止HTML解析（尽管[浏览器的预加载扫描器](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#preload_scanner)加速了这个过程）
-> - DOM生成后，处理CSS构建CSSOM
+>     - css文件：请求资源并继续解析（**不阻塞HTML解析**）
+>     - js文件：阻塞HTML解析（[浏览器的预加载扫描器](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#%E9%A2%84%E5%8A%A0%E8%BD%BD%E6%89%AB%E6%8F%8F%E5%99%A8)**可能**会加速这个过程）
+> - DOM生成后，解析CSS构建CSSOM
+>   - 如遇到@import，停止解析CSS，请求资源（**阻塞渲染**）
 > - DOM与CSSOM合并为Render Tree然后[渲染](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#render)至可视窗口
-
-### 然后嘛，优化点就有了：
-1. 当资源质大量大时，使服务器带宽受限，则有必要：
+<!-- js脚本是下载后就执行了吗，还是等待HTML解析到那一行的时候才执行？ -->
+### 然后嘛，优化点就有了（优先级从上到下）：
+1. 当资源质量惊人，使服务器带宽受限，则有必要：
+   1. 资源压缩传输（参考[Gzip](https://developer.mozilla.org/zh-CN/docs/Glossary/GZip_compression)）
+   2. 有效使用CDN（嘿嘿嘿）
+2. 加快阻塞资源的请求
+   > 我们知道主流浏览器可以预加载部分资源（MDN称之为高优先级资源，但是我没找到具体排序），但是一些资源必须通过解析才能知道这个资源到底引用了什么鬼东西，这个时候浏览器就会停止解析或者渲染，等待资源加载；或者当阻塞资源很大时，
+   1. 
+3. 当资源质大量大时，使服务器带宽受限，则有必要：
    1. 加强组件复用、样式复用、静态文件复用
-   2. 有效使用CDN
-   3. 资源压缩传输
-   4. 资源请求chunk，避免超大js脚本
-     1. 对于单文件组件，首页请求的脚本体积很大，在打包时可以根据路由chunk成不同的包
-2. 虽然浏览器可以使用预解析在解析HTML之前加载外部资源，但当资源加载失败时，该做的复杂工作还是要做，所以要[对页面预解析进行优化](https://developer.mozilla.org/zh-CN/docs/Glossary/Speculative_parsing)
-3. 改变外部资源引用顺序
+   1. 资源请求chunk，避免超大js脚本
+      > 对于单文件组件，如果首页请求的脚本体积很大，在打包时可以根据路由chunk成不同的包
+5. 虽然浏览器可以使用预解析在解析HTML之前加载外部资源，但当资源加载失败时，该做的复杂工作还是要做，所以要[对页面预解析进行优化](https://developer.mozilla.org/zh-CN/docs/Glossary/Speculative_parsing)
+6. 改变外部资源引用顺序
    1. css禁用@import
-      > 浏览器预解析HTML后会并行下载解析到的CSS文件，但是只有当解析CSS文件时，才能知道@import引用了额外资源然后等待下载（阻塞渲染），即@import会破坏浏览器并行下载CSS，
+      > 浏览器预解析HTML后会并行下载解析到的CSS文件，但是只有当解析CSS时，才知道@import引用了额外资源然后等待下载（阻塞渲染）
    2. HTML中\<script\>标签尽量靠后
       > 脚本中可能存在修改CSS的操作
+7. 优化HTML解析生成DOM
+   1. 减少节点层级和数量。这很像废话，因为大前端开发，开发人员更着重于虚拟DOM的质量，对实际DOM中节点数量未知（或者不可控）
+   2. 注意\<startTag\>\<\/endTag\>标签格式
 
-然后我们再回到lighthouse性能指标，发现上述问题与首次内容绘制，最大内容绘制有关
 
 ## 交互优化
 <!-- 为什么把重绘放到这里介绍的原因 -->
 在[资源优化](#资源优化)中我们提到了浏览器将Render Tree渲染到可视窗口，假设我们完美地进行了资源优化，使所有资源在Render Tree构建完全前全部加载，我们再来看下浏览器渲染做了哪些事情：
 > - 浏览器首先[结合样式](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#style)，根据Render Tree将样式结合到每一个**可见**节点上，但不标识每个节点的大小和位置
 > - 再进行[布局](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#layout)，从Render Tree根节点开始，确定节点的大小和位置
-> - 然后将节点的可见部分绘制到屏幕上
-> - 如果节点在绘制过程中出现了[分层]()，绘制结束后需要进行合成
+> - 将节点的可见部分绘制到屏幕上
+> - 如果节点在绘制过程中出现了[分层](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#compositing)，绘制结束后需要进行合成
 
-再来看下用户交互导致样式修改，浏览器做了哪些事情：
-> - 
-1. 减少分层
-   1. 分层是以内存为代价的
+### 咦，好像看不出明显的可优化点，那我们就从代码方面下手：
+1. 减少分层；分层是以内存管理为代价，优化性能中应当适当使用
+2. 减少布局事件的频率和时长
+   1. 避免轮询更新布局属性
+   2. 避免改动盒模型
 
-但任何过程都不可能存在完美，当资源优化后仍存在资源在Render Tree构建完全后加载，就可能导致[回流]()，回流可以理解为**另一次布局**，它会触发重新绘制和重新组合，这也是$nothing > repaint > reflow$的原因
+### 但任何过程都不可能存在完美
+1. 当资源优化后仍存在资源在Render Tree构建完全后加载，就可能导致[回流](https://developer.mozilla.org/zh-CN/docs/Glossary/Reflow)。回流可以理解为**另一次布局**，它会触发重绘和重组，这也是$repaint > reflow$的原因，并且浏览器绘制非常快（反而css文件传输变为瓶颈），而且浏览器会优化重绘，只需要绘制受影响的区域。所以能用重绘就不用回流。
 
 ## 专项优化
 此类优化是开放的（综合来说所有的优化都是开放的），决定优化方案的背景可能是接手的项目、个人习惯、社区或设备支持，甚至是心情。以下方案提供来源于写者的项目经历
@@ -174,3 +184,6 @@
 
 # 后续文章内容质量分析
 有的时候是为了解决某一个问题才会去**寻找一类文章**和**浏览某一篇文章**，但是我们大多数只是解决了那一个问题而非那一类问题。所以需要从基础过程出发，了解一个问题的前世今生。
+
+
+# css层叠（https://developer.mozilla.org/zh-CN/docs/Web/CSS/Cascade）
