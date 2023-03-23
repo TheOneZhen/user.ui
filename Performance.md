@@ -1,70 +1,66 @@
 # 前端性能优化
-由于前端面向设备广泛，使得其性能优化不局限于代码层面，参考[lighthouse](https://github.com/GoogleChrome/lighthouse)工具性能指标（摘自[vue项目你一定会用到的性能优化！](https://juejin.cn/post/7089241058508275725)）：
+前端面向设备广泛，其性能优化不局限于代码层面，再加上技术的繁多，让我们更关注于面向业务优化，虽专项但粗糙。
+
+首先我们参考一下[lighthouse](https://github.com/GoogleChrome/lighthouse)工具性能指标（摘自[vue项目你一定会用到的性能优化！](https://juejin.cn/post/7089241058508275725)）：
 <!-- 下面的链接可以转至MDN -->
 <!-- https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint -->
 - [首次内容绘制（First Contentful Paint）](https://web.dev/i18n/zh/fcp/)：浏览器首次将任意内容（如文字、图像、canvas 等）绘制到屏幕上的时间点
 - [交互时间（Time to Interactive）](https://web.dev/i18n/zh/tti/)：指的是所有的页面内容都已经成功加载，且能够快速地对用户的操作做出反应的时间点
 - [速度指标（Speed Index）](https://web.dev/speed-index/)：衡量了首屏可见内容绘制在屏幕上的速度。在首次加载页面的过程中尽量展现更多的内容，往往能给用户带来更好的体验，所以速度指标的值约小越好
-- [总阻塞时间（Total Blocking Time）](https://web.dev/i18n/zh/tbt/)：指First Contentful Paint 首次内容绘制 (FCP)与Time to Interactive 可交互时间 (TTI)之间的总时间
+- [总阻塞时间（Total Blocking Time）](https://web.dev/i18n/zh/tbt/)：指First Contentful Paint 首次内容绘制 (FCP)与Time to Interactive 可交互时间 (TTI）之间的总时间
 - [最大内容绘制（Largest Contentful Paint）](https://web.dev/i18n/zh/lcp/)：度量标准报告视口内可见的最大图像或文本块的呈现时间
 - [累积布局偏移（Cumulative Layout Shift）](https://web.dev/i18n/zh/cls/)：衡量的是页面整个生命周期中每次元素发生的非预期布局偏移得分的总和。每次可视元素在两次渲染帧中的起始位置不同时，就说是发生了LS（Layout Shift）
 
-好了，指标有了，我们还缺少优化的优先级，毕竟捡芝麻丢西瓜非我们所愿。
-因为我们最终代码都是依靠浏览器实现，所以我们就从浏览器角度出发，先看看浏览器执行过程中有哪些优化点。
+<!-- 介绍下文为什么先从浏览器角度介绍性能优化 -->
 
 > **前端项目性能优化没有绝对标准，上述指标以及本文归纳仅为参考**
 
-## 首先我们回顾**浏览器与服务器建立连接（服务器响应HTML文件）**到**内容展示**做了哪些事情：
+## 先看看你那不足1GB的带宽
+- 资源压缩传输（会增大服务器压力），例如[Gzip](https://developer.mozilla.org/zh-CN/docs/Glossary/GZip_compression)
+  <!-- 新思路：gzip结合rel=preload -->
+  <!-- rel=preload与proload scanner的联系（目前感觉是没有联系的） -->
+  > 一般压缩会关闭资源的proload属性，注意权衡
+- 有效使用CDN（嘿嘿嘿）
+
+## 结合浏览器解析原理进行优化
 > - 服务器发送一个响应头给浏览器，响应头内包含HTML内容
-> - 浏览器收到响应后将HTML交由渲染进程从上到下解析并生成DOM，当遇到：
->   - 非阻塞资源（图片、视频等）：请求资源并继续解析
->   - 阻塞资源（[浏览器的预加载扫描器](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#%E9%A2%84%E5%8A%A0%E8%BD%BD%E6%89%AB%E6%8F%8F%E5%99%A8)**可能**会加速这个过程）：
+> - 浏览器收到HTML后，通过[预加载扫描器（preload scanner）](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#%E9%A2%84%E5%8A%A0%E8%BD%BD%E6%89%AB%E6%8F%8F%E5%99%A8)提前下载资源
+<!-- https://web.dev/preload-scanner/#resources 预解析扫描器 https://zhuanlan.zhihu.com/p/598937479 -->
+既然有预加载扫描器这种好东西，那必然要好好利用，所以[对页面预解析进行优化](https://developer.mozilla.org/zh-CN/docs/Glossary/Speculative_parsing)。
+
+<!-- 下面阻塞资源直接说文件感觉不对，应该细致到标签 -->
+> - 浏览器开始从上到下解析HTML并生成DOM，当遇到：
+>   - 非阻塞资源（图片、字体等）：请求资源并继续解析
+>   - 阻塞资源：
 >     - css文件：请求资源并继续解析（**不阻塞HTML解析**）
->     - js文件：阻塞HTML解析
+>     - js文件：如果资源未请求，等待请求；请求完全后执行脚本文件（**阻塞HTML解析**）
+
+阻塞HTML解析是不能容忍的，尤其是js文件大、执行时间长、修改DOM，会导致页面出现长时间的白屏，影响FCP。首先优化js文件的获取：
+- 使用async或defer。能够一边下载一边解析HTML
+  - [async](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#attr-async)
+  - [defer](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#attr-defer)
+- 将\<script\>标签放在尾部。这样可能会导致HTML解析完全后再下载js文件，不是很推荐
+- 如果js文件很大，建议拆分
+  - SPA可以通过路由进行chunk
+<!-- 这里举例一些场景 -->
+
+然后收敛代码的为所欲为：
+- HTML还没解析完全，js别急着修改DOM
+- HTML中标签有头有尾，要让浏览器读的顺畅
+
 > - DOM生成后，解析CSS构建CSSOM
+
+浏览器构建CSSOM是个非常快的过程（除非有变态），一般情况下我们在解析CSS之前准备好CSS文件，这里“唰”就过去了。
+- 禁用@import。浏览器只有解析CSS时才能感知@import，然后停止解析CSS，请求资源（**阻塞渲染**）
+- 虽快但建，少用复杂选择器（兄弟选择器，属性选择器）。
+
 > - DOM与CSSOM合并为Render Tree然后[渲染](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#render)至可视窗口
 
-### 然后嘛，优化点就有了（优先级从上到下）：
-1. 当资源质量惊人，使服务器带宽受限，则有必要：
-   1. 资源压缩传输（会增大服务器压力），例如[Gzip](https://developer.mozilla.org/zh-CN/docs/Glossary/GZip_compression)
-      > 注意，资源压缩可能会出现delete('prefetch')代码，这会破坏浏览器预加载，谨慎权衡
-   2. 有效使用CDN（嘿嘿嘿）
-2. HTML中\<script>标签应尽量靠后：浏览器解析HTML遇到\<script>会暂停解析，如果脚本文件未请求或请求不完全，等待请求；请求完成后执行脚本文件；这个过程会导致浏览器出现长时间的白屏，影响FCP。或者参考延迟加载，等首屏渲染结束后再对DOM动手动脚
-   ```html
-    <html>
-      <head>
-        ...
-        <script>(x)</script>
-        ...
-      </head>
-      <body>
-        ...
-        <script>(x)</script>
-        ...
-      </body>
-    </html>
-    <script>(√)</script>
-   ```
-3. 优化阻塞资源请求
-   1. 不要用@import，浏览器解析CSS时如遇到@import，会停止解析CSS，请求资源（**阻塞渲染**）
-4. 加快阻塞资源的请求
-   > 我们知道主流浏览器可以预加载部分资源（MDN称之为高优先级资源，我没找到具体排序），但是一些资源必须通过解析才能知道这个资源到底引用了什么鬼东西，这个时候浏览器就会停止思考（解析或者渲染），等待资源加载；
-   1. 次要js脚本异步加载（使用script标签属性async和defer）
-      1. [async](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#attr-async)
-      2. [defer](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#attr-defer)
-        > 注意，这个必须加上src属性，不然就是同步脚本了
-   2. 第一批次js脚本尽量不要修改当前\<script\>标签的拓扑顺序，因为当前脚本标签之前的HTML已经解析好了，别让浏览器再回去解析
-      1. 删除节点可以通过修改opacity或visibility实现
-      2. 新增节点可以新增到文档尾部
-   3. 虽然浏览器可以使用预解析在解析HTML之前加载外部资源，但当资源加载失败时，该做的复杂工作还是要做，所以要[对页面预解析进行优化](https://developer.mozilla.org/zh-CN/docs/Glossary/Speculative_parsing)
-5. 优化我们的代码
-   1. 注重\<startTag\>\<\/endTag\>标签格式
-   2. 减少节点层级和数量。这很像废话，因为大前端开发，开发人员更着重于虚拟DOM的质量，对实际DOM中节点数量未知（或者不可控）
-   3. 资源请求chunk，避免超大js脚本
-   4. 加强组件复用、样式复用、静态文件复用
-      > 对于单文件组件，如果首页请求的脚本体积很大，在打包时可以根据路由chunk成不同的包
-   5. 不要更改[盒模型](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/The_box_model)！
-   6. 虽然浏览器构建CSSOM是个非常快的过程，但是还是建议CSS中少用复杂选择器（兄弟选择器，属性选择器）
+      
+1. 优化我们的代码
+   1. 减少节点层级和数量。这很像废话，因为大前端开发，开发人员更着重于虚拟DOM的质量，对实际DOM中节点数量未知（或者不可控）
+   2. 加强组件复用、样式复用、静态文件复用
+   3. 不要更改[盒模型](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/The_box_model)！
 
 
 ## 在[资源优化](#资源优化)中我们提到了浏览器将Render Tree渲染到可视窗口，细说**浏览器渲染**做了哪些事情：
