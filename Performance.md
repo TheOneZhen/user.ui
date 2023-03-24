@@ -18,15 +18,28 @@
 ## 先看看你那不足1GB的带宽
 - 资源压缩传输（会增大服务器压力），例如[Gzip](https://developer.mozilla.org/zh-CN/docs/Glossary/GZip_compression)
   <!-- 新思路：gzip结合rel=preload -->
-  <!-- rel=preload与proload scanner的联系（目前感觉是没有联系的） -->
-  > 一般压缩会关闭资源的proload属性，注意权衡
+  <!-- 应该是通过修改拦截preload-header实现 -->
+  > 一般压缩会关闭资源的rel="proload"（下面有介绍这个东西），注意权衡
 - 有效使用CDN（嘿嘿嘿）
 
 ## 结合浏览器解析原理进行优化
 > - 服务器发送一个响应头给浏览器，响应头内包含HTML内容
 > - 浏览器收到HTML后，通过[预加载扫描器（preload scanner）](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#%E9%A2%84%E5%8A%A0%E8%BD%BD%E6%89%AB%E6%8F%8F%E5%99%A8)提前下载资源
 <!-- https://web.dev/preload-scanner/#resources 预解析扫描器 https://zhuanlan.zhihu.com/p/598937479 -->
-既然有预加载扫描器这种好东西，那必然要好好利用，所以[对页面预解析进行优化](https://developer.mozilla.org/zh-CN/docs/Glossary/Speculative_parsing)。
+既然有预加载扫描器这种好东西，那必然要好好利用:
+- 合理利用[\<link>](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/link)的[rel](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Attributes/rel)属性
+  
+  rel定义了链接资源和当前文档的关系，一个非常非常非常的属性，尤其是移动端，应用广泛。针对**预加载扫描器优化**在这主要介绍[rel="preload"](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload)（只有英文），像下面这样：
+  ```html
+    <!-- 实体报头：Link: <uri-reference>; rel="preload"; as="" -->
+    <!-- 必须使用href外联资源，并用as指定资源类型 -->
+    <link rel="preload" href="" as=""/>
+  ```
+  <!-- 上面介绍的不够详细 -->
+  虽然**preload**中带有**load**，但是它在请求完全后不会立刻被执行，而是在它该执行的时候执行，如果想让请求完全后就加载，需设置onload。
+
+- [对页面预解析进行优化](https://developer.mozilla.org/zh-CN/docs/Glossary/Speculative_parsing)
+<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload -->
 
 <!-- 下面阻塞资源直接说文件感觉不对，应该细致到标签 -->
 > - 浏览器开始从上到下解析HTML并生成DOM，当遇到：
@@ -51,20 +64,28 @@
 > - DOM生成后，解析CSS构建CSSOM
 
 浏览器构建CSSOM是个非常快的过程（除非有变态），一般情况下我们在解析CSS之前准备好CSS文件，这里“唰”就过去了。
+- 不要更改[盒模型](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/The_box_model)！
 - 禁用@import。浏览器只有解析CSS时才能感知@import，然后停止解析CSS，请求资源（**阻塞渲染**）
-- 虽快但建，少用复杂选择器（兄弟选择器，属性选择器）。
+- 加强样式复用
+- 虽快但建，少用复杂选择器（兄弟选择器，属性选择器）
 
 > - DOM与CSSOM合并为Render Tree然后[渲染](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#render)至可视窗口
+>   - 浏览器首先[结合样式](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#style)，根据Render Tree将样式结合到每一个**可见**节点上，但不标识每个节点的大小和位置
+>   - 再进行[布局](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#layout)，从Render Tree根节点开始，确定节点的大小和位置
+>   - 将节点的可见部分绘制到屏幕上
+>   - 如果节点在绘制过程中出现了[分层](https://developer.mozilla.org/zh-CN/docs/Learn/Performance/CSS#%E5%9C%A8_gpu_%E4%B8%8A%E5%91%88%E7%8E%B0%E5%8A%A8%E7%94%BB)，绘制结束后需要进行合成
 
-      
-1. 优化我们的代码
-   1. 减少节点层级和数量。这很像废话，因为大前端开发，开发人员更着重于虚拟DOM的质量，对实际DOM中节点数量未知（或者不可控）
-   2. 加强组件复用、样式复用、静态文件复用
-   3. 不要更改[盒模型](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/The_box_model)！
+这里要优化的东西可多了：
+- 
+- 减少分层；分层是以内存管理为代价，优化性能中应当适当使用
+<!-- 枚举影响分层的CSS属性 -->
+- 减少节点层级和数量。这很像废话，因为大前端开发，开发人员更着重于虚拟DOM的质量，对实际DOM中节点数量未知（或者不可控）
+- 加强组件复用、静态文件复用
+
+<!-- 交互优化：链接预取https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Link_prefetching_FAQ
+https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/link -->
 
 
-## 在[资源优化](#资源优化)中我们提到了浏览器将Render Tree渲染到可视窗口，细说**浏览器渲染**做了哪些事情：
-<!-- 为什么把重绘放到这里介绍的原因 -->
 > - 浏览器首先[结合样式](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#style)，根据Render Tree将样式结合到每一个**可见**节点上，但不标识每个节点的大小和位置
 > - 再进行[布局](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work#layout)，从Render Tree根节点开始，确定节点的大小和位置
 > - 将节点的可见部分绘制到屏幕上
@@ -74,11 +95,7 @@
 1. 减少布局事件的频率和时长
    1. 避免轮询更新布局属性
    2. 避免改动盒模型
-2. 减少分层；分层是以内存管理为代价，优化性能中应当适当使用
-<!-- 枚举影响分层的CSS属性 -->
-
-### 但任何过程都不可能存在完美
-1. 当资源优化后仍存在资源在Render Tree构建完全后加载，就可能导致[回流](https://developer.mozilla.org/zh-CN/docs/Glossary/Reflow)。
+2. 当资源优化后仍存在资源在Render Tree构建完全后加载，就可能导致[回流](https://developer.mozilla.org/zh-CN/docs/Glossary/Reflow)。
    > 回流可以理解为**另一次布局**，它会触发重绘和重组，这也是$repaint > reflow$的原因，并且浏览器绘制非常快（反而css文件传输变为瓶颈），而且浏览器会优化重绘，只需要绘制受影响的区域。所以能用重绘就不用回流。
     1. s
 
@@ -186,4 +203,7 @@
   1. 加载性能
   2. 选择器性能
   3. 渲染性能
-  4. 
+
+
+## 内容引用
+1. [Don't fight the browser preload scanner](https://web.dev/preload-scanner/)
