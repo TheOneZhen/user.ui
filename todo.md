@@ -223,3 +223,6 @@
 # 周末规划
   1. 完成后端
   2. 完成自动化部署
+
+# 找到一个很有意思的svg作品库
+https://www1.plurib.us/svg_gallery/
