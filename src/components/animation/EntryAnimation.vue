@@ -1,7 +1,9 @@
 <template>
   <svg view-box="0 0 100 100" >
     <title>zhen</title>
-    <path d="m0,0 h20 "></path>
+    <g>
+      <path d="m0,0 h20 "></path>
+    </g>
   </svg>
 </template>
 

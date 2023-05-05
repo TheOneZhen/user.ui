@@ -1,16 +1,17 @@
 import { blog } from './blog'
-import { service } from '@/request/service'
-
+import { service } from '@/service'
+import { theme } from '@/theme'
 export class App {
-  blogModel: typeof blog = blog
-  serviceModel: typeof service = service
+  blog = blog
+  service = service
+  theme = theme
 
   constructor () {
-    console.log('welcome to zhen space')
+    console.log('Welcome to zhen\'s space!')
   }
 
   async init () {
-    await this.blogModel.init()
+    await this.blog.init()
   }
 }
 

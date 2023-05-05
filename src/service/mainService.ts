@@ -1,8 +1,7 @@
 import request from './request'
 import { API } from '../api/api'
-import './faker'
 
-class Service {
+class MainService {
   async test () {
     const res = await request.post(API.TEST)
     return res.data
@@ -13,5 +12,7 @@ class Service {
     return res.data as Array<CatalogType>
   }
 }
-
-export const service = new Service()
+/**
+ * 博客主服务
+ */
+export const mainService = new MainService()

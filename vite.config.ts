@@ -47,9 +47,7 @@ export default defineConfig(({ command, mode }) => {
         ]
       })
     ],
-    optimizeDeps: {
-      // exclude: ['vue-demi']
-    },
+    optimizeDeps: {},
     server: {
       host: 'localhost',
       port: 3000,

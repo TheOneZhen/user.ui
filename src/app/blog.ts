@@ -8,7 +8,7 @@ class BlogModel {
   filterCatalogs: typeof this.catalogs = []
 
   async init () {
-    const data = await app.serviceModel.getBlogCatalogs()
+    const data = await app.service.mainService.getBlogCatalogs()
     const mid = new Map<string, number>()
     data.forEach(catalog => {
       // 国际化的时候注意时间格式
@@ -78,5 +78,5 @@ class BlogModel {
     return { data, matched: false }
   }
 }
-
+/** 博客支点 */
 export const blog = new BlogModel()
