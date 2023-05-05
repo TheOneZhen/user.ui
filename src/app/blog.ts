@@ -1,7 +1,10 @@
 import dayjs from 'dayjs'
 import { clone, isArray, isObject, isString } from 'lodash'
 
-class BlogModel {
+/**
+ * 博客节点
+ */
+export class Blog {
   catalogs: Array<CatalogType> = []
   dateCatalogs: Array<DateCatalogType> = []
   filterTagMap: Map<string, typeof this.catalogs> = new Map()
@@ -78,5 +81,3 @@ class BlogModel {
     return { data, matched: false }
   }
 }
-/** 博客支点 */
-export const blog = new BlogModel()

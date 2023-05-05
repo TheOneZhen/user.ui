@@ -1,15 +1,14 @@
 import { mainService } from './mainService'
 import { fakerService } from './fakerService'
-
-class Service {
+import type { App } from '@/app'
+/**
+ * 服务节点
+ */
+export class Service {
   mainService = mainService
   fakerService = fakerService
 
-  constructor () {
-    if (process.env.NODE_DEV === 'development') this.fakerService.init()
+  constructor (public app: App) {
+    if (app.env === 'dev') this.fakerService.init()
   }
 }
-/**
- * 服务支点
- */
-export const service = new Service()

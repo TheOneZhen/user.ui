@@ -1,5 +1,4 @@
-class Theme {
+/** 主题节点 */
+export class Theme {
 
 }
-/** 主题模块 */
-export const theme = new Theme()
