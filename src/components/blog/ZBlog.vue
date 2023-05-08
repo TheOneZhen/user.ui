@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-const dateCatalogs = app.blogModel.dateCatalogs
+const dateCatalogs = app.blog.dateCatalogs
 
 </script>
 

@@ -17,7 +17,7 @@
 withDefaults(defineProps<{
   height?: string
   hrefPrefix?: string
-  data: typeof app.blogModel.dateCatalogs
+  data: typeof app.blog.dateCatalogs
 }>(), {
   height: '30vh',
   hrefPrefix: '#Z-'
