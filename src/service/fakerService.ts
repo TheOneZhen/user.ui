@@ -1,5 +1,8 @@
 import Mock from 'mockjs'
-
+/**
+ * mockjs原理
+ * - 通过重写XMLHttpRequest对象的open和send方法实现请求拦截
+ */
 class FakerService {
   init () {
     Mock.mock(/\/blog\/catalogs/, function () {

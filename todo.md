@@ -183,46 +183,7 @@
   4. setting status switch in vite.config
      1. 
 
-# db DS
-  1. user
-     1. id: auto_increment pk
-     2. email: string
-     3. name: string(if no, set email default)
-     4. ip: string
-     5. visits: number default(0)
-     6. male: 0 | 1 | 2 default(0)
-        1. 0代表无性别
-     7. sponsor number
-  2. article
-     1. id: pk auto_increment
-     2. date: date
-     3. title: string
-     4. tgs: json<string>
-        1. 前端加载时会获取所有文章目录信息（date, title, description, tags）
-     5. content: areatext
-     6. description: areatext
-     7. like: number(0)
-     8. dislike: number(0)
-     9. views: number(0)
-  3. lefting
-     1. id primary key auto_increment
-     2. pageId enum[main, blog, lefting, article, find me]
-        1. 通过下articleId字段区分是哪篇文章的留言
-        2. 通过此字段获取为弹幕
-     3. articleId
-        1. origin to article id
-     4. userId foreign key(user.id)
-     5. content string !null
-        1. add trigger to delete the null content of lefting
-     6. quote 
-        1. explain: null represent comment to the target article, else commment other lefting
-     7. likes number !null default(0)
-     8. dsilikes number !null default(0)
-     9. date date !null default(now())
-
-# 周末规划
-  1. 完成后端
-  2. 完成自动化部署
+# vite2升级为vite4（T）
 
 # 找到一个很有意思的svg作品库
 https://www1.plurib.us/svg_gallery/

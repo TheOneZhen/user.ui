@@ -1,8 +1,6 @@
 type NetConfigSuccessCode = 200 | '200' | '000000'
 
-export const baseURL: string = import.meta.env.MODE === 'development'
-  ? 'localhost:8000'
-  : `${import.meta.env.VITE_RES_URL}/xz-risk`
+export const baseURL: string = import.meta.env.DEV ? 'http://localhost:8000' : import.meta.env.BASE_URL
 // 配后端数据的接收方式application/json;charset=UTF-8 或 application/x-www-form-urlencoded;charset=UTF-8
 export const contentType: string = 'application/json;charset=UTF-8'
 // 最长请求时间
