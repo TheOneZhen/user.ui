@@ -8,7 +8,7 @@ export class Service {
   mainService = mainService
   fakerService = fakerService
 
-  constructor (public app: App) {
+  constructor(public app: App) {
     if (import.meta.env.DEV) this.fakerService.init()
   }
 }

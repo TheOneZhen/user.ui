@@ -19,6 +19,7 @@ module.exports = {
   rules: {
     'no-unused-vars': 'off',
     'vue/no-multiple-template-root': 'off',
-    'no-undef': 'off' // turn of this rule in ts projects and let ts handle typing
+    'no-undef': 'off', // turn of this rule in ts projects and let ts handle typing
+    'space-before-function-paren': 1
   }
 }

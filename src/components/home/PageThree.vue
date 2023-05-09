@@ -1,3 +1,3 @@
 <template>
-  <entry-animation></entry-animation>
+  <z-signature></z-signature>
 </template>

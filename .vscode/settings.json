@@ -13,32 +13,18 @@
   },
   "emmet.triggerExpansionOnTab": true,
   "emmet.showSuggestionsAsSnippets": true,
-  //  自动修复
-  "editor.codeActionsOnSave": {
+  "editor.codeActionsOnSave": { // 自动修复
     "source.fixAll.eslint": true
   },
   "workbench.editor.enablePreview": false,
-  //  配置  ESLint  检查的文件类型
-  "eslint.validate": [
+  "eslint.validate": [ // 配置  ESLint  检查的文件类型
     "javascript",
     "vue",
     "html",
     "typescript"
   ],
-  "prettier.singleQuote": true,
-  "prettier.semi": false,
-  // "prettier.disableLanguages": ["markdown"],
-  "extensions.autoUpdate": false,
-  // "vetur.format.defaultFormatter.html": "none",
-  // "vetur.format.defaultFormatter.scss": "prettier",
   "diffEditor.ignoreTrimWhitespace": false,
-  //  配React的配置
-  //  emmet关于react的配置
-  "emmet.syntaxProfiles": {
-    //   "JavaScript  React": "jsx"
-  },
-  // "terminal.integrated.rendererType": "dom",
-  // "vetur.format.options.useTabs": true,
+  "emmet.syntaxProfiles": {}, // 配React的配置
   "explorer.confirmDelete": false,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
@@ -64,13 +50,5 @@
   "javascript.updateImportsOnFileMove.enabled": "never",
   "workbench.sideBar.location": "left",
   "gitlens.views.branches.branches.layout": "list",
-  // "code-runner.runInTerminal": true,
-  // "vetur.validation.script": false,
-  // "vetur.validation.template": false,
-  // "[typescript]": {
-  //   "editor.defaultFormatter": "vscode.typescript-language-features"
-  // },
-  // "[xml]": {
-  //   "editor.defaultFormatter": "vscode.html-language-features"
-  // }
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true
 }

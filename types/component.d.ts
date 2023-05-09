@@ -54,6 +54,7 @@ declare module '@vue/runtime-core' {
     ZHome: typeof import('./../src/components/home/ZHome.vue')['default']
     ZLayout: typeof import('./../src/components/layout/ZLayout.vue')['default']
     ZLefting: typeof import('./../src/components/lefting/ZLefting.vue')['default']
+    ZSignature: typeof import('./../src/components/signature/ZSignature.vue')['default']
     ZTags: typeof import('./../src/components/blog/ZTags.vue')['default']
     ZTimeline: typeof import('./../src/components/blog/ZTimeline.vue')['default']
   }

@@ -4,7 +4,6 @@
   3. 一些静态资源的选择可以在非开发阶段进行，方便最后统一[theme](#theme)
      1. 开发阶段可以临时使用文字代替
   4. static resource seletion
-     1. use ele+ for all icons
 
 # nav
   1. 入口：通过任意方式进入网站时，都可以看到导航栏
@@ -167,7 +166,7 @@
 # after the blog page finished, staring associate all pages and defining ds by front-end's perspective
 
 # reference new tech
-  1. vite update v2 to v3
+  1. vite2升级为vite4（T）
   2. join pnpm
   1. for SEO
      1. article not compile to html-doc in back-end
@@ -176,14 +175,16 @@
 
 # optimized code
 
-# make fake data in development
-  1. simulated interface request by mockjs
-  2. make fake data by fakerjs
-  3. packaging module in the same dialog with request
-  4. setting status switch in vite.config
-     1. 
-
-# vite2升级为vite4（T）
+# make fake data in development(T)
 
 # 找到一个很有意思的svg作品库
 https://www1.plurib.us/svg_gallery/
+
+# 首页
+## page1
+## page: user star
+
+## else link
+  link to open-source-project of myself
+
+# 第一次性能优化（Architecture partition）
