@@ -18,12 +18,9 @@ jobs:
       - name: deploy
         uses: cross-the-world/scp-pipeline@master
         with:
-          # host: ${{ secrets.HOST_SERVER }}
-          host: 'zhenisbusy.space'
-          # user: ${{ secrets.USERNAME_SERVER }}
-          user: 'root'
-          pass: 'PING1314mine'
-          # pass: ${{ secrets.PASSWORD_SERVER }}
+          host: ${{ secrets.HOST_SERVER }}
+          user: ${{ secrets.USERNAME_SERVER }}
+          pass: ${{ secrets.PASSWORD_SERVER }}
           connect_timeout: 10s
           local: './dist/*'
           remote: ../var/www/
