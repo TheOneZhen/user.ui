@@ -182,9 +182,8 @@ https://www1.plurib.us/svg_gallery/
 
 # 首页
 ## page1
-## page: user star
+## page2: user star
+## page3: else link
 
-## else link
-  link to open-source-project of myself
 
 # 第一次性能优化（Architecture partition）

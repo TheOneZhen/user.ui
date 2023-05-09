@@ -5,7 +5,6 @@ import AutoImport from 'unplugin-auto-import/vite'
 import ElementComponents from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import UnoCSS from 'unocss/vite'
-import { presetUno, presetAttributify, presetIcons } from 'unocss'
 import dns from 'dns'
 
 /** Node.js v17版本以下默认对DNS解析地址排序，会导致localhost使用解析后IP地址 */
@@ -46,16 +45,7 @@ export default defineConfig(({ command, mode }) => {
         dts: path.resolve(__dirname, 'types', 'component.d.ts')
       }),
       UnoCSS({
-        presets: [
-          // presetUno(),
-          presetAttributify(),
-          presetIcons({
-            prefix: 'icon-',
-            extraProperties: {},
-            warn: true,
-            cdn: 'https://esm.sh/'
-          })
-        ]
+        configFile: '../uno.config.ts'
       })
     ],
     optimizeDeps: {},
