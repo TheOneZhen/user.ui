@@ -64,8 +64,18 @@ export default defineConfig(({ command, mode }) => {
         input: {
           main: resolve(__dirname, 'index.html'),
           pageone: resolve(__dirname, 'src/pageone/index.html')
+        },
+        /**
+         * ## 分策略打包
+         * - 对象形式对于部分引用也会全部打包，并加入到module graph中，下面使用的是函数形式
+         * - 这里我是用的策略是对于一些特殊的包（lodash，css-doodle，等）执行特殊打包
+         */
+        output: {
+          manualChunks: function (id, meta) {
+            if (id.includes('css-doodle')) return 'css-doodle'
+            // return id.toString().split('node_modules/')[1].split("/")[0].toString();
+          }
         }
-        // output: {}
       }
     }
   }

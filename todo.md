@@ -187,3 +187,9 @@ https://www1.plurib.us/svg_gallery/
 
 
 # 第一次性能优化（Architecture partition）
+1. css-doodle
+   1. 性能有点差，需要适当调整
+   2. 可以把签名与css-doodle结合到一起
+2. vite采用分包策略优化资源请求
+   1. output.manualChunks
+3. 加强tree-shaking
