@@ -165,31 +165,25 @@
 
 # after the blog page finished, staring associate all pages and defining ds by front-end's perspective
 
-# reference new tech
-  1. vite2升级为vite4（T）
-  2. join pnpm
-  1. for SEO
-     1. article not compile to html-doc in back-end
-     2. title of article will be keywords in dialog page into SEO
-  2. lottie
-
-# optimized code
-
-# make fake data in development(T)
-
-# 找到一个很有意思的svg作品库
-https://www1.plurib.us/svg_gallery/
-
-# 首页
-## page1
-## page2: user star
-## page3: else link
-
-
-# 第一次性能优化（Architecture partition）
-1. css-doodle
-   1. 性能有点差，需要适当调整
-   2. 可以把签名与css-doodle结合到一起
-2. vite采用分包策略优化资源请求
-   1. output.manualChunks
-3. 加强tree-shaking
+# 新内容摄入
+1. join pnpm
+2. for SEO
+  1. article not compile to html-doc in back-end
+  2. title of article will be keywords in dialog page into SEO
+3. lottie
+4. 优化项目中代码格式
+   1. vue模板中采用一种很清爽的写法，你懂的那种写法
+5. 把之前对于架构的思考写入md中
+6. 找到一个很有意思的svg作品库：https://www1.plurib.us/svg_gallery/
+7. 这是之前看b站视频弄到的配色，把它应用到自己的theme中
+  ```js
+    #9D2121, #00879A, #E05320
+    #671812, #CAC0C1, #513C21
+    #E4D0C9, #B7B2CF, #2B515F
+    #E2E0EE, #092106, #000000
+    #235D6B, #B52807, #7B723C
+    #B63F31, #D6CADD, #2C47A6
+    #D4AC51, #D8D1DD, #1B3E36
+    background: linear-gradient(to right, #235D6B, #B52807, #7B723C);
+  ```
+8. 自适应单位以及自适应布局

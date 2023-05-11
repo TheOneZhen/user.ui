@@ -1,7 +1,7 @@
 <template>
-  <page-one></page-one>
-  <page-two></page-two>
-  <page-three></page-three>
+  <page-one class="z-page-one"></page-one>
+  <page-two class="z-page"></page-two>
+  <page-three class="z-page"></page-three>
 </template>
 
 <script lang='ts' setup>
@@ -9,16 +9,12 @@
 </script>
 
 <style lang='scss' scoped>
-  .page {
-    width: 100%;
-    height: 100%;
-    // #9D2121, #00879A, #E05320
-    // #671812, #CAC0C1, #513C21
-    // #E4D0C9, #B7B2CF, #2B515F
-    // #E2E0EE, #092106, #000000
-    // #235D6B, #B52807, #7B723C
-    // #B63F31, #D6CADD, #2C47A6
-    // #D4AC51, #D8D1DD, #1B3E36
-    background: linear-gradient(to right, #235D6B, #B52807, #7B723C);
-  }
+.z-page {
+  width: 100%;
+  height: 100vh;
+}
+.z-page-one {
+  width: 100%;
+  height: calc(100vh - 60px);
+}
 </style>

@@ -1,20 +1,23 @@
 <template>
-  <v-md-preview :text="text" ref="preview" />
-  <el-affix position="bottom" :offset="120">
-    <el-button class="g-pointer" @click="isShowContent = true">目录</el-button>
-  </el-affix>
-  <el-drawer v-model="isShowContent"
-             :append-to-body="true"
-             :before-close="done => (isShowContent = false) && done()"
-             direction="ltr"
-             title="目录">
-    <div v-for="content in contents"
-         :key="content.title"
-         :style="{ padding: `10px 0px 10px ${content.indent * 20}px`}"
-         @click="handleAnchor(content)">
-      <a class="g-pointer">{{  content.title }}</a>
-    </div>
-  </el-drawer>
+  <el-scrollbar id="z-blog-tamplate-scroll">
+    <v-md-preview :text="text" ref="preview" />
+    <el-affix position="bottom" :offset="120">
+      <el-button class="g-pointer" @click="isShowContent = true">目录</el-button>
+      <el-backtop target="#z-blog-tamplate-scroll .el-scrollbar__wrap"></el-backtop>
+    </el-affix>
+    <el-drawer v-model="isShowContent"
+               :append-to-body="true"
+               :before-close="done => (isShowContent = false) && done()"
+               direction="ltr"
+               title="目录">
+      <div v-for="content in contents"
+           :key="content.title"
+           :style="{ padding: `10px 0px 10px ${content.indent * 20}px`}"
+           @click="handleAnchor(content)">
+        <a class="g-pointer">{{  content.title }}</a>
+      </div>
+    </el-drawer>
+  </el-scrollbar>
 </template>
 
 <script lang="ts" setup>
