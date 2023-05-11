@@ -3,7 +3,7 @@
     <el-col :span="12">一直游到海水变蓝</el-col>
     <el-col :span="12">
       <div v-for="row in 3" :key="row" class="g-flex">
-        <css-doodle v-for="col in 3" class="g-margin-10" :key="col" click-to-update :use="getDoodle(row, col)" />
+        <!-- <css-doodle v-for="col in 3" class="g-margin-10" :key="col" click-to-update :use="getDoodle(row, col)" /> -->
       </div>
     </el-col>
   </el-row>

@@ -1,6 +1,7 @@
 import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 // https://unocss.dev/
 // https://icones.js.org/
+// unocss的核心是静态替换
 
 const range = ['width', 'height', 'line-height', 'padding', 'margin', 'left', 'top', 'bottom', 'right', 'font-size']
 
@@ -36,5 +37,11 @@ export default defineConfig({
   ],
   rules: [
     [/^g-[a-z]+[-\.\d]+$/, matched => generateStyle(matched)]
+  ],
+  safelist: [
+    '[icon-carbon:home=""]',
+    '[icon-carbon:blog=""]',
+    '[icon-carbon:term=""]',
+    '[icon-carbon:send-alt=""]'
   ]
 })
