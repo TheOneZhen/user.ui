@@ -1,46 +1,15 @@
 <template>
   <div class="z-lefting">
-    <el-timeline v-if="isTimeline">
-      <el-timeline-item
-        v-for="(item, index) in content"
-        :key="index"
-        :icon="item.icon"
-        :type="item.type"
-        :color="item.color"
-        :timestamp="item.timestamp"
-        :hollow="item.hollow"
-        class="g-pointer"
-      >
-        {{ item.content }}
-      </el-timeline-item>
-    </el-timeline>
-    <el-calendar v-else ref="calendar" v-model="currentSelected">
-      <template #header="{ date }">
-        <span> {{ date }}</span>
-        <el-button size="small" @click="selectDate('today')">Today</el-button>
-      </template>
-      <template #date-cell="{ data }">
-        <p>{{ data.day }}</p>
-      </template>
-    </el-calendar>
+    <div class="z-left">
+      <el-avatar src="https://empty" @error="errorHandler">
+        <img alt="can't found image" src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
+      </el-avatar>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { content } from './content'
-const isTimeline = ref(false)
-const calendar = ref()
-
-const currentSelected = ref()
-
-function selectDate (val: string) {
-  calendar.value.selectDate(val)
+function errorHandler () {
+  console.error("User image loads failed!");
 }
-
 </script>
-
-<style lang="scss" scoped>
-  .z-lefting {
-
-  }
-</style>

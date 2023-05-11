@@ -29,6 +29,11 @@ const router = createRouter({
           path: '/find me',
           name: 'find me',
           component: () => import('@/components/findme/FindMe.vue')
+        },
+        {
+          path: '/blogTemplate',
+          name: 'blogTemplate',
+          component: () => import('@/components/template/BlogTemplate.vue')
         }
       ]
     },
