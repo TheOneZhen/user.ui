@@ -2,7 +2,7 @@
   <z-markdown-preview :text="text"></z-markdown-preview>
   <el-affix position="bottom" :offset="120">
     <el-button class="g-pointer" @click="isShowContent = true">目录</el-button>
-    <el-backtop target="#z-blog-tamplate-scroll .el-scrollbar__wrap"></el-backtop>
+    <el-backtop target="#z-main-scroll .el-scrollbar__wrap"></el-backtop>
   </el-affix>
   <el-drawer v-model="isShowContent"
               :append-to-body="true"
@@ -32,7 +32,6 @@ function handleAnchor (content: typeof contents.value[number]) {
   const head = preview.value?.$el.querySelector(`[data-v-md-line="${content.lineIndex}"]`)
   isShowContent.value = false
   if (head) {
-    // article reference coming true by el-scrollBar exposed function
     preview.value?.scrollToTarget({
       target: head,
       scrollContainer: window,
