@@ -9,7 +9,6 @@
     "checkType": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@kangc/v-md-editor": "^2.3.15",
     "@micro-zoe/micro-app": "^0.8.5",
     "axios": "^0.24.0",
     "css-doodle": "^0.25.1",
@@ -21,6 +20,7 @@
     "jszip": "^3.7.1",
     "lodash": "^4.17.21",
     "pinia": "^2.0.23",
+    "showdown": "^2.1.0",
     "unplugin-icons": "^0.15.3",
     "vue": "^3.2.41",
     "vue-router": "^4"
@@ -31,6 +31,7 @@
     "@types/lodash": "^4.14.181",
     "@types/mockjs": "^1.0.7",
     "@types/node": "^17.0.19",
+    "@types/showdown": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "@vitejs/plugin-vue": "^4.2.1",

@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import { clone, isArray, isObject, isString } from 'lodash'
-
+import showdown from 'showdown'
 /**
  * 博客节点
  */
@@ -9,6 +9,7 @@ export class Blog {
   dateCatalogs: Array<DateCatalogType> = []
   filterTagMap: Map<string, typeof this.catalogs> = new Map()
   filterCatalogs: typeof this.catalogs = []
+  converter = new showdown.Converter()
 
   async init () {
     const data = await app.service.mainService.getBlogCatalogs()
@@ -79,5 +80,11 @@ export class Blog {
       }
     }
     return { data, matched: false }
+  }
+  /**
+   * markown转html，放到中心组件中是为了统一处理markdown
+   */
+  converterMdToHTML(text: string) {
+    return this.converter.makeHtml(text)
   }
 }
