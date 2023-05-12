@@ -1,5 +1,5 @@
 <template>
-  <div class="z-markdown-preview markdown-body" v-html="html">
+  <div slide-enter class="z-markdown-preview markdown-body" v-html="html">
   </div>
 </template>
 

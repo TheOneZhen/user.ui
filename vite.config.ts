@@ -1,5 +1,5 @@
 import { defineConfig, UserConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import Vue from '@vitejs/plugin-vue'
 import path, { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import ElementComponents from 'unplugin-vue-components/vite'
@@ -22,7 +22,7 @@ export default defineConfig(({ command, mode }) => {
   const common: UserConfig = {
     base: `${command === 'serve' ? '' : 'http://zhenisbusy.space'}/`,
     plugins: [
-      vue(
+      Vue(
         {
           template: {
             compilerOptions: {
@@ -72,8 +72,7 @@ export default defineConfig(({ command, mode }) => {
          */
         output: {
           manualChunks: function (id, meta) {
-            if (id.includes('css-doodle')) return 'css-doodle'
-            // return id.toString().split('node_modules/')[1].split("/")[0].toString();
+            return id.toString().split('node_modules/')[1].split("/")[0].toString()
           }
         }
       }
