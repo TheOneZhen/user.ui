@@ -15,7 +15,6 @@
 
 <script lang="ts" setup>
 const dateCatalogs = app.blog.dateCatalogs
-
 </script>
 
 <style lang="scss" scoped></style>
