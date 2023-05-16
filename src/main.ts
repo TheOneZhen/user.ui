@@ -6,6 +6,7 @@ import microApp from '@micro-zoe/micro-app'
 import { createPinia } from 'pinia'
 import 'uno.css'
 import { app } from './app'
+import { ClickOutside } from 'element-plus'
 
 microApp.start({
   plugins: {
@@ -28,6 +29,7 @@ microApp.start({
 createApp(App)
   .use(createPinia())
   .use(router)
+  .directive('click-out-side', ClickOutside)
   .mount('#app')
 
 window.app = app
