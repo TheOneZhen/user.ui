@@ -4,7 +4,10 @@
   "editor.insertSpaces": true,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.snippetSuggestions": "top",
+  "editor.formatOnType": true,
   "editor.formatOnSave": false,
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "workbench.startupEditor": "newUntitledFile",
   "emmet.includeLanguages": {
     "vue-html": "html",
@@ -21,7 +24,8 @@
     "javascript",
     "vue",
     "html",
-    "typescript"
+    "typescript",
+    "css"
   ],
   "diffEditor.ignoreTrimWhitespace": false,
   "emmet.syntaxProfiles": {}, // 配React的配置
@@ -30,19 +34,22 @@
   "git.enableSmartCommit": true,
   "explorer.confirmDragAndDrop": false,
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[vue]": {
     "editor.defaultFormatter": "Vue.volar"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[html]": {
-    "editor.defaultFormatter": "johnsoncodehk.volar"
+    "editor.defaultFormatter": "vscode.html-language-features"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "breadcrumbs.enabled": false,
   "editor.minimap.enabled": false,
@@ -50,5 +57,6 @@
   "javascript.updateImportsOnFileMove.enabled": "never",
   "workbench.sideBar.location": "left",
   "gitlens.views.branches.branches.layout": "list",
-  "javascript.format.insertSpaceBeforeFunctionParenthesis": true
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
 }
