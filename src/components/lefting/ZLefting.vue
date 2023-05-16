@@ -1,5 +1,5 @@
 <template>
-  <div class="z-lefting" v-click-out-side="isDisplayContentByMarkdown = false">
+  <div class="z-lefting" v-click-out-side="handleChangeDisplay(false)">
     <el-row>
       <el-col :span="avatarPre">
         <el-avatar src="https://empty" @error="errorHandler">
@@ -12,11 +12,9 @@
                   :autosize="{ minRows: 2, maxRows: 20 }"
                   type="textarea"
                   placeholder="这是一首简单的小情歌"></el-input>
-        <div class="_comment-markdown" v-show="isDisplayContentByMarkdown">
-          <z-markdown-preview :text="content"></z-markdown-preview>
-        </div>
+        <z-markdown-preview v-if="isDisplayContentByMarkdown" :text="content" :style="getCommentStyle()"></z-markdown-preview>
         <el-row>
-          <el-button @click="isDisplayContentByMarkdown = true">Preview</el-button>
+          <el-button @click="handleChangeDisplay(true)">Preview</el-button>
           <el-button>Commit</el-button>
         </el-row>
       </el-col>
@@ -30,21 +28,24 @@ import { InputInstance } from 'element-plus'
 const avatarPre = 1
 
 const content = ref('')
-const comment = ref< | null>(null)
-const isDisplayContentByMarkdown = false
+const comment = ref<InputInstance | null>(null)
+const isDisplayContentByMarkdown = ref(false)
 
 function errorHandler () {
   console.error("User image loads failed!")
 }
 
-function getCommentInputSize () {
-  const result = { width: '0px', height: '0px' }
-  if (!comment) return result
+function handleChangeDisplay (value: boolean) {
+  isDisplayContentByMarkdown.value = value
 }
 
-onMounted(() => {
-  console.log(comment)
-})
+function getCommentStyle () {
+  const result = { width: '0px', height: '0px' }
+  if (comment.value?._ref) {
+  }
+  return result;
+}
+
 </script>
 
 <style lang="scss" scoped>
