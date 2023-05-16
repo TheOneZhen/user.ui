@@ -1,7 +1,7 @@
 <template>
   <el-scrollbar id="z-main-scroll">
     <el-container>
-      <el-header><z-header/></el-header>
+      <el-header><z-header /></el-header>
       <el-main>
         <router-view />
         <z-bullet-screen></z-bullet-screen>

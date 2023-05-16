@@ -4,7 +4,7 @@
   "editor.insertSpaces": true,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.snippetSuggestions": "top",
-  "editor.formatOnType": true,
+  "editor.formatOnType": false,
   "editor.formatOnSave": false,
   "editor.suggestSelection": "recentlyUsedByPrefix",
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
@@ -16,11 +16,13 @@
   },
   "emmet.triggerExpansionOnTab": true,
   "emmet.showSuggestionsAsSnippets": true,
-  "editor.codeActionsOnSave": { // 自动修复
+  "editor.codeActionsOnSave": {
+    // 自动修复
     "source.fixAll.eslint": true
   },
   "workbench.editor.enablePreview": false,
-  "eslint.validate": [ // 配置  ESLint  检查的文件类型
+  "eslint.validate": [
+    // 配置  ESLint  检查的文件类型
     "javascript",
     "vue",
     "html",
@@ -58,5 +60,5 @@
   "workbench.sideBar.location": "left",
   "gitlens.views.branches.branches.layout": "list",
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

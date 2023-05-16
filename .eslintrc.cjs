@@ -1,12 +1,15 @@
 const DOMGlobals = ['window', 'document']
 const NodeGlobals = ['module', 'require']
 
+// eslint-disable-next-line no-restricted-globals
 module.exports = {
-  parser: '@typescript-eslint/parser',
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    sourceType: 'module'
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    parser: '@typescript-eslint/parser'
   },
-  plugins: ['jest'],
+  // plugins: ['jest'],
   rules: {
     'no-debugger': 'error',
     'no-unused-vars': [
@@ -36,8 +39,8 @@ module.exports = {
       rules: {
         'no-restricted-globals': 'off',
         'no-restricted-syntax': 'off',
-        'jest/no-disabled-tests': 'error',
-        'jest/no-focused-tests': 'error'
+        // 'jest/no-disabled-tests': 'error',
+        // 'jest/no-focused-tests': 'error'
       }
     },
     // shared, may be used in any env
