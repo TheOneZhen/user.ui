@@ -41,6 +41,7 @@ declare module '@vue/runtime-core' {
     ZBlog: typeof import('./../src/components/blog/ZBlog.vue')['default']
     ZBulletComment: typeof import('./../src/components/lefting/ZBulletComment.vue')['default']
     ZBulletScreen: typeof import('./../src/components/lefting/ZBulletScreen.vue')['default']
+    ZDrawer: typeof import('./../src/components/common/ZDrawer.vue')['default']
     ZFilter: typeof import('./../src/components/blog/ZFilter.vue')['default']
     ZFooter: typeof import('./../src/components/footer/ZFooter.vue')['default']
     ZHeader: typeof import('./../src/components/header/ZHeader.vue')['default']

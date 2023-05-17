@@ -2,13 +2,13 @@ import { defineStore, StoreDefinition } from 'pinia'
 // import { STATE } from '../global/state/stateCode'
 // import { UseEnterTimeStore } from './UseEnterTimeStore'
 // import { UseLayoutStore } from './UseLayoutStore'
-
 // /**
 //  * enumerate the store key
 //  */
 export enum StoreKey {
   UseEnterTimeStore = 'useEnterTimeStore',
-  UseLayoutStore = 'useLayoutStore'
+  UseLayoutStore = 'useLayoutStore',
+  UseDrawerStore = "UseDrawerStore"
 }
 
 // const relationMap = new Map<StoreKey, Object>([

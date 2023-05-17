@@ -5,10 +5,10 @@
     <el-backtop target="#z-main-scroll .el-scrollbar__wrap"></el-backtop>
   </el-affix>
   <el-drawer v-model="isShowContent"
-              :append-to-body="true"
-              :before-close="done => (isShowContent = false) && done()"
-              direction="ltr"
-              title="目录">
+             :append-to-body="true"
+             :before-close="done => (isShowContent = false) && done()"
+             direction="ltr"
+             title="目录">
     <div v-for="content in contents"
           :key="content.title"
           :style="{ padding: `10px 0px 10px ${content.indent * 20}px`}"
