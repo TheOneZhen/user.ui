@@ -1,4 +1,3 @@
-import { UseDrawerStore } from '@/store/UseDrawerStore'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // hash路由只能加载hash路由的子应用，history路由俩种都能加载

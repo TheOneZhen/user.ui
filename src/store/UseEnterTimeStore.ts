@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
-import { StoreKey } from '.'
 
-export const UseEnterTimeStore = defineStore(StoreKey.UseEnterTimeStore, () => {
+export const UseEnterTimeStore = defineStore('UseEnterTimeStore', () => {
   const time = ref(Date.now())
 
   function update () {
