@@ -10,6 +10,7 @@ export class Blog {
   filterTagMap: Map<string, typeof this.catalogs> = new Map()
   filterCatalogs: typeof this.catalogs = []
   converter = new showdown.Converter()
+  articleCommentMap = new Map<Co   mment['blogId'], Comment>()
 
   async init () {
     const data = await app.service.mainService.getBlogCatalogs()
