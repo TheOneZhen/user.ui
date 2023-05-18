@@ -3,9 +3,12 @@
   <teleport to="body">
     <el-drawer v-model="useDrawerStore.visible"
                append-to-body
+               destroy-on-close
                :before-close="done => done()"
                :direction="useDrawerStore.direction"
-               :title="useDrawerStore.title">zheshiyidaun ceshineirong </el-drawer>
+               :title="useDrawerStore.title">
+               <component :is="useDrawerStore.content"></component>
+    </el-drawer>
   </teleport>
 </template>
 
@@ -13,11 +16,5 @@
 import { UseDrawerStore } from './store/UseDrawerStore'
 
 const useDrawerStore = UseDrawerStore()
-</script>
 
-<style lang="scss">
-html, body {
-  margin: 0;
-  padding: 0;
-}
-</style>
+</script>
