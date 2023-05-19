@@ -6,9 +6,9 @@
 <script lang="ts" setup>
 
 const props = defineProps<{
-  text: string
+  content: string
 }>()
 
-const html = app.blog.converterMdToHTML(props.text)
+const html = app.blog.converterMdToHTML(props.content)
 
 </script>

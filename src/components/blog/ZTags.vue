@@ -12,7 +12,7 @@
             <el-scrollbar :max-height="500">
               <el-card shadow="hover" v-for="catalog in catalogs" :key="catalog.date">
                 <template #header><span v-html="catalog.title"></span></template>
-                <z-markdown-preview :text="catalog.description" />
+                <z-markdown-preview :content="catalog.description" />
               </el-card>
             </el-scrollbar>
           </div>
@@ -28,7 +28,7 @@
           <el-col :span="16">
             <el-card shadow="hover" v-for="catalog in catalogs" :key="catalog.date">
               <template #header><span>{{ catalog.title }}</span></template>
-              <z-markdown-preview :text="catalog.description" />
+              <z-markdown-preview :content="catalog.description" />
             </el-card>
           </el-col>
         </el-row>

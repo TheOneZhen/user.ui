@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import { clone, isArray, isObject, isString } from 'lodash'
 import showdown from 'showdown'
+
 /**
  * 博客节点
  */
@@ -10,7 +11,7 @@ export class Blog {
   filterTagMap: Map<string, typeof this.catalogs> = new Map()
   filterCatalogs: typeof this.catalogs = []
   converter = new showdown.Converter()
-  articleCommentMap = new Map<Co   mment['blogId'], Comment>()
+  blogCommentMap = new Map<ZComment['blogId'], ZComment>()
 
   async init () {
     const data = await app.service.mainService.getBlogCatalogs()

@@ -26,7 +26,28 @@ class FakerService {
         }
       )
     })
+    
+    Mock.mock(/\/blog\/comment/, function () {
+      return Mock.mock({
+        code: 200,
+        msg: 'success',
+        'data|5': [
+          Mock.mock({
+            id: Mock.Random.guid(),
+            userId: Mock.Random.guid(),
+            quoteId: Mock.Random.guid(),
+            content: Mock.Random.sentence(),
+            likes: Mock.Random.range(),
+            dislikes: Mock.Random.range(),
+            create_time: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
+            update_time: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
+            blogId: Mock.Random.guid()
+          })
+        ]
+      })
+    })
   }
+
 }
 /**
  * 服务拦截，为无服务环境提供假数据

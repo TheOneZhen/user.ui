@@ -19,10 +19,15 @@
  */
 
 const item: ZComment = {
+  id: '1',
+  userId: '2',
+  quoteId: '4',
   content: '这是一段测试文字',
   likes: 1,
   dislikes: 10,
-  date: Date()
+  create_time: '2023',
+  update_time: '2024',
+  blogId: 'adasd'
 }
 </script>
 

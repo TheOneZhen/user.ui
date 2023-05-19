@@ -1,5 +1,5 @@
 <template>
-  <z-markdown-preview :text="text"></z-markdown-preview>
+  <z-markdown-preview :content="text"></z-markdown-preview>
   <el-affix position="bottom" :offset="120">
     <el-button class="g-pointer" @click="isShowContent = true">目录</el-button>
     <el-backtop target="#z-main-scroll .el-scrollbar__wrap"></el-backtop>

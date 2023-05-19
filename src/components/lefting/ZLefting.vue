@@ -16,7 +16,7 @@
         </el-row>
       </el-row>
       <el-row><el-divider></el-divider></el-row>
-      <el-row v-for="item"></el-row>
+      <z-comment :quote-id="''" :blog-id="''"></z-comment>
     </el-main>
     <el-aside width="20vw"></el-aside>
   </el-container>
@@ -25,9 +25,7 @@
 <script lang="ts" setup>
 import ZMarkdownPreview from '../template/ZMarkdownPreview.vue'
 
-const data = ref<Comment[]>([])
 const content = ref('')
-const comment = ref<any>(null)
 const useDrawerStore = app.store.get('UseDrawerStore')
 
 function errorHandler () {
@@ -38,7 +36,7 @@ function handleDisplayMarkdown () {
   useDrawerStore.on(
     '预览',
     'ltr',
-    h(ZMarkdownPreview, { text: content.value })
+    h(ZMarkdownPreview, { content: content.value })
   )
 }
 </script>

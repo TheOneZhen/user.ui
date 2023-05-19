@@ -11,10 +11,15 @@ declare type CommentStyle = {
 }
 /** 评论 */
 declare type ZComment = {
+  id: string
+  userId: string
+  quoteId: string
   content: string
   likes: number
   dislikes: number
-  date: string
+  create_time: srting
+  update_time: string
+  blogId: string
 }
 /** 弹幕组件props */
 declare interface BulletComment {
