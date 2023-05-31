@@ -10,12 +10,12 @@
                   :autosize="{ minRows: 2, maxRows: 20 }"
                   type="textarea"
                   placeholder="Enter换行"></el-input>
-        <el-row>
-          <el-button @click="handleDisplayMarkdown()">Preview</el-button>
-          <el-button>Commit</el-button>
-        </el-row>
       </el-row>
-      <el-row><el-divider></el-divider></el-row>
+      <el-row>
+        <el-button @click="handleDisplayMarkdown()">Preview</el-button>
+        <el-button>Commit</el-button>
+      </el-row>
+      <el-divider></el-divider>
       <z-comment :quote-id="''" :blog-id="''"></z-comment>
     </el-main>
     <el-aside width="20vw"></el-aside>

@@ -24,6 +24,5 @@ const data = ref<ZComment[]>([])
 onBeforeMount(async () => {
   const result = await app.service.mainService.getBlogComment(props.blogId, props.quoteId)
   data.value.push(...result)
-  // asdas
 })
 </script>

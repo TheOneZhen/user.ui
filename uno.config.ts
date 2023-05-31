@@ -16,7 +16,7 @@ const range = [
   'font-size'
 ]
 
-function generateStyle(matched: RegExpMatchArray, unit: string = 'px') {
+function generateStyle (matched: RegExpMatchArray, unit: string = 'px') {
   const result: Record<string, string> = {}
   if (matched && matched[0]) {
     const numMatched = matched[0].match(/(?<=-)-?[\.\d]+/g)
