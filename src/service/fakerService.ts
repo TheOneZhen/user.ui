@@ -26,7 +26,7 @@ class FakerService {
         }
       )
     })
-    
+
     Mock.mock(/\/blog\/comment/, function () {
       return Mock.mock({
         code: 200,

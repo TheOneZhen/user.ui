@@ -53,9 +53,9 @@ class Request {
   // 请求拦截
   protected interceptorsRequest () {
     this.service.interceptors.request.use(
-      (config: AxiosRequestConfig) => {
-
-      }
+      // (config: AxiosRequestConfig) => {
+      //   return void
+      // }
     )
   }
 

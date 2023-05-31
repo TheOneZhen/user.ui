@@ -29,7 +29,7 @@ const content = ref('')
 const useDrawerStore = app.store.get('UseDrawerStore')
 
 function errorHandler () {
-  console.error("User image loads failed!")
+  console.error('User image loads failed!')
 }
 
 function handleDisplayMarkdown () {

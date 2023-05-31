@@ -7,14 +7,14 @@ export const UseDrawerStore = defineStore('UseDrawerStore', () => {
   const direction = ref('ltr')
   const content = ref<string | Component>('')
   function on (_title: string, _direction: 'ltr' | 'rtl' | 'ttb' | 'btt' = 'ltr', _content: string | Component) {
-    visible.value = true;
+    visible.value = true
     title.value = _title
     direction.value = _direction
     content.value = _content
   }
-  
+
   function off () {
-    visible.value = false;
+    visible.value = false
   }
 
   return { visible, title, direction, content, on, off }

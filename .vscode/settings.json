@@ -7,7 +7,7 @@
   "editor.formatOnType": false,
   "editor.formatOnSave": false,
   "editor.suggestSelection": "recentlyUsedByPrefix",
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.defaultFormatter": "vscode.typescript-language-features",
   "workbench.startupEditor": "newUntitledFile",
   "emmet.includeLanguages": {
     "vue-html": "html",
@@ -17,12 +17,10 @@
   "emmet.triggerExpansionOnTab": true,
   "emmet.showSuggestionsAsSnippets": true,
   "editor.codeActionsOnSave": {
-    // 自动修复
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true // 自动修复
   },
   "workbench.editor.enablePreview": false,
-  "eslint.validate": [
-    // 配置  ESLint  检查的文件类型
+  "eslint.validate": [ // 配置 ESLint 检查的文件类型
     "javascript",
     "vue",
     "html",

@@ -1,11 +1,12 @@
-import { defineConfig, UserConfig } from 'vite'
+import path, { resolve } from 'node:path'
+import dns from 'node:dns'
+import type { UserConfig } from 'vite'
+import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import path, { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import ElementComponents from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import UnoCSS from 'unocss/vite'
-import dns from 'dns'
 
 /** Node.js v17版本以下默认对DNS解析地址排序，会导致localhost使用解析后IP地址 */
 dns.setDefaultResultOrder('verbatim')
@@ -26,7 +27,7 @@ export default defineConfig(({ command, mode }) => {
         {
           template: {
             compilerOptions: {
-              isCustomElement: tag => tag.startsWith('fc-') || /^micro-app/.test(tag) || tag.startsWith('css-doodle')
+              isCustomElement: tag => tag.startsWith('fc-') || tag.startsWith('micro-app') || tag.startsWith('css-doodle')
             }
           }
         }
@@ -56,7 +57,7 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
-        icon: resolve(__dirname, './public/icon')
+        'icon': resolve(__dirname, './public/icon')
       }
     },
     build: {
@@ -71,7 +72,7 @@ export default defineConfig(({ command, mode }) => {
          * - 这里我是用的策略是对于一些特殊的包（lodash，css-doodle，等）执行特殊打包
          */
         output: {
-          manualChunks: function (id, meta) {
+          manualChunks (id, meta) {
             // return id.toString().split('node_modules/')[1].split("/")[0].toString()
           }
         }

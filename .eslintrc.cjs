@@ -1,7 +1,3 @@
-const DOMGlobals = ['window', 'document']
-const NodeGlobals = ['module', 'require']
-
-// eslint-disable-next-line no-restricted-globals
 module.exports = {
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -9,18 +5,26 @@ module.exports = {
     sourceType: 'module',
     parser: '@typescript-eslint/parser'
   },
-  // plugins: ['jest'],
+  extends: [
+    '@vue/eslint-config-typescript'
+  ],
   rules: {
-    'no-debugger': 'error',
+    'quotes': ['warn', 'single'],
+    'semi': ['warn', 'never'],
+    'spaced-comment': ['warn', 'always'],
+    'no-debugger': ['error'],
+    'space-before-function-paren': ['warn'], // function到参数之间必须存在空格
+    'block-spacing': ['warn', 'always'], // block俩端必须存在空格
+    'comma-dangle': ['warn', 'never'], // 分段内容后不需要设置逗号
+    'comma-spacing': ['warn', { 'before': false, 'after': true }], // 逗号后需要接空格
+    'no-whitespace-before-property': ['warn'], // 属性调用符后不允许出现空格
+    'no-trailing-spaces': ['warn'], // 每行后不允许出现空格
     'no-unused-vars': [
       'error',
       // we are only using this rule to check for unused arguments since TS
       // catches unused variables but not args.
       { varsIgnorePattern: '.*', args: 'none' }
     ],
-    // most of the codebase are expected to be env agnostic
-    'no-restricted-globals': ['error', ...DOMGlobals, ...NodeGlobals],
-
     'no-restricted-syntax': [
       'error',
       // since we target ES2015 for baseline support, we need to forbid object
@@ -28,65 +32,8 @@ module.exports = {
       'ObjectPattern > RestElement',
       // tsc compiles assignment spread into Object.assign() calls, but esbuild
       // still generates verbose helpers, so spread assignment is also prohiboted
-      'ObjectExpression > SpreadElement',
-      'AwaitExpression'
+      'ObjectExpression > SpreadElement'
     ]
   },
-  overrides: [
-    // tests, no restrictions (runs in Node / jest with jsdom)
-    {
-      files: ['**/__tests__/**', 'packages/dts-test/**'],
-      rules: {
-        'no-restricted-globals': 'off',
-        'no-restricted-syntax': 'off',
-        // 'jest/no-disabled-tests': 'error',
-        // 'jest/no-focused-tests': 'error'
-      }
-    },
-    // shared, may be used in any env
-    {
-      files: ['packages/shared/**'],
-      rules: {
-        'no-restricted-globals': 'off'
-      }
-    },
-    // Packages targeting DOM
-    {
-      files: ['packages/{vue,vue-compat,runtime-dom}/**'],
-      rules: {
-        'no-restricted-globals': ['error', ...NodeGlobals]
-      }
-    },
-    // Packages targeting Node
-    {
-      files: [
-        'packages/{compiler-sfc,compiler-ssr,server-renderer,reactivity-transform}/**'
-      ],
-      rules: {
-        'no-restricted-globals': ['error', ...DOMGlobals],
-        'no-restricted-syntax': 'off'
-      }
-    },
-    // Private package, browser only + no syntax restrictions
-    {
-      files: ['packages/template-explorer/**', 'packages/sfc-playground/**'],
-      rules: {
-        'no-restricted-globals': ['error', ...NodeGlobals],
-        'no-restricted-syntax': 'off'
-      }
-    },
-    // Node scripts
-    {
-      files: [
-        'scripts/**',
-        '*.{js,ts}',
-        'packages/**/index.js',
-        'packages/size-check/**'
-      ],
-      rules: {
-        'no-restricted-globals': 'off',
-        'no-restricted-syntax': 'off'
-      }
-    }
-  ]
+  overrides: []
 }

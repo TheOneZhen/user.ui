@@ -3,5 +3,5 @@
  * 如果使用GitHub登录：使用GitHub信息
  */
 export class User {
-  
+
 }

@@ -1,6 +1,6 @@
-import { UseDrawerStore } from "./UseDrawerStore"
-import { UseEnterTimeStore } from "./UseEnterTimeStore"
-import { UseLayoutStore } from "./UseLayoutStore"
+import { UseDrawerStore } from './UseDrawerStore'
+import { UseEnterTimeStore } from './UseEnterTimeStore'
+import { UseLayoutStore } from './UseLayoutStore'
 
 /**
  * ## 状态管理说明
@@ -14,7 +14,7 @@ export class Store {
     'UseEnterTimeStore': UseEnterTimeStore,
     'UseLayoutStore': UseLayoutStore
   }
-  
+
   get (key: 'UseDrawerStore'): ReturnType<typeof UseDrawerStore>
   get (key: 'UseEnterTimeStore'): ReturnType<typeof UseEnterTimeStore>
   get (key: 'UseLayoutStore'): ReturnType<typeof UseLayoutStore>

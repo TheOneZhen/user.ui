@@ -3,7 +3,7 @@ import { theme } from './theme.config'
 export class Theme {
   private theme = theme
 
-  getSignatureTheme() {
+  getSignatureTheme () {
     return this.theme.signature
   }
 }

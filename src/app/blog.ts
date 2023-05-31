@@ -86,7 +86,7 @@ export class Blog {
   /**
    * markown转html，放到中心组件中是为了统一处理markdown
    */
-  converterMdToHTML(text: string) {
+  converterMdToHTML (text: string) {
     return this.converter.makeHtml(text)
   }
 }
