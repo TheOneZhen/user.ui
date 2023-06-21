@@ -64,22 +64,12 @@ html, body {
   align-items: center;
 }
 
-.g-flex-auto,
-.g-flex-1 {
+.g-flex-auto {
   flex: 1 1 auto;
 }
 
-.g-flex-1-1 {
-  flex: 1 1 1px;
-}
-
-.g-flex-none,
-.g-flex-0 {
+.g-flex-none {
   flex: 0 0 auto;
-}
-
-.g-flex-2 {
-  flex: 2 2 auto;
 }
 
 .g-flex-wrap {

@@ -1,13 +1,11 @@
 <template>
   <el-scrollbar id="z-main-scroll">
-    <el-container>
-      <el-header><z-header /></el-header>
-      <el-main>
-        <router-view />
-        <z-bullet-screen></z-bullet-screen>
-      </el-main>
-      <el-footer><z-footer></z-footer></el-footer>
-    </el-container>
+    <div>
+      <el-affix><z-header /></el-affix>
+      <router-view />
+      <z-bullet-screen></z-bullet-screen>
+      <z-footer></z-footer>
+    </div>
   </el-scrollbar>
 </template>
 
