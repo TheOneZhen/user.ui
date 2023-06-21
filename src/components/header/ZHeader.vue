@@ -6,8 +6,8 @@
     <el-menu-item v-for="menuItem in NavigationMenu"
                   :key='menuItem.title'
                   :index="menuItem.title">
-    <el-tooltip effect="light" 
-                placement="bottom" 
+    <el-tooltip effect="light"
+                placement="bottom"
                 :content="menuItem.title">
       <el-icon><span :[menuItem.icon]="''"></span></el-icon>
     </el-tooltip>
