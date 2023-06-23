@@ -1,14 +1,13 @@
-import { mainService } from './mainService'
-import { fakerService } from './fakerService'
-import type { App } from '@/app'
+import { MainService } from './mainService'
+import { FakerService } from './fakerService'
 /**
  * 服务节点
  */
 export class Service {
-  mainService = mainService
-  fakerService = fakerService
+  mainService = new MainService()
+  fakerService = new FakerService()
 
-  constructor (public app: App) {
+  constructor () {
     if (import.meta.env.DEV) this.fakerService.init()
   }
 }

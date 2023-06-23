@@ -1,20 +1,32 @@
 <template>
-  <el-container class="z-blog">
-    <el-aside width="10vw">
-      <!-- <z-filter></z-filter> -->
-      <z-timeline :data="dateCatalogs"></z-timeline>
-    </el-aside>
-    <el-container>
-      <el-main></el-main>
-      <el-aside width="10vw">
-        zheshi ajs;osdop
-      </el-aside>
-    </el-container>
-  </el-container>
+  <div class="z-blog">
+    <el-button class="g-absolute" @click="changeDisplayMode">切换展示方式</el-button>
+    <div class="z-blog-main">
+      <z-blog-list-display v-if="blogListDisplay" />
+      <z-blog-tag-display v-else />
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-const dateCatalogs = app.blog.dateCatalogs
+const blogListDisplay = ref(app.storage.getLocal('blogListDisplay', 'false'))
+
+function changeDisplayMode () {
+  blogListDisplay.value = !blogListDisplay.value
+}
+
+onUnmounted(() => {
+  app.storage.setLocal('blogListDisplay', blogListDisplay.value)
+})
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.z-blog {
+  margin: 5vh 10vw;
+  width: 80vw;
+  background-color: rgba($color: #FFFFFF, $alpha: .4);
+  .z-blog-main {
+    padding: 8vh 5vh 5vh 0vh;
+  }
+}
+</style>

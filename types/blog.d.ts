@@ -1,7 +1,8 @@
 /**
  * blog page catalog type
  */
-declare type CatalogType = {
+declare type ArticleType = {
+  id: number
   /**
    * article date
    */
@@ -13,26 +14,19 @@ declare type CatalogType = {
   /**
    * article tags
    */
-  tags: Array<string>
+  tags: Array<TagType['id']>
   /**
    * article description
    */
   description: string
 }
 /**
- * count article catalog pre months
+ * 标签类型
  */
-declare type DateCatalogType = {
-  /**
-   * year
-   */
-  year: DayjsObject['years']
-  /**
-   * month
-   */
-  month: DayjsObject['months']
-  /**
-   * sum of article pre months
-   */
-  count: number
+declare type TagType = {
+  id: number
+  title: string
+  description: string
+  images: string[]
+  articles: Array<ArticleType['id']>
 }

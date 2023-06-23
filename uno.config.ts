@@ -13,24 +13,22 @@ const range = [
   'top',
   'bottom',
   'right',
-  'font-size'
+  'font',
+  'row-gap',
+  'column-gap',
+  'max-width'
 ]
 
-function generateStyle (matched: RegExpMatchArray, unit: string = 'px') {
+const rangeReg = new RegExp('g-((?:' + range.join('|') + ')(?:-(?:top|bottom|right|left))?)')
+
+function generateStyleNew (matched: RegExpMatchArray | null) {
   const result: Record<string, string> = {}
-  if (matched && matched[0]) {
-    const numMatched = matched[0].match(/(?<=-)-?[\.\d]+/g)
-    const propMatched = matched[0].match(/(?<=g-)[a-z]+(!-[a-z]+)*/)
-    const canRun =
-      propMatched &&
-      propMatched[0] &&
-      range.findIndex(propName => propMatched[0].startsWith(propName)) > -1
-    if (numMatched && canRun) {
-      const value = Array.from(numMatched)
-        .map(match => (Number(match) || 0) + unit)
-        .join(' ')
-      result[propMatched[0]] = value
-    }
+  if (matched !== null && !!matched.input && matched.length === 2) {
+    result[matched[1]] = matched
+      .input
+      .split(new RegExp(matched[0] + '|-', 'g'))
+      .filter(Boolean)
+      .join(' ')
   }
   return result
 }
@@ -46,7 +44,9 @@ export default defineConfig({
       cdn: 'https://esm.sh/'
     })
   ],
-  rules: [[/^g-[a-z]+[-\.\d]+$/, matched => generateStyle(matched)]],
+  rules: [
+    [rangeReg, matched => generateStyleNew(matched)]
+  ],
   safelist: [
     '[icon-carbon:home=""]',
     '[icon-carbon:blog=""]',

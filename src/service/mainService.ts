@@ -1,15 +1,20 @@
 import request from './request'
 import { API } from '../api/api'
 
-class MainService {
+export class MainService {
   async test () {
-    const res = await request.post(API.TEST)
-    return res.data
+    const result = await request.post(API.TEST)
+    return result.data
   }
 
-  async getBlogCatalogs () {
-    const res = await request.post(API.GET_BLOG_CATALOGS)
-    return res.data as Array<CatalogType>
+  async getBlogArticles () {
+    const result = await request.post(API.GET_BLOG_ARTICLES)
+    return result.data as Array<ArticleType>
+  }
+
+  async getBlogTags () {
+    const result = await request.post(API.GET_BLOG_TAGS)
+    return result.data as Array<TagType>
   }
   /**
    * 获取指定文章引用指定评论的评论
@@ -21,7 +26,3 @@ class MainService {
     return result.data as Array<ZComment>
   }
 }
-/**
- * 博客主服务
- */
-export const mainService = new MainService()

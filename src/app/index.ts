@@ -2,19 +2,20 @@ import { Blog } from './blog'
 import { Service } from '@/service'
 import { Theme } from '@/theme'
 import { Store } from '@/store'
+import { LSStorage } from '@/storage'
 export class App {
   blog = new Blog()
-  service
+  service = new Service()
   theme = new Theme()
   store = new Store()
+  storage = new LSStorage()
 
   constructor () {
-    this.service = new Service(this)
     console.log('Welcome to zhen\'s space!')
   }
 
   async init () {
-    await this.blog.init()
+    this.blog.init()
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
   <el-menu mode="horizontal"
            router
-           class="z-header"
+           class="z-header g-height-60px"
            :default-active="NavigationMenu[0].title">
     <el-menu-item v-for="menuItem in NavigationMenu"
                   :key='menuItem.title'
@@ -21,7 +21,6 @@ import { NavigationMenu } from './header.config'
 
 <style lang="scss" scoped>
 .z-header {
-  height: 60px;
   width: 100%;
 }
 </style>
