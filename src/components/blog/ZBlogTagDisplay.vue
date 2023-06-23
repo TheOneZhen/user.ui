@@ -8,6 +8,7 @@
       </template>
       <el-image :src="tag.images[0]"
                 loading="lazy"
+                preview-teleported
                 hide-on-click-modal
                 class="_image"
                 scroll-container="#z-main-scroll"
