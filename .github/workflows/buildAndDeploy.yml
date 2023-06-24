@@ -11,9 +11,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: echo 'start installing dependencies ....'
-      - run: npm install
-      - run: echo 'start building ...'
+      - run: |
+          npm install yarn -g
+          yarn
       - run: npm run build
       - name: deploy
         uses: cross-the-world/scp-pipeline@master
