@@ -4,11 +4,11 @@ import { Theme } from '@/theme'
 import { Store } from '@/store'
 import { LSStorage } from '@/storage'
 export class App {
-  blog = new Blog()
   service = new Service()
-  theme = new Theme()
-  store = new Store()
+  blog = new Blog()
   storage = new LSStorage()
+  store = new Store()
+  theme = new Theme()
 
   constructor () {
     console.log('Welcome to zhen\'s space!')

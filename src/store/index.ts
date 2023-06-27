@@ -1,6 +1,8 @@
 import { UseDrawerStore } from './UseDrawerStore'
 import { UseEnterTimeStore } from './UseEnterTimeStore'
 import { UseLayoutStore } from './UseLayoutStore'
+import { UseColorSchemeStore } from './UseColorSchemeStore'
+import { StoreDefinition } from 'pinia'
 
 /**
  * ## 状态管理说明
@@ -9,16 +11,20 @@ import { UseLayoutStore } from './UseLayoutStore'
  *    - 长效状态在app启动时被创建，会自动加载配置文件，读取本地存储
  */
 export class Store {
-  private _map = {
+  private _map: Record<string, StoreDefinition> = {
     'UseDrawerStore': UseDrawerStore,
     'UseEnterTimeStore': UseEnterTimeStore,
-    'UseLayoutStore': UseLayoutStore
+    'UseLayoutStore': UseLayoutStore,
+    'UseColorSchemeStore': UseColorSchemeStore
   }
-
+  /**
+   * 所有数据都是默认响应式解构
+   */
   get (key: 'UseDrawerStore'): ReturnType<typeof UseDrawerStore>
   get (key: 'UseEnterTimeStore'): ReturnType<typeof UseEnterTimeStore>
   get (key: 'UseLayoutStore'): ReturnType<typeof UseLayoutStore>
-  get (key: 'UseDrawerStore' | 'UseEnterTimeStore' | 'UseLayoutStore') {
+  get (key: 'UseColorSchemeStore'): ReturnType<typeof UseColorSchemeStore>
+  get (key: string) {
     return this._map[key]()
   }
 }
