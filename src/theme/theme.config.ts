@@ -9,36 +9,43 @@ export enum ThemeProperty {
 }
 
 export const ThemeConfig = {
-  times: {
-    early: {
+  colorSchemes: [
+    {
       [ThemeProperty.ThemeBackground]: '#57b2cf',
       [ThemeProperty.ThemeBackgroundSun]: '#f0e87f',
       [ThemeProperty.ThemeBackgroundMountain]: '#c79498',
       [ThemeProperty.ThemeBackgroundTree]: '#9596be',
       [ThemeProperty.ThemeFontColor]: ''
     },
-    morning: {
+    {
       [ThemeProperty.ThemeBackground]: '#f0e87f',
       [ThemeProperty.ThemeBackgroundSun]: '#de6b70',
       [ThemeProperty.ThemeBackgroundMountain]: '#6a73c2',
       [ThemeProperty.ThemeBackgroundTree]: '#9596be',
       [ThemeProperty.ThemeFontColor]: ''
     },
-    aftermoon: {
+    {
       [ThemeProperty.ThemeBackground]: '#eacdb1',
       [ThemeProperty.ThemeBackgroundSun]: '#f0f0f0',
       [ThemeProperty.ThemeBackgroundMountain]: '#f5aeb2',
       [ThemeProperty.ThemeBackgroundTree]: '#b04b35',
       [ThemeProperty.ThemeFontColor]: ''
     },
-    night: {
+    {
+      [ThemeProperty.ThemeBackground]: '#D4AC51',
+      [ThemeProperty.ThemeBackgroundSun]: '#D8D1DD',
+      [ThemeProperty.ThemeBackgroundMountain]: '#452340',
+      [ThemeProperty.ThemeBackgroundTree]: '#1B3E36',
+      [ThemeProperty.ThemeFontColor]: ''
+    },
+    {
       [ThemeProperty.ThemeBackground]: '#3d2333',
       [ThemeProperty.ThemeBackgroundSun]: '#f0943a',
       [ThemeProperty.ThemeBackgroundMountain]: '#452340',
       [ThemeProperty.ThemeBackgroundTree]: '#e284af',
-      [ThemeProperty.ThemeFontColor]: ''
+      [ThemeProperty.ThemeFontColor]: '#E1E1E1'
     }
-  } as Record<string, Record<string, string>>
+  ] as Array<Record<string, string>>
 }
 
 export const colorGroup = [

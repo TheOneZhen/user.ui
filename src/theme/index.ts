@@ -15,12 +15,20 @@ export class Theme {
    * 如果缓存中有设置，优先使用缓存；缓存没有设置，自动计算。
    */
   setColorScheme (index = this.getColorSchemeIndex()) {
-    const values = Object.values(this.config.times)
-    this.setRootCssProperties(values[index % values.length])
+    this.setRootCssProperties(this.getColorSchemeTheme(index))
   }
 
   getColorSchemeIndex () {
     return app.storage.getLocal('colorScheme', Math.floor(dayjs().hour() / 6) + '')
+  }
+
+  getColorSchemeTheme (index = 0) {
+    const values = Object.values(this.config.colorSchemes)
+    return values[index % values.length]
+  }
+
+  getNextColorSchemeBackground (index = 0) {
+    return this.getColorSchemeTheme(index)[ThemeProperty.ThemeBackground]
   }
 
   handleClickSignature () {

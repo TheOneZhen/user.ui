@@ -35,7 +35,7 @@ css-doodle {
       @grid: 17x1 / 100% 100%;
       overflow: hidden;
       background: @var(--theme-background);
-      transition: @r(0.3, 0.7)s ease all;
+      transition: background 1s ease;
     }
     transition: @r(0.3, 0.7)s ease all;
     @nth(1) {
