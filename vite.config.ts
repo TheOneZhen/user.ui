@@ -21,7 +21,7 @@ dns.setDefaultResultOrder('verbatim')
  */
 export default defineConfig(({ command, mode }) => {
   const common: UserConfig = {
-    base: `${command === 'serve' ? '' : 'http://zhenisbusy.space'}/`,
+    base: `${command === 'serve' ? 'http://zhenisbusy.space' : ''}/`,
     plugins: [
       Vue(
         {
@@ -52,7 +52,14 @@ export default defineConfig(({ command, mode }) => {
     optimizeDeps: {},
     server: {
       host: 'localhost',
-      port: 3000
+      port: 3000,
+      proxy: {
+        '/dev': {
+          target: 'http://127.0.0.1:8000/',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/dev/, '')
+        }
+      }
     },
     resolve: {
       alias: {

@@ -5,29 +5,29 @@ import Mock from 'mockjs'
  */
 export class FakerService {
   init () {
-    Mock.mock(/\/blog\/articles/, function () {
-      return Mock.mock({
-        code: 200,
-        msg: 'success',
-        'data|10': [() => {
-          return Mock.mock({
-            id: Mock.Random.increment(1),
-            date: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
-            title: Mock.Random.ctitle(),
-            'tags|10': [() => Mock.Random.ctitle(2)],
-            description: `- ${Mock.Random.csentence()}
-- ${Mock.Random.csentence()}
-- ${Mock.Random.csentence()}
-- ${Mock.Random.csentence()}`
-          })
-        }]
-      })
-    })
+//     Mock.mock(/\/blog\/articles/, function () {
+//       return Mock.mock({
+//         code: 200,
+//         message: 'success',
+//         'data|10': [() => {
+//           return Mock.mock({
+//             id: Mock.Random.increment(1),
+//             date: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
+//             title: Mock.Random.ctitle(),
+//             'tags|10': [() => Mock.Random.ctitle(2)],
+//             description: `- ${Mock.Random.csentence()}
+// - ${Mock.Random.csentence()}
+// - ${Mock.Random.csentence()}
+// - ${Mock.Random.csentence()}`
+//           })
+//         }]
+//       })
+//     })
 
     Mock.mock(/\/blog\/tags/, function () {
       return Mock.mock({
         code: 200,
-        msg: 'success',
+        message: 'success',
         'data|20': [() => {
           return Mock.mock({
             id: Mock.Random.increment(1),
@@ -51,7 +51,7 @@ export class FakerService {
     Mock.mock(/\/blog\/comment/, function () {
       return Mock.mock({
         code: 200,
-        msg: 'success',
+        message: 'success',
         'data|5': [
           Mock.mock({
             id: Mock.Random.guid(),

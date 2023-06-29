@@ -15,6 +15,7 @@ export class Blog {
       .mainService
       .getBlogArticles()
       .then(data => {
+        console.log('run here', data)
         data
           .sort((a, b) => -(dayjs(a.date) > dayjs(b.date)))
           .forEach(catalog => this.articleMap.set(catalog.id, catalog))

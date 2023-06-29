@@ -1,7 +1,7 @@
 type NetConfigSuccessCode = 200 | '200' | '000000'
 
 export const baseURL: string = import.meta.env.DEV
-  ? 'http://localhost:8000'
+  ? '/dev'
   : import.meta.env.BASE_URL
 // 配后端数据的接收方式application/json;charset=UTF-8 或 application/x-www-form-urlencoded;charset=UTF-8
 export const contentType: string = 'application/json;charset=UTF-8'
@@ -16,4 +16,4 @@ export const successCode: NetConfigSuccessCode[] = [200, '200', '000000']
 // 数据状态的字段名称
 export const statusName: string = 'code'
 // 状态信息的字段名称
-export const messageName: string = 'msg'
+export const messageName: string = 'message'

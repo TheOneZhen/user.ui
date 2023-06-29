@@ -8,7 +8,7 @@ export class MainService {
   }
 
   async getBlogArticles () {
-    const result = await request.post(API.GET_BLOG_ARTICLES)
+    const result = await request.get(API.GET_BLOG_ARTICLES)
     return result.data as Array<ArticleType>
   }
 

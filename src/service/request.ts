@@ -4,7 +4,7 @@ import { baseURL, contentType, requestTimeout } from './net.config'
 
 interface response {
   code: number | string
-  msg: string
+  message: string
   data: any
 }
 
@@ -29,7 +29,6 @@ class Request {
         timestamp: String(new Date().getTime()),
         'Content-Type': contentType
       },
-      // transformRequest
       transformResponse: [
         (data: AxiosResponse) => { return data }
       ],
@@ -41,8 +40,7 @@ class Request {
       responseType: 'json',
       xsrfCookieName: 'XSRF-TOKEN',
       xsrfHeaderName: 'X-XSRF-TOKEN',
-      // 定义了在node.js中遵循的最大重定向数
-      maxRedirects: 5,
+      maxRedirects: 5, // 定义了在node.js中遵循的最大重定向数
       maxContentLength: 2000,
       validateStatus (status) {
         return status >= 200 && status <= 500
@@ -58,7 +56,6 @@ class Request {
       // }
     )
   }
-
   /**
    * 响应拦截
    */
@@ -68,8 +65,9 @@ class Request {
       return value
     })
   }
-
-  // 取消重复请求
+  /**
+   * 取消重复请求
+   */
   protected removePending (key: string, cancel: boolean = false): void {
     this.pending.some((item, index) => {
       if (item.url === key && cancel) {
@@ -81,8 +79,9 @@ class Request {
       return false
     })
   }
-
-  // 获取请求的key
+  /**
+   * 获取请求的key
+   */
   protected getKeyOfRequest (config: AxiosRequestConfig): string {
     let key = config.url || '<NULL>'
     if (config.params) key += JSON.stringify(config.params)
@@ -117,7 +116,7 @@ class Request {
         .then(result => {
           resolve({
             code: result.data.code,
-            msg: result.data.msg,
+            message: result.data.message,
             data: result.data.data
           })
         }, reject)
@@ -130,7 +129,7 @@ class Request {
         .then(result => {
           resolve({
             code: result.data.code,
-            msg: result.data.msg,
+            message: result.data.message,
             data: result.data.data
           })
         }, reject)
