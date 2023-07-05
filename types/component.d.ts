@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    404: typeof import('./../src/components/error/404.vue')['default']
     BlogTemplate: typeof import('./../src/components/template/BlogTemplate.vue')['default']
     ElAffix: typeof import('element-plus/es')['ElAffix']
     ElAside: typeof import('element-plus/es')['ElAside']

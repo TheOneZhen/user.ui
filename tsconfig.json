@@ -108,7 +108,8 @@
     "src/**/*.tsx",
     "src/components/**/*.vue",
     "**/*.d.ts",
-    "*.config.ts"
+    "*.config.ts",
+    "pageone/*.ts"
   ],
   "exclude": [
     "node_modules",
