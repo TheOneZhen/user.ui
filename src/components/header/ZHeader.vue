@@ -1,7 +1,8 @@
 <template>
   <el-menu mode="horizontal"
-            class="z-header g-height-60px g-width-100%"
-            :default-active="NavigationMenu[0].title">
+           router
+           class="z-header g-height-60px g-width-100%"
+           :default-active="NavigationMenu[0].title">
     <el-menu-item v-for="menuItem in NavigationMenu"
                   :key='menuItem.title'
                   :index="menuItem.title">

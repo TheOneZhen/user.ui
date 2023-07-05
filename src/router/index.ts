@@ -6,7 +6,6 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: '',
       component: () => import('@/components/layout/ZLayout.vue'),
       redirect: '/home',
       children: [
@@ -34,6 +33,11 @@ const router = createRouter({
           path: '/blogTemplate',
           name: 'blogTemplate',
           component: () => import('@/components/template/BlogTemplate.vue')
+        },
+        {
+          path: '/:pathMatch(.*)*',
+          name: 'notFound',
+          component: () => import('@/components/error/404.vue')
         }
       ]
     },
