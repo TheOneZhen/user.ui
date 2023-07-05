@@ -1,4 +1,4 @@
-import path, { resolve } from 'node:path'
+import { resolve } from 'node:path'
 import dns from 'node:dns'
 import type { UserConfig } from 'vite'
 import { defineConfig } from 'vite'
@@ -21,7 +21,6 @@ dns.setDefaultResultOrder('verbatim')
  */
 export default defineConfig(({ command, mode }) => {
   const common: UserConfig = {
-    base: `${command === 'serve' ? 'http://zhenisbusy.space' : ''}/`,
     plugins: [
       Vue(
         {
@@ -37,13 +36,13 @@ export default defineConfig(({ command, mode }) => {
         resolvers: [
           ElementPlusResolver()
         ],
-        dts: path.resolve(__dirname, 'types', 'auto-imports.d.ts')
+        dts: resolve(__dirname, 'types', 'auto-imports.d.ts')
       }),
       ElementComponents({
         resolvers: [
           ElementPlusResolver()
         ],
-        dts: path.resolve(__dirname, 'types', 'component.d.ts')
+        dts: resolve(__dirname, 'types', 'component.d.ts')
       }),
       UnoCSS({
         configFile: '../uno.config.ts'
@@ -51,13 +50,15 @@ export default defineConfig(({ command, mode }) => {
     ],
     optimizeDeps: {},
     server: {
-      host: 'localhost',
-      port: 3000,
+      cors: true,
       proxy: {
-        '/dev': {
+        '/dynamic': {
           target: 'http://127.0.0.1:8000/',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/dev/, '')
+          rewrite: (path) => {
+            console.log('the path is', path)
+            return path.replace(/^\/dynamic/, '')
+          }
         }
       }
     },
