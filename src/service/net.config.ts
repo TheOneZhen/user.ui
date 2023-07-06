@@ -1,17 +1,23 @@
-type NetConfigSuccessCode = 200 | '200' | '000000'
+import type { CreateAxiosDefaults } from 'axios'
 
-export const baseURL: string = (import.meta.env ? '' : 'https://zhenisbusy.space') + '/dynamic'
-// 配后端数据的接收方式application/json;charset=UTF-8 或 application/x-www-form-urlencoded;charset=UTF-8
-export const contentType: string = 'application/json;charset=UTF-8'
-// 最长请求时间
-export const requestTimeout: number = 10000
-// 超时尝试次数
-export const timeoutNum: number = 3
-// 超时重新请求间隔
-export const intervalTime: number = 1000
-// 操作正常code，支持String、Array、int多种类型
-export const successCode: NetConfigSuccessCode[] = [200, '200', '000000']
-// 数据状态的字段名称
-export const statusName: string = 'code'
-// 状态信息的字段名称
-export const messageName: string = 'message'
+export const requestConfig: CreateAxiosDefaults = {
+  baseURL: (import.meta.env ? '' : 'https://zhenisbusy.space') + '/dynamic',
+  headers: {
+    Timestamp: Date.now(),
+    'Content-Type': 'application/json;charset=UTF-8',
+    common: {
+      // Authorization: AUTH_TOKEN
+    }
+  },
+  transformRequest: [],
+  transformResponse: [],
+  paramsSerializer: (param) => JSON.stringify(param),
+  timeout: 10000,
+  withCredentials: false,
+  responseType: 'json',
+  xsrfCookieName: 'CSRF-TOKEN',
+  xsrfHeaderName: 'X-CSRF-TOKEN',
+  maxRedirects: 5,
+  maxContentLength: 2000,
+  validateStatus: (status) => status < 400 // 个人定义的错误在[600, 700)
+}

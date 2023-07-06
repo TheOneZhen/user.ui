@@ -1,20 +1,16 @@
 import request from './request'
-import { API } from '../api/api'
+import { API } from './api'
 
 export class MainService {
-  async test () {
-    const result = await request.post(API.TEST)
+
+  async getBlogArticles () {
+    const result = await request.post<Array<ArticleType>>(API.GET_BLOG_ARTICLES, {})
     return result.data
   }
 
-  async getBlogArticles () {
-    const result = await request.get(API.GET_BLOG_ARTICLES)
-    return result.data as Array<ArticleType>
-  }
-
   async getBlogTags () {
-    const result = await request.post(API.GET_BLOG_TAGS)
-    return result.data as Array<TagType>
+    const result = await request.get<Array<TagType>>(API.GET_BLOG_TAGS, {})
+    return result.data
   }
   /**
    * 获取指定文章引用指定评论的评论
@@ -22,7 +18,7 @@ export class MainService {
    * @param quoteId 如果为空，视为全局评论（弹幕，留言板评论）
    */
   async getBlogComment (blogId: ZComment['blogId'], quoteId: ZComment['quoteId']) {
-    const result = await request.post(API.GET_BLOG_COMMENT, { blogId, quoteId })
-    return result.data as Array<ZComment>
+    const result = await request.post<Array<ZComment>>(API.GET_BLOG_COMMENT, { blogId, quoteId })
+    return result.data
   }
 }
