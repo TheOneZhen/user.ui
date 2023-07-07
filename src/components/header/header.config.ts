@@ -1,18 +1,20 @@
+import { RouterName } from '@/router/router.config'
+
 export const NavigationMenu: Header.SubMenu[] = [
   {
-    title: 'home',
+    title: RouterName.HOME,
     icon: 'icon-carbon:home'
   },
   {
-    title: 'blog',
+    title: RouterName.BLOG,
     icon: 'icon-carbon:blog'
   },
   {
-    title: 'lefting',
+    title: RouterName.LEFTING,
     icon: 'icon-carbon:term'
   },
   {
-    title: 'find me',
+    title: RouterName.FINDME,
     icon: 'icon-carbon:send-alt'
   }
 ]

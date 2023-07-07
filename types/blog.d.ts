@@ -1,23 +1,11 @@
 /**
- * blog page catalog type
+ * 目录项类型
  */
-declare type ArticleType = {
+declare type CatalogItemType = {
   id: number
-  /**
-   * article date
-   */
-  date: string
-  /**
-   * article title
-   */
+  update_time: string
   title: string
-  /**
-   * article tags
-   */
-  tags: Array<TagType['id']>
-  /**
-   * article description
-   */
+  tagIds: Array<TagType['id']>
   description: string
 }
 /**
@@ -28,5 +16,20 @@ declare type TagType = {
   title: string
   description: string
   images: string[]
-  articles: Array<ArticleType['id']>
+  articleIds: Array<ArticleType['id']>
+}
+/**
+ * 文章类型
+ */
+declare type ArticleType = {
+  id: number
+  create_time: string
+  update_time: string
+  title: string
+  tagIds: TagType.id[]
+  content: string
+  description: string
+  likes: number
+  dislikes: number
+  views: number
 }

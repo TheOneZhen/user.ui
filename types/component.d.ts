@@ -10,7 +10,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     404: typeof import('./../src/components/error/404.vue')['default']
-    BlogTemplate: typeof import('./../src/components/template/BlogTemplate.vue')['default']
+    BlogTemplate: typeof import('./../src/components/blog/BlogTemplate.vue')['default']
     ElAffix: typeof import('element-plus/es')['ElAffix']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
@@ -40,6 +40,8 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     YUANXIAO: typeof import('./../src/components/background/YUANXIAO.vue')['default']
+    ZArticle: typeof import('./../src/components/blog/ZArticle.vue')['default']
+    ZArticleList: typeof import('./../src/components/blog/ZArticleList.vue')['default']
     ZBlog: typeof import('./../src/components/blog/ZBlog.vue')['default']
     ZBlogListDisplay: typeof import('./../src/components/blog/ZBlogListDisplay.vue')['default']
     ZBlogTagDisplay: typeof import('./../src/components/blog/ZBlogTagDisplay.vue')['default']

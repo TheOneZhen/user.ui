@@ -17,7 +17,10 @@
  * 2. 布局层面，滚动条应该只有一个，位于本组件下
  * 3. 对于自适应布局，应尽可能使用自适应单位，比如字体全部使用rem
  */
+import { useRouter } from 'vue-router'
 const doodle = ref<any>(null)
+
+app.router = useRouter()
 </script>
 
 <style lang="scss" scoped>

@@ -1,10 +1,17 @@
 <template>
   <div class="z-blog">
-    <el-button class="g-absolute" @click="changeDisplayMode">切换展示方式</el-button>
-    <div class="z-blog-main">
-      <z-blog-list-display v-if="blogListDisplay" />
-      <z-blog-tag-display v-else />
-    </div>
+    <router-view v-slot = '{ Component, route }'>
+        <keep-alive>
+          <component v-if="Component" :is="Component"></component>
+          <template v-else>
+            <el-button class="g-absolute" @click="changeDisplayMode">切换展示方式</el-button>
+            <div class="z-blog-main">
+              <z-blog-list-display v-if="blogListDisplay" />
+              <z-blog-tag-display v-else />
+            </div>
+          </template>
+        </keep-alive>
+    </router-view>
   </div>
 </template>
 

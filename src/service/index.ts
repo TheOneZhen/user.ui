@@ -9,5 +9,6 @@ export class Service {
 
   constructor () {
     // if (import.meta.env.DEV) this.fakerService.init()
+    this.mainService.checkCsrfToken()
   }
 }

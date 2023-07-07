@@ -1,6 +1,7 @@
 export enum API {
-  GET_BLOG_ARTICLES = '/resource/getArticles',
-  GET_BLOG_COMMENT = '/resource/comment',
+  CHECK_CSRF_TOKEN = '/checkCsrfToken',
+  GET_BLOG_CATALOG = '/resource/getCatalog',
+  GET_BLOG_COMMENT = '/resource/getComment',
   GET_BLOG_TAGS = '/resource/getTags',
-  GET_ARTICLE = '/resource/article'
+  GET_BLOG_ARTICLE = '/resource/getArticle'
 }

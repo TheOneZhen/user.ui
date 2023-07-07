@@ -1,3 +1,4 @@
+import { RouterName } from '@/router/router.config'
 import dayjs from 'dayjs'
 import showdown from 'showdown'
 
@@ -8,17 +9,20 @@ export class Blog {
   articleMap = new Map<ArticleType['id'], ArticleType>()
   tagMap = new Map<TagType['id'], TagType>()
   converter = new showdown.Converter()
+  catalog = new Array<CatalogItemType>()
 
   init () {
     app
       .service
       .mainService
-      .getBlogArticles()
+      .getBlogCatalog()
       .then(data => {
-        console.log('run here', data)
-        data
-          .sort((a, b) => -(dayjs(a.date) > dayjs(b.date)))
-          .forEach(catalog => this.articleMap.set(catalog.id, catalog))
+        this.catalog.splice(
+          0,
+          this.catalog.length,
+          ...data
+            .sort((a, b) => -(dayjs(a.update_time) > dayjs(b.update_time)))
+        )
       })
     app
       .service
@@ -34,12 +38,25 @@ export class Blog {
     const result: Array<TagType> = []
     if (!article) return result
     article
-      .tags
+      .tagIds
       .forEach(tagId => {
         const tag = this.tagMap.get(tagId)
         tag && result.push(tag)
-    })
+      })
     return result
+  }
+
+  async getArticle (index: ArticleType['id']) {
+    let article = this.articleMap.get(index)
+    if (!article) {
+      article = await app.service.mainService.getBlolgArticle(index)
+      this.articleMap.set(article.id, article)
+    }
+    return article
+  }
+
+  toArticle (index: ArticleType['id']) {
+    app.router?.push({ name: RouterName.ARTICLE, params: { index } })
   }
 
   highlight (content: string) {

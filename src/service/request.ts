@@ -1,5 +1,4 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelTokenStatic } from 'axios'
-import { isObject } from 'lodash'
 import { requestConfig } from './net.config'
 class Request {
   protected _request: AxiosInstance
@@ -53,7 +52,7 @@ class Request {
   }
 
   public post<T = any, D = {}> (url: string, data: D, config: AxiosRequestConfig<D> = {}) {
-    return this._request.post<T, AxiosResponse<T, string>>(url, JSON.stringify(data), config)
+    return this._request.post<T, T>(url, JSON.stringify(data), config)
   }
 
   public get<T = any, D = {}> (url: string, param: D, config: AxiosRequestConfig<D> = {}) {
@@ -62,7 +61,7 @@ class Request {
       .map(([k, v]) => `${k}=${v}`)
       .join('&')
     if (pin) pin = '?' + pin
-    return this._request.get<T, AxiosResponse<T, D>, D>(`${url}${pin}`, config)
+    return this._request.get<T, T, D>(`${url}${pin}`, config)
   }
 }
 

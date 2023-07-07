@@ -1,18 +1,12 @@
 <template>
   <el-menu mode="horizontal"
-           router
            class="z-header g-height-60px g-width-100%"
-           :default-active="NavigationMenu[0].title">
+           :default-active="(route.name as any)">
     <el-menu-item v-for="menuItem in NavigationMenu"
                   :key='menuItem.title'
-                  :index="menuItem.title">
-    <el-tooltip effect="light"
-                placement="bottom"
-                :content="menuItem.title">
-      <router-link :to="'/' + menuItem.title">
-        <el-icon><span :[menuItem.icon]="''"></span></el-icon>
-      </router-link>
-    </el-tooltip>
+                  :index="menuItem.title"
+                  @click="handleClick(menuItem.title)">
+      <el-icon><span :[menuItem.icon]="''"></span></el-icon>
     </el-menu-item>
     <div class="_color-scheme g-margin-left-auto g-pointer g-padding-right-5vw"
                 icon-carbon:awake
@@ -25,6 +19,9 @@
 
 <script lang="ts" setup>
 import { NavigationMenu } from './header.config'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const nextColorScheme = ref('transparent')
 
@@ -41,6 +38,10 @@ function handleMouseleave () {
 function handleMouseup () {
   useColorSchemeStore.changeColorScheme()
   handleMouseleave()
+}
+
+function handleClick (name: typeof NavigationMenu[0]['title']) {
+  app.router?.push({ name })
 }
 
 </script>
