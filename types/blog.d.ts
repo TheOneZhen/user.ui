@@ -16,7 +16,6 @@ declare type TagType = {
   title: string
   description: string
   images: string[]
-  articleIds: Array<ArticleType['id']>
 }
 /**
  * 文章类型
@@ -32,4 +31,5 @@ declare type ArticleType = {
   likes: number
   dislikes: number
   views: number
+  isShow: boolean
 }

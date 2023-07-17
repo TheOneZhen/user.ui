@@ -16,7 +16,8 @@ const range = [
   'font',
   'row-gap',
   'column-gap',
-  'max-width'
+  'max-width',
+  'user-select'
 ]
 
 const rangeReg = new RegExp('g-((?:' + range.join('|') + ')(?:-(?:top|bottom|right|left))?)')

@@ -1,11 +1,10 @@
+zhenisbusy: {title: 'todo', description: '之后都要按这个格式写**label**'}
 # 新内容摄入
 1. join pnpm
 2. for SEO
     1. article not compile to html-doc in back-end
     2. title of article will be keywords in dialog page into SEO
 3. lottie
-4. 优化项目中代码格式
-    1. vue模板中采用一种很清爽的写法，你懂的那种写法
 5. 找到一个很有意思的svg作品库：https://www1.plurib.us/svg_gallery/
 6. 自适应单位以及自适应布局
 7. 把userearth部署一下
@@ -44,7 +43,20 @@
 
 
 ## 下午开发任务线
-1. 查看文章
 2. 文章接口
    1. 解析markdown，插入文章
    2. 更新文章
+3. 文章相关资源上传
+   1. 静态资源保存方式
+      1. 保存到静态目录下，由Nginx返回
+      2. 保存到psql中
+4. ui优化
+
+## 文章按行批注
+
+
+## 文章系统
+
+如何更新文章
+
+## 用户系统

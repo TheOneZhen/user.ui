@@ -1,10 +1,14 @@
 <template>
-  <div class="z-article" v-if="article">
-    <h2 v-html="article.title"></h2>
-    <!-- 显示标签 -->
-    <z-markdown-preview :content="article.content"></z-markdown-preview>
-
-  </div>
+  <el-skeleton class="z-article" :throttle="500" v-if="article">
+    <template #template>
+      <h2 v-html="article.title"></h2>
+      <!-- 显示标签 -->
+      <z-markdown-preview :content="article.content"></z-markdown-preview>
+    </template>
+    <template #default>
+      <el-skeleton :rows="8" animated />
+    </template>
+  </el-skeleton>
 </template>
 
 <script lang="ts" setup>
