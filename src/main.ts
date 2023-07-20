@@ -33,4 +33,5 @@ createApp(App)
   .mount('#app')
 
 window.app = app
+window.name = 'zhenisbusy'
 app.init()

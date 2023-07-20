@@ -39,6 +39,11 @@ const router = createRouter({
           component: () => import('@/components/findme/FindMe.vue')
         },
         {
+          path: 'user',
+          name: RouterName.USER,
+          component: () => import('@/components/user/login.vue')
+        },
+        {
           path: '/:pathMatch(.*)*',
           name: RouterName.NOTFOUND,
           component: () => import('@/components/error/404.vue')
@@ -51,6 +56,14 @@ const router = createRouter({
       component: () => import('@/components/home/PageTwo.vue')
     }
   ]
+})
+
+router.afterEach((to) => {
+  const code = to.query['code']
+  if (code) {
+    window.opener.postMessage(code, window.location.origin)
+    window.close()
+  }
 })
 
 export default router

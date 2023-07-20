@@ -4,5 +4,7 @@ export enum RouterName {
   BLOG = 'blog',
   ARTICLE = 'article',
   FINDME = 'find me',
-  NOTFOUND = 'not found'
+  NOTFOUND = 'not found',
+  USER = 'user',
+  USER_LOGIN = 'user login'
 }

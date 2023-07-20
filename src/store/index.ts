@@ -2,6 +2,7 @@ import { UseDrawerStore } from './UseDrawerStore'
 import { UseEnterTimeStore } from './UseEnterTimeStore'
 import { UseLayoutStore } from './UseLayoutStore'
 import { UseColorSchemeStore } from './UseColorSchemeStore'
+import { UseUserStore } from './UseUserStore'
 import { StoreDefinition } from 'pinia'
 
 /**
@@ -15,7 +16,8 @@ export class Store {
     'UseDrawerStore': UseDrawerStore,
     'UseEnterTimeStore': UseEnterTimeStore,
     'UseLayoutStore': UseLayoutStore,
-    'UseColorSchemeStore': UseColorSchemeStore
+    'UseColorSchemeStore': UseColorSchemeStore,
+    'UseUserStore': UseUserStore
   }
   /**
    * 所有数据都是默认响应式解构
@@ -24,6 +26,7 @@ export class Store {
   get (key: 'UseEnterTimeStore'): ReturnType<typeof UseEnterTimeStore>
   get (key: 'UseLayoutStore'): ReturnType<typeof UseLayoutStore>
   get (key: 'UseColorSchemeStore'): ReturnType<typeof UseColorSchemeStore>
+  get (key: 'UseUserStore'): ReturnType<typeof UseUserStore>
   get (key: string) {
     return this._map[key]()
   }

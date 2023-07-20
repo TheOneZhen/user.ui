@@ -1,18 +1,16 @@
 import type { CreateAxiosDefaults } from 'axios'
 
 export const requestConfig: CreateAxiosDefaults = {
-  baseURL: (import.meta.env ? '' : 'https://zhenisbusy.space') + '/dynamic',
+  baseURL: '/dynamic',
   headers: {
     Timestamp: Date.now(),
     'Content-Type': 'application/json;charset=UTF-8',
-    common: {
-      // Authorization: AUTH_TOKEN
-    }
+    Authorization: ''
   },
   transformRequest: [],
   transformResponse: [],
   paramsSerializer: (param) => JSON.stringify(param),
-  timeout: 10000,
+  timeout: 1000 * 60,
   withCredentials: false,
   responseType: 'json',
   xsrfCookieName: 'CSRF-TOKEN',

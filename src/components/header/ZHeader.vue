@@ -8,6 +8,7 @@
                   @click="handleClick(menuItem.title)">
       <el-icon><span :[menuItem.icon]="''"></span></el-icon>
     </el-menu-item>
+    <div @click="handleLogin">github登录</div>
     <div class="_color-scheme g-margin-left-auto g-pointer g-padding-right-5vw"
                 icon-carbon:awake
                 @mousedown="handleMousedown"
@@ -44,6 +45,9 @@ function handleClick (name: typeof NavigationMenu[0]['title']) {
   app.router?.push({ name })
 }
 
+function handleLogin () {
+  app.user.loginByGithub()
+}
 </script>
 
 <style lang="scss" scoped>

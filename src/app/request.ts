@@ -1,12 +1,14 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelTokenStatic } from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig, CancelTokenStatic } from 'axios'
 import { requestConfig } from './net.config'
-class Request {
+
+export class Request {
   protected _request: AxiosInstance
   protected pending: {url: string, cancel: Function}[] = []
   protected cancelToken: CancelTokenStatic = axios.CancelToken
 
   constructor () {
     this._request = axios.create(requestConfig)
+    this.interceptorsRequest()
     this.interceptorsResponse()
   }
 
@@ -15,13 +17,11 @@ class Request {
    */
   protected interceptorsRequest () {
     this._request.interceptors.request.use(
-      // (request) => {
-      //   const { xsrfCookieName, xsrfHeaderName } = request
-      //   if (!xsrfCookieName || !xsrfHeaderName) throw STATE.DATA_NOT_EXIST
-      //   const xsrf_token = cookie.get(xsrfCookieName)
-      //   request.headers[xsrfHeaderName] = xsrf_token
-      //   return request
-      // }
+      (request) => {
+        const user = app.store.get('UseUserStore')
+        if (user.token) request.headers.Authorization = user.token
+        return request
+      }
     )
   }
   /**
@@ -31,8 +31,7 @@ class Request {
     this._request.interceptors.response.use(
       (response) => JSON.parse(response.data),
       (error) => {
-        console.error('请求错误！', error)
-        throw error
+        // console.error('请求错误！', error)
       }
     )
   }
@@ -51,18 +50,19 @@ class Request {
     })
   }
 
-  public post<T = any, D = {}> (url: string, data: D, config: AxiosRequestConfig<D> = {}) {
-    return this._request.post<T, T>(url, JSON.stringify(data), config)
+  public post<T = any, D = {}> (url: string, data: D, config: AxiosRequestConfig<D> = {}, cors = false) {
+    const serializer = JSON.stringify(data)
+    if (cors) return axios.post<T, T>(url, serializer, config)
+    return this._request.post<T, T>(url, serializer, config)
   }
 
-  public get<T = any, D = {}> (url: string, param: D, config: AxiosRequestConfig<D> = {}) {
-    let pin = Object
+  public get<T = any, D = {}> (url: string, param: D, config: AxiosRequestConfig<D> = {}, cors = false) {
+    const pin = Object
       .entries(param)
       .map(([k, v]) => `${k}=${v}`)
       .join('&')
-    if (pin) pin = '?' + pin
-    return this._request.get<T, T, D>(`${url}${pin}`, config)
+    if (pin) url += '?' + pin
+    if (cors) return axios.get<T, T, D>(url, config)
+    return this._request.get<T, T, D>(url, config)
   }
 }
-
-export default new Request()

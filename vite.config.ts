@@ -50,14 +50,11 @@ export default defineConfig(({ command, mode }) => {
     ],
     optimizeDeps: {},
     server: {
-      cors: true,
       proxy: {
         '/dynamic': {
           target: 'http://127.0.0.1:8000/',
-          changeOrigin: true,
-          rewrite: (path) => {
-            console.log('the path is', path)
-            return path.replace(/^\/dynamic/, '')
+          rewrite (path) {
+            return path.replace('/dynamic', '')
           }
         }
       }
