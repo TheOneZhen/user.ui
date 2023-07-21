@@ -25,6 +25,7 @@ export class User {
       .post<UserData>(USERAPI.ACCESS_GITHUB_USER_DATA, { code })
       .then(result => {
         console.log('execute success!', result)
+        user.setUserData(result)
       })
       .catch(reason => {
         user.clearUserInfo()

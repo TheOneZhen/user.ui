@@ -1,6 +1,4 @@
 export enum USERAPI {
-  GITHUB = 'https://github.com/',
-  GITHUB_ACCESS_TKOEN = 'login/oauth/access_token',
   ACCESS_GITHUB_USER_DATA = '/user/accessGithubUserData',
   USER_LOGIN = '/user/login'
 }

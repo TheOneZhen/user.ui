@@ -50,19 +50,16 @@ export class Request {
     })
   }
 
-  public post<T = any, D = {}> (url: string, data: D, config: AxiosRequestConfig<D> = {}, cors = false) {
-    const serializer = JSON.stringify(data)
-    if (cors) return axios.post<T, T>(url, serializer, config)
-    return this._request.post<T, T>(url, serializer, config)
+  public post<T = any, D = {}> (url: string, data: D, config: AxiosRequestConfig<D> = {}) {
+    return this._request.post<T, T>(url, JSON.stringify(data), config)
   }
 
-  public get<T = any, D = {}> (url: string, param: D, config: AxiosRequestConfig<D> = {}, cors = false) {
+  public get<T = any, D extends {} = {}> (url: string, param: D, config: AxiosRequestConfig<D> = {}) {
     const pin = Object
       .entries(param)
       .map(([k, v]) => `${k}=${v}`)
       .join('&')
     if (pin) url += '?' + pin
-    if (cors) return axios.get<T, T, D>(url, config)
     return this._request.get<T, T, D>(url, config)
   }
 }
