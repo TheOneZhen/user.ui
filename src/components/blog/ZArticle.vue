@@ -1,9 +1,10 @@
 <template>
-  <div class="z-article g-padding-5vh-4vw">
+  <div class="z-article g-padding-5vh-4vw g-background-#FFFFFF">
     <el-skeleton :throttle="100" v-if="article">
       <template #template>
-        <h1 class="z-article-title g-text-align-center g-margin-bottom-5vh" v-html="article.title"></h1>
-        <div class="z-article-tag g-margin-bottom-5vh">
+        <h1 class="z-article-title g-text-align-center g-margin-0-0-5vh-0" v-html="article.title"></h1>
+        <p class="g-opacity-.4 g-text-align-right" v-text="article.create_time"></p>
+        <div class="z-article-tag g-margin-0-0-5vh-0">
           <el-tag v-for="tag in tags"
                   :index="tag.id"
                   v-text="tag.title"/>
@@ -46,6 +47,5 @@ onMounted(() => getArticle(+props.index))
 
 <style lang="scss" scoped>
 .z-article {
-  background-color: #FFFFFF;
 }
 </style>

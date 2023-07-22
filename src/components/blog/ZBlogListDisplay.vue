@@ -1,5 +1,5 @@
 <template>
-  <el-timeline class="z-blog-list">
+  <el-timeline class="z-blog-list g-padding-5vh-2vw-0-0">
     <el-timeline-item v-for="item in app.blog.catalog"
                       :key="item.id"
                       center
@@ -17,7 +17,5 @@
 
 <style lang='scss' scoped>
 .z-blog-list {
-  padding-top: 5vh;
-  padding-right: 2vw;
 }
 </style>

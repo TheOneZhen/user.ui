@@ -1,5 +1,5 @@
 <template>
-  <div slide-enter class="z-markdown-preview markdown-body" v-html="html">
+  <div slide-enter class="z-markdown-preview markdown-body g-background-transparent" v-html="html">
   </div>
 </template>
 
@@ -16,6 +16,5 @@ const html = app.blog.converterMdToHTML(props.content)
 
 <style lang="scss" scoped>
 .z-markdown-preview {
-  background-color: transparent;
 }
 </style>

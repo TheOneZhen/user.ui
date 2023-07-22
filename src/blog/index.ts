@@ -11,6 +11,10 @@ export class Blog {
   converter = new showdown.Converter()
   catalog = new Array<CatalogItemType>()
 
+  constructor () {
+    this.converter.setFlavor('github')
+  }
+
   init () {
     this.getCatalog()
     this.getBlogTags()
@@ -59,6 +63,8 @@ export class Blog {
     let article = this.articleMap.get(index)
     if (!article) {
       article = await app.request.post<ArticleType>(BLOGAPI.GET_ARTICLE, { index })
+      article.update_time = this.formatDate(article.update_time)
+      article.create_time = this.formatDate(article.create_time)
       this.articleMap.set(article.id, article)
     }
     return article
@@ -77,5 +83,9 @@ export class Blog {
    */
   converterMdToHTML (text: string) {
     return this.converter.makeHtml(text)
+  }
+
+  formatDate (date: string) {
+    return dayjs(date).format('YYYY年MM月DD日')
   }
 }

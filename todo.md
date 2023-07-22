@@ -48,3 +48,4 @@ zhenisbusy: {title: 'todo', description: '之后都要按这个格式写**label*
 1. 各内容界面样式，风格
 2. 评论模块
 3. 标签配置
+4. 打包体积优化

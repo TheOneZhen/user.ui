@@ -19,17 +19,18 @@ const range = [
   'user-select',
   'flex-grow',
   'font-size',
-  'text-align'
+  'text-align',
+  'opacity',
+  'background'
 ]
 
-const rangeReg = new RegExp('g-((?:' + range.join('|') + ')(?:-(?:top|bottom|right|left))?)')
+const rangeReg = new RegExp('g-(' + range.join('|') + ')-(.*)')
 
 function generateStyleNew (matched: RegExpMatchArray | null) {
   const result: Record<string, string> = {}
-  if (matched !== null && !!matched.input && matched.length === 2) {
-    result[matched[1]] = matched
-      .input
-      .split(new RegExp(matched[0] + '|-', 'g'))
+  if (matched !== null && !!matched.input && matched.length === 3) {
+    result[matched[1]] = matched[2]
+      .split(new RegExp('-', 'g'))
       .filter(Boolean)
       .join(' ')
   }
