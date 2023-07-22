@@ -13,12 +13,13 @@ const range = [
   'top',
   'bottom',
   'right',
-  'font',
   'row-gap',
   'column-gap',
   'max-width',
   'user-select',
-  'flex-grow'
+  'flex-grow',
+  'font-size',
+  'text-align'
 ]
 
 const rangeReg = new RegExp('g-((?:' + range.join('|') + ')(?:-(?:top|bottom|right|left))?)')

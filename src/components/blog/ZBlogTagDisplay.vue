@@ -1,6 +1,6 @@
 <template>
   <div class="g-jc-sa g-flex-wrap g-row-gap-5vh">
-    <el-card v-for="[, tag] in tagMap"
+    <el-card v-for="[, tag] in app.blog.tagMap"
              class="_item g-max-width-20vw g-pointer"
              :key="tag.id">
       <template #header>
@@ -17,12 +17,6 @@
     </el-card>
   </div>
 </template>
-
-<script lang='ts' setup>
-
-const tagMap = app.blog.tagMap
-
-</script>
 
 <style lang='scss' scoped>
 ._tag, ._image {

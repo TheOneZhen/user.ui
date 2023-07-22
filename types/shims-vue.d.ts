@@ -5,8 +5,11 @@
  * 加这一段是是告诉 ts，vue 文件是这种类型的。
  * 可以把这一段删除，会发现 import 的所有 vue 类型的文件都会报错。
  */
+// 必须ESM，不然会覆盖原类型
+import type { App } from '@/app'
 
- declare module '*.vue' {
-    import Vue from 'vue'
-    export default Vue
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    app: App
   }
+}

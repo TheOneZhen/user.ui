@@ -25,11 +25,14 @@ microApp.start({
   }
 })
 
-createApp(App)
+const AppInstance = createApp(App)
   .use(createPinia())
   .use(router)
   .directive('click-out-side', ClickOutside)
-  .mount('#app')
+
+AppInstance.config.globalProperties.app = app
+
+AppInstance.mount('#app')
 
 window.app = app
 window.name = 'zhenisbusy'
