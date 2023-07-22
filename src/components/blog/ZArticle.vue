@@ -3,18 +3,25 @@
     <el-skeleton :throttle="100" v-if="article">
       <template #template>
         <h1 class="z-article-title g-text-align-center g-margin-0-0-5vh-0" v-html="article.title"></h1>
-        <p class="g-opacity-.4 g-text-align-right" v-text="article.create_time"></p>
+        <p class="g-opacity-.4 g-text-align-right">
+          {{ article.create_time }}
+        </p>
         <div class="z-article-tag g-margin-0-0-5vh-0">
           <el-tag v-for="tag in tags"
                   :index="tag.id"
                   v-text="tag.title"/>
         </div>
         <z-markdown-preview :content="article.content"></z-markdown-preview>
+        <p class="g-opacity-.4 g-text-align-right">
+          {{ '最近修改：' + article.update_time }}
+        </p>
       </template>
       <template #default>
         <el-skeleton :rows="8" animated />
       </template>
     </el-skeleton>
+    <!-- 上一篇 -->
+    <!-- 下一篇 -->
   </div>
 </template>
 

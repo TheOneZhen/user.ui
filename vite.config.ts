@@ -70,7 +70,7 @@ export default defineConfig(() => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "@/global/scss/index.scss" as *;'
+          additionalData: '@use "@/global/scss/elementReset.scss" as *;'
         }
       }
     },

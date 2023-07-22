@@ -1,5 +1,5 @@
 <template>
-  <el-timeline class="z-blog-list g-padding-5vh-2vw-0-0">
+  <el-timeline class="z-blog-list g-padding-5vh-2vw">
     <el-timeline-item v-for="item in app.blog.catalog"
                       :key="item.id"
                       center

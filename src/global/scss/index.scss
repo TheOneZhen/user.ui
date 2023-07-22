@@ -2,6 +2,6 @@
 // scss的@improt是在scss编译阶段进行的，类似ESM的import，在运行阶段不会阻塞渲染
 @use './font' as *;
 @use './global' as *;
-@use './elementReset' as *;
+// @use './elementReset' as *;
 @use './theme' as *;
-@use './animation.scss' as *;
+@use './animation' as *;
