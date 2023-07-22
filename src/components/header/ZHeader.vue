@@ -1,6 +1,7 @@
 <template>
   <el-menu mode="horizontal"
            class="z-header g-height-60px g-width-100%"
+           :ellipsis="false"
            :default-active="(route.name as any)">
     <el-menu-item v-for="menuItem in NavigationMenu"
                   :key='menuItem.title'
@@ -8,13 +9,20 @@
                   @click="handleClick(menuItem.title)">
       <el-icon><span :[menuItem.icon]="''"></span></el-icon>
     </el-menu-item>
-    <div @click="handleLogin">github登录</div>
-    <div class="_color-scheme g-margin-left-auto g-pointer g-padding-right-5vw"
-                icon-carbon:awake
-                @mousedown="handleMousedown"
-                @mouseleave="handleMouseleave"
-                @mouseup="handleMouseup">
-  </div>
+    <div class="flex-grow-1"></div>
+    <el-menu-item index="github" @click="handleGitHub">
+      <el-icon>
+        <span class="_color-scheme" icon-carbon:logo-github></span>
+      </el-icon>
+    </el-menu-item>
+    <el-menu-item index="color-scheme"
+                  @mousedown="handleMousedown"
+                  @mouseleave="handleMouseleave"
+                  @mouseup="handleMouseup">
+      <el-icon>
+        <span class="_color-scheme" icon-carbon:awake></span>
+      </el-icon>
+    </el-menu-item>
   </el-menu>
 </template>
 
@@ -45,8 +53,8 @@ function handleClick (name: typeof NavigationMenu[0]['title']) {
   app.router?.push({ name })
 }
 
-function handleLogin () {
-  app.user.loginByGithub()
+function handleGitHub () {
+  window.open('https://github.com/TheOneZhen')
 }
 </script>
 
@@ -57,7 +65,6 @@ function handleLogin () {
   border-bottom: none;
   transition: background 1s ease;
   ._color-scheme {
-    align-self: center;
     color: var(--theme-background-sun);
   }
 }

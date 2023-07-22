@@ -22,7 +22,7 @@ const props = defineProps<{
 const data = ref<ZComment[]>([])
 
 onBeforeMount(async () => {
-  const result = await app.service.mainService.getBlogComment(props.blogId, props.quoteId)
-  data.value.push(...result)
+  // const result = await app.blog.getBlogComment(props.blogId, props.quoteId)
+  // data.value.push(...result)
 })
 </script>

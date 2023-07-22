@@ -1,7 +1,7 @@
 // css的@improt会导致http请求，阻塞渲染
 // scss的@improt是在scss编译阶段进行的，类似ESM的import，在运行阶段不会阻塞渲染
-@import './font';
-@import './global';
-@import './elementReset';
-@import './theme';
-@import './animation.scss';
+@use './font' as *;
+@use './global' as *;
+@use './elementReset' as *;
+@use './theme' as *;
+@use './animation.scss' as *;

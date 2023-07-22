@@ -43,14 +43,7 @@ zhenisbusy: {title: 'todo', description: '之后都要按这个格式写**label*
 ## 文章按行批注
 
 
-## 用户系统
+## 网站主题更新，细节优化
 
-用户点击登录，返回code
-根据code获取token
-根据token获取用户信息
-
-如果没有token，，登录，请求github获取用户信息
-如果有，直接从数据库获取信息
-
-
-## 移除service模块
+1. 各内容界面样式，风格
+2. 评论模块

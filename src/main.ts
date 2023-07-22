@@ -1,6 +1,5 @@
 import App from './App.vue'
 import router from './router'
-import '@/global/scss/index.scss'
 import 'css-doodle'
 import microApp from '@micro-zoe/micro-app'
 import { createPinia } from 'pinia'

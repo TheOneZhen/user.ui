@@ -22,6 +22,7 @@ export class App {
 
   async init () {
     this.blog.init()
+    this.user.login()
   }
 
   checkCsrfToken () {

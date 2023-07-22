@@ -19,7 +19,7 @@ dns.setDefaultResultOrder('verbatim')
  *  - import.meta是规范内容，由模块暴露特定上下文用于模块环境使用
  *  - 生产环境时，import.meta.env会被**静态替换**
  */
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(() => {
   const common: UserConfig = {
     plugins: [
       Vue(
@@ -40,7 +40,9 @@ export default defineConfig(({ command, mode }) => {
       }),
       ElementComponents({
         resolvers: [
-          ElementPlusResolver()
+          ElementPlusResolver({
+            importStyle: 'sass'
+          })
         ],
         dts: resolve(__dirname, 'types', 'component.d.ts')
       }),
@@ -63,6 +65,13 @@ export default defineConfig(({ command, mode }) => {
       alias: {
         '@': resolve(__dirname, './src'),
         'icon': resolve(__dirname, './public/icon')
+      }
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/global/scss/index.scss" as *;'
+        }
       }
     },
     build: {

@@ -2,8 +2,9 @@ import { USERAPI } from './user.api'
 
 export class User {
 
-  loginByGithub () {
-    const subwin = window.open('https://github.com/login/oauth/authorize?client_id=6bc90ff0223722776ace&redirect_uri=' + window.location.href)
+  async loginByGithub () {
+    const clientId = await app.request.get<string>(USERAPI.GET_ACCESS_ID, {})
+    const subwin = window.open(`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${window.location.href}`)
     if (subwin) {
       const listener = (event: MessageEvent) => {
         // 接收到code，开始登录
@@ -34,6 +35,12 @@ export class User {
   }
 
   login () {
-
+    const user = app.store.get('UseUserStore')
+    if (user.token) {
+      app
+        .request
+        .post<UserData>(USERAPI.USER_LOGIN, {})
+        .then(userData => user.setUserData(userData))
+    }
   }
 }
