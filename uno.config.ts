@@ -21,7 +21,8 @@ const range = [
   'font-size',
   'text-align',
   'opacity',
-  'background'
+  'background',
+  'position'
 ]
 
 const rangeReg = new RegExp('g-(' + range.join('|') + ')-(.*)')

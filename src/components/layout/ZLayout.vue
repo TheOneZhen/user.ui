@@ -1,26 +1,21 @@
 <template>
-  <el-scrollbar id="z-main-scroll">
+  <el-scrollbar id="z-main-scroll" ref="scrollRef">
     <css-doodle ref="doodle" class="g-absolute" click-to-update use="var(--rule)" />
     <div class="z-main g-relative" @click.self="() => doodle.update()" >
       <z-header />
       <router-view class="g-relative" />
       <!-- <z-bullet-screen></z-bullet-screen> -->
     </div>
-    <z-footer></z-footer>
+    <el-backtop target="#z-main-scroll .el-scrollbar__wrap" class="g-left-92vw" ></el-backtop>
+    <z-footer />
   </el-scrollbar>
 </template>
 
 <script lang="ts" setup>
-/**
- * 因为网站主体是SPA，所以我在#app上对页面的宽和高进行了约束，之后各个页面的布局建立于此
- * 1. 原子组件不允许约束任何尺寸，尺寸应由其父组件约束
- * 2. 布局层面，滚动条应该只有一个，位于本组件下
- * 3. 对于自适应布局，应尽可能使用自适应单位，比如字体全部使用rem
- */
 import { useRouter } from 'vue-router'
-const doodle = ref<any>(null)
-
 app.router = useRouter()
+
+const doodle = ref<any>(null)
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,10 @@
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
-  $menu:(
+  $menu: (
     'active-color': var(--theme-background-sun),
     'hover-text-color': var(--theme-background-sun),
     'hover-bg-color': transparent
+  ),
+  $backtop: (
+    'text-color': var(--theme-background-sun)
   )
 );

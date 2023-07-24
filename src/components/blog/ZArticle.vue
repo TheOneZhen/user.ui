@@ -15,11 +15,28 @@
         <p class="g-opacity-.4 g-text-align-right">
           {{ '最近修改：' + article.update_time }}
         </p>
+        <el-button circle class="g-position-fixed g-left-92vw g-bottom-280px">
+          <el-icon icon-ic:round-remove-red-eye />
+          {{ article.views }}
+        </el-button>
+        <el-button circle class="g-position-fixed g-left-92vw g-bottom-220px">
+          <el-icon icon-material-symbols:favorite />
+          {{ article.likes }}
+        </el-button>
+        <el-button circle class="g-position-fixed g-left-92vw g-bottom-160px">
+          <el-icon icon-material-symbols:heart-broken />
+          {{ article.dislikes }}
+        </el-button>
       </template>
       <template #default>
         <el-skeleton :rows="8" animated />
       </template>
     </el-skeleton>
+    <el-button circle
+               class="g-position-fixed g-left-92vw g-bottom-100px"
+               @click="hanldeComment">
+      <el-icon icon-pajamas:comment-dots />
+    </el-button>
     <!-- 上一篇 -->
     <!-- 下一篇 -->
   </div>
@@ -48,6 +65,8 @@ function getArticle (index: ArticleType['id']) {
   article.value = null
   app.blog.getArticle(index).then(data => article.value = data)
 }
+
+function hanldeComment () {}
 
 onMounted(() => getArticle(+props.index))
 </script>

@@ -10,13 +10,12 @@
       <el-icon :[menuItem.icon]="''" />
     </el-menu-item>
     <div class="flex-grow-1"></div>
-    <el-menu-item index="github">
+    <el-menu-item>
       <el-link href="https://github.com/TheOneZhen" target="_blank" :underline="false">
         <el-icon icon-carbon:logo-github />
       </el-link>
     </el-menu-item>
-    <el-menu-item index="color-scheme"
-                  @mousedown="handleMousedown"
+    <el-menu-item @mousedown="handleMousedown"
                   @mouseleave="handleMouseleave"
                   @mouseup="handleMouseup">
       <el-icon class="_color-scheme" icon-carbon:awake />
