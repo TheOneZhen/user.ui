@@ -49,6 +49,10 @@ export class User {
     return result.icons
   }
 
+  addComment (content: CommentType['content'], article: CommentType['article'], quote: CommentType['quote']) {
+    return app.request.post<boolean>(USERAPI.ADD_COMMENTS, { content, article, quote })
+  }
+
   getComments (article: CommentType['article'], quote: CommentType['quote']) {
     return app.request.post<CommentType[]>(USERAPI.GET_COMMENTS, { article, quote })
   }

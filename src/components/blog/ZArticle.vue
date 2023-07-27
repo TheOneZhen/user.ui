@@ -40,6 +40,7 @@
     <!-- 上一篇 -->
     <!-- 下一篇 -->
   </div>
+  <z-comment :article="+index || null" :quote="null" />
 </template>
 
 <script lang="ts" setup>
@@ -47,7 +48,7 @@
 const props = defineProps<{
   index: string
 }>()
-
+const useReply = app.store.get('UseReplyStore')
 const article = ref<null | ArticleType>(null)
 const tags = computed(() => {
   const result: TagType[] = []
@@ -59,6 +60,7 @@ const tags = computed(() => {
   }
   return result
 })
+
 watch (() => props.index, (id) => getArticle(+id))
 
 function getArticle (index: ArticleType['id']) {
@@ -66,7 +68,10 @@ function getArticle (index: ArticleType['id']) {
   app.blog.getArticle(index).then(data => article.value = data)
 }
 
-function hanldeComment () {}
+function hanldeComment () {
+  // 跳到评论的部分
+  useReply.on(null, article.value)
+}
 
 onMounted(() => getArticle(+props.index))
 </script>

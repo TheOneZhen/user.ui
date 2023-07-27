@@ -9,11 +9,12 @@ declare type UserData = {
 /**
  * 评论结构
  */
- declare type CommentType  = UserData & {
+ declare type CommentType  = {
   id: number
   content: string
   quote: CommentType['id'] | null
   article: ArticleType['id'] | null
+  user: UserData
   createTime: string
   likes: number
   dislikes: number

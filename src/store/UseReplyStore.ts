@@ -2,12 +2,39 @@ import { defineStore } from 'pinia'
 
 export const UseReplyStore = defineStore('UseReplyStore', () => {
   const visible = ref(false)
-  const quotedComment = ref<null | CommentType>(null)
-
-  function on (quoted: CommentType) {
+  const reference = ref('')
+  const comment = reactive<{
+    content: CommentType['content']
+    article: CommentType['article']
+    quote: CommentType['quote']
+  }>({
+    content: '',
+    article: null,
+    quote: null
+  })
+  const fresh = ref<Function | null>(null)
+  function on (quote: CommentType | null = null, article: ArticleType | null = null) {
+    reference.value = '留言'
+    if (article) {
+      reference.value = `评论：${article.title}`
+      comment.article = article.id
+    }
+    if (quote) {
+      reference.value = `@ ${quote.user.name}`
+      comment.quote = quote.id
+    }
     visible.value = true
-    quotedComment.value = quoted
   }
 
-  return { visible, quotedComment, on }
+  function off () {
+    visible.value = false
+  }
+
+  function clear () {
+    comment.content = ''
+    comment.article = null
+    comment.quote = null
+  }
+
+  return { visible, reference, comment, fresh, clear, on, off }
 })
