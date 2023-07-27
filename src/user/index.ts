@@ -43,4 +43,13 @@ export class User {
         .then(userData => user.setUserData(userData))
     }
   }
+
+  async getIcons () {
+    const result = await app.proxyRequest<{icons: string[]}>('https://icones.js.org/collections/streamline-emojis-meta.json')
+    return result.icons
+  }
+
+  getComments (article: CommentType['article'], quote: CommentType['quote']) {
+    return app.request.post<CommentType[]>(USERAPI.GET_COMMENTS, { article, quote })
+  }
 }

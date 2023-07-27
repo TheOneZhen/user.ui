@@ -3,7 +3,7 @@
  */
 declare type CatalogItemType = {
   id: number
-  update_time: string
+  updateTime: string
   title: string
   tagIds: Array<TagType['id']>
   description: string
@@ -22,8 +22,8 @@ declare type TagType = {
  */
 declare type ArticleType = {
   id: number
-  create_time: string
-  update_time: string
+  createTime: string
+  updateTime: string
   title: string
   tagIds: TagType.id[]
   content: string

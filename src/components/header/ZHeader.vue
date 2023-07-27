@@ -9,7 +9,7 @@
                   @click="() => app.router?.push({ name: menuItem.title })">
       <el-icon :[menuItem.icon]="''" />
     </el-menu-item>
-    <div class="flex-grow-1"></div>
+    <div class="g-flex-auto"></div>
     <el-menu-item>
       <el-link href="https://github.com/TheOneZhen" target="_blank" :underline="false">
         <el-icon icon-carbon:logo-github />

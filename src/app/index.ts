@@ -28,6 +28,10 @@ export class App {
   checkCsrfToken () {
     this.request.post<Boolean>(APPAPI.CHECK_CSRF_TOKEN, {})
   }
+  // 代理请求
+  async proxyRequest<T> (url: string, params = {}, method = 'GET', headers = {}) {
+    return this.request.post<T>(APPAPI.PROXY_REQUEST, { url, params, method, headers })
+  }
 }
 
 export const app = new App()

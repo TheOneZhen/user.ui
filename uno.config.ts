@@ -17,12 +17,17 @@ const range = [
   'column-gap',
   'max-width',
   'user-select',
-  'flex-grow',
+  'flex',
   'font-size',
   'text-align',
   'opacity',
   'background',
-  'position'
+  'position',
+  'min-width',
+  'display',
+  'align-items',
+  'min-height',
+  'max-height'
 ]
 
 const rangeReg = new RegExp('g-(' + range.join('|') + ')-(.*)')

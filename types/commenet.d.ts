@@ -13,12 +13,12 @@ declare type CommentStyle = {
 declare type ZComment = {
   id: string
   userId: string
-  quoteId: string
+  quote: string
   content: string
   likes: number
   dislikes: number
-  create_time: srting
-  update_time: string
+  createTime: srting
+  updateTime: string
   blogId: string
 }
 /** 弹幕组件props */

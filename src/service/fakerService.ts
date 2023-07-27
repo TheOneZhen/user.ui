@@ -56,12 +56,12 @@ export class FakerService {
           Mock.mock({
             id: Mock.Random.guid(),
             userId: Mock.Random.guid(),
-            quoteId: Mock.Random.guid(),
+            quote: Mock.Random.guid(),
             content: Mock.Random.sentence(),
             likes: Mock.Random.range(),
             dislikes: Mock.Random.range(),
-            create_time: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
-            update_time: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
+            createTime: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
+            updateTime: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
             blogId: Mock.Random.guid()
           })
         ]

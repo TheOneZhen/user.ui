@@ -4,7 +4,7 @@
       <template #template>
         <h1 class="z-article-title g-text-align-center g-margin-0-0-5vh-0" v-html="article.title"></h1>
         <p class="g-opacity-.4 g-text-align-right">
-          {{ article.create_time }}
+          {{ article.createTime }}
         </p>
         <div class="z-article-tag g-margin-0-0-5vh-0">
           <el-tag v-for="tag in tags"
@@ -13,7 +13,7 @@
         </div>
         <z-markdown-preview :content="article.content"></z-markdown-preview>
         <p class="g-opacity-.4 g-text-align-right">
-          {{ '最近修改：' + article.update_time }}
+          {{ '最近修改：' + article.updateTime }}
         </p>
         <el-button circle class="g-position-fixed g-left-92vw g-bottom-280px">
           <el-icon icon-ic:round-remove-red-eye />

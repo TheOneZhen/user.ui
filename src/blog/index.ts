@@ -27,7 +27,7 @@ export class Blog {
       .then(data => this.catalog.splice(
         0,
         this.catalog.length,
-        ...data.sort((a, b) => -(dayjs(a.update_time) > dayjs(b.update_time)))
+        ...data.sort((a, b) => -(dayjs(a.updateTime) > dayjs(b.updateTime)))
       ))
   }
 
@@ -50,21 +50,12 @@ export class Blog {
     return result
   }
 
-  /**
-   * 获取指定文章引用指定评论的评论
-   * @param blogId 如果为空，视为顶部评论
-   * @param quoteId 如果为空，视为全局评论（弹幕，留言板评论）
-   */
-  getComment (blogId: ZComment['blogId'], quoteId: ZComment['quoteId']) {
-    app.request.post<Array<ZComment>>(BLOGAPI.GET_COMMENT, { blogId, quoteId })
-  }
-
   async getArticle (index: ArticleType['id']) {
     let article = this.articleMap.get(index)
     if (!article) {
       article = await app.request.post<ArticleType>(BLOGAPI.GET_ARTICLE, { index })
-      article.update_time = this.formatDate(article.update_time)
-      article.create_time = this.formatDate(article.create_time)
+      article.updateTime = this.formatDate(article.updateTime)
+      article.createTime = this.formatDate(article.createTime)
       this.articleMap.set(article.id, article)
     }
     return article

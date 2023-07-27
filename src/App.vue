@@ -2,6 +2,7 @@
   <el-config-provider size="large">
     <router-view />
     <teleport to="body">
+      <z-reply />
       <el-drawer v-model="useDrawerStore.visible"
                  append-to-body
                  destroy-on-close
