@@ -3,7 +3,8 @@
              width="40%"
              :show-close="false"
              draggable
-             align-center>
+             align-center
+             style="z-index: 9999;">
     <template #header>
       <el-text>{{ useReply.reference }}</el-text>
     </template>
@@ -35,7 +36,8 @@ async function handleEnter () {
   if (result) {
     useReply.clear()
     useReply.off()
-    useReply.fresh && useReply.fresh()
+    // 刷新最上层列表
+    useReply.fresh.length > 0 && useReply.fresh[useReply.fresh.length - 1]()
   }
 }
 

@@ -12,7 +12,8 @@ export const UseReplyStore = defineStore('UseReplyStore', () => {
     article: null,
     quote: null
   })
-  const fresh = ref<Function | null>(null)
+  const fresh = ref<Function[]>([])
+
   function on (quote: CommentType | null = null, article: ArticleType | null = null) {
     reference.value = '留言'
     if (article) {

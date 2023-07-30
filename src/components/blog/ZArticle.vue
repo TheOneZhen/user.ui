@@ -40,7 +40,7 @@
     <!-- 上一篇 -->
     <!-- 下一篇 -->
   </div>
-  <z-comment :article="+index || null" :quote="null" />
+  <z-comments :article="+index || null" :quote="null" />
 </template>
 
 <script lang="ts" setup>

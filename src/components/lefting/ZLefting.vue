@@ -1,6 +1,6 @@
 <template>
   <div class="z-lefting g-margin-5vh-10vw g-width-80vw g-min-height-80vh">
-    <z-comment :article="null" :quote="null" />
+    <z-comments :article="null" :quote="null" />
     <el-button circle
                class="g-position-fixed g-left-92vw g-bottom-100px"
                @click="hanldeComment">
