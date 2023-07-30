@@ -1,8 +1,8 @@
 <template>
-  <div class="z-lefting g-margin-5vh-10vw g-width-80vw g-min-height-80vh">
+  <div class="z-lefting g-margin-2%-10% g-width-80% g-min-height-80%">
     <z-comments :article="null" :quote="null" />
     <el-button circle
-               class="g-position-fixed g-left-92vw g-bottom-100px"
+               class="g-position-fixed g-left-92% g-bottom-100px"
                @click="hanldeComment">
       <el-icon icon-pajamas:comment-dots />
     </el-button>

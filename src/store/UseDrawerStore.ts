@@ -1,51 +1,68 @@
 import { defineStore } from 'pinia'
-import { ElDivider, ElDrawer } from 'element-plus'
-import ZComment from '@/components/lefting/ZComment.vue'
-import ZComments from '@/components/lefting/ZComments.vue'
-import { render } from 'vue'
-
+import { render, type VNode } from 'vue'
+import ZMultiPai from '@/components/lefting/ZMultiPai.vue'
 
 export const UseDrawerStore = defineStore('UseDrawerStore', () => {
-  const stack: Ref<number>[] = []
+  const body = document.querySelector('body')!
+  const map = reactive(new Map<CommentType['id'], {
+    node: VNode
+    size: number
+    visible: boolean
+  }>())
 
+  watch(() => map.size, (size) => {
+    let diff = 10
+    if (size > 8) {
+      diff = 60 / (size - 1)
+    }
+    Array
+      .from(map.values())
+      .reverse()
+      .forEach((item, index) => {
+        item.size = 30 + index * diff
+      })
+  })
 
-  function generateDrawer (comment: CommentType) {
-    const show = ref(true)
-    const size = ref(30)
-    const drawer = h(
-      ElDrawer,
-      {
-        appendToBody: true,
-        modelValue: show.value,
-        direction: 'ltr',
-        'onUpdate:modelValue': (value) => show.value = value,
-        size: size.value + '%'
-
-      },
-      {
-        default: () => [
-          h(
-            ZComment,
-            {
-              comment: comment,
-              onlyReply: true
-            }
-          ),
-          h(ElDivider),
-          h(
-            ZComments,
-            {
-              article: comment.article,
-              quote: comment.quote
-            }
-          )
-        ]
+  function generate (comment: CommentType) {
+    const middle = reactive({
+      node: h(ZMultiPai, { comment }),
+      size: 30,
+      visible: true
+    })
+    map.set(comment.id, middle)
+    const watcher = watch(() => middle.visible, (visible) => {
+      if (visible === false) {
+        map.delete(comment.id)
+        _render()
+        watcher()
       }
-    )
-    const body = document.querySelector('body')
-    stack.push(size)
-    render(drawer, body!)
+    })
   }
 
-  return { generateDrawer }
+  function renderDrawer (comment: CommentType) {
+    generate(comment)
+    _render()
+  }
+
+  function _render () {
+    render(
+      h(
+        'div',
+        Array
+          .from(map.values())
+          .map(item => item.node)
+      ),
+      body
+    )
+  }
+
+  function selection (comment: CommentType) {
+    let isRun = false
+    for (const id of map.keys()) {
+      if (id === comment.id) isRun = true
+      else if (isRun) map.get(id)!.visible = false
+    }
+  }
+
+  return { map, renderDrawer, selection }
 })
