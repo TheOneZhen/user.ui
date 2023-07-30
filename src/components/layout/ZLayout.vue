@@ -1,12 +1,12 @@
 <template>
-  <el-scrollbar id="z-main-scroll" ref="scrollRef">
-    <css-doodle ref="doodle" class="g-absolute" click-to-update use="var(--rule)" />
-    <div class="z-main g-relative" @click.self="() => doodle.update()" >
+  <el-scrollbar id="z-main-scroll">
+    <css-doodle ref="doodle" class="g-position-absolute g-width-100% g-height-100%" click-to-update use="var(--rule)" />
+    <div class="g-relative g-min-height-100vh" @click.self="() => doodle.update()" >
       <z-header />
       <router-view class="g-relative" />
       <!-- <z-bullet-screen></z-bullet-screen> -->
     </div>
-    <el-backtop target="#z-main-scroll .el-scrollbar__wrap" class="g-left-92vw" ></el-backtop>
+    <el-backtop target="#z-main-scroll .el-scrollbar__wrap" class="g-left-92%" ></el-backtop>
     <z-footer />
   </el-scrollbar>
 </template>
@@ -19,15 +19,8 @@ const doodle = ref<any>(null)
 </script>
 
 <style lang="scss" scoped>
-.z-main {
-  min-height: 100vh;
-}
 
 css-doodle {
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
   --rule: (
     :doodle {
       @grid: 17x1 / 100% 100%;

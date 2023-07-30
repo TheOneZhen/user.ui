@@ -13,7 +13,7 @@
 <style lang='scss' scoped>
 .z-find-me {
   .part-one {
-    height: 100vh;
+    height: 100%;
   }
 }
 </style>

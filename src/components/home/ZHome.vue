@@ -1,5 +1,5 @@
 <template>
-  <div class="z-home g-absolute g-top-30% g-left-30%">
+  <div class="z-home g-position-absolute g-top-30% g-left-30%">
     <z-signature width="200" />
     <!-- <component :is="ZSignature" width="220" /> -->
     <div slide-enter class="g-user-select-none">

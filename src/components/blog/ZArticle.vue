@@ -1,12 +1,12 @@
 <template>
-  <div class="z-article g-padding-5vh-4vw g-background-#FFFFFF">
+  <div class="z-article g-padding-5%-4% g-background-#FFFFFF">
     <el-skeleton :throttle="100" v-if="article">
       <template #template>
-        <h1 class="z-article-title g-text-align-center g-margin-0-0-5vh-0" v-html="article.title"></h1>
+        <h1 class="z-article-title g-text-align-center g-margin-0-0-5%-0" v-html="article.title"></h1>
         <p class="g-opacity-.4 g-text-align-right">
           {{ article.createTime }}
         </p>
-        <div class="z-article-tag g-margin-0-0-5vh-0">
+        <div class="z-article-tag g-margin-0-0-5%-0">
           <el-tag v-for="tag in tags"
                   :index="tag.id"
                   v-text="tag.title"/>
@@ -15,15 +15,15 @@
         <p class="g-opacity-.4 g-text-align-right">
           {{ '最近修改：' + article.updateTime }}
         </p>
-        <el-button circle class="g-position-fixed g-left-92vw g-bottom-280px">
+        <el-button circle class="g-position-fixed g-left-92% g-bottom-280px">
           <el-icon icon-ic:round-remove-red-eye />
           {{ article.views }}
         </el-button>
-        <el-button circle class="g-position-fixed g-left-92vw g-bottom-220px">
+        <el-button circle class="g-position-fixed g-left-92% g-bottom-220px">
           <el-icon icon-material-symbols:favorite />
           {{ article.likes }}
         </el-button>
-        <el-button circle class="g-position-fixed g-left-92vw g-bottom-160px">
+        <el-button circle class="g-position-fixed g-left-92% g-bottom-160px">
           <el-icon icon-material-symbols:heart-broken />
           {{ article.dislikes }}
         </el-button>
@@ -33,7 +33,7 @@
       </template>
     </el-skeleton>
     <el-button circle
-               class="g-position-fixed g-left-92vw g-bottom-100px"
+               class="g-position-fixed g-left-92% g-bottom-100px"
                @click="hanldeComment">
       <el-icon icon-pajamas:comment-dots />
     </el-button>

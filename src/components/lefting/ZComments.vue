@@ -2,7 +2,7 @@
   <div>
     <template v-for="(comment, index) in comments" :index="index">
       <z-comment :comment="comment"></z-comment>
-      <el-divider style="margin: 1vh 0;" />
+      <el-divider style="margin: 1% 0;" />
     </template>
 
   </div>

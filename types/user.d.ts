@@ -19,3 +19,15 @@ declare type UserData = {
   likes: number
   dislikes: number
 }
+
+/**
+ * 综合用户数据结构
+ */
+
+declare type AllUserData = {
+  userData: UserData
+  likeComments: CommentType['id'][]
+  dislikeComments: CommentType['id'][]
+  likeArticles: ArticleType['id'][]
+  dislikeArticles: ArticleType['id'][]
+}

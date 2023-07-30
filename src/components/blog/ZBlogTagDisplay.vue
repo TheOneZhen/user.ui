@@ -1,7 +1,7 @@
 <template>
-  <div class="g-jc-sa g-flex-wrap g-row-gap-5vh">
+  <div class="g-jc-sa g-flex-wrap g-row-gap-5%">
     <el-card v-for="[, tag] in app.blog.tagMap"
-             class="_item g-max-width-20vw g-pointer"
+             class="_item g-max-width-20% g-pointer"
              :key="tag.id">
       <template #header>
         <el-tag class="_tag" v-text="tag.title"></el-tag>

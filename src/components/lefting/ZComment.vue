@@ -42,9 +42,13 @@ function handleUserLoadError (comment: CommentType) {
   console.warn(`User: ${comment.user.name} load Failed! Url: ${comment.user.icon}`)
 }
 
-function handleLikeComment () {}
+function handleLikeComment () {
+  app.user.likeComment(comment.id)
+}
 
-function handleDislikeComment () {}
+function handleDislikeComment () {
+  app.user.dislikeComment(comment.id)
+}
 
 function handleShow () {
   useDrawer.renderDrawer(comment)

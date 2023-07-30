@@ -23,11 +23,8 @@ export class User {
     const user = app.store.get('UseUserStore')
     app
       .request
-      .post<UserData>(USERAPI.ACCESS_GITHUB_USER_DATA, { code })
-      .then(result => {
-        console.log('execute success!', result)
-        user.setUserData(result)
-      })
+      .post<AllUserData>(USERAPI.ACCESS_GITHUB_USER_DATA, { code })
+      .then(result => user.setUserData(result))
       .catch(reason => {
         user.clearUserInfo()
         console.warn(reason)
@@ -39,8 +36,8 @@ export class User {
     if (user.token) {
       app
         .request
-        .post<UserData>(USERAPI.USER_LOGIN, {})
-        .then(userData => user.setUserData(userData))
+        .post<AllUserData>(USERAPI.USER_LOGIN, {})
+        .then(result => user.setUserData(result))
     }
   }
 
@@ -55,5 +52,13 @@ export class User {
 
   getComments (article: CommentType['article'], quote: CommentType['quote']) {
     return app.request.post<CommentType[]>(USERAPI.GET_COMMENTS, { article, quote })
+  }
+
+  likeComment (id: CommentType['id']) {
+    return app.request.post<boolean>(USERAPI.LIKE_COMMENT, { id })
+  }
+
+  dislikeComment (id: CommentType['id']) {
+    return app.request.post<boolean>(USERAPI.DISLIKE_COMMENT, { id })
   }
 }

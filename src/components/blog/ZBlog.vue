@@ -1,8 +1,8 @@
 <template>
-  <div class="z-blog g-margin-5vh-10vw g-width-80vw">
+  <div class="z-blog g-margin-5%-10% g-width-80%">
     <router-view v-slot="{ Component }">
       <component v-if="Component" :is="Component"></component>
-      <el-timeline v-else class="g-padding-5vh-2vw">
+      <el-timeline v-else class="g-padding-5%-2%">
         <el-timeline-item v-for="item in app.blog.catalog"
                           :key="item.id"
                           center

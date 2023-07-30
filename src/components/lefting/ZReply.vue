@@ -20,7 +20,7 @@
     <template #footer>
       <z-emoji />
       <el-button size="small" round>预览</el-button>
-      <el-button size="small" round @click="handleEnter">确定</el-button>
+      <el-button size="small" round @click="handleEnter" :disabled="useReply.comment.content.length === 0">确定</el-button>
     </template>
   </el-dialog>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="z-lefting g-margin-2%-10% g-width-80% g-min-height-80%">
+  <div class="z-lefting g-margin-5%-10% g-width-80%">
     <z-comments :article="null" :quote="null" />
     <el-button circle
                class="g-position-fixed g-left-92% g-bottom-100px"
