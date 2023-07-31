@@ -16,8 +16,8 @@
         <z-markdown-preview :content="comment.content" class="g-padding-2%-1%" />
         <div class="g-height-3% g-min-height-30px g-flex g-align-items-center">
           <el-text class="g-flex-auto g-text-align-center">{{ comment.createTime }}</el-text>
-          <el-button text @click="handleLikeComment"><el-icon icon-material-symbols:favorite />{{ comment.likes }}</el-button>
-          <el-button text @click="handleDislikeComment"><el-icon icon-material-symbols:heart-broken />{{ comment.dislikes }}</el-button>
+          <el-button v-active="viewRecord.LC.has(comment.id)" text @click="app.user.lnComment(comment.id, 1)"><el-icon icon-material-symbols:favorite />{{ comment.likes }}</el-button>
+          <el-button v-active="viewRecord.DLC.has(comment.id)" text @click="app.user.lnComment(comment.id, 0)"><el-icon icon-material-symbols:heart-broken />{{ comment.dislikes }}</el-button>
           <el-button text @click="handleShow"><el-icon icon-material-symbols:android-messages />查看对话</el-button>
           <el-button @click="handleReply" round>回复</el-button>
         </div>
@@ -37,17 +37,10 @@ const { comment, onlyReply } = withDefaults(defineProps<{
 
 const useReply = app.store.get('UseReplyStore')
 const useDrawer = app.store.get('UseDrawerStore')
+const { viewRecord } = app.store.get('UseUserStore')
 
 function handleUserLoadError (comment: CommentType) {
   console.warn(`User: ${comment.user.name} load Failed! Url: ${comment.user.icon}`)
-}
-
-function handleLikeComment () {
-  app.user.likeComment(comment.id)
-}
-
-function handleDislikeComment () {
-  app.user.dislikeComment(comment.id)
 }
 
 function handleShow () {

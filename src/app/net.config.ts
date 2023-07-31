@@ -17,5 +17,5 @@ export const requestConfig: CreateAxiosDefaults = {
   xsrfHeaderName: 'X-CSRF-TOKEN',
   maxRedirects: 5,
   maxContentLength: 2000,
-  validateStatus: (status) => status < 400 // 个人定义的错误在[600, 700)
+  validateStatus: (status) => status < 400
 }

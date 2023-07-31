@@ -5,7 +5,9 @@ import { LSStorage } from '@/storage'
 import { User } from '@/user'
 import { APPAPI } from './app.api'
 import { Request } from '@/app/request'
+import { ElMessage } from 'element-plus'
 import type { Router } from 'vue-router'
+import 'element-plus/es/components/message/style/css'
 
 export class App {
   blog = new Blog()
@@ -15,6 +17,7 @@ export class App {
   router: Router | undefined
   user = new User()
   request = new Request()
+  $message = ElMessage
 
   constructor () {
     console.log('Welcome to zhen\'s space!')

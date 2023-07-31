@@ -21,13 +21,11 @@ declare type UserData = {
 }
 
 /**
- * 综合用户数据结构
+ * 用户浏览数据
  */
-
-declare type AllUserData = {
-  userData: UserData
-  likeComments: CommentType['id'][]
-  dislikeComments: CommentType['id'][]
-  likeArticles: ArticleType['id'][]
-  dislikeArticles: ArticleType['id'][]
+declare type UserViewRecord = {
+  LA: ArticleType['id'][]
+  DLA: ArticleType['id'][]
+  LC: CommentType['id'][]
+  DLC: CommentType['id'][]
 }

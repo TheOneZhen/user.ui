@@ -18,8 +18,8 @@ export class Request {
   protected interceptorsRequest () {
     this._request.interceptors.request.use(
       (request) => {
-        const user = app.store.get('UseUserStore')
-        if (user.token) request.headers.Authorization = user.token
+        const { token } = app.store.get('UseUserStore')
+        if (token) request.headers.Authorization = token
         return request
       }
     )
@@ -30,8 +30,19 @@ export class Request {
   protected interceptorsResponse () {
     this._request.interceptors.response.use(
       (response) => JSON.parse(response.data),
-      (error) => {
+      ({ response }) => {
         // console.error('请求错误！', error)
+        let content = ''
+        if (response.status === 520) content = '您未登录，点击我进行三方登录'
+        else if (response.status === 521) content = '登录过期，点击我重新登录'
+        else if (response.status === 522) content = '三方登录失败，点击我重新登录'
+        const message = app.$message({
+          duration: 0,
+          message: h('div', { onClick: () => {
+            app.user.loginByGithub()
+            message.close()
+          }, class: 'g-pointer' }, content)
+        })
       }
     )
   }

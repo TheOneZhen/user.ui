@@ -6,34 +6,37 @@ export const UseUserStore = defineStore('UseUserStore', () => {
   const icon = ref('')
   const platform = ref('GitHub')
   const home = ref('')
-  const views = reactive({
-    likeComments: new Set<CommentType['id']>(),
-    dislikeComments: new Set<CommentType['id']>(),
-    likeArticles: new Set<ArticleType['id']>(),
-    dislikeArticles: new Set<ArticleType['id']>()
+  const viewRecord = reactive<Record<keyof UserViewRecord, Set<number>>>({
+    LA: new Set(),
+    DLA: new Set(),
+    LC: new Set(),
+    DLC: new Set()
   })
-  function setUserData (allUserData: AllUserData) {
+
+  function setUserData (userData: UserData) {
     clearUserInfo()
-    const userData = allUserData.userData
     name.value = userData.name
     icon.value = userData.icon
     platform.value = userData.platform
     home.value = userData.home
     token.value = userData.token
     app.storage.setLocal('token', userData.token)
+  }
 
-    views.likeComments = new Set(allUserData.likeComments)
-    views.dislikeComments = new Set(allUserData.dislikeComments)
-    views.likeArticles = new Set(allUserData.likeArticles)
-    views.dislikeArticles = new Set(allUserData.dislikeArticles)
+  function setViewRecord (record: UserViewRecord) {
+    Object.entries(record).forEach(([key, value]) => {
+      const set = viewRecord[key as keyof UserViewRecord]
+      set.clear()
+      value.forEach(i => set.add(i))
+    })
   }
 
   function clearUserInfo () {
     token.value = ''
     name.value = ''
     icon.value = ''
-    Object.values(views).forEach(set => set.clear())
+    home.value = ''
   }
 
-  return { token, name, icon, platform, home, views, setUserData, clearUserInfo }
+  return { token, name, icon, platform, home, viewRecord, setUserData, clearUserInfo, setViewRecord }
 })

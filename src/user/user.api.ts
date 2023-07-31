@@ -4,6 +4,7 @@ export enum USERAPI {
   USER_LOGIN = '/user/login',
   GET_COMMENTS = '/user/getComments',
   ADD_COMMENTS = '/user/addComment',
-  LIKE_COMMENT = '/user/likeComment',
-  DISLIKE_COMMENT = '/user/dislikeComment'
+  LN_COMMENT = '/user/lnComment',
+  LN_ARTICLE = '/user/lnArticle',
+  GET_VIEW_RECORD = '/user/viewRecord'
 }

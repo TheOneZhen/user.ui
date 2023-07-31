@@ -7,6 +7,7 @@ import { createPinia } from 'pinia'
 import 'uno.css'
 import { app } from './app'
 import { ClickOutside, vLoading } from 'element-plus'
+import { vActive } from './utils/active'
 
 microApp.start({
   plugins: {
@@ -31,9 +32,9 @@ const AppInstance = createApp(App)
   .use(router)
   .directive('click-out-side', ClickOutside)
   .directive('loading', vLoading)
+  .directive('active', vActive)
 
 AppInstance.config.globalProperties.app = app
-
 AppInstance.mount('#app')
 
 window.app = app

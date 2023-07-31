@@ -27,7 +27,8 @@ const range = [
   'display',
   'align-items',
   'min-height',
-  'max-height'
+  'max-height',
+  'cursor'
 ]
 
 const rangeReg = new RegExp('g-(' + range.join('|') + ')-(.*)')

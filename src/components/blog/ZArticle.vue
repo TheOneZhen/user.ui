@@ -19,11 +19,11 @@
           <el-icon icon-ic:round-remove-red-eye />
           {{ article.views }}
         </el-button>
-        <el-button circle class="g-position-fixed g-left-92% g-bottom-220px">
+        <el-button circle v-active="viewRecord.LA.has(article.id)" class="g-position-fixed g-left-92% g-bottom-220px" @click="app.user.lnArticle(article.id, 1)">
           <el-icon icon-material-symbols:favorite />
           {{ article.likes }}
         </el-button>
-        <el-button circle class="g-position-fixed g-left-92% g-bottom-160px">
+        <el-button circle v-active="viewRecord.DLA.has(article.id)" class="g-position-fixed g-left-92% g-bottom-160px" @click="app.user.lnArticle(article.id, 0)">
           <el-icon icon-material-symbols:heart-broken />
           {{ article.dislikes }}
         </el-button>
@@ -45,11 +45,12 @@
 
 <script lang="ts" setup>
 
-const props = defineProps<{
+const { index } = defineProps<{
   index: string
 }>()
 const useReply = app.store.get('UseReplyStore')
 const article = ref<null | ArticleType>(null)
+const { viewRecord } = app.store.get('UseUserStore')
 const tags = computed(() => {
   const result: TagType[] = []
   if (article.value) {
@@ -61,7 +62,7 @@ const tags = computed(() => {
   return result
 })
 
-watch (() => props.index, (id) => getArticle(+id))
+watch (() => index, (id) => getArticle(+id))
 
 function getArticle (index: ArticleType['id']) {
   article.value = null
@@ -73,7 +74,7 @@ function hanldeComment () {
   useReply.on(null, article.value)
 }
 
-onMounted(() => getArticle(+props.index))
+onMounted(() => getArticle(+index))
 </script>
 
 <style lang="scss" scoped>

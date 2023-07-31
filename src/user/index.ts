@@ -23,8 +23,11 @@ export class User {
     const user = app.store.get('UseUserStore')
     app
       .request
-      .post<AllUserData>(USERAPI.ACCESS_GITHUB_USER_DATA, { code })
-      .then(result => user.setUserData(result))
+      .post<UserData>(USERAPI.ACCESS_GITHUB_USER_DATA, { code })
+      .then(result => {
+        user.setUserData(result)
+        this.getCiewRecord()
+      })
       .catch(reason => {
         user.clearUserInfo()
         console.warn(reason)
@@ -36,13 +39,16 @@ export class User {
     if (user.token) {
       app
         .request
-        .post<AllUserData>(USERAPI.USER_LOGIN, {})
-        .then(result => user.setUserData(result))
+        .post<UserData>(USERAPI.USER_LOGIN, {})
+        .then(result => {
+          user.setUserData(result)
+          this.getCiewRecord()
+        })
     }
   }
 
   async getIcons () {
-    const result = await app.proxyRequest<{icons: string[]}>('https://icones.js.org/collections/streamline-emojis-meta.json')
+    const result = await app.proxyRequest<{ icons: string[] }>('https://icones.js.org/collections/streamline-emojis-meta.json')
     return result.icons
   }
 
@@ -54,11 +60,23 @@ export class User {
     return app.request.post<CommentType[]>(USERAPI.GET_COMMENTS, { article, quote })
   }
 
-  likeComment (id: CommentType['id']) {
-    return app.request.post<boolean>(USERAPI.LIKE_COMMENT, { id })
+  async lnComment (id: CommentType['id'], type: 0 | 1 = 0) {
+    const result = await app.request.post<UserViewRecord>(USERAPI.LN_COMMENT, { id, type })
+    const { setViewRecord } = app.store.get('UseUserStore')
+    setViewRecord(result)
   }
 
-  dislikeComment (id: CommentType['id']) {
-    return app.request.post<boolean>(USERAPI.DISLIKE_COMMENT, { id })
+  async lnArticle (id: ArticleType['id'], type: 0 | 1 = 0) {
+    const result = await app.request.post<UserViewRecord>(USERAPI.LN_ARTICLE, { id, type })
+    const { setViewRecord } = app.store.get('UseUserStore')
+    setViewRecord(result)
+  }
+
+  getCiewRecord () {
+    app.request.post<UserViewRecord>(USERAPI.GET_VIEW_RECORD, {})
+      .then(result => {
+        const { setViewRecord } = app.store.get('UseUserStore')
+        setViewRecord(result)
+      })
   }
 }
