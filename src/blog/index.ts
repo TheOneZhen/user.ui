@@ -24,11 +24,14 @@ export class Blog {
     app
       .request
       .post<Array<CatalogItemType>>(BLOGAPI.GET_CATALOG, {})
-      .then(data => this.catalog.splice(
-        0,
-        this.catalog.length,
-        ...data.sort((a, b) => -(dayjs(a.updateTime) > dayjs(b.updateTime)))
-      ))
+      .then(data => {
+        data.forEach(item => item.updateTime = this.formatDate(item.updateTime))
+        this.catalog.splice(
+          0,
+          this.catalog.length,
+          ...data.sort((a, b) => -(dayjs(a.updateTime) > dayjs(b.updateTime)))
+        )
+      })
   }
 
   getBlogTags () {
