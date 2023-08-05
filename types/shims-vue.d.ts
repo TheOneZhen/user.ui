@@ -11,5 +11,6 @@ import type { App } from '@/app'
 declare module 'vue' {
   interface ComponentCustomProperties {
     app: App
+    vActive: typeof import('@/utils/active')['vActive']
   }
 }
