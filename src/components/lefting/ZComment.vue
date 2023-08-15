@@ -15,7 +15,7 @@
         </div>
         <z-markdown-preview :content="comment.content" class="g-padding-2%-1%" />
         <div class="g-height-3% g-min-height-30px g-flex g-align-items-center">
-          <el-text class="g-flex-auto g-text-align-center">{{ app.blog.formatDate(comment.createTime) }}</el-text>
+          <el-text class="g-flex-auto g-text-align-center">{{ comment.createTime }}</el-text>
           <el-button v-active="viewRecord.LC.has(comment.id)" text @click="app.user.lnComment(comment.id, 1)"><el-icon icon-material-symbols:favorite />{{ comment.likes }}</el-button>
           <el-button v-active="viewRecord.DLC.has(comment.id)" text @click="app.user.lnComment(comment.id, 0)"><el-icon icon-material-symbols:heart-broken />{{ comment.dislikes }}</el-button>
           <el-button text @click="handleShow"><el-icon icon-material-symbols:android-messages />查看对话</el-button>
@@ -34,6 +34,8 @@ const { comment, onlyReply } = withDefaults(defineProps<{
 {
   onlyReply: false
 })
+
+comment.createTime = app.blog.formatDate(comment.createTime)
 
 const useReply = app.store.get('UseReplyStore')
 const useDrawer = app.store.get('UseDrawerStore')
