@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { USERAPI } from './user.api'
 
 export class User {
@@ -26,7 +27,7 @@ export class User {
       .post<UserData>(USERAPI.ACCESS_GITHUB_USER_DATA, { code })
       .then(result => {
         user.setUserData(result)
-        this.getCiewRecord()
+        this.getViewRecord()
       })
       .catch(reason => {
         user.clearUserInfo()
@@ -42,7 +43,7 @@ export class User {
         .post<UserData>(USERAPI.USER_LOGIN, {})
         .then(result => {
           user.setUserData(result)
-          this.getCiewRecord()
+          this.getViewRecord()
         })
     }
   }
@@ -57,7 +58,12 @@ export class User {
   }
 
   getComments (article: CommentType['article'], quote: CommentType['quote']) {
-    return app.request.post<CommentType[]>(USERAPI.GET_COMMENTS, { article, quote })
+    return app.request
+      .post<CommentType[]>(USERAPI.GET_COMMENTS, { article, quote })
+      .then(data => {
+        data.sort((a, b) => -(dayjs(a.createTime) > dayjs(b.createTime)))
+        return data
+      })
   }
 
   async lnComment (id: CommentType['id'], type: 0 | 1 = 0) {
@@ -72,7 +78,7 @@ export class User {
     setViewRecord(result)
   }
 
-  getCiewRecord () {
+  getViewRecord () {
     app.request.post<UserViewRecord>(USERAPI.GET_VIEW_RECORD, {})
       .then(result => {
         const { setViewRecord } = app.store.get('UseUserStore')
