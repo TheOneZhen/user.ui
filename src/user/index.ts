@@ -62,6 +62,7 @@ export class User {
       .post<CommentType[]>(USERAPI.GET_COMMENTS, { article, quote })
       .then(data => {
         data.sort((a, b) => -(dayjs(a.createTime) > dayjs(b.createTime)))
+        data.forEach(item => item.createTime = app.blog.formatDate(item.createTime))
         return data
       })
   }

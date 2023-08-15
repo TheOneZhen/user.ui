@@ -35,8 +35,6 @@ const { comment, onlyReply } = withDefaults(defineProps<{
   onlyReply: false
 })
 
-comment.createTime = app.blog.formatDate(comment.createTime)
-
 const useReply = app.store.get('UseReplyStore')
 const useDrawer = app.store.get('UseDrawerStore')
 const { viewRecord } = app.store.get('UseUserStore')
