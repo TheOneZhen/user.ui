@@ -3,7 +3,7 @@
  */
 declare type CatalogItemType = {
   id: number
-  updateTime: string
+  createTime: string
   title: string
   tagIds: Array<TagType['id']>
   description: string

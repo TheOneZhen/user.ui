@@ -9,7 +9,7 @@ export class Blog {
   articleMap = new Map<ArticleType['id'], ArticleType>()
   tagMap = new Map<TagType['id'], TagType>()
   converter = new showdown.Converter()
-  catalog = new Array<CatalogItemType>()
+  catalog = reactive(new Array<CatalogItemType>())
 
   constructor () {
     this.converter.setFlavor('github')
@@ -25,11 +25,10 @@ export class Blog {
       .request
       .post<Array<CatalogItemType>>(BLOGAPI.GET_CATALOG, {})
       .then(data => {
-        data.forEach(item => item.updateTime = this.formatDate(item.updateTime))
         this.catalog.splice(
           0,
           this.catalog.length,
-          ...data.sort((a, b) => -(dayjs(a.updateTime) > dayjs(b.updateTime)))
+          ...data.sort((a, b) => -(dayjs(a.createTime) > dayjs(b.createTime)))
         )
       })
   }
@@ -57,8 +56,6 @@ export class Blog {
     let article = this.articleMap.get(index)
     if (!article) {
       article = await app.request.post<ArticleType>(BLOGAPI.GET_ARTICLE, { index })
-      article.updateTime = this.formatDate(article.updateTime)
-      article.createTime = this.formatDate(article.createTime)
       this.articleMap.set(article.id, article)
     }
     return article

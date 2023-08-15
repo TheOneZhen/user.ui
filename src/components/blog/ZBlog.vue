@@ -6,7 +6,7 @@
         <el-timeline-item v-for="item in app.blog.catalog"
                           :key="item.id"
                           center
-                          :timestamp="item.updateTime"
+                          :timestamp="app.blog.formatDate(item.createTime)"
                           class="g-pointer"
                           @click="app.blog.toArticle(item.id)"
                           placement="top">
