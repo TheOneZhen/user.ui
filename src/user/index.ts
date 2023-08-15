@@ -60,14 +60,14 @@ export class User {
     return app.request.post<CommentType[]>(USERAPI.GET_COMMENTS, { article, quote })
   }
 
-  async lnComment (comment: CommentType, type: 0 | 1 = 0) {
-    const result = await app.request.post<UserViewRecord>(USERAPI.LN_COMMENT, { id: comment.id, type })
+  async lnComment (id: CommentType['id'], type: 0 | 1 = 0) {
+    const result = await app.request.post<UserViewRecord>(USERAPI.LN_COMMENT, { id, type })
     const { setViewRecord } = app.store.get('UseUserStore')
     setViewRecord(result)
   }
 
-  async lnArticle (article: ArticleType, type: 0 | 1 = 0) {
-    const result = await app.request.post<UserViewRecord>(USERAPI.LN_ARTICLE, { id: article.id, type })
+  async lnArticle (id: ArticleType['id'], type: 0 | 1 = 0) {
+    const result = await app.request.post<UserViewRecord>(USERAPI.LN_ARTICLE, { id, type })
     const { setViewRecord } = app.store.get('UseUserStore')
     setViewRecord(result)
   }
