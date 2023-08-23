@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-for="(comment, index) in comments" :index="index">
+    <template v-for="comment in comments" :key="comment.id">
       <z-comment :comment="comment"></z-comment>
       <el-divider style="margin: 1% 0;" />
     </template>

@@ -4,7 +4,7 @@
       <el-button size="default" round icon-carbon:face-activated></el-button>
     </template>
     <div v-loading="loading">
-      <el-icon v-for="icon in icons" :index="icon" v-bind="{['icon-streamline-emojis:' + icon]: ''}" />
+      <el-icon v-for="icon in icons" :key="icon" v-bind="{['icon-streamline-emojis:' + icon]: ''}" />
     </div>
   </el-popover>
 </template>
