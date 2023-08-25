@@ -105,7 +105,6 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx",
     "src/components/**/*.vue",
     "**/*.d.ts",
     "*.config.ts",
