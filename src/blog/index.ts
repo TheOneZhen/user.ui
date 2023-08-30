@@ -35,7 +35,6 @@ export class Blog {
             return mermaid.render(uniqueId('z-mermaid-'), code).then(({ svg }) => svg)
           }
           const language = hljs.getLanguage(lang) ? lang : 'plaintext'
-          console.log(lang, language)
           return new Promise(resolve => resolve(hljs.highlight(code, { language }).value)).then(res => res as string)
         }
       })
@@ -96,7 +95,7 @@ export class Blog {
    * markown转html
    */
   async converterMdToHTML (text: string) {
-    const html = await this.marked.parse(text)
+    const html = await this.marked.parse(text) || ''
     return html
   }
 

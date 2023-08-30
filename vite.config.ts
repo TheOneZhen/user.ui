@@ -26,7 +26,7 @@ export default defineConfig(() => {
         {
           template: {
             compilerOptions: {
-              isCustomElement: tag => tag.startsWith('fc-') || tag.startsWith('micro-app') || tag.startsWith('css-doodle')
+              isCustomElement: tag => tag.startsWith('micro-app') || tag.startsWith('css-doodle')
             }
           }
         }
