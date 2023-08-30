@@ -72,7 +72,7 @@ function hanldeComment () {
   useReply.on(null, article.value)
 }
 
-onMounted(() => getArticle(+index))
+getArticle(+index)
 </script>
 
 <style lang="scss">

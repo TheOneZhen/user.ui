@@ -1,18 +1,45 @@
 import { RouterName } from '@/router/router.config'
 import dayjs from 'dayjs'
-import showdown from 'showdown'
 import { BLOGAPI } from './blog.api'
+import mermaid from 'mermaid'
+import { uniqueId } from 'lodash'
+import hljs from 'highlight.js'
+import javaScript from 'highlight.js/lib/languages/javascript'
+import scss from 'highlight.js/lib/languages/scss'
+import typeScript from 'highlight.js/lib/languages/typeScript'
+import { Marked } from 'marked'
+import { markedHighlight } from 'marked-highlight'
+
 /**
  * 博客节点
  */
 export class Blog {
   articleMap = new Map<ArticleType['id'], ArticleType>()
   tagMap = new Map<TagType['id'], TagType>()
-  converter = new showdown.Converter()
   catalog = reactive(new Array<CatalogItemType>())
+  marked: Marked
 
   constructor () {
-    this.converter.setFlavor('github')
+    mermaid.initialize({ startOnLoad: false })
+    hljs.registerLanguage('js', javaScript)
+    hljs.registerLanguage('ts', typeScript)
+    hljs.registerLanguage('scss', scss)
+
+    this.marked = new Marked(
+      markedHighlight({
+        async: true,
+        langPrefix: 'hljs language-',
+        highlight (code, lang) {
+          // 如果是mermaid，单独渲染
+          if (/mermaid/.test(lang)) {
+            return mermaid.render(uniqueId('z-mermaid-'), code).then(({ svg }) => svg)
+          }
+          const language = hljs.getLanguage(lang) ? lang : 'plaintext'
+          console.log(lang, language)
+          return new Promise(resolve => resolve(hljs.highlight(code, { language }).value)).then(res => res as string)
+        }
+      })
+    )
   }
 
   init () {
@@ -65,15 +92,12 @@ export class Blog {
     app.router?.push({ name: RouterName.ARTICLE, params: { index } })
   }
 
-  highlight (content: string) {
-    return `<span style='color: red'>${content}</span>`
-  }
-
   /**
-   * markown转html，放到中心组件中是为了统一处理markdown
+   * markown转html
    */
-  converterMdToHTML (text: string) {
-    return this.converter.makeHtml(text)
+  async converterMdToHTML (text: string) {
+    const html = await this.marked.parse(text)
+    return html
   }
 
   formatDate (date: string) {

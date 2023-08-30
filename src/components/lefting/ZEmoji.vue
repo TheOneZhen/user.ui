@@ -22,8 +22,6 @@ onMounted(() => {
     .then(data => icons.value = data)
     .finally(() => loading.value = false)
 })
-
-onMounted
 </script>
 
 <style lang='scss' scoped></style>
