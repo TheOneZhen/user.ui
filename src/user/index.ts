@@ -3,6 +3,8 @@ import { USERAPI } from './user.api'
 
 export class User {
 
+  commentMap: Map<CommentType['article'], Map<CommentType['quote'], CommentType[]>> = new Map()
+
   async loginByGithub () {
     const clientId = await app.request.get<string>(USERAPI.GET_ACCESS_ID, {})
     const subwin = window.open(`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${window.location.href}`)
@@ -65,6 +67,12 @@ export class User {
         data.forEach(item => item.createTime = app.blog.formatDate(item.createTime))
         return data
       })
+  }
+
+  recordComments (article: CommentType['article'], quote: CommentType['quote'], data: CommentType[]) {
+    const quoteMap = this.commentMap.get(article) || new Map<CommentType['quote'], CommentType[]>()
+    quoteMap.set(quote, data)
+    this.commentMap.set(article, quoteMap)
   }
 
   async lnComment (id: CommentType['id'], type: 0 | 1 = 0) {

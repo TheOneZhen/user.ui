@@ -18,14 +18,19 @@ const { article, quote } = defineProps<{
 const comments = ref<CommentType[]>([])
 const useReply = app.store.get('UseReplyStore')
 
-fresh()
-
 function fresh () {
   app.user
   .getComments(article, quote)
   .then(result => comments.value = result)
 }
-// 问题：如何保证通用组件中的函数渲染之后是不同的引用？
+
+try {
+  const quoteMap = app.user.commentMap.get(quote)
+  comments.value = quoteMap!.get(quote)!
+} catch {
+  fresh()
+}
+
 onMounted(() => {
   // 用于评论之后刷新当前列表
   useReply.fresh.push(fresh)

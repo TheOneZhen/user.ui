@@ -18,6 +18,9 @@ const html = ref('')
 
 app.blog
   .converterMdToHTML(content)
-  .then(res => html.value = res, () => html.value = '文章内容加载失败，请重新尝试！')
+  .then(res => html.value = res, error => {
+    html.value = '文章内容加载失败，请重新尝试！'
+    console.error(error)
+  })
 
 </script>

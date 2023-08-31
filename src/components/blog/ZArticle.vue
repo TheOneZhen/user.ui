@@ -1,7 +1,7 @@
 <template>
   <div class="z-article g-padding-5%-4% g-background-#FFFFFF">
-    <el-skeleton :throttle="100" v-if="article">
-      <template #template>
+    <el-skeleton :throttle="100">
+      <template #template v-if="article">
         <h1 class="z-article-title g-text-align-center g-margin-0-0-5%-0" v-html="article.title"></h1>
         <p class="g-opacity-.4 g-text-align-right">
           {{ app.blog.formatDate(article.createTime) }}

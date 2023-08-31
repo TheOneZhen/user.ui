@@ -24,15 +24,13 @@ export class App {
   }
 
   async init () {
+    await this.checkCsrfToken()
     this.blog.init()
     this.user.login()
-    // this.jsonp('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js')
-    // this.jsonp('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/typescript.min.js')
-    // this.jsonp('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/scss.min.js')
   }
 
-  checkCsrfToken () {
-    this.request.post<Boolean>(APPAPI.CHECK_CSRF_TOKEN, {})
+  async checkCsrfToken () {
+    await this.request.post<Boolean>(APPAPI.CHECK_CSRF_TOKEN, {})
   }
   // 代理请求
   async proxyRequest<T> (url: string, params = {}, method = 'GET', headers = {}) {
