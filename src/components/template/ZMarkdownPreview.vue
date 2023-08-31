@@ -1,5 +1,5 @@
 <template>
-  <el-skeleton :throttle="100" v-if="loading">
+  <el-skeleton :throttle="100">
     <template #default>
       <el-skeleton :rows="5" animated />
     </template>
@@ -13,12 +13,11 @@
 const { content } = defineProps<{
   content: string
 }>()
-const loading = ref(false)
+
 const html = ref('')
 
 app.blog
   .converterMdToHTML(content)
   .then(res => html.value = res, () => html.value = '文章内容加载失败，请重新尝试！')
-  .finally(() => loading.value = true)
 
 </script>

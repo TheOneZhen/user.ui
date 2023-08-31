@@ -27,8 +27,4 @@
 
 ## markdown功能
 
-1. 处理markdown内容包括
-2. 后续考虑
-   1. 按行批注
-   2. 拷贝代码
-   3. 多语言标签
+cdn: mermaid, highlight

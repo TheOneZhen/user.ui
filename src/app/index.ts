@@ -26,6 +26,9 @@ export class App {
   async init () {
     this.blog.init()
     this.user.login()
+    // this.jsonp('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js')
+    // this.jsonp('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/typescript.min.js')
+    // this.jsonp('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/scss.min.js')
   }
 
   checkCsrfToken () {
@@ -34,6 +37,12 @@ export class App {
   // 代理请求
   async proxyRequest<T> (url: string, params = {}, method = 'GET', headers = {}) {
     return this.request.post<T>(APPAPI.PROXY_REQUEST, { url, params, method, headers })
+  }
+
+  jsonp (url: string) {
+    const script = document.createElement('script')
+    script.src = url
+    document.body.appendChild(script)
   }
 }
 

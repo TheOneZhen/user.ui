@@ -1,12 +1,12 @@
 import { RouterName } from '@/router/router.config'
 import dayjs from 'dayjs'
 import { BLOGAPI } from './blog.api'
-import mermaid from 'mermaid'
 import { uniqueId } from 'lodash'
-import hljs from 'highlight.js'
-import javaScript from 'highlight.js/lib/languages/javascript'
-import scss from 'highlight.js/lib/languages/scss'
-import typeScript from 'highlight.js/lib/languages/typeScript'
+// import mermaid, { Mermaid} from 'mermaid'
+// import hljs from 'highlight.js'
+// import javaScript from 'highlight.js/lib/languages/javascript'
+// import scss from 'highlight.js/lib/languages/scss'
+// import typeScript from 'highlight.js/lib/languages/typeScript'
 import { Marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 
@@ -20,10 +20,10 @@ export class Blog {
   marked: Marked
 
   constructor () {
-    mermaid.initialize({ startOnLoad: false })
-    hljs.registerLanguage('js', javaScript)
-    hljs.registerLanguage('ts', typeScript)
-    hljs.registerLanguage('scss', scss)
+    // mermaid.initialize({ startOnLoad: false })
+    // hljs.registerLanguage('js', javaScript)
+    // hljs.registerLanguage('ts', typeScript)
+    // hljs.registerLanguage('scss', scss)
 
     this.marked = new Marked(
       markedHighlight({
@@ -31,11 +31,14 @@ export class Blog {
         langPrefix: 'hljs language-',
         highlight (code, lang) {
           // 如果是mermaid，单独渲染
-          if (/mermaid/.test(lang)) {
-            return mermaid.render(uniqueId('z-mermaid-'), code).then(({ svg }) => svg)
+          if (/mermaid/.test(lang) && window.mermaid) {
+            return window.mermaid.render(uniqueId('z-mermaid-'), code).then(({ svg }) => svg)
           }
-          const language = hljs.getLanguage(lang) ? lang : 'plaintext'
-          return new Promise(resolve => resolve(hljs.highlight(code, { language }).value)).then(res => res as string)
+          if (window.hljs) {
+            const language = window.hljs.getLanguage(lang) ? lang : 'plaintext'
+            return new Promise(resolve => resolve(window.hljs.highlight(code, { language }).value)).then(res => res as string)
+          }
+          return Promise.reject(new Error('代码格式化失败！'))
         }
       })
     )
@@ -94,7 +97,8 @@ export class Blog {
   /**
    * markown转html
    */
-  async converterMdToHTML (text: string) {
+  async converterMdToHTML (text: string): Promise<string> {
+    if (!window.hljs) return this.converterMdToHTML(text)
     const html = await this.marked.parse(text) || ''
     return html
   }
