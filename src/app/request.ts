@@ -33,7 +33,7 @@ export class Request {
       ({ response }) => {
         // console.error('请求错误！', error)
         let content = ''
-        if (response.status === 520) content = '您未登录，点击我进行三方登录'
+        if (response.status === 530) content = '您未登录，点击我进行三方登录'
         else if (response.status === 521) content = '登录过期，点击我重新登录'
         else if (response.status === 522) content = '三方登录失败，点击我重新登录'
         if (content !== '') {
@@ -45,6 +45,7 @@ export class Request {
             }, class: 'g-pointer' }, content)
           })
         }
+        return Promise.reject(response.status)
       }
     )
   }
