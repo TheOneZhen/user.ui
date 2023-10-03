@@ -1,8 +1,6 @@
 # 新内容摄入
 1. join pnpm
-3. lottie
-5. 找到一个很有意思的svg作品库：https://www1.plurib.us/svg_gallery/
-7. 把userearth部署一下
+2. 把userearth部署一下
 
 # 请求pending队列，可以取消的那种
 ## 文章按行批注
