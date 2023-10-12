@@ -77,8 +77,8 @@ export default defineConfig(() => {
     build: {
       rollupOptions: {
         input: {
-          main: resolve(__dirname, 'index.html'),
-          pageone: resolve(__dirname, 'pageone/index.html')
+          main: resolve(__dirname, 'index.html')
+          // pageone: resolve(__dirname, 'pageone/index.html')
         },
         /**
          * ## 分策略打包
