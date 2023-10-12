@@ -1,7 +1,7 @@
 import { RouterName } from '@/router/router.config'
 import dayjs from 'dayjs'
 import { BLOGAPI } from './blog.api'
-import { uniqueId } from 'lodash'
+import { uniqueId } from 'lodash-es'
 import { Marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 

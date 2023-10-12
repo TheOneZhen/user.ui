@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { random } from 'lodash'
+import { random } from 'lodash-es'
 import { colorGroup, ThemeConfig, ThemeProperty } from './theme.config'
 
 /**

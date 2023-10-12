@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { debounce } from 'lodash'
+import { debounce } from 'lodash-es'
 
 const mode = ref<'list' | 'hover'>('hover')
 const filterKey = ref('')
