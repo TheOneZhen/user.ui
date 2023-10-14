@@ -36,7 +36,7 @@ export default defineConfig(() => {
         resolvers: [
           ElementPlusResolver()
         ],
-        dts: resolve(__dirname, 'types', 'auto-imports.d.ts')
+        dts: resolve(__dirname, 'typing', 'auto-imports.d.ts')
       }),
       ElementComponents({
         resolvers: [
@@ -44,7 +44,7 @@ export default defineConfig(() => {
             importStyle: 'sass'
           })
         ],
-        dts: resolve(__dirname, 'types', 'component.d.ts')
+        dts: resolve(__dirname, 'typing', 'component.d.ts')
       }),
       UnoCSS({
         configFile: '../uno.config.ts'

@@ -5,7 +5,8 @@ import { LSStorage } from '@/storage'
 import { User } from '@/user'
 import { APPAPI } from './app.api'
 import { Request } from '@/app/request'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElNotification } from 'element-plus'
+import { record } from '@/utils/record'
 import type { Router } from 'vue-router'
 import 'element-plus/es/components/message/style/css'
 
@@ -23,6 +24,7 @@ export class App {
     console.log('Welcome to zhen\'s space!')
   }
 
+  @record('网站载入中！')
   async init () {
     await this.checkCsrfToken()
     this.blog.init()
@@ -42,6 +44,8 @@ export class App {
     script.src = url
     document.body.appendChild(script)
   }
+
+
 }
 
 export const app = new App()

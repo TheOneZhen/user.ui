@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import { USERAPI } from './user.api'
+import { record } from '@/utils/record'
 
 export class User {
 
@@ -37,6 +38,7 @@ export class User {
       })
   }
 
+  @record('尝试载入用户模块！')
   login () {
     const user = app.store.get('UseUserStore')
     if (user.token) {

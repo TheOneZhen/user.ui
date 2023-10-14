@@ -34,7 +34,7 @@ export class Blog {
     )
   }
 
-  @record({ id: Date.now(), content: '加载博客目录', level: 1 })
+  @record('博客模块载入中！')
   init () {
     this.getCatalog()
     this.getBlogTags()
@@ -72,6 +72,7 @@ export class Blog {
     return result
   }
 
+  @record('正在加载文章！')
   async getArticle (index: ArticleType['id']) {
     let article = this.articleMap.get(index)
     if (!article) {
