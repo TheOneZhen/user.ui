@@ -6,7 +6,7 @@ export const UseUserStore = defineStore('UseUserStore', () => {
   const icon = ref('')
   const platform = ref('GitHub')
   const home = ref('')
-  const viewRecord = reactive<Record<keyof UserViewRecord, Set<number>>>({
+  const viewRecord: Record<keyof UserViewRecord, Set<number>> = reactive({
     LA: new Set(),
     DLA: new Set(),
     LC: new Set(),

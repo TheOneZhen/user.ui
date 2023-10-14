@@ -3,11 +3,11 @@ import { defineStore } from 'pinia'
 export const UseReplyStore = defineStore('UseReplyStore', () => {
   const visible = ref(false)
   const reference = ref('')
-  const comment = reactive<{
+  const comment: {
     content: CommentType['content']
     article: CommentType['article']
     quote: CommentType['quote']
-  }>({
+  } = reactive({
     content: '',
     article: null,
     quote: null

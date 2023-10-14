@@ -13,7 +13,7 @@ import { StoreDefinition } from 'pinia'
  *    - 长效状态在app启动时被创建，会自动加载配置文件，读取本地存储
  */
 export class Store {
-  private _map: Record<string, StoreDefinition> = {
+  private _map: Record<string, StoreDefinition<any, any, any, any>> = {
     'UseDrawerStore': UseDrawerStore,
     'UseEnterTimeStore': UseEnterTimeStore,
     'UseLayoutStore': UseLayoutStore,
