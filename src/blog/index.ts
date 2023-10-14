@@ -4,7 +4,7 @@ import { BLOGAPI } from './blog.api'
 import { uniqueId } from 'lodash-es'
 import { Marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
-
+import { record } from '@/utils/record'
 /**
  * 博客节点
  */
@@ -34,6 +34,7 @@ export class Blog {
     )
   }
 
+  @record({ id: Date.now(), content: '加载博客目录', level: 1 })
   init () {
     this.getCatalog()
     this.getBlogTags()

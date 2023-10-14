@@ -1,10 +1,8 @@
-import axios, { AxiosInstance, AxiosRequestConfig, CancelTokenStatic } from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import { requestConfig } from './net.config'
 
 export class Request {
   protected _request: AxiosInstance
-  protected pending: {url: string, cancel: Function}[] = []
-  protected cancelToken: CancelTokenStatic = axios.CancelToken
 
   constructor () {
     this._request = axios.create(requestConfig)
@@ -48,20 +46,6 @@ export class Request {
         return Promise.reject(response.status)
       }
     )
-  }
-  /**
-   * 取消重复请求
-   */
-  protected removePending (key: string, cancel: boolean = false): void {
-    this.pending.some((item, index) => {
-      if (item.url === key && cancel) {
-        console.log('请求取消', key)
-        item.cancel()
-        this.pending.splice(index, 1)
-        return true
-      }
-      return false
-    })
   }
 
   public post<T = any, D = {}> (url: string, data: D, config: AxiosRequestConfig<D> = {}) {
