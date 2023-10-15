@@ -6,7 +6,8 @@ module.exports = {
     parser: '@typescript-eslint/parser'
   },
   extends: [
-    '@vue/eslint-config-typescript'
+    '@vue/eslint-config-typescript',
+    './.eslintrc-auto-import.json'
   ],
   rules: {
     'quotes': ['warn', 'single'],
