@@ -7,7 +7,7 @@
       <!-- <z-bullet-screen></z-bullet-screen> -->
     </div>
     <z-signature v-if="tasks.length > 0" :loading="true" width="100" class="g-position-fixed g-left-1% g-bottom-10px"></z-signature>
-    <el-backtop target="#z-main-scroll .el-scrollbar__wrap" class="g-left-92%" ></el-backtop>
+    <el-backtop class="g-left-92%" ></el-backtop>
     <z-footer />
   </el-scrollbar>
 </template>
