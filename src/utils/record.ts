@@ -1,23 +1,48 @@
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
+import { ElNotification } from 'element-plus'
+import 'element-plus/es/components/notification/style/css'
 
 export const tasks = ref<Array<Task>>([])
 
-export function record (content: Task['content'], level: Task['level'] = 1) {
-  console.log('record start: ', content)
-  const task: Task = { content, level, id: Date.now(), controls: [] }
-  tasks.value.push(task)
+export function record (
+  content: Task['content'],
+  successContent = '',
+  errorContent = ''
+) {
   return function (target: any, name: string, descriptor: PropertyDescriptor) {
     const fn = descriptor.value
     descriptor.value = async function (...args: any[]) {
+      const task: Task = { content, id: Date.now(), controls: [], successContent, errorContent }
+      const instance = ElNotification({
+        message: content,
+        duration: 0,
+        position: 'bottom-left',
+        offset: 100,
+        onClose: () => {
+          const index = tasks.value.findIndex(item => item.id === task.id)
+          if (index !== -1) {
+            tasks.value[index].controls.forEach(control => control.abort())
+            tasks.value.splice(index, 1)
+          }
+          instance.close()
+        }
+      })
+
+      tasks.value.push(task)
+
       return Promise.resolve(fn.apply(this, args))
-        .catch(error => {
-          console.log(error)
+        .then(res => {
+          if (successContent) ElNotification({ message: successContent })
+          return res
+        })
+        .catch(() => {
+          if (!errorContent) return
+          // 报告错误
+          ElNotification({ message: errorContent, type: 'error' })
         })
         .finally(() => {
-          const index = tasks.value.findIndex(item => item.id === task.id)
-          index !== -1 && tasks.value.splice(index, 1)
-          console.log('record end: ', content)
-          // 如果存在特殊任务，进入后续队列中
+          removeTask(task.id)
+          instance.close()
         })
     }
     return descriptor
@@ -30,8 +55,7 @@ export function getCurrentTask () {
   } else return null
 }
 
-watch(tasks, () => {
-  console.log('asdasda')
-})
-
-// 直接在这里进行组件的渲染
+function removeTask (taskId: Task['id']) {
+  const index = tasks.value.findIndex(item => item.id === taskId)
+  index !== -1 && tasks.value.splice(index, 1)
+}

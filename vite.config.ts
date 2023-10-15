@@ -32,10 +32,13 @@ export default defineConfig(() => {
         }
       ),
       AutoImport({
-        imports: ['vue'],
+        imports: ['vue', 'vue-router', 'pinia'],
         resolvers: [
           ElementPlusResolver()
         ],
+        eslintrc: {
+          enabled: true
+        },
         dts: resolve(__dirname, 'typing', 'auto-imports.d.ts')
       }),
       ElementComponents({

@@ -5,10 +5,8 @@ import { LSStorage } from '@/storage'
 import { User } from '@/user'
 import { APPAPI } from './app.api'
 import { Request } from '@/app/request'
-import { ElMessage, ElNotification } from 'element-plus'
 import { record } from '@/utils/record'
 import type { Router } from 'vue-router'
-import 'element-plus/es/components/message/style/css'
 
 export class App {
   blog = new Blog()
@@ -18,13 +16,11 @@ export class App {
   router: Router | undefined
   user = new User()
   request = new Request()
-  $message = ElMessage
 
   constructor () {
     console.log('Welcome to zhen\'s space!')
   }
 
-  @record('网站载入中！')
   async init () {
     await this.checkCsrfToken()
     this.blog.init()
@@ -34,7 +30,8 @@ export class App {
   async checkCsrfToken () {
     await this.request.post<Boolean>(APPAPI.CHECK_CSRF_TOKEN, {})
   }
-  // 代理请求
+
+  @record('代理请求')
   async proxyRequest<T> (url: string, params = {}, method = 'GET', headers = {}) {
     return this.request.post<T>(APPAPI.PROXY_REQUEST, { url, params, method, headers })
   }
@@ -44,8 +41,6 @@ export class App {
     script.src = url
     document.body.appendChild(script)
   }
-
-
 }
 
 export const app = new App()

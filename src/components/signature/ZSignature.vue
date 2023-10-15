@@ -1,5 +1,5 @@
 <template>
-  <transition>
+  <Transition>
     <svg viewBox="0 0 160 80" @click="handleClick" class="g-pointer">
       <title>zhen</title>
       <g :class="{'z-jump': loading}" stroke="var(--signature-stroke)" fill="var(--signature-fill)">
@@ -9,7 +9,7 @@
         <path d="m120,60 v20 v-20 h20 v20"></path>
       </g>
     </svg>
-  </transition>
+  </Transition>
 </template>
 
 <script lang="ts" setup>
@@ -18,6 +18,7 @@ const { loading } = defineProps({ loading: { type: Boolean, default: false } })
 function handleClick () {
   app.theme.handleClickSignature()
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -43,4 +44,6 @@ function handleClick () {
     transform: translateY(0);
   }
 }
+
+
 </style>

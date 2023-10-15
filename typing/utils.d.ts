@@ -1,6 +1,7 @@
 interface Task {
   content: string
-  level: number
+  errorContent: string
+  successContent: string
   id: number
   controls: AbortController[]
 }

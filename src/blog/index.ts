@@ -34,14 +34,14 @@ export class Blog {
     )
   }
 
-  @record('博客模块载入中！')
   init () {
     this.getCatalog()
     this.getBlogTags()
   }
 
+  @record('正在加载博客目录！')
   getCatalog () {
-    app
+    return app
       .request
       .post<Array<CatalogItemType>>(BLOGAPI.GET_CATALOG, {})
       .then(data => {
@@ -53,8 +53,9 @@ export class Blog {
       })
   }
 
+  @record('正在获取标签内容！')
   getBlogTags () {
-    app
+    return app
       .request.get<Array<TagType>>(BLOGAPI.GET_TAGS, {})
       .then(data => data.forEach(tag => this.tagMap.set(tag.id, tag)))
   }
@@ -72,7 +73,7 @@ export class Blog {
     return result
   }
 
-  @record('正在加载文章！')
+  @record('正在加载文章！', '', '文章加载失败，请尝试刷新页面！')
   async getArticle (index: ArticleType['id']) {
     let article = this.articleMap.get(index)
     if (!article) {
@@ -86,9 +87,7 @@ export class Blog {
     app.router?.push({ name: RouterName.ARTICLE, params: { index } })
   }
 
-  /**
-   * markown转html
-   */
+  /** markown转html */
   async converterMdToHTML (text: string): Promise<string> {
     if (!window.hljs) {
       return new Promise(
@@ -101,5 +100,20 @@ export class Blog {
 
   formatDate (date: string) {
     return dayjs(date).format('YYYY年MM月DD日')
+  }
+
+  /** 检查CDN资源，这些资源目前都是挂在到window上的 */
+  @record('加载外部资源中！', '外部资源加载成功！', '外部资源加载失败，请尝试刷新页面或检查网络问题。')
+  checkCDNResource () {
+    const generate = (name: string) => {
+      return new Promise((resolve) => {
+        while (!window[name]);
+        resolve(true)
+      })
+    }
+    return Promise.all([
+      generate('mermaid'),
+      generate('hljs')
+    ])
   }
 }

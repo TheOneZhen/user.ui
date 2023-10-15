@@ -1,6 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import { requestConfig } from './net.config'
 import { getCurrentTask } from '@/utils/record'
+import { ElNotification } from 'element-plus'
+import 'element-plus/es/components/notification/style/css'
+
 export class Request {
   protected _request: AxiosInstance
 
@@ -32,11 +35,10 @@ export class Request {
         else if (response.status === 521) content = '登录过期，点击重新登录'
         else if (response.status === 522) content = '三方登录失败，点击重新登录'
         if (content !== '') {
-          const message = app.$message({
-            duration: 0,
+          const instance = ElNotification({
             message: h('div', { onClick: () => {
               app.user.loginByGithub()
-              message.close()
+              instance.close()
             }, class: 'g-pointer' }, content)
           })
         }
