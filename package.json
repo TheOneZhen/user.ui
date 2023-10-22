@@ -11,7 +11,7 @@
     "lint-fix": "eslint src/. --fix"
   },
   "dependencies": {
-    "@micro-zoe/micro-app": "^0.8.5",
+    "@micro-zoe/micro-app": "^1.0.0-rc.0",
     "axios": "^1.4.0",
     "css-doodle": "^0.34.9",
     "dayjs": "^1.11.7",
