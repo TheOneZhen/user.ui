@@ -33,3 +33,8 @@ declare type ArticleType = {
   views: number
   isShow: boolean
 }
+
+declare type SectionNavType = {
+  title: string
+  children: SectionNavType[]
+}

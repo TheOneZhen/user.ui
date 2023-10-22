@@ -1,7 +1,12 @@
 <template>
   <div class="z-find-me">
     <div class="part-one">
-      <h1>小纸伞，遮雨也遮月光</h1>
+      <!-- <el-card>
+        <div>
+          <micro-app name="site" url="http://localhost:5173" iframe></micro-app>
+        </div>
+        <div></div>
+      </el-card> -->
     </div>
   </div>
 </template>

@@ -10,14 +10,21 @@
 </template>
 
 <script lang="ts" setup>
-const { content } = defineProps<{
-  content: string
-}>()
+const { content, generateNav } = defineProps({
+  content: {
+    type: String,
+    required: true
+  },
+  generateNav: {
+    type: Boolean,
+    default: false
+  }
+})
 
 const html = ref('')
 
 app.blog
-  .converterMdToHTML(content)
+  .converterMdToHTML(content, generateNav)
   .then(res => html.value = res, error => {
     html.value = '文章内容加载失败，请重新尝试！'
     console.error(error)

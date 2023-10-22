@@ -5,6 +5,8 @@ import { uniqueId } from 'lodash-es'
 import { Marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 import { record } from '@/utils/record'
+import { ElMenu, ElMenuItem, ElSubMenu, ElText } from 'element-plus'
+
 /**
  * 博客节点
  */
@@ -13,8 +15,11 @@ export class Blog {
   tagMap = new Map<TagType['id'], TagType>()
   catalog = reactive(new Array<CatalogItemType>())
   marked: Marked
+  sections = ref<Array<SectionNavType>>([])
+  isGenSectionNav = ref(false)
 
   constructor () {
+    const self = this
     this.marked = new Marked(
       markedHighlight({
         async: true,
@@ -30,7 +35,35 @@ export class Blog {
           }
           return Promise.reject(new Error('代码格式化失败！'))
         }
-      })
+      }),
+      {
+        hooks: {
+          preprocess (markdown) {
+            self.sections.value = []
+            return markdown
+          },
+          postprocess (html) { return html }
+        },
+        renderer: {
+          heading (text, level) {
+            const result = `
+              <h${level} class="g-anchor">
+                <a name="${text}" href="#${text}">#</a>
+                ${text}
+              </h${level}>
+            `
+            if (self.isGenSectionNav.value) {
+              let middle = self.sections.value
+              while (level !== 1) {
+                middle = middle[middle.length - 1].children
+                level--
+              }
+              middle.push({ title: text, children: [] })
+            }
+            return result
+          }
+        }
+      }
     )
   }
 
@@ -88,13 +121,15 @@ export class Blog {
   }
 
   /** markown转html */
-  async converterMdToHTML (text: string): Promise<string> {
+  async converterMdToHTML (text: string, generateNav = false): Promise<string> {
     if (!window.hljs) {
       return new Promise(
         resolve => setTimeout(() => resolve(this.converterMdToHTML(text)), 100)
-        )
+      )
     }
+    this.isGenSectionNav.value = generateNav
     const html = await this.marked.parse(text) || ''
+    this.isGenSectionNav.value = false
     return html
   }
 
@@ -102,18 +137,24 @@ export class Blog {
     return dayjs(date).format('YYYY年MM月DD日')
   }
 
-  /** 检查CDN资源，这些资源目前都是挂在到window上的 */
-  @record('加载外部资源中！', '外部资源加载成功！', '外部资源加载失败，请尝试刷新页面或检查网络问题。')
-  checkCDNResource () {
-    const generate = (name: string) => {
-      return new Promise((resolve) => {
-        while (!window[name]);
-        resolve(true)
-      })
+  genSectionNav () {
+    const GenText = (title: string) => h(ElText, { truncated: true, onClick: () => {
+      location.hash = `#${title}`
+      document.getElementById(title)?.scrollIntoView()
+    } }, () => title)
+    const GenSub = (list: SectionNavType[]) => {
+      return list.map(({title, children}) => children.length > 0
+        ? h(ElSubMenu, { index: title }, { default: () => GenSub(children), title: () => GenText(title) })
+        : h(ElMenuItem, { index: title }, () => GenText(title))
+      )
     }
-    return Promise.all([
-      generate('mermaid'),
-      generate('hljs')
-    ])
+    return h(
+      ElMenu,
+      {
+        class: 'g-top-5% g-right-5%',
+        style: 'position: fixed; width: 12%;'
+      },
+      () => GenSub(this.sections.value)
+    )
   }
 }

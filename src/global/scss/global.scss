@@ -197,3 +197,15 @@ html, body {
 .g-bh-index {
   z-index: 999;
 }
+
+.g-anchor a {
+  opacity: 0;
+  margin-left: -20px;
+}
+.g-anchor:hover a {
+  opacity: 1;
+}
+
+.markdown-body a {
+  color: var(--theme-background-sun)
+}

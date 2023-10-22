@@ -22,6 +22,7 @@ export class App {
   }
 
   async init () {
+    this.checkCDNResource()
     await this.checkCsrfToken()
     this.blog.init()
     this.user.login()
@@ -40,6 +41,21 @@ export class App {
     const script = document.createElement('script')
     script.src = url
     document.body.appendChild(script)
+  }
+
+  /** 检查CDN资源，这些资源目前都是挂在到window上的 */
+  @record('加载外部资源中！', '外部资源加载成功！', '外部资源加载失败，请尝试刷新页面或检查网络问题。')
+  checkCDNResource () {
+    const generate = (name: string) => {
+      return new Promise((resolve) => {
+        while (!window[name]);
+        resolve(true)
+      })
+    }
+    return Promise.all([
+      generate('mermaid'),
+      generate('hljs')
+    ])
   }
 }
 

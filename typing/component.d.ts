@@ -55,6 +55,7 @@ declare module '@vue/runtime-core' {
     ZMarkdownPreview: typeof import('./../src/components/template/ZMarkdownPreview.vue')['default']
     ZMultiPai: typeof import('./../src/components/lefting/ZMultiPai.vue')['default']
     ZReply: typeof import('./../src/components/lefting/ZReply.vue')['default']
+    ZSectionNav: typeof import('./../src/components/blog/ZSectionNav.vue')['default']
     ZSignature: typeof import('./../src/components/signature/ZSignature.vue')['default']
     ZTags: typeof import('./../src/components/blog/ZTags.vue')['default']
     ZTimeline: typeof import('./../src/components/blog/ZTimeline.vue')['default']

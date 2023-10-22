@@ -61,6 +61,12 @@ export default defineConfig(() => {
           rewrite (path) {
             return path.replace('/dynamic', '')
           }
+        },
+        '/stations': {
+          target: 'https://stations.zhenisbusy.space/',
+          rewrite (path) {
+            return path.replace('/stations', '')
+          }
         }
       }
     },
@@ -90,7 +96,7 @@ export default defineConfig(() => {
          */
         output: {
           manualChunks (id, meta) {
-            // return id.toString().split('node_modules/')[1].split("/")[0].toString()
+            // return id.toString().split('node_modules/')[1]?.split('/')[0].toString()
           }
         }
       }

@@ -11,7 +11,7 @@
                   :index="tag.id"
                   v-text="tag.title"/>
         </div>
-        <z-markdown-preview :content="article.content"></z-markdown-preview>
+        <z-markdown-preview :content="article.content" generateNav></z-markdown-preview>
         <p class="g-opacity-.4 g-text-align-right">
           {{ '最近修改：' + app.blog.formatDate(article.updateTime) }}
         </p>
