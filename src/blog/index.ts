@@ -151,8 +151,7 @@ export class Blog {
     return h(
       ElMenu,
       {
-        class: 'g-top-5% g-right-5%',
-        style: 'position: fixed; width: 12%;'
+        style: 'position: fixed; width: 12%; top: 5%; right: 5%'
       },
       () => GenSub(this.sections.value)
     )
