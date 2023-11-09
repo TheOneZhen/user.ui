@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-const { loading } = defineProps({ loading: { type: Boolean, default: false } })
+defineProps({ loading: { type: Boolean, default: false } })
 
 function handleClick () {
   app.theme.handleClickSignature()
@@ -27,7 +27,7 @@ function handleClick () {
   .z-jump > *:nth-child(#{$i}) {
     animation-duration: 2s;
     animation-timing-function: ease-in;
-    animation-delay: $i * 1s;
+    animation-delay: $i * .5s;
     animation-iteration-count: infinite;
     animation-name: jump;
   }
