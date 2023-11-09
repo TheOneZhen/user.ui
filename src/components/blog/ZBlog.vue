@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { ZMarkdownPreview } from '@/components/template/ZMarkdownPreview'
+</script>
+
 <template>
   <div class="z-blog g-margin-5%-20% g-width-60%">
     <router-view v-slot="{ Component }">
@@ -15,7 +19,7 @@
                           placement="top">
           <el-card>
             <h2 v-text="item.title"></h2>
-            <z-markdown-preview :content="item.description" />
+            <component :is="ZMarkdownPreview({content: item.description })" />
           </el-card>
         </el-timeline-item>
       </el-timeline>

@@ -11,7 +11,7 @@
                   :index="tag.id"
                   v-text="tag.title"/>
         </div>
-        <z-markdown-preview :content="article.content" generateNav></z-markdown-preview>
+        <component :is="ZMarkdownPreview({content: article.content, generateNav: true })" />
         <p class="g-opacity-.4 g-text-align-right">
           {{ '最近修改：' + app.blog.formatDate(article.updateTime) }}
         </p>
@@ -42,6 +42,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ZMarkdownPreview } from '@/components/template/ZMarkdownPreview'
 
 const { index } = defineProps<{
   index: string

@@ -13,7 +13,7 @@
             <el-link href="https://github.com/" target="_blank" icon-carbon:logo-github />
           </el-tag>
         </div>
-        <z-markdown-preview :content="comment.content" class="g-padding-2%-1%" style="width: 90%" />
+        <component :is="ZMarkdownPreview({content: comment.content})" class="g-padding-2%-1%" style="width: 90%" />
         <div class="g-height-3% g-min-height-30px g-flex g-align-items-center">
           <el-text class="g-flex-auto g-text-align-center">{{ comment.createTime }}</el-text>
           <el-button v-active="viewRecord.LC.has(comment.id)" text @click="app.user.lnComment(comment.id, 1)"><el-icon icon-material-symbols:favorite />{{ comment.likes }}</el-button>
@@ -27,12 +27,17 @@
 </template>
 
 <script lang="ts" setup>
-const { comment, onlyReply } = withDefaults(defineProps<{
-  comment: CommentType
-  onlyReply?: boolean
-}>(),
-{
-  onlyReply: false
+import { ZMarkdownPreview } from '@/components/template/ZMarkdownPreview'
+
+const { comment, onlyReply } = defineProps({
+  comment: {
+    type: Object as PropType<CommentType>,
+    required: true
+  },
+  onlyReply: {
+    type: Boolean,
+    default: false
+  }
 })
 
 const useReply = app.store.get('UseReplyStore')

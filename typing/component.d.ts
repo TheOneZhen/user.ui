@@ -52,13 +52,14 @@ declare module '@vue/runtime-core' {
     ZHome: typeof import('./../src/components/home/ZHome.vue')['default']
     ZLayout: typeof import('./../src/components/layout/ZLayout.vue')['default']
     ZLefting: typeof import('./../src/components/lefting/ZLefting.vue')['default']
-    ZMarkdownPreview: typeof import('./../src/components/template/ZMarkdownPreview.vue')['default']
     ZMultiPai: typeof import('./../src/components/lefting/ZMultiPai.vue')['default']
+    ZPreviewCarousel: typeof import('./../src/components/findme/ZPreviewCarousel.vue')['default']
     ZReply: typeof import('./../src/components/lefting/ZReply.vue')['default']
     ZSectionNav: typeof import('./../src/components/blog/ZSectionNav.vue')['default']
     ZSignature: typeof import('./../src/components/signature/ZSignature.vue')['default']
     ZTags: typeof import('./../src/components/blog/ZTags.vue')['default']
     ZTimeline: typeof import('./../src/components/blog/ZTimeline.vue')['default']
+    ZTypography: typeof import('./../src/components/findme/ZTypography.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']
