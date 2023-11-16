@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ZMarkdownPreview } from '@/components/template/ZMarkdownPreview'
+import { ZMarkdownPreview } from '@/blog/preview'
 
 const { index } = defineProps<{
   index: string

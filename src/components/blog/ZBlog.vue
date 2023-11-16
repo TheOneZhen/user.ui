@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ZMarkdownPreview } from '@/components/template/ZMarkdownPreview'
+import { ZMarkdownPreview } from '@/blog/preview'
 </script>
 
 <template>
