@@ -69,5 +69,8 @@
   "workbench.sideBar.location": "left",
   "gitlens.views.branches.branches.layout": "list",
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

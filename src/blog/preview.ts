@@ -1,8 +1,9 @@
 import ZSignature from '@/components/signature/ZSignature.vue'
 import { loadImageAsync, loadVideoAsync } from '@/utils/loadResourceAsync'
+import { AsyncComponentLoader } from 'vue'
 
 /** 通用加载等待组件 */
-function CommonLoadingComp () {
+export function CommonLoadingComp () {
   return h('div', { class: 'g-flex-center' }, h(ZSignature, { loading: true, style: 'width: 200px' }))
 }
 
@@ -32,19 +33,24 @@ export function ZMarkdownPreview ({ content, generateNav = false }: { content: s
 }
 /** 图片-轮播-异步组件 */
 export function ZPreviewCarouselImage ({ src }: { src: string }) {
-  return defineAsyncComponent({
-    loader: () => loadImageAsync(src),
-    delay: 200,
-    loadingComponent: CommonLoadingComp,
-    errorComponent: ZSignature
-  })
+  return PackageAsyncComponentToVNode(
+    () => loadImageAsync(src)
+  )
 }
 /** 视频-轮播-异步组件 */
 export function ZPreviewCarouselVideo ({ src }: { src: string }) {
-  return defineAsyncComponent({
-    loader: () => loadVideoAsync(src),
-    delay: 200,
-    loadingComponent: CommonLoadingComp,
-    errorComponent: ZSignature
-  })
+  return PackageAsyncComponentToVNode(
+    () => loadVideoAsync(src)
+  )
+}
+
+export function PackageAsyncComponentToVNode (loader: AsyncComponentLoader) {
+  return h(
+    defineAsyncComponent({
+      loader,
+      delay: 200,
+      loadingComponent: CommonLoadingComp,
+      errorComponent: ZSignature
+    })
+  )
 }

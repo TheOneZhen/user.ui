@@ -1,0 +1,22 @@
+// 样式前缀问题（结合scss语法优化）
+// 考虑是否添加最上层内容
+.z-markdown-heading {
+  a {
+    opacity: 0;
+    margin-left: -20px;
+  }
+  &:hover {
+    a {
+      opacity: 1;
+    }
+  }
+}
+
+// link字体需要接入theme
+
+.z-markdown-a {
+  color: var(--theme-background-sun);
+}
+
+.z-markdown-code {
+}
