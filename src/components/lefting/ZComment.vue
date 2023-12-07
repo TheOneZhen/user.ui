@@ -13,7 +13,7 @@
             <el-link href="https://github.com/" target="_blank" icon-carbon:logo-github />
           </el-tag>
         </div>
-        <component :is="ZMarkdownPreview({content: comment.content})" class="g-padding-2%-1%" style="width: 90%" />
+        <component :is="customMarked.parse(comment.content)" class="g-padding-2%-1%" style="width: 90%" />
         <div class="g-height-3% g-min-height-30px g-flex g-align-items-center">
           <el-text class="g-flex-auto g-text-align-center">{{ comment.createTime }}</el-text>
           <el-button v-active="viewRecord.LC.has(comment.id)" text @click="app.user.lnComment(comment.id, 1)"><el-icon icon-material-symbols:favorite />{{ comment.likes }}</el-button>
@@ -27,8 +27,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ZMarkdownPreview } from '@/blog/preview'
+import { CustomMarked } from '@/blog/customMarked'
 
+const customMarked = new CustomMarked()
 const { comment, onlyReply } = defineProps({
   comment: {
     type: Object as PropType<CommentType>,

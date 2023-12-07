@@ -1,22 +1,370 @@
-// 样式前缀问题（结合scss语法优化）
-// 考虑是否添加最上层内容
-.z-markdown-heading {
-  a {
-    opacity: 0;
-    margin-left: -20px;
+// 样式优先考虑theme
+// 如果使用类名，最后很难将HTML和类名同步。还是建议使用标签名
+/*
+ * 设计规则：
+ * - 此文件主要是为了解决CDN的CSS文件不好接入theme的问题
+ * - 除了特殊元素（carousel组件等），其他全部使用标签名进行匹配，以避免解析后和HTML标签不一致的情况
+ */
+.z-markdown {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  background-color: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans',
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  line-height: 1.5;
+  word-wrap: break-word;
+  font-size: 16px;
+  &:first-child {
+    margin-top: 0 !important;
   }
-  &:hover {
-    a {
-      opacity: 1;
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
+  &::before {
+    display: table;
+    content: '';
+  }
+  &::after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+  &::placeholder {
+    color: var(--theme-color-sub);
+    opacity: 1;
+  }
+  .z-markdown-image-mode {
+    display: flex;
+    .z-markdown-carousel {
+      width: 50%;
+    }
+    .z-markdown-reading-mode {
+      width: 50%;
+      padding: 2rem;
     }
   }
-}
+  /* 联播组件 */
+  .z-markdown-carousel {
+  }
 
-// link字体需要接入theme
+  .z-markdown-code-copy {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+  }
 
-.z-markdown-a {
-  color: var(--theme-background-sun);
-}
+  .z-markdown-html {
+  }
 
-.z-markdown-code {
+  .z-markdown-heading {
+    margin-top: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.25;
+    padding-bottom: 0.3em;
+    a {
+      opacity: 0;
+      margin-left: -20px;
+    }
+    &:hover {
+      a {
+        opacity: 1;
+      }
+    }
+    code {
+      padding: 0 0.2em;
+      font-size: inherit;
+    }
+  }
+
+  .z-markdown-pointer {
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      animation-duration: 2s;
+      animation-iteration-count: 1;
+      animation-name: button-hover-shadow;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+    }
+  }
+
+  code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    white-space: break-spaces;
+    background-color: var(--theme-code-background);
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+      Liberation Mono, monospace;
+    br {
+      display: none;
+    }
+  }
+
+  pre {
+    position: relative;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: var(--theme-code-background);
+    border-radius: 6px;
+    code {
+      font-size: 100%;
+      word-break: normal;
+      white-space: pre;
+      background: 0 0;
+      display: inline;
+      max-width: auto;
+      padding: 0;
+      margin: 0;
+      overflow: visible;
+      line-height: inherit;
+      word-wrap: normal;
+      background-color: transparent;
+      border: 0;
+    }
+  }
+
+  details,
+  figcaption,
+  figure {
+    display: block;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  a {
+    color: var(--theme-color-active);
+    text-decoration: none;
+    background-color: transparent;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  abbr[title] {
+    border-bottom: none;
+    text-decoration: underline dotted;
+  }
+
+  b,
+  strong {
+    font-weight: 600;
+  }
+
+  dfn {
+    font-style: italic;
+  }
+
+  h1 {
+    margin: 0.67em 0;
+    padding-bottom: 0.3em;
+    font-size: 2em;
+    border-bottom: 1px solid var(--theme-compete);
+  }
+  h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+  }
+  h3 {
+    font-size: 1.25em;
+  }
+  h4 {
+    font-size: 1em;
+  }
+  h5 {
+    font-size: 0.875em;
+  }
+  h6 {
+    font-size: 0.85em;
+  }
+
+  mark {
+    background-color: var(--color-attention-subtle);
+    color: var(--color-fg-default);
+  }
+  small {
+    font-size: 90%;
+  }
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    bottom: -0.25em;
+  }
+  sup {
+    top: -0.5em;
+  }
+  img {
+    border-style: none;
+    max-width: 100%;
+    box-sizing: content-box;
+    background-color: var(--color-canvas-default);
+  }
+
+  figure {
+    margin: 1em 40px;
+  }
+
+  hr {
+    box-sizing: content-box;
+    overflow: hidden;
+    background: 0 0;
+    border-bottom: 1px solid var(--color-border-muted);
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: var(--color-border-default);
+    border: 0;
+    &::before {
+      display: table;
+      content: '';
+    }
+    &::after {
+      display: table;
+      clear: both;
+      content: '';
+    }
+  }
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+  }
+  td,
+  th {
+    padding: 0;
+  }
+  details summary {
+    cursor: pointer;
+  }
+  details:not([open]) > :not(summary) {
+    display: none !important;
+  }
+
+  blockquote {
+    margin: 0;
+    padding: 0 1em;
+    color: var(--theme-color-sub);
+    border-left: 0.25em solid var(--theme-bar);
+    & > :first-child {
+      margin-top: 0;
+    }
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  blockquote,
+  details,
+  dl,
+  p,
+  pre,
+  table {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+
+  summary {
+    display: list-item;
+    h1,
+    h2 {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .z-markdown-heading {
+      display: inline-block;
+    }
+  }
+
+  ol,
+  ul {
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding-left: 2em;
+    ol,
+    ul {
+      margin-bottom: 0;
+    }
+  }
+  li {
+    & > p {
+      margin-top: 16px;
+    }
+    & + li {
+      margin-top: 0.25em;
+    }
+  }
+
+  dl {
+    padding: 0;
+    dt {
+      padding: 0;
+      margin-top: 16px;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: var(--base-text-weight-semibold, 600);
+    }
+    dd {
+      padding: 0 16px;
+      margin-bottom: 16px;
+    }
+  }
+  table {
+    th {
+      font-weight: var(--base-text-weight-semibold, 600);
+    }
+    td,
+    th {
+      padding: 6px 13px;
+      border: 1px solid var(--color-border-default);
+    }
+    tr {
+      background-color: var(--color-canvas-default);
+      border-top: 1px solid var(--color-border-muted);
+      &:nth-child(2n) {
+        background-color: var(--color-canvas-subtle);
+      }
+    }
+  }
+  img {
+    background-color: transparent;
+    [align='right'] {
+      padding-left: 20px;
+    }
+    [align='left'] {
+      padding-right: 20px;
+    }
+  }
+
+  del code {
+    text-decoration: inherit;
+  }
+  samp {
+    font-size: 85%;
+  }
+
+  [data-footnote-ref]::before {
+    content: '[';
+  }
+  [data-footnote-ref]::after {
+    content: ']';
+  }
 }

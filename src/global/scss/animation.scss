@@ -1,24 +1,48 @@
 @keyframes slide-enter {
   0% {
     transform: translateY(10px);
-    opacity: 0
+    opacity: 0;
   }
 
   to {
     transform: translateY(0);
-    opacity: 100
+    opacity: 1;
   }
 }
 
-@media (prefers-reduced-motion:no-preference) {
+@media (prefers-reduced-motion: no-preference) {
   [slide-enter] > * {
     --enter-stage: 0;
     --enter-step: 150ms;
     --enter-initial: 0ms;
     animation: slide-enter 1s both 1;
-    animation-delay: calc(var(--enter-initial) + var(--enter-stage) * var(--enter-step));
+    animation-delay: calc(
+      var(--enter-initial) + var(--enter-stage) * var(--enter-step)
+    );
   }
   @for $i from 1 to 20 {
-    [slide-enter] > *:nth-child(#{$i}) { --enter-stage: #{$i}; }
+    [slide-enter] > *:nth-child(#{$i}) {
+      --enter-stage: #{$i};
+    }
+  }
+}
+
+@keyframes button-hover-shadow {
+  0% {
+    box-shadow: none;
+  }
+  25% {
+    box-shadow: inset 2px 0px var(--theme-color-active);
+  }
+  50% {
+    box-shadow: inset 2px 2px var(--theme-color-active);
+  }
+  75% {
+    box-shadow: inset 2px 2px var(--theme-color-active),
+      inset -2px 0px var(--theme-color-active);
+  }
+  100% {
+    box-shadow: inset 2px 2px var(--theme-color-active),
+      inset -2px -2px var(--theme-color-active);
   }
 }

@@ -1,9 +1,9 @@
 export enum ThemeProperty {
   ThemeBackground = '--theme-background',
-  ThemeBackgroundSun = '--theme-background-sun',
-  ThemeBackgroundMountain = '--theme-background-mountain',
-  ThemeBackgroundTree = '--theme-background-tree',
-  ThemeFontColor = '--theme-font-color',
+  ThemeColorActive = '--theme-color-active',
+  ThemeBar = '--theme-bar',
+  ThemeCompete = '--theme-compete',
+  ThemeColor = '--theme-color',
   SignatureStroke = '--signature-stroke',
   SignatureFill = '--signature-fill'
 }
@@ -12,38 +12,38 @@ export const ThemeConfig = {
   colorSchemes: [
     {
       [ThemeProperty.ThemeBackground]: '#57b2cf',
-      [ThemeProperty.ThemeBackgroundSun]: '#f0e87f',
-      [ThemeProperty.ThemeBackgroundMountain]: '#c79498',
-      [ThemeProperty.ThemeBackgroundTree]: '#9596be',
-      [ThemeProperty.ThemeFontColor]: ''
+      [ThemeProperty.ThemeColorActive]: '#f0e87f',
+      [ThemeProperty.ThemeBar]: '#c79498',
+      [ThemeProperty.ThemeCompete]: '#9596be',
+      [ThemeProperty.ThemeColor]: ''
     },
     {
       [ThemeProperty.ThemeBackground]: '#f0e87f',
-      [ThemeProperty.ThemeBackgroundSun]: '#de6b70',
-      [ThemeProperty.ThemeBackgroundMountain]: '#6a73c2',
-      [ThemeProperty.ThemeBackgroundTree]: '#9596be',
-      [ThemeProperty.ThemeFontColor]: ''
+      [ThemeProperty.ThemeColorActive]: '#de6b70',
+      [ThemeProperty.ThemeBar]: '#6a73c2',
+      [ThemeProperty.ThemeCompete]: '#9596be',
+      [ThemeProperty.ThemeColor]: ''
     },
     {
       [ThemeProperty.ThemeBackground]: '#eacdb1',
-      [ThemeProperty.ThemeBackgroundSun]: '#f0f0f0',
-      [ThemeProperty.ThemeBackgroundMountain]: '#f5aeb2',
-      [ThemeProperty.ThemeBackgroundTree]: '#b04b35',
-      [ThemeProperty.ThemeFontColor]: ''
+      [ThemeProperty.ThemeColorActive]: '#f0f0f0',
+      [ThemeProperty.ThemeBar]: '#f5aeb2',
+      [ThemeProperty.ThemeCompete]: '#b04b35',
+      [ThemeProperty.ThemeColor]: ''
     },
     {
       [ThemeProperty.ThemeBackground]: '#D4AC51',
-      [ThemeProperty.ThemeBackgroundSun]: '#D8D1DD',
-      [ThemeProperty.ThemeBackgroundMountain]: '#452340',
-      [ThemeProperty.ThemeBackgroundTree]: '#1B3E36',
-      [ThemeProperty.ThemeFontColor]: ''
+      [ThemeProperty.ThemeColorActive]: '#D8D1DD',
+      [ThemeProperty.ThemeBar]: '#452340',
+      [ThemeProperty.ThemeCompete]: '#1B3E36',
+      [ThemeProperty.ThemeColor]: ''
     },
     {
       [ThemeProperty.ThemeBackground]: '#3d2333',
-      [ThemeProperty.ThemeBackgroundSun]: '#f0943a',
-      [ThemeProperty.ThemeBackgroundMountain]: '#452340',
-      [ThemeProperty.ThemeBackgroundTree]: '#e284af',
-      [ThemeProperty.ThemeFontColor]: '#E1E1E1'
+      [ThemeProperty.ThemeColorActive]: '#f0943a',
+      [ThemeProperty.ThemeBar]: '#452340',
+      [ThemeProperty.ThemeCompete]: '#e284af',
+      [ThemeProperty.ThemeColor]: '#E1E1E1'
     }
   ] as Array<Record<string, string>>
 }

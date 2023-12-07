@@ -39,7 +39,7 @@ css-doodle {
         position: absolute;
         @place-cell: 0 0;
         @size: 100% 100%;
-        background: @var(--theme-background-sun);
+        background: @var(--theme-color-active);
         border-radius: 100%;
         transition: inherit;
       }
@@ -56,7 +56,7 @@ css-doodle {
       left: @r(0, 100)%;
       bottom: 0;
       @size:@r(8vmin, 20vmin) @lr;
-      background: @var(--theme-background-mountain);
+      background: @var(--theme-bar);
       border: 1px solid #000;
       transform: translateY(@p(50%, 100%)) rotate(45deg) skew(@r(-30deg, 30deg), @lr);
     }
@@ -65,7 +65,7 @@ css-doodle {
       left: @r(0, 100)%;
       bottom: 0;
       @size:@r(2vmin, 8vmin) @lr;
-      background: @var(--theme-background-tree);
+      background: @var(--theme-compete);
       border: 1px solid #000;
       transform: translateY(@p(50%, 100%)) rotate(45deg) skew(@r(30, 40deg), @lr);
     }

@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ZMarkdownPreview } from '@/blog/preview'
+import { CustomMarked } from '@/blog/customMarked'
+
+const customMarked = new CustomMarked()
 </script>
 
 <template>
@@ -7,7 +9,6 @@ import { ZMarkdownPreview } from '@/blog/preview'
     <router-view v-slot="{ Component }">
       <template v-if="Component">
           <component :is="Component" />
-          <component :is="app.blog.genSectionNav()" />
       </template>
       <el-timeline v-else class="g-padding-5%-2%">
         <el-timeline-item v-for="item in app.blog.catalog"
@@ -19,7 +20,7 @@ import { ZMarkdownPreview } from '@/blog/preview'
                           placement="top">
           <el-card>
             <h2 v-text="item.title"></h2>
-            <component :is="ZMarkdownPreview({content: item.description })" />
+            <component :is="customMarked.parse(item.description)" />
           </el-card>
         </el-timeline-item>
       </el-timeline>

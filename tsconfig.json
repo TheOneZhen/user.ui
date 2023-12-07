@@ -105,7 +105,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/components/**/*.vue",
+    "src/**/*.vue",
     "typing/*.d.ts",
     "*.config.ts",
     "pageone/*.ts"

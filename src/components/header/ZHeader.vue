@@ -55,7 +55,7 @@ function handleMouseup () {
   border-bottom: none;
   transition: background 1s ease;
   ._color-scheme {
-    color: var(--theme-background-sun);
+    color: var(--theme-color-active);
   }
 }
 </style>

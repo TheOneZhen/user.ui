@@ -2,6 +2,8 @@ import { Tokens, Token, marked } from 'marked'
 import { VNode, h } from 'vue'
 import { ZPreviewCarouselImage, ZPreviewCarouselVideo, PackageAsyncComponentToVNode } from './preview'
 import { uniqueId } from 'lodash-es'
+import ZCarousel from './ZCarousel.vue'
+import { ElMenu, ElMenuItem, ElSubMenu, ElText } from 'element-plus'
 /**
  * # markdown marked解析模块
  * ## 背景
@@ -20,91 +22,123 @@ export class CustomMarked {
 
   catalog: Array<SectionNavType> = []
   prefix = 'z-markdown'
+  isReadingMode = false
+  codes: Array<VNode> = []
+  private CarouselImageModeRef = ref()
 
-  parse (markdown: string, isGenerateCatalog = false) {
+  /** bug：hashurl变动时会触发重新渲染 */
+  parse (markdown: string, isGenerateNavigation = false, isReadingMode = true) {
+    this.isReadingMode = isReadingMode
     const tokens = marked.lexer(markdown)
-    /** 还有是否生成目录 */
-    return h(
+    let readingModeNode = h(
       'div',
-      { class: `markdown-body ${this.prefix}` },
-      this.main(tokens).filter(Boolean)
+      { class: this.concatPrefix('reading-mode') }, // 暂时继续使用该样式，最后再微调
+      [
+        ...this.main(tokens),
+        this.navigation(this.catalog, isGenerateNavigation)
+      ].filter(Boolean)
     )
+
+    if (!this.isReadingMode && this.codes.length > 0) {
+      readingModeNode = h(
+        'div',
+        { class: `${this.concatPrefix('image-mode')}` },
+        [
+          h(
+            ZCarousel,
+            {
+              class: this.concatPrefix('carousel'),
+              data: this.codes.map(code => ({ title: '', node: code })),
+              autoPlay: 4000,
+              isDisplayTitle: false,
+              ref: this.CarouselImageModeRef
+            }
+          ),
+          readingModeNode
+        ]
+      )
+    }
+
+    return h('div', { class: `${this.prefix}` }, readingModeNode)
   }
 
   private main (tokens: Token[]) {
     const children = Array<VNode>()
     for (let i = 0; i < tokens.length; ++i) {
       let token = tokens[i]
-      /** 如果是联播内容，需要向下检索 */
-      const carousesItems: Tokens.Code[] = []
-      while (token.type === 'code' && /\[\]/.test(token.lang)) {
-        /** 移除标识性字符，转为code类型 */
-        if (token.lang) token.lang = token.lang.replaceAll(/\[\]\s/g, '')
-        carousesItems.push(token as Tokens.Code)
-        i++
-        token = tokens[i]
-      }
-      const type = token.type as keyof this
       /** 如果是联播内容 */
-      if (carousesItems.length > 0) (children.push(this.carouse(carousesItems)), --i)
-      /** 如果存在对应状态机 */
-      else if (this[type] !== undefined) children.push((this[type] as any).call(this, token))
-      else {
-        /** 没有children，直接渲染 */
-        if (['hr', 'br'].includes(token.type)) children.push(this.generateVNode(token.type))
-        /** 存在children，使用main渲染 */
-        else if ([
-          'blockquote',
-          'strong',
-          'em',
-          'del'
-        ].includes(token.type))
-          children.push(this.generateVNode(token.type, undefined, this.main((token as Token & { tokens: [] }).tokens)))
-        /** 内容检索 */
-        else console.log('method is not exist!', token)
+      if (token.type === 'code' && /\[\]/.test(token.lang)) {
+        const carouselItems: Tokens.Code[] = []
+        /** 如果是联播内容，需要向下检索tokens，获取到所有的联播内容然后渲染 */
+        while (token && token.type === 'code' && /\[\]/.test(token.lang)) {
+          /** 移除标识性字符，转为code类型 */
+          if (token.lang) token.lang = token.lang.replaceAll(/[\[\]\s]*/g, '')
+          carouselItems.push(token as Tokens.Code)
+          i++
+          token = tokens[i]
+        }
+        carouselItems.length > 0 && (children.push(this.carousel(carouselItems)), --i)
+      } else {
+        /** 如果存在对应状态机 */
+        const type = token.type as keyof this
+        if (this[type] !== undefined) children.push((this[type] as any).call(this, token))
+        else {
+          /** 没有children，直接渲染 */
+          if (['hr', 'br'].includes(token.type)) children.push(this.generateVNode(token.type))
+          /** 存在children，使用main渲染 */
+          else if ([
+            'blockquote',
+            'strong',
+            'em',
+            'del'
+          ].includes(token.type))
+            children.push(this.generateVNode(token.type, undefined, this.main((token as Token & { tokens: [] }).tokens)))
+          /** 内容检索 */
+          // else console.log('method is not exist!', token)
+        }
       }
     }
     return children
   }
   /** 解析生成联播组件 */
-  carouse (tokens: Tokens.Code[]) {
-    // 和src\components\findme\ZPreviewCarousel.vue组件联合
-    return h(
-      'div',
+  carousel (tokens: Tokens.Code[]) {
+    /** 这里必须要执行一下，不然无法捕获code */
+    const children = tokens.map(token => ({ node: this.code(token), title: token.lang }))
+    if (this.isReadingMode) return h(
+      ZCarousel,
       {
-        class: this.concatPrefix('carouse')
-      },
-      tokens.map(this.code)
+        class: this.concatPrefix('carousel'),
+        data: children,
+        isDisplayTitle: true
+      }
     )
+    else return this.pointerWhenImageMode(this.codes.length - children.length)
   }
   /** 解析生成代码组件 */
-  code ({ lang, text, type }: Tokens.Code) {
+  code ({ lang, text }: Tokens.Code) {
     const language = window.hljs.getLanguage(lang) ? lang : 'plaintext'
-    if (lang === 'image ') return ZPreviewCarouselImage({ src: text })
-    if (lang === 'video') return ZPreviewCarouselVideo({ src: text })
-    if (lang === 'mermaid') return PackageAsyncComponentToVNode(
+    let vnode: VNode
+    if (lang === 'image') vnode = ZPreviewCarouselImage({ src: text })
+    else if (lang === 'video') vnode = ZPreviewCarouselVideo({ src: text })
+    else if (lang === 'mermaid') vnode = PackageAsyncComponentToVNode(
       () => window.mermaid
-        .render(uniqueId('z-mermaid-'), text)
-        .then(svg => h('div', { innerHTML: svg }))
+        .render(uniqueId(this.concatPrefix('mermaid-')), text)
+        .then(({ svg }) => h('div', { innerHTML: svg }))
     )
-    return h(
-      'div',
-      {
-        class: this.concatPrefix(type),
-        style: 'position: relative;'
-      },
+    else vnode = h(
+      'pre',
+      {},
       [
         PackageAsyncComponentToVNode(
           () => Promise
             .resolve(window.hljs.highlight(text, { language }))
-            .then(res => h('pre', h('code', { innerHTML: res.value })))
+            .then(res => h('code', { innerHTML: res.value }))
         ),
         /** 这里不应该写内联样式或引用全局样式 */
         h(
           'span',
           {
-            class: 'g-position-absolute g-top-10px g-right-10px g-pointer',
-            style: 'top: 10px; right: 10px',
+            class: this.concatPrefix('code-copy'),
             'icon-carbon:copy': '',
             onClick () {
               navigator.clipboard.writeText(text)
@@ -113,6 +147,9 @@ export class CustomMarked {
         )
       ]
     )
+    /** 如果时阅读模式，返回高亮指向 */
+    if (this.isReadingMode) return vnode
+    else return (this.codes.push(vnode), this.pointerWhenImageMode(this.codes.length - 1))
   }
   /**
    * 创建VNode：自动创建映射名
@@ -123,14 +160,14 @@ export class CustomMarked {
    */
   private generateVNode (
     tagName: string,
-    props: Record<string, any> = { class: this.concatPrefix(tagName) },
+    props: Record<string, any> = {},
     children: string | VNode[] = ''
   ) {
     return h(tagName, props, children)
   }
   /** 拼接前缀 */
   private concatPrefix (text: string) {
-    return `${this.prefix} ${text}`
+    return `${this.prefix}-${text}`
   }
   /** 生成HTML VNode，这里使用了一个`div`包裹 */
   html ({ text }: Tokens.HTML) {
@@ -145,7 +182,7 @@ export class CustomMarked {
   /** 生成heading，生成过程中需要记录（全局结构） */
   heading ({ depth, text, tokens }: Tokens.Heading) {
     let level = depth, middle = this.catalog
-    while (level !== 1) {
+    while (level !== 1 && middle.length > 0) {
       middle = middle[middle.length - 1].children
       level--
     }
@@ -154,7 +191,11 @@ export class CustomMarked {
       `h${depth}`,
       { class: this.concatPrefix('heading') },
       [
-        this.generateVNode('a', { class: this.concatPrefix('a'), href: `#${text}`, target: '_blank' }, '#'),
+        this.generateVNode(
+          'a',
+          { href: `#${text}`, name: `${text}` },
+          '#'
+        ),
         ...this.main(tokens)
       ]
     )
@@ -165,8 +206,8 @@ export class CustomMarked {
     return h(
       tag,
       {
-        class: `${this.concatPrefix('list')} ${this.concatPrefix(tag)}`,
-        start: token.start // 开始的序号
+        // class: `${this.concatPrefix('list')}`,
+        start: token.start || undefined // 开始的序号
       },
       token.items.map(item => this.list_item(item))
     )
@@ -184,7 +225,6 @@ export class CustomMarked {
     return this.generateVNode(
       'p',
       {
-        class: this.concatPrefix('p'),
         'slide-enter': ''
       },
       this.main(tokens)
@@ -196,7 +236,6 @@ export class CustomMarked {
     return this.generateVNode(
       'code',
       {
-        class: this.concatPrefix('code'),
         innerHTML: token.text
       }
     )
@@ -206,7 +245,6 @@ export class CustomMarked {
     return this.generateVNode(
       'a',
       {
-        class: this.concatPrefix('a'),
         href: token.href,
         target: '_blank'
       },
@@ -214,7 +252,7 @@ export class CustomMarked {
     )
   }
   /** 内联文本 */
-  text ({ text, raw, tokens }: Tokens.Text) {
+  text ({ text, tokens, raw }: Tokens.Text) {
     return tokens === undefined
       ? this.generateVNode('span', undefined, text)
       : this.paragraph({
@@ -223,5 +261,48 @@ export class CustomMarked {
         text,
         tokens
       })
+  }
+  /** 导航 */
+  navigation (catalog: typeof this.catalog, isGenerateNavigation = false) {
+    if (isGenerateNavigation === false || catalog.length === 0) return null
+    const GenText = (title: string) => h(
+      ElText,
+      {
+        truncated: true, onClick: () => {
+          location.hash = `#${title}`
+          document.getElementById(title)?.scrollIntoView()
+        }
+      },
+      () => title
+    )
+    const GenSub = (list: SectionNavType[]) => {
+      return list.map(
+        ({ title, children }) => children.length > 0
+          ? h(ElSubMenu, { index: title }, { default: () => GenSub(children), title: () => GenText(title) })
+          : h(ElMenuItem, { index: title }, () => GenText(title))
+      )
+    }
+    return h(
+      ElMenu,
+      {
+        style: 'position: fixed; width: 12%; top: 5%; right: 5%'
+      },
+      () => GenSub(catalog.splice(0))
+    )
+  }
+  /** 图片模式时左侧指向组件 */
+  pointerWhenImageMode (index: number) {
+    return h(
+      'div',
+      {
+        class: `${this.concatPrefix('pointer')}`,
+        onClick: () => this.CarouselImageModeRef.value?.jump(index)
+      },
+      [
+        h('span', { 'icon-carbon:direction-loop-left': '' }),
+        h('span', 'On the left!'),
+        h('span', { 'icon-carbon:group-resource': '' })
+      ]
+    )
   }
 }

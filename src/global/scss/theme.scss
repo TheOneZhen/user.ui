@@ -1,10 +1,23 @@
 :root {
+  /* 背景色 */
   --theme-background: #3d2333;
-  --theme-background-sun: #f0943a;
-  --theme-background-mountain: #452340;
-  --theme-background-tree: #e284af;
-  --theme-font-color: #000000;
+  /* 代码背景色 */
+  --theme-code-background: rgba(175, 184, 193, 0.2);
+  /* 字体颜色：正文 */
+  --theme-color: #24292f;
+  /* 字体颜色：副文 */
+  --theme-color-sub: #606266;
+  /* 高亮字体颜色：链接、边框、主页太阳 */
+  --theme-color-active: #f0943a;
+  /* 内容遮罩：文章、评论背景 */
+  --theme-mask-color: rgba(255, 255, 255, 0.4);
+  /* 工具条颜色 */
+  --theme-bar: #452340;
+  /* 对抗色：和工具条颜色配合使用 */
+  --theme-compete: #e284af;
+  /* 签名线条颜色 */
   --signature-stroke: #6aa84f;
+  /* 签名填充色 */
   --signature-fill: #c6fefe;
-  color: var(--theme-font-color);
+  color: var(--theme-color);
 }

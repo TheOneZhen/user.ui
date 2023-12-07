@@ -11,8 +11,7 @@
                   :index="tag.id"
                   v-text="tag.title"/>
         </div>
-        <!-- <component :is="ZMarkdownPreview({content: article.content, generateNav: true })" /> -->
-        <component :is="customMarked.parse(article.content)" />
+        <component :is="customMarked.parse(article.content, true)" />
         <p class="g-opacity-.4 g-text-align-right">
           {{ '最近修改：' + app.blog.formatDate(article.updateTime) }}
         </p>
@@ -43,10 +42,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ZMarkdownPreview } from '@/blog/preview'
 import { CustomMarked } from '@/blog/customMarked'
-const customMarked = new CustomMarked()
 
+const customMarked = new CustomMarked()
 const { index } = defineProps<{
   index: string
 }>()

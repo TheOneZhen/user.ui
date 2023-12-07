@@ -63,6 +63,8 @@ export default defineConfig({
     '[icon-carbon:blog=""]',
     '[icon-carbon:term=""]',
     '[icon-carbon:send-alt=""]',
-    '[icon-carbon:copy=""]'
+    '[icon-carbon:copy=""]',
+    '[icon-carbon:direction-loop-left=""]',
+    '[icon-carbon:group-resource=""]'
   ]
 })
