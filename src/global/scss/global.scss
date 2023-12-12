@@ -209,3 +209,9 @@ html, body {
 .markdown-body a {
   color: var(--theme-color-active)
 }
+
+.z-card {
+  background-color: var(--theme-bar);
+  .z-findme-container {
+  }
+}

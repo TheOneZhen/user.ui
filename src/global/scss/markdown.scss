@@ -89,8 +89,9 @@
       animation-duration: 2s;
       animation-iteration-count: 1;
       animation-name: button-hover-shadow;
-      animation-timing-function: linear;
+      animation-timing-function: ease-in-out;
       animation-fill-mode: both;
+      animation-direction: alternate;
     }
   }
 

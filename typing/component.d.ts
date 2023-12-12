@@ -10,6 +10,9 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     404: typeof import('./../src/components/error/404.vue')['default']
+    DemoGrid: typeof import('./../src/components/findme/DemoGrid.vue')['default']
+    DemoGridItem: typeof import('./../src/components/findme/DemoGridItem.vue')['default']
+    DemoItem: typeof import('./../src/components/findme/DemoItem.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElButton: typeof import('element-plus/es')['ElButton']

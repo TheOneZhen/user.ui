@@ -76,15 +76,17 @@ onBeforeUnmount(() => {
           :class="[{ 'z-carousel-title-active': index === current }, 'g-flex-auto']" @click="() => jump(index)">{{ title
           }}</span>
       </div>
-      <component v-for="(item, index) in data" :key="index" v-show="index === current" :is="item.node" />
+      <component v-for="(item, index) in data" :key="index" v-show="index === current" :is="item.node" class="z-carousel-inner" />
     </div>
     <div v-if="isDisplayControls" class="z-carousel-controls g-display-flex g-align-items-center g-height-30px">
-      <div @click="handlePlay" :class="playing ? 'icon-carbon:pause' : 'icon-carbon:play'" class="g-cursor-pointer"></div>
+      <div @click="handlePlay" :class="playing ? 'icon-carbon:pause' : 'icon-carbon:play'"
+        class="g-cursor-pointer g-margin-0-1rem"></div>
       <div class="g-flex-auto"></div>
-      <div @click="() => next(-1)" icon-carbon:chevron-left class="g-cursor-pointer"></div>
+      <div @click="() => next(-1)" icon-carbon:chevron-left class="g-cursor-pointer g-margin-0-1rem"></div>
       <div class="g-cursor-default">{{ `${current + 1} / ${dataLength}` }}</div>
-      <div @click="() => next(1)" icon-carbon:chevron-right class="g-cursor-pointer"></div>
+      <div @click="() => next(1)" icon-carbon:chevron-right class="g-cursor-pointer g-margin-0-1rem"></div>
     </div>
+    <div v-else></div>
   </div>
 </template>
 
@@ -95,15 +97,20 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   border: 1px solid var(--theme-color-active);
   background-color: var(--theme-bar);
-  .z-carousel-title {
-    .z-carousel-title-active {
-      background-color: var(--theme-compete);
+
+  .z-carousel-window {
+    .z-carousel-title {
+      .z-carousel-title-active {
+        background-color: var(--theme-compete);
+      }
+    }
+    .z-carousel-inner {
+      width: 100%;
     }
   }
 
-  .z-carousel-window {}
-
   .z-carousel-controls {
+    background-color: var(--theme-compete);
   }
 }
 </style>
