@@ -84,13 +84,13 @@ function Card (article: ArticleType) {
         {
           class: 'g-flex-auto',
           data: codes.map(code => ({ title: '', node: code })),
-          autoPlay: random(2000, 10000),
-          isDisplayControls: false,
+          autoPlay: random(10000, 20000),
+          isDisplayControls: true,
           isDisplayTitle: false
         }
       ),
       customMarked.parse(article.description, false),
-      `${Date()} likes|dislikes|views|comments` /** 后续再统一这边的内容 */
+      `${Date()}` /** 后续再统一这边的内容 */
     ]
   )
 }

@@ -54,7 +54,7 @@ function next (num: number) {
 
 function jump (num: number) {
   playing.value = false
-  current.value = num
+  current.value = (num + dataLength) % dataLength
 }
 
 onMounted(() => {
@@ -69,22 +69,20 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="z-carousel">
-    <div></div>
-    <div class="z-carousel-window">
-      <div v-if="isDisplayTitle" class="z-carousel-title g-height-60px g-display-flex g-cursor-pointer">
-        <span v-for="({ title }, index) in data" :key="index"
-          :class="[{ 'z-carousel-title-active': index === current }, 'g-flex-auto']" @click="() => jump(index)">{{ title
-          }}</span>
-      </div>
-      <component v-for="(item, index) in data" :key="index" v-show="index === current" :is="item.node" class="z-carousel-inner" />
+    <div v-if="isDisplayTitle" class="z-carousel-title g-height-60px g-display-flex g-cursor-pointer">
+      <span v-for="({ title }, index) in data" :key="index"
+        :class="[{ 'z-carousel-title-active': index === current }, 'g-flex-auto']" @click="() => jump(index)">{{ title
+        }}</span>
     </div>
+    <div v-else></div>
+    <component v-for="(item, index) in data" :key="index" v-show="index === current" :is="item.node" class="z-carousel-inner" />
     <div v-if="isDisplayControls" class="z-carousel-controls g-display-flex g-align-items-center g-height-30px">
       <div @click="handlePlay" :class="playing ? 'icon-carbon:pause' : 'icon-carbon:play'"
         class="g-cursor-pointer g-margin-0-1rem"></div>
       <div class="g-flex-auto"></div>
-      <div @click="() => next(-1)" icon-carbon:chevron-left class="g-cursor-pointer g-margin-0-1rem"></div>
+      <div @click="() => jump(current - 1)" icon-carbon:chevron-left class="g-cursor-pointer g-margin-0-1rem"></div>
       <div class="g-cursor-default">{{ `${current + 1} / ${dataLength}` }}</div>
-      <div @click="() => next(1)" icon-carbon:chevron-right class="g-cursor-pointer g-margin-0-1rem"></div>
+      <div @click="() => jump(current + 1)" icon-carbon:chevron-right class="g-cursor-pointer g-margin-0-1rem"></div>
     </div>
     <div v-else></div>
   </div>
@@ -98,15 +96,14 @@ onBeforeUnmount(() => {
   border: 1px solid var(--theme-color-active);
   background-color: var(--theme-bar);
 
-  .z-carousel-window {
-    .z-carousel-title {
-      .z-carousel-title-active {
-        background-color: var(--theme-compete);
-      }
+  .z-carousel-title {
+    .z-carousel-title-active {
+      background-color: var(--theme-compete);
     }
-    .z-carousel-inner {
-      width: 100%;
-    }
+  }
+
+  .z-carousel-inner {
+    max-width: 100%;
   }
 
   .z-carousel-controls {
