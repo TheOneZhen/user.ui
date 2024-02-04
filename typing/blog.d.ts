@@ -28,10 +28,11 @@ declare type ArticleType = {
   tagIds: TagType.id[]
   content: string
   description: string
-  likes: number
-  dislikes: number
+  // likes: number
+  // dislikes: number
   views: number
-  isShow: boolean
+  // isShow: boolean
+  type: "Technical Article" | "Stations Demo Article"
 }
 
 declare type SectionNavType = {

@@ -19,10 +19,10 @@
           <el-icon icon-ic:round-remove-red-eye />
           {{ article.views }}
         </el-button>
-        <el-button circle v-active="viewRecord.LA.has(article.id)" class="g-position-fixed g-left-92% g-bottom-220px g-margin-left-0" @click="app.user.lnArticle(article.id, 1)">
+        <el-button circle v-active="viewRecord['Like Article'].has(article.id)" class="g-position-fixed g-left-92% g-bottom-220px g-margin-left-0" @click="app.user.lnArticle(article.id, 1)">
           <el-icon icon-material-symbols:favorite />
         </el-button>
-        <el-button circle v-active="viewRecord.DLA.has(article.id)" class="g-position-fixed g-left-92% g-bottom-160px" @click="app.user.lnArticle(article.id, 0)">
+        <el-button circle v-active="viewRecord['Dislike Article'].has(article.id)" class="g-position-fixed g-left-92% g-bottom-160px" @click="app.user.lnArticle(article.id, 0)">
           <el-icon icon-material-symbols:heart-broken />
         </el-button>
       </template>

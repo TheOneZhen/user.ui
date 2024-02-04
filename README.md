@@ -24,9 +24,12 @@
    2. 功能模块：负责数据请求与处理
    3. 组件：负责调度状态管理与各模块，从而形成更好交互
 
-```mermaid
-graph BT;
-    C[Component] --> B;
-    C --> A;
-    A[Module] --> B[State];
+# site S
+
+```
+# /var/www
+- site
+- server
+- stations
+- static
 ```

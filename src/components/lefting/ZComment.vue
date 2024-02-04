@@ -16,8 +16,10 @@
         <component :is="customMarked.parse(comment.content)" class="g-padding-2%-1%" style="width: 90%" />
         <div class="g-height-3% g-min-height-30px g-flex g-align-items-center">
           <el-text class="g-flex-auto g-text-align-center">{{ comment.createTime }}</el-text>
-          <el-button v-active="viewRecord.LC.has(comment.id)" text @click="app.user.lnComment(comment.id, 1)"><el-icon icon-material-symbols:favorite />{{ comment.likes }}</el-button>
-          <el-button v-active="viewRecord.DLC.has(comment.id)" text @click="app.user.lnComment(comment.id, 0)"><el-icon icon-material-symbols:heart-broken />{{ comment.dislikes }}</el-button>
+          <el-button v-active="viewRecord['Like Comment'].has(comment.id)" text
+            @click="app.user.lnComment(comment.id, 1)"><el-icon icon-material-symbols:favorite /></el-button>
+          <el-button v-active="viewRecord['Dislike Comment'].has(comment.id)" text
+            @click="app.user.lnComment(comment.id, 0)"><el-icon icon-material-symbols:heart-broken /></el-button>
           <el-button text @click="handleShow"><el-icon icon-material-symbols:android-messages />查看对话</el-button>
           <el-button @click="handleReply" round>回复</el-button>
         </div>

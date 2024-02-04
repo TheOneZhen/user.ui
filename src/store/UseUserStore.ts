@@ -7,10 +7,10 @@ export const UseUserStore = defineStore('UseUserStore', () => {
   const platform = ref('GitHub')
   const home = ref('')
   const viewRecord: Record<keyof UserViewRecord, Set<number>> = reactive({
-    LA: new Set(),
-    DLA: new Set(),
-    LC: new Set(),
-    DLC: new Set()
+    "Like Article": new Set(),
+    "Dislike Article": new Set(),
+    "Like Comment": new Set(),
+    "Dislike Comment": new Set()
   })
 
   function setUserData (userData: UserData) {
@@ -25,9 +25,7 @@ export const UseUserStore = defineStore('UseUserStore', () => {
 
   function setViewRecord (record: UserViewRecord) {
     Object.entries(record).forEach(([key, value]) => {
-      const set = viewRecord[key as keyof UserViewRecord]
-      set.clear()
-      value.forEach(i => set.add(i))
+      viewRecord[key as keyof UserViewRecord] = new Set(value)
     })
   }
 

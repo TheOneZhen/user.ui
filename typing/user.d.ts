@@ -24,8 +24,8 @@ declare type UserData = {
  * 用户浏览数据
  */
 declare type UserViewRecord = {
-  LA: ArticleType['id'][]
-  DLA: ArticleType['id'][]
-  LC: CommentType['id'][]
-  DLC: CommentType['id'][]
+  "Like Article": ArticleType['id'][]
+  "Dislike Article": ArticleType['id'][]
+  "Like Comment": CommentType['id'][]
+  "Dislike Comment": CommentType['id'][]
 }

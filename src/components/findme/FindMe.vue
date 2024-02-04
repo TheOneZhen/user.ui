@@ -77,10 +77,8 @@ const middle: ArticleType[] = Array(10).fill({
   tagIds: [],
   content,
   description: 'this is test content',
-  likes: 1,
-  dislikes: 1,
   views: 1,
-  isShow: true
+  type: "Technical Article"
 })
 
 const containerWidth = window.innerWidth

@@ -71,3 +71,5 @@ https://color.dumogu.top/gradient
 # 状态管理优化：替换Pinia为类管理
 > 类状态无法获取组件上下文，这个问题需要解决
 # 实现一个数字时钟，在b站上面看到过
+
+# 所有技术采用roadmap的方式展示索引，类似https://roadmap.sh/frontend

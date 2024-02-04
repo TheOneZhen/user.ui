@@ -15,8 +15,6 @@ declare type ZComment = {
   userId: string
   quote: string
   content: string
-  likes: number
-  dislikes: number
   createTime: srting
   updateTime: string
   blogId: string
