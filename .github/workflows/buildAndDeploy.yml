@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - run: |
           npm install yarn -g
@@ -21,7 +21,7 @@ jobs:
           pass: ${{ secrets.PASSWORD_SERVER }}
           connect_timeout: 10s
           scp: |
-            './dist/' => ../var/www/
+            './dist' => /var/www/
           last_ssh: |
             mv -f /var/www/dist /var/www/site
 
