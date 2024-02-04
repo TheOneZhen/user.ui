@@ -20,5 +20,8 @@ jobs:
           user: ${{ secrets.USERNAME_SERVER }}
           pass: ${{ secrets.PASSWORD_SERVER }}
           connect_timeout: 10s
-          local: './dist/*'
-          remote: ../var/www/
+          scp: |
+            './dist/' => ../var/www/
+          last_ssh: |
+            move -f /var/www/dist /var/www/site
+
