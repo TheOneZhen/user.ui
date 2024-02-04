@@ -23,5 +23,5 @@ jobs:
           scp: |
             './dist' => /var/www/
           last_ssh: |
-            mv -f /var/www/dist /var/www/site
+            mv /var/www/dist /var/www/site
 
