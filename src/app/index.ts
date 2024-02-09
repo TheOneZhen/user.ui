@@ -22,7 +22,7 @@ export class App {
   }
 
   async init () {
-    this.checkCDNResource()
+    // this.checkCDNResource()
     await this.checkCsrfToken()
     this.blog.init()
     this.user.login()
