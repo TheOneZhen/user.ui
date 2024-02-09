@@ -5,7 +5,7 @@ const customMarked = new CustomMarked()
 </script>
 
 <template>
-  <div class="z-blog g-margin-5%-20% g-width-60%">
+  <div class="z-blog">
     <router-view v-slot="{ Component }">
       <template v-if="Component">
           <component :is="Component" />

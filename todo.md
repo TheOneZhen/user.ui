@@ -1,6 +1,15 @@
 # bug
 findme界面刷新内容消失
-
+# 页面优化
+1. 主题模块
+    1. 选择配色
+    2. 组件
+        1. 山日图：CSS-doodle
+    3. 其他风格
+    4. 路由切换的时候（页面），实现image-transition效果
+    5. 移动端
+2. 首页：添加一个无限图，用户可以通过手势（或者鼠标、触屏）实现内容变化
+3. 博客目录界面添加新的roadmap、还有根据Tag分类的目录
 # markdown解析进度
 1. 对接preview以及阅读模式、
    1. markdown解析之后的布局分为阅读模式和图片模式
@@ -21,9 +30,6 @@ findme界面刷新内容消失
       - 鼠标悬浮时，如果存在动态内容（GIF、video），跳至video，放大并开始动画。
     - 用户点击station之后放大内容，开启演示模式。
 - 对接stations仓库，开启后台服务
-
-# 首页添加无限图
-一个组件，用户可以操作方向键（鼠标、触屏）切换首页内容。
 
 # markdown解析相关
 > markdown解析重构大致完成，这里是后续任务或优化（优先级低）
@@ -73,3 +79,4 @@ https://color.dumogu.top/gradient
 # 实现一个数字时钟，在b站上面看到过
 
 # 所有技术采用roadmap的方式展示索引，类似https://roadmap.sh/frontend
+

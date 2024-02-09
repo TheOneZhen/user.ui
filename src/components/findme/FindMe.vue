@@ -78,7 +78,7 @@ const middle: ArticleType[] = Array(10).fill({
   content,
   description: 'this is test content',
   views: 1,
-  type: "Technical Article"
+  type: 'Technical Article'
 })
 
 const containerWidth = window.innerWidth
@@ -86,7 +86,7 @@ const containerHeight = window.innerHeight
 </script>
 
 <template>
-  <div class="z-find-me g-margin-5%-20% g-width-60%">
+  <div class="z-find-me">
     <!-- <micro-app name="site" url="http://localhost:5173" iframe></micro-app> -->
     <component :is="GridContainer(middle, containerWidth, containerHeight, 200, 'px')" class="g-width-100%" />
   </div>

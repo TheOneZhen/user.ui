@@ -21,3 +21,31 @@
   --signature-fill: #c6fefe;
   color: var(--theme-color);
 }
+// phone
+@media screen and (max-width: 768px) {
+  :root {
+    --theme-layout-left: 0;
+    --theme-layout-left-display: none;
+    --theme-layout-right: 0;
+    --theme-layout-right-display: none;
+  }
+  
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --theme-layout-left: 0;
+    --theme-layout-left-display: none;
+    --theme-layout-right: 20%;
+    --theme-layout-right-display: block;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  :root{
+    --theme-layout-left: 20%;
+    --theme-layout-left-display: block;
+    --theme-layout-right: 20%;
+    --theme-layout-right-display: block;
+  }
+}

@@ -1,9 +1,13 @@
 <template>
   <el-scrollbar id="z-main-scroll">
-    <css-doodle ref="doodle" class="g-position-absolute g-width-100% g-height-100%" click-to-update use="var(--rule)" />
+    <css-doodle ref="doodle" class="g-position-absolute" click-to-update use="var(--rule)" />
     <div class="g-relative g-min-height-100vh" @click.self="() => doodle.update()" >
       <z-header />
-      <router-view class="g-relative" />
+      <div class="g-flex">
+        <div style="display: var(--theme-layout-left-display); flex-basis: var(--theme-layout-left);"></div>
+        <router-view class="g-relative g-flex-auto" />
+        <div style="display: var(--theme-layout-right-display); flex-basis: var(--theme-layout-right);"></div>
+      </div>
       <!-- <z-bullet-screen></z-bullet-screen> -->
     </div>
     <z-signature v-if="tasks.length > 0" :loading="true" width="100" class="g-position-fixed g-left-1% g-bottom-10px"></z-signature>
@@ -20,7 +24,6 @@ const doodle = ref<any>(null)
 </script>
 
 <style lang="scss" scoped>
-
 css-doodle {
   --rule: (
     :doodle {
