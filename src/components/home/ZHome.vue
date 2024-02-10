@@ -7,7 +7,7 @@ const lefting = NavigationMenu[2]
 
 <template>
   <div class="z-home">
-    <div class="g-margin-10%-0-0-10%">
+    <div class="g-padding-5%">
       <z-signature width="200" />
       <!-- <component :is="ZSignature" width="220" /> -->
       <div slide-enter class="g-user-select-none">
