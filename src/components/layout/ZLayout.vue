@@ -1,7 +1,7 @@
 <template>
   <el-scrollbar id="z-main-scroll">
     <css-doodle ref="doodle" class="g-position-absolute" click-to-update use="var(--rule)" />
-    <div class="g-relative g-min-height-100vh" @click.self="() => doodle.update()" >
+    <div class="g-relative g-min-height-100dvh" @click.self="() => doodle.update()" >
       <z-header />
       <div class="g-flex">
         <div style="display: var(--theme-layout-left-display); flex-basis: var(--theme-layout-left);"></div>
