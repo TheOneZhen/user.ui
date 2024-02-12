@@ -56,11 +56,15 @@ export default defineConfig(() => {
     optimizeDeps: {},
     server: {
       proxy: {
+        // '/dynamic': {
+        //   target: 'http://127.0.0.1:8000/',
+        //   rewrite (path) {
+        //     return path.replace('/dynamic', '')
+        //   }
+        // },
         '/dynamic': {
-          target: 'http://127.0.0.1:8000/',
-          rewrite (path) {
-            return path.replace('/dynamic', '')
-          }
+          target: 'https://zhenisbusy.space',
+          changeOrigin: true
         },
         '/stations': {
           target: 'https://stations.zhenisbusy.space/',
