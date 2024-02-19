@@ -6,24 +6,22 @@
       </el-avatar>
     </div>
     <div class="g-flex-auto g-padding-0-1%">
-      <el-config-provider size="small">
-        <div class="g-height-3% g-min-height-30px">
-          <el-link :href="comment.user.home" target="_blank">{{ comment.user.name }}</el-link>
-          <el-tag size="small" class="g-margin-0-1%">
-            <el-link href="https://github.com/" target="_blank" icon-carbon:logo-github />
-          </el-tag>
-        </div>
-        <component :is="customMarked.parse(comment.content)" class="g-padding-2%-1%" style="width: 90%" />
-        <div class="g-height-3% g-min-height-30px g-flex g-align-items-center">
-          <el-text class="g-flex-auto g-text-align-center">{{ comment.createTime }}</el-text>
-          <el-button v-active="viewRecord['Like Comment'].has(comment.id)" text
-            @click="app.user.lnComment(comment.id, 1)"><el-icon icon-material-symbols:favorite /></el-button>
-          <el-button v-active="viewRecord['Dislike Comment'].has(comment.id)" text
-            @click="app.user.lnComment(comment.id, 0)"><el-icon icon-material-symbols:heart-broken /></el-button>
-          <el-button text @click="handleShow"><el-icon icon-material-symbols:android-messages />查看对话</el-button>
-          <el-button @click="handleReply" round>回复</el-button>
-        </div>
-      </el-config-provider>
+      <div class="g-height-3% g-min-height-30px">
+        <el-link :href="comment.user.home" target="_blank">{{ comment.user.name }}</el-link>
+        <el-tag class="g-margin-0-1%">
+          <el-link href="https://github.com/" target="_blank" icon-carbon:logo-github />
+        </el-tag>
+      </div>
+      <component :is="customMarked.parse(comment.content)" class="g-padding-2%-1%" style="width: 90%" />
+      <div class="g-height-3% g-min-height-30px g-flex g-align-items-center">
+        <el-text class="g-flex-auto g-text-align-center">{{ comment.createTime }}</el-text>
+        <el-button v-active="viewRecord['Like Comment'].has(comment.id)" text
+          @click="app.user.lnComment(comment.id, 1)"><el-icon icon-material-symbols:favorite /></el-button>
+        <el-button v-active="viewRecord['Dislike Comment'].has(comment.id)" text
+          @click="app.user.lnComment(comment.id, 0)"><el-icon icon-material-symbols:heart-broken /></el-button>
+        <el-button text @click="handleShow"><el-icon icon-material-symbols:android-messages />查看对话</el-button>
+        <el-button @click="handleReply" round>回复</el-button>
+      </div>
     </div>
   </div>
 </template>

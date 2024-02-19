@@ -54,7 +54,7 @@ export class Blog {
 
   @record('正在加载文章！', '', '文章加载失败，请尝试刷新页面！')
   async getArticle (index: ArticleType['id']) {
-    await new Promise((res) => setTimeout(() => res(1), 10000))
+    // await new Promise((res) => setTimeout(() => res(1), 10000))
     let article = this.articleMap.get(index)
     if (!article) {
       article = await app.request.post<ArticleType>(BLOGAPI.GET_ARTICLE, { index })

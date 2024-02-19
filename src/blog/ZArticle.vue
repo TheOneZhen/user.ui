@@ -7,7 +7,7 @@
     <div class="z-article-tag g-margin-0-0-5%-0">
       <el-tag v-for="tag in tags" :index="tag.id" v-text="tag.title" />
     </div>
-    <component :is="customMarked.parse(article.content, true)" />
+    <component :is="customMarked.parse(article.content, false)" />
     <p class="g-opacity-.4 g-text-align-right">
       {{ '最近修改：' + app.blog.formatDate(article.updateTime) }}
     </p>
