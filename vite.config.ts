@@ -4,7 +4,7 @@ import type { UserConfig } from 'vite'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
-import ElementComponents from 'unplugin-vue-components/vite'
+import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import UnoCSS from 'unocss/vite'
 
@@ -41,7 +41,8 @@ export default defineConfig(() => {
         },
         dts: resolve(__dirname, 'typing', 'auto-imports.d.ts')
       }),
-      ElementComponents({
+      Components({
+        dirs: 'src',
         resolvers: [
           ElementPlusResolver({
             importStyle: 'sass'
@@ -56,21 +57,25 @@ export default defineConfig(() => {
     optimizeDeps: {},
     server: {
       proxy: {
-        // '/dynamic': {
-        //   target: 'http://127.0.0.1:8000/',
-        //   rewrite (path) {
-        //     return path.replace('/dynamic', '')
-        //   }
-        // },
         '/dynamic': {
-          target: 'https://zhenisbusy.space',
-          changeOrigin: true
+          target: 'http://127.0.0.1:8000/',
+          rewrite (path) {
+            return path.replace('/dynamic', '')
+          }
         },
         '/stations': {
           target: 'https://stations.zhenisbusy.space/',
           rewrite (path) {
             return path.replace('/stations', '')
           }
+        }
+      }
+    },
+    preview: {
+      proxy: {
+        '/dynamic': {
+            target: 'https://zhenisbusy.space',
+            changeOrigin: true
         }
       }
     },
@@ -106,5 +111,6 @@ export default defineConfig(() => {
       }
     }
   }
+
   return common
 })

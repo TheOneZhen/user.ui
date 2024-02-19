@@ -1,4 +1,4 @@
-import ZSignature from '@/components/signature/ZSignature.vue'
+import ZSignature from '@/global/ZSignature.vue'
 import { loadImageAsync, loadVideoAsync } from '@/utils/loadResourceAsync'
 import { AsyncComponentLoader } from 'vue'
 

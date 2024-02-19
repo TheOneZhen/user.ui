@@ -7,18 +7,18 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import('@/components/layout/ZLayout.vue'),
+      component: () => import('@/layout/ZLayout.vue'),
       redirect: '/home',
       children: [
         {
           path: '/home',
           name: RouterName.HOME,
-          component: () => import('@/components/home/ZHome.vue')
+          component: () => import('@/layout/ZHome.vue')
         },
         {
           path: '/lefting',
           name: RouterName.LEFTING,
-          component: () => import('@/components/lefting/ZLefting.vue')
+          component: () => import('@/user/ZLefting.vue')
         },
         {
           path: '/blog',
@@ -37,18 +37,13 @@ const router = createRouter({
           path: '/find me',
           name: RouterName.FINDME,
           component: () => import('@/stations/FindMe.vue')
-        },
-        {
-          path: '/:pathMatch(.*)*',
-          name: RouterName.NOTFOUND,
-          component: () => import('@/app/404.vue')
         }
       ]
     },
     {
-      path: '/userEarthMap*',
-      name: 'microApp',
-      component: () => import('@/components/home/PageTwo.vue')
+      path: '/:pathMatch(.*)*',
+      name: RouterName.NOTFOUND,
+      component: () => import('@/router/404.vue')
     }
   ]
 })

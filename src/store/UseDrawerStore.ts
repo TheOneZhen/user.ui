@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { render, type VNode } from 'vue'
-import ZMultiPai from '@/components/lefting/ZMultiPai.vue'
+import ZMultiPai from '@/user/ZMultiPai.vue'
 
 export const UseDrawerStore = defineStore('UseDrawerStore', () => {
   const body = document.querySelector('body')!
