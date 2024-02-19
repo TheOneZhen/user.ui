@@ -54,7 +54,7 @@ export function GridContainer (
     return h(
       'div',
       {
-        class: 'z-findme-container g-flex-auto',
+        class: 'g-flex-auto',
         style
       },
       vNodes

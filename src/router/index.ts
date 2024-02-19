@@ -34,9 +34,9 @@ const router = createRouter({
           ]
         },
         {
-          path: '/find me',
-          name: RouterName.FINDME,
-          component: () => import('@/stations/FindMe.vue')
+          path: '/stations',
+          name: RouterName.STATIONS,
+          component: () => import('@/stations/ZStations.vue')
         }
       ]
     },

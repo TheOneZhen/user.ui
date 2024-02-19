@@ -55,6 +55,7 @@ declare module '@vue/runtime-core' {
     ZReply: typeof import('./../src/user/ZReply.vue')['default']
     ZSider: typeof import('./../src/layout/ZSider.vue')['default']
     ZSignature: typeof import('./../src/global/ZSignature.vue')['default']
+    ZStations: typeof import('./../src/stations/ZStations.vue')['default']
     ZTags: typeof import('./../src/components/ZTags.vue')['default']
     ZTimeline: typeof import('./../src/components/ZTimeline.vue')['default']
     ZTypography: typeof import('./../src/components/ZTypography.vue')['default']

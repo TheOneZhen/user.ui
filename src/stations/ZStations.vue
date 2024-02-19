@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import { GridContainer } from './findme.logic'
+import { GridContainer } from './stations.logic'
 
 const content = `
 前端开发中npm重中之重，但是多数情况仅限于\`npm start\`这类基础指令，本篇将从高的视角去探索npm的能力并完成简单应用。

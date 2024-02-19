@@ -14,7 +14,7 @@ export const NavigationMenu: Header.SubMenu[] = [
     icon: 'icon-carbon:term'
   },
   {
-    title: RouterName.FINDME,
+    title: RouterName.STATIONS,
     icon: 'icon-carbon:send-alt'
   }
 ]

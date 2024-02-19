@@ -62,12 +62,6 @@ export default defineConfig(() => {
           rewrite (path) {
             return path.replace('/dynamic', '')
           }
-        },
-        '/stations': {
-          target: 'https://stations.zhenisbusy.space/',
-          rewrite (path) {
-            return path.replace('/stations', '')
-          }
         }
       }
     },
