@@ -23,12 +23,12 @@ const router = createRouter({
         {
           path: '/blog',
           name: RouterName.BLOG,
-          component: () => import('@/components/blog/ZBlog.vue'),
+          component: () => import('@/blog/ZBlog.vue'),
           children: [
             {
               path: 'article/:index',
               name: RouterName.ARTICLE,
-              component: () => import('@/components/blog/ZArticle.vue'),
+              component: () => import('@/blog/ZArticle.vue'),
               props: true
             }
           ]
@@ -36,17 +36,12 @@ const router = createRouter({
         {
           path: '/find me',
           name: RouterName.FINDME,
-          component: () => import('@/components/findme/FindMe.vue')
-        },
-        {
-          path: 'user',
-          name: RouterName.USER,
-          component: () => import('@/components/user/login.vue')
+          component: () => import('@/stations/FindMe.vue')
         },
         {
           path: '/:pathMatch(.*)*',
           name: RouterName.NOTFOUND,
-          component: () => import('@/components/error/404.vue')
+          component: () => import('@/app/404.vue')
         }
       ]
     },

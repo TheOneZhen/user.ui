@@ -11,8 +11,7 @@
       <!-- <z-bullet-screen></z-bullet-screen> -->
     </div>
     <!-- to right -->
-    <z-signature v-if="tasks.length > 0" loading width="100"
-      class="g-position-fixed g-left-1% g-bottom-10px"></z-signature>
+    <z-signature v-if="tasks.length > 0" loading width="100" class="g-position-fixed g-left-1% g-bottom-10px" />
     <!-- to left -->
     <Teleport to="body">
       <el-backtop target=".z-main-scroll" class="g-left-92%"></el-backtop>

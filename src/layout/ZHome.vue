@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import { NavigationMenu } from '../header/header.config'
+import { NavigationMenu } from './header.config'
 
 const blog = NavigationMenu[1]
 const lefting = NavigationMenu[2]
@@ -39,4 +39,4 @@ const lefting = NavigationMenu[2]
 <style lang="scss">
 .z-home {
 }
-</style>
+</style>../../app/header.config

@@ -17,7 +17,7 @@ const visible = ref(!!lastTask.value)
     <z-signature loading width="200" />
     <el-divider />
     <component v-if="lastTask" :is="customMarked.parse(lastTask.content)" />
-    <el-icon icon-carbon:close-large @click="lastTask?.close()" />
+    <!-- <el-icon icon-carbon:close-large @click="lastTask?.close()" /> -->
   </el-dialog>
 </template>
 
