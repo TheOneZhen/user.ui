@@ -14,7 +14,6 @@ export const UseUserStore = defineStore('UseUserStore', () => {
   })
 
   function setUserData (userData: UserData) {
-    clearUserInfo()
     name.value = userData.name
     icon.value = userData.icon
     platform.value = userData.platform
@@ -34,6 +33,7 @@ export const UseUserStore = defineStore('UseUserStore', () => {
     name.value = ''
     icon.value = ''
     home.value = ''
+    app.storage.setLocal('token', token.value)
   }
 
   return { token, name, icon, platform, home, viewRecord, setUserData, clearUserInfo, setViewRecord }

@@ -49,6 +49,10 @@ export class User {
           user.setUserData(result)
           this.getViewRecord()
         })
+        .catch(reason => {
+          user.clearUserInfo()
+          console.warn(reason)
+        })
     }
   }
 
