@@ -57,5 +57,8 @@ function handleMouseup () {
   ._color-scheme {
     color: var(--theme-color-active);
   }
+  .el-menu-item {
+    min-width: 0;
+  }
 }
 </style>
