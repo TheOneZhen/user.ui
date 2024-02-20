@@ -1,11 +1,11 @@
 <template>
   <div class="z-lefting">
     <z-comments :article="null" :quote="null" />
-    <el-button circle
-               class="g-position-fixed g-left-92% g-bottom-100px"
-               @click="hanldeComment">
-      <el-icon icon-pajamas:comment-dots />
-    </el-button>
+    <async-teleport to="#z-layout-sider-right">
+      <el-button circle class="fixed-button" style="bottom: 100px;" @click="hanldeComment">
+        <el-icon icon-pajamas:comment-dots />
+      </el-button>
+    </async-teleport>
   </div>
 </template>
 
