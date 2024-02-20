@@ -11,21 +11,23 @@
     <p class="g-opacity-.4 g-text-align-right">
       {{ '最近修改：' + app.blog.formatDate(article.updateTime) }}
     </p>
-    <el-button circle class="g-position-fixed g-left-92% g-bottom-280px">
-      <el-icon icon-ic:round-remove-red-eye />
-      {{ article.views }}
-    </el-button>
-    <el-button circle v-active="viewRecord['Like Article'].has(article.id)"
-      class="g-position-fixed g-left-92% g-bottom-220px g-margin-left-0" @click="app.user.lnArticle(article.id, 1)">
-      <el-icon icon-material-symbols:favorite />
-    </el-button>
-    <el-button circle v-active="viewRecord['Dislike Article'].has(article.id)"
-      class="g-position-fixed g-left-92% g-bottom-160px" @click="app.user.lnArticle(article.id, 0)">
-      <el-icon icon-material-symbols:heart-broken />
-    </el-button>
-    <el-button circle class="g-position-fixed g-left-92% g-bottom-100px" @click="hanldeComment">
-      <el-icon icon-pajamas:comment-dots />
-    </el-button>
+    <async-teleport to="#z-layout-sider-right">
+      <el-button class="fixed-button" circle style="bottom: 280px;">
+        <el-icon icon-ic:round-remove-red-eye />
+        {{ article.views }}
+      </el-button>
+      <el-button class="fixed-button" circle v-active="viewRecord['Like Article'].has(article.id)"
+        style="bottom: 220px; margin-left: 0;" @click="app.user.lnArticle(article.id, 1)">
+        <el-icon icon-material-symbols:favorite />
+      </el-button>
+      <el-button class="fixed-button" circle v-active="viewRecord['Dislike Article'].has(article.id)"
+        style="bottom: 160px; margin-left: 0;" @click="app.user.lnArticle(article.id, 0)">
+        <el-icon icon-material-symbols:heart-broken />
+      </el-button>
+      <el-button class="fixed-button" circle style="bottom: 100px; margin-left: 0;" @click="hanldeComment">
+        <el-icon icon-pajamas:comment-dots />
+      </el-button>
+    </async-teleport>
     <!-- 上一篇 -->
     <!-- 下一篇 -->
   </div>
@@ -34,6 +36,7 @@
 
 <script lang="ts" setup>
 import { CustomMarked } from '@/blog/customMarked'
+import { AsyncTeleport } from '@/utils/DOMUtil'
 
 const customMarked = new CustomMarked()
 const { index } = defineProps<{
@@ -67,11 +70,3 @@ function hanldeComment () {
 
 getArticle(+index)
 </script>
-
-<style lang="scss">
-.z-article {
-  .el-button+.el-button {
-    margin-left: 0;
-  }
-}
-</style>

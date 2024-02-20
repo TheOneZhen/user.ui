@@ -35,8 +35,3 @@ const lefting = NavigationMenu[2]
     </div>
   </div>
 </template>
-
-<style lang="scss">
-.z-home {
-}
-</style>../../app/header.config

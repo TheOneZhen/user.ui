@@ -213,3 +213,10 @@ html, body {
 .z-card {
   background-color: var(--theme-bar);
 }
+
+.fixed-button {
+  position: fixed;
+  left: calc(
+    100% - var(--theme-layout-right) + 1%
+  );
+}
