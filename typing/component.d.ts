@@ -30,7 +30,6 @@ declare module '@vue/runtime-core' {
     ElText: typeof import('element-plus/es')['ElText']
     ElTimeline: typeof import('element-plus/es')['ElTimeline']
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
-    FindMe: typeof import('./../src/stations/FindMe.vue')['default']
     PageThree: typeof import('./../src/components/PageThree.vue')['default']
     PageTwo: typeof import('./../src/components/PageTwo.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
