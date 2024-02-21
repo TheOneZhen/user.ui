@@ -10,6 +10,8 @@
 </template>
 
 <script lang="ts" setup>
+import { AsyncTeleport } from '@/utils/DOMUtil';
+
 const useReply = app.store.get('UseReplyStore')
 
 function hanldeComment () {

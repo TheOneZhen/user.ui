@@ -26,6 +26,7 @@ export class App {
     await this.checkCsrfToken()
     this.blog.init()
     this.user.login()
+    this.theme.init()
   }
 
   async checkCsrfToken () {

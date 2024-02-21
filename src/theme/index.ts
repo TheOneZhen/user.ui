@@ -1,6 +1,8 @@
 import dayjs from 'dayjs'
 import { random } from 'lodash-es'
 import { colorGroup, ThemeConfig, ThemeProperty } from './theme.config'
+import { useWindowSize } from '@vueuse/core'
+import type { Ref } from 'vue'
 
 /**
  * # 主题
@@ -8,8 +10,13 @@ import { colorGroup, ThemeConfig, ThemeProperty } from './theme.config'
 export class Theme {
   private root = document.querySelector('html')!
   private config = ThemeConfig
+  size: Ref<'small' | 'default' | 'large'> = ref('default')
 
   init () {
+    const { width } = useWindowSize()
+    watch(width, (num) => {
+      this.size.value = num > 1024 ? 'large' : ((num > 768) ? 'default' : 'small')
+    })
   }
   /**
    * 如果缓存中有设置，优先使用缓存；缓存没有设置，自动计算。
