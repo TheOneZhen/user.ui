@@ -39,6 +39,7 @@ declare module '@vue/runtime-core' {
     ZBlogTagDisplay: typeof import('./../src/components/ZBlogTagDisplay.vue')['default']
     ZBulletComment: typeof import('./../src/components/ZBulletComment.vue')['default']
     ZBulletScreen: typeof import('./../src/components/ZBulletScreen.vue')['default']
+    ZCard: typeof import('./../src/stations/ZCard.vue')['default']
     ZCarousel: typeof import('./../src/blog/ZCarousel.vue')['default']
     ZComment: typeof import('./../src/user/ZComment.vue')['default']
     ZComments: typeof import('./../src/user/ZComments.vue')['default']
