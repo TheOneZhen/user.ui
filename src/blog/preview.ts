@@ -30,3 +30,15 @@ export function PackageAsyncComponentToVNode (loader: AsyncComponentLoader) {
     })
   )
 }
+/** 将组建包裹为异步加载 */
+export function AsyncPack () {
+  return function (target: any, name: string, descriptor: PropertyDescriptor) {
+    const fn = descriptor.value
+    descriptor.value = function (...args: any[]) {
+      return PackageAsyncComponentToVNode(
+        () => fn.apply(this, args)
+      )
+    }
+    return descriptor
+  }
+}
