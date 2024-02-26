@@ -7,10 +7,10 @@ export const UseUserStore = defineStore('UseUserStore', () => {
   const platform = ref('GitHub')
   const home = ref('')
   const viewRecord: Record<keyof UserViewRecord, Set<number>> = reactive({
-    "Like Article": new Set(),
-    "Dislike Article": new Set(),
-    "Like Comment": new Set(),
-    "Dislike Comment": new Set()
+    'Like Article': new Set(),
+    'Dislike Article': new Set(),
+    'Like Comment': new Set(),
+    'Dislike Comment': new Set()
   })
 
   function setUserData (userData: UserData) {
