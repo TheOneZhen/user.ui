@@ -1,13 +1,3 @@
-# 命令
-1. vite项目构建命令：```yarn create vite user.ui --template vue-ts```
-2. 运行项目：```yarn vite```
-3. 安装依赖
-    1. 根据\<root\>路径下package.json安装依赖：```yarn```
-    2. 安装指定依赖的指定版本：```yarn add module_name@version```
-    3. 将指定依赖保存到devDependencies（代表仅部署开发环境）：```yarn add module_name -D```
-    4. ignoring the same module with different version: ```yarn add [moduleName] --legacy-peer-deps```
-    5. nvm sets default version for node: ```nvm alias default [version]```
-
 # 项目架构
 
 1. 文件设计
