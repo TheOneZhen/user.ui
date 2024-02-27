@@ -5,7 +5,7 @@ const customMarked = new CustomMarked()
 </script>
 
 <template>
-  <div class="z-blog">
+  <div class="z-blog" style="background-color: var(--them-content-background-color);">
     <router-view v-slot="{ Component }">
       <template v-if="Component">
           <component :is="Component" />
@@ -27,9 +27,3 @@ const customMarked = new CustomMarked()
     </router-view>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.z-blog {
-  background-color: rgba($color: #FFFFFF, $alpha: .4);
-}
-</style>
