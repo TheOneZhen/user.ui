@@ -1,16 +1,17 @@
 <script lang='ts' setup>
-import { VNode } from 'vue'
 /**
- * 组件设计规则：
- * 1. 轮播组件，塞入组件，然后播放（类似leetcode代码轮播）
- * 2. 现阶段将此组件和markdown强绑定，所以不再支持渗透类型的功能，比如：鼠标悬浮时自动找到视频并播放
+ * # 组件说明
+ * 该组件为轮播组件，用于阅读模式、markdown解析内部资源轮播。
+ * ## 基本功能
+ * - 不会自动播放
+ * ## 阅读模式功能
+ * - 在底部添加跳转按钮，点击可以跳转到对应block
+ * - 切换时会自动跳转到对应block
+ * ## markdown内部组件功能
  */
-const { data, autoPlay, isDisplayControls, isDisplayTitle } = defineProps({
+const { data, autoPlay, isDisplayButton } = defineProps({
   data: {
-    type: Object as PropType<{
-      node: VNode,
-      title: string
-    }[]>,
+    type: Object as PropType<VNode[]>,
     required: true
   },
   /** 自动播放（ms） */
@@ -18,17 +19,15 @@ const { data, autoPlay, isDisplayControls, isDisplayTitle } = defineProps({
     type: Number,
     default: 0
   },
-  /** 是否展示controls（播放相关按钮） */
-  isDisplayControls: {
+  /** 是否展示底部菜单 */
+  isDisplayButton: {
     type: Boolean,
     default: true
-  },
-  /** 是否展示titles */
-  isDisplayTitle: {
-    type: Boolean,
-    default: false
   }
 })
+const emit = defineEmits<{
+  (event: 'jumpToContent', content: VNode): void
+}>()
 defineExpose({ jump })
 const dataLength = data.length
 const current = ref(0)
@@ -69,22 +68,21 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="z-carousel">
-    <div v-if="isDisplayTitle" class="z-carousel-title g-height-60px g-display-flex g-cursor-pointer">
-      <span v-for="({ title }, index) in data" :key="index"
-        :class="[{ 'z-carousel-title-active': index === current }, 'g-flex-auto']" @click="() => jump(index)">{{ title
-        }}</span>
-    </div>
-    <div v-else></div>
-    <component v-for="(item, index) in data" :key="index" v-show="index === current" :is="item.node" class="z-carousel-inner" />
-    <div v-if="isDisplayControls" class="z-carousel-controls g-display-flex g-align-items-center g-height-30px">
-      <div @click="handlePlay" :class="playing ? 'icon-carbon:pause' : 'icon-carbon:play'"
-        class="g-cursor-pointer g-margin-0-1rem"></div>
-      <div class="g-flex-auto"></div>
+    <component v-for="(item, index) in data" :key="index" v-show="index === current" :is="item" class="z-carousel-inner" />
+    <div v-if="isDisplayButton" class="z-carousel-controls g-display-flex g-align-items-center g-height-30px">
+      <div @click="handlePlay" :class="playing ? 'icon-carbon:pause' : 'icon-carbon:play'" class="g-cursor-pointer g-margin-0-1rem"></div>
+      <!-- go to -->
+      <div v-if="$attrs['jumpToContent'] !== undefined" class="g-flex-auto"></div>
+      <template v-else>
+        <div class="g-flex-auto"></div>
+        <div style="flex-basis: content; min-width: 0; overflow: hidden;" @click="() => emit('jumpToContent', data[current])"></div>
+        <div class="g-flex-auto"></div>
+      </template>
+
       <div @click="() => jump(current - 1)" icon-carbon:chevron-left class="g-cursor-pointer g-margin-0-1rem"></div>
       <div class="g-cursor-default">{{ `${current + 1} / ${dataLength}` }}</div>
       <div @click="() => jump(current + 1)" icon-carbon:chevron-right class="g-cursor-pointer g-margin-0-1rem"></div>
     </div>
-    <div v-else></div>
   </div>
 </template>
 

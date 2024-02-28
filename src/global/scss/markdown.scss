@@ -36,6 +36,12 @@
   }
   .z-markdown-image-mode {
     display: flex;
+    .z-markdown-image-mode-image {
+      flex-basis: 50%;
+    }
+    .z-markdown-image-mode-conotent {
+      flex-basis: 50%;
+    }
     .z-markdown-carousel {
       width: 50%;
     }
