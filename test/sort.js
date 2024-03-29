@@ -115,18 +115,18 @@ function merge(arr, midArr = new Array(arr.length), start = 0, end = arr.length 
  *   - S(n) = O(n) -  O(logn), 主要为递归栈产生的空间
  *   - 不稳定
  */
-function quick(arr, start = 0, end = arr.length - 1) {
+function quick (arr, start = 0, end = arr.length - 1) {
   if (start < end) {
-    const current = arr[start];
-    let low = start, high = end;
+    const current = arr[start]
+    let low = start, high = end
     while (low < high) {
-      while (low < high && arr[high--] >= current);
-      swap(arr, low, high);
-      while (low < high && arr[low++] <= current);
-      swap(arr, low, high);
+      while (low < high && arr[high] >= current) high--
+      swap(arr, low, high)
+      while (low < high && arr[low] <= current) low++
+      swap(arr, low, high)
     }
-    quick(arr, low + 1, end);
-    quick(arr, start, low - 1);
+    quick(arr, low + 1, end)
+    quick(arr, start, low - 1)
   }
 }
 /**
