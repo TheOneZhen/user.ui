@@ -63,6 +63,12 @@ export class Blog {
     return article
   }
 
+  @record('正在加载Stations内容！', '', 'Stations内容加载失败，请尝试刷新页面！')
+  async getStationsArticles () {
+    return app.request.post<ArticleType[]>(BLOGAPI.GET_STATIONS_ARTICLES, {})
+      .then(res => res.sort((a, b) => b.id - a.id))
+  }
+
   toArticle (index: ArticleType['id']) {
     app.router?.push({ name: RouterName.ARTICLE, params: { index } })
   }

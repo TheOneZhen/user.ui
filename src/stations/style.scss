@@ -1,0 +1,32 @@
+.z-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--theme-gap);
+  max-height: 600px;
+  overflow: hidden;
+  box-shadow: var(--el-box-shadow-light);
+  border-radius: var(--el-card-border-radius);
+  border: 1px solid var(--el-card-border-color);
+  transition: var(--el-transition-duration);
+  background-color: var(--theme-bar);
+
+  .el-carousel__indicators {
+    top: 0px;
+  }
+  .el-carousel__button {
+    border-radius: 9999px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .el-carousel__item {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  h2,
+  .z-card-content {
+    text-align: center;
+  }
+}
