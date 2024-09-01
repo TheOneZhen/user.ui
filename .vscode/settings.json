@@ -17,7 +17,7 @@
   "emmet.triggerExpansionOnTab": true,
   "emmet.showSuggestionsAsSnippets": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true // 自动修复
+    "source.fixAll.eslint": "explicit"
   },
   "workbench.editor.enablePreview": false,
   "eslint.validate": [ // 配置 ESLint 检查的文件类型
